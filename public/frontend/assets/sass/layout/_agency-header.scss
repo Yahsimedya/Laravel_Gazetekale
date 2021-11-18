@@ -1,0 +1,47 @@
+.ajans {
+    height: 5rem;
+    width: 100%;
+    // background-color:red;
+    position: relative;
+    &__logo--box {
+float: left;
+    }
+  
+    &__menu{
+        text-decoration: none;
+        font-size: $default-font-size;
+        position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+    &__logo  {
+       width: 30rem;
+    }
+
+    &__navigation {
+        list-style: none;
+
+    }
+
+    &__item {
+        float: left;
+        padding: 1rem 2rem;
+        color: $color-black;
+    }
+    &__sosyal--ikon {
+        float: right;
+
+        &--liste {
+            list-style: none;
+        }
+
+        &--item {
+            float: left;
+            padding: 2rem 1rem 2rem 1rem;
+        }
+    }
+
+    
+    
+}

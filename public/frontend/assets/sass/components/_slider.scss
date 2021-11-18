@@ -1,0 +1,366 @@
+.tns-nav-active {
+    background-color:$color-bordo;
+}
+.tns-nav {
+    text-align: center;
+}
+    .tns-outer [aria-controls], .tns-outer [data-action] {
+        cursor: pointer;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        border: none;
+        margin: 2px;
+    }
+
+.anaslider {
+    position: relative;
+}
+// .active {
+//     background-clip: $white;
+// }
+.slider_span {
+    width: 53px;
+    background-color: #d70811;
+    position: absolute;
+    height: 36px;
+    text-align: center;
+    line-height: 27px;
+}
+.owl__yanslider {
+    &-theme &-dots &-dot {
+        display: block !important;
+        zoom: 1;
+    }
+    // &-dots {
+    //     background-color: $color-fume;
+    //     // position: absolute;
+    //     // bottom: 0px;
+    //     // left: 50%;
+    //     // transform: translate(-50%, 0);
+    //     // width: 100%;
+
+    //     // @include respond(tab-port) {
+    //     //     display: none;
+    //     // }
+      
+    // }
+     
+    &-theme  &-dots &-dot span {
+        width: 2rem!important;
+        height: 2rem !important;
+        padding: 0px 0px !important;
+        margin: 0px 0px !important;
+        color: red !important;
+        border-radius: 0 !important;
+        background: #3f4150 !important;
+        font-size: 1rem;
+        transition: .2s all ease !important;
+        opacity: 1.8;
+        float: left;
+        bottom: 0;
+        position: relative;
+        border-right: 1px solid #565656;
+       
+       
+
+        &:hover {
+            background-color: $white  !important;
+            color: $white  !important;
+            opacity: 1 !important;
+
+
+        }
+    }
+    &-theme &-dots &-dot.active span { 
+background-color: $color-bordo !important;
+    }
+}
+.owl , .anaslider  {
+    // &-theme &-nav {
+    //     display: block;
+    // }
+    // &-nav{
+    //     display: none;
+    // }
+ 
+    &-nav {
+        margin-top:0 !important;
+        
+    }
+    &-prev {
+        display: block;
+    position: absolute;
+    top: 42%;
+    left: -6px;
+    color: #d81717 !important;
+    font-size: 2rem !important;
+    width: 4rem;
+    height: 4rem;
+    background-color: none ;
+    border-radius: 0px !important;
+    background: none !important;
+  &:hover {
+    background: none !important;
+
+  }
+    }
+    &-next {
+        display: block;
+    position: absolute;
+    top: 42%;
+    right: -3px;
+    color: #d81717 !important;
+    font-size: 2rem !important;
+    width: 4rem;
+    height: 4rem;
+    background-color: none !important;
+    border-radius: 0px !important;
+    &:hover {
+        background: none !important;
+    
+      }
+    }
+    &-dots {
+        margin-top:0px !important;
+
+    }
+    &-theme &-dots &-dot {
+        display: block !important;
+        zoom: 1;
+    }
+    // &-dots {
+    //     background-color: $color-fume;
+    //     // position: absolute;
+    //     // bottom: 0px;
+    //     // left: 50%;
+    //     // transform: translate(-50%, 0);
+    //     // width: 100%;
+
+    //     // @include respond(tab-port) {
+    //     //     display: none;
+    //     // }
+      
+    // }
+     
+    &-theme  &-dots &-dot span {
+        width: 36.5px !important;
+        height: 36.5px !important;
+        padding: 0px 0px !important;
+        margin: 0px 0px !important;
+        color: #ffffff !important;
+        border-radius: 0 !important;
+        background: #3f4150 !important;
+        font-size: 1rem;
+        transition: .2s all ease !important;
+        opacity: 1.8;
+        float: left;
+        bottom: 0;
+        position: relative;
+        border-right: 1px solid #565656;
+        line-height: 33px;
+       
+
+
+        &:hover {
+            background-color: $white  !important;
+            color: $white  !important;
+            opacity: 1 !important;
+
+
+        }
+        @include respond(tab-port) {
+            width: auto !important;
+            height: auto !important;
+            padding: 0 !important;
+            color: #ffffff !important;
+            border-radius: 0 !important;
+               }
+    }
+    &-theme &-dots &-dot.active span { 
+background-color: $color-bordo !important;
+    }
+    &-carousel &-item{
+        // height:425px;
+        width:100%;
+        
+    }
+&-carousel &-anaitem{
+        height:auto;
+        width:100%;
+        // @include respond(phone) {
+        //     height:280px !important;
+
+        // }
+        & img {
+            height: 430px !important;
+
+            object-fit: cover;
+            
+            @include media-breakpoint-down(sm) {
+height: auto !important;
+            }
+        }
+    }
+    &-aciklama {
+        position: absolute;
+        padding: 1rem;
+        background-color: rgba(0,180,213,0.58);
+        width: 97%;
+        bottom: -10px;
+        left: 50%;
+        transform: translate(-50%, -45%);
+
+        // @include respond(tab-port) {
+        //     position: absolute;
+        //     /* padding: 5rem 0; */
+        //     background-color: rgba(61,108,126,0.63);
+        //     /* width: 100%; */
+        //     /* top: 50%; */
+        //     left: 50%;
+        //     transform: translate(-50%, -50%);
+        // }
+    }
+
+    &-baslik {
+        color: $white;
+        font-size: 2rem;
+        text-transform: uppercase;
+        opacity: 1;
+        font-family: 'hind';
+    }
+    &-aciklama {
+        color: $white;
+        font-size: 1.2rem;
+        opacity: 1;
+        font-family: 'hind';
+    }
+
+}
+
+.yan__kategori {
+    // top: 0;
+    // left:0;
+    // display: block;
+width: 100%;
+border: none;
+    & ul {
+width: 100%;
+    }
+
+   
+    &-li {
+        float: left;
+        padding: 10px;
+        background-color: $color-fume;
+        font-weight: 600;
+        width: 25%;
+     
+            display: inline-block;
+            // letter-spacing: .5rem;
+            /* padding: 1rem 2rem; */
+            text-decoration: none;
+            // text-transform: uppercase;
+            font-weight: 300;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #fff 50%);
+            background-size: 240%;
+            transition: all .3s;
+    
+   
+        @include media-breakpoint-down(sm) {
+            width: 25%;
+
+            /* padding: 6px 4px; */
+            font-size: 13px;
+        }
+
+    
+        &-link:link, &-link:visited {
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: all .3s;
+            // height: 100%;
+            font-family: 'Work Sans';
+
+            // &:hover {
+            //     color: $color-fume;
+            // }
+        }
+        &:hover  {
+            background-position: 100%;
+            background-color: $white !important;
+            color: $color-fume;
+
+            // transform: translateX(1rem);
+        }
+        &:hover &-link {
+                color: $color-fume;
+            }
+       
+    }
+    &-1 {
+background-color: $kategori-1;
+    }
+    &-2 {
+        background-color: $kategori-2;
+
+    }
+    &-3 {
+        background-color: $kategori-3;
+    
+    }
+    &-4 {
+        background-color: $kategori-4;
+      
+    }
+}
+
+
+
+
+.yanslider {
+
+    &__yanitem {
+
+    }
+    &__aciklama {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30%;
+    }
+    &__effect {
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(transparent 40%,#000);
+    }
+    &-link:link, &-link:visited {
+        // display: inline-block; 
+        font-size: 20px;
+        margin: 10px 23px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 400;
+        transition: all .3s;
+        // height: 100%;
+        &:hover {
+            color:$color-bordo;
+        }
+       
+    }
+    
+    
+}
+.yanslider.owl-carousel.owl-theme.owl-loaded.owl-drag,
+.yanslider .owl-stage-outer,
+.yanslider .owl-stage,
+.yanslider .owl-item,
+.yanslider .item,
+.yanslider .owl-item,
+.yanslider .img-responsive{
+    height: 225px;
+    object-fit: cover;
+}
