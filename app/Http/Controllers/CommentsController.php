@@ -38,7 +38,8 @@ class CommentsController extends Controller
 
     public function DeleteComments(Request $request, $id)
     {
-        Comments::delete($id);
+        $silinecek=Comments::find($id);
+        $silinecek->delete();
         $notification = array(
             'message' => 'Yorum Silindi',
             'alert-type' => 'warning'
@@ -56,21 +57,14 @@ class CommentsController extends Controller
     public function AddComments(Request $request, $id)
     {
 
-        if ($request->guvenlikkodu == $request->guvenlik) {
 
-            Comments::insert($request->except('_token', 'guvenlikkodu','yorumicerik','guvenlik',));
+            Comments::insert($request->except('_token', 'guvenlikkodu','yorumicerik','guvenlik'));
             $notification = array(
                 'message' => 'Haber Başarıyla Silindi',
                 'alert-type' => 'succes'
             );
-            return Redirect()->route('open.comments', $id)->with($notification);
-        } else {
-            $notification = array(
-                'message' => 'Haber Başarıyla Silindi',
-                'alert-type' => 'error'
-            );
-            return Redirect()->route('open.comments', $id)->with($notification);
-        }
+            return Redirect()->back();
+
 
     }
 }

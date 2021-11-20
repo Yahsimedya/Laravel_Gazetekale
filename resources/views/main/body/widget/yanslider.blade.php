@@ -18,15 +18,18 @@
                 @endphp
                 @foreach ($siyaset as $row )
 
+
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
-                        <div class="yanslider__effect position-absolute"></div>
-                        <img src="{{$row->image}}" class="img-fluid" alt="">
-                        <div class="yanslider__aciklama d-table-cell position-absolute">
-                            <a href="" class=" yanslider-link align-middle card-kisalt">
-                                {{$row->title_tr}}
-                            </a>
-                        </div>
+                        <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
+                            <div class="yanslider__effect position-absolute"></div>
+                            <img src="{{$row->image}}" class="img-fluid" alt="">
+                            <div class="yanslider__aciklama d-table-cell position-absolute">
+                                <a href="" class=" yanslider-link align-middle card-kisalt">
+                                    {{$row->title_tr}}
+                                </a>
+                            </div>
                     </div>
+                    </a>
                     @php
                         $k++;
                     @endphp
@@ -42,15 +45,18 @@
                 @endphp
                 @foreach ($spor as $row )
 
+
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
-                        <div class="yanslider__effect position-absolute"></div>
-                        <img src="{{$row->image}}" class="img-fluid" alt="">
-                        <div class="yanslider__aciklama d-table-cell position-absolute">
-                            <a href="" class=" yanslider-link align-middle card-kisalt">
-                                {{$row->title_tr}}
-                            </a>
-                        </div>
+                        <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
+                            <div class="yanslider__effect position-absolute"></div>
+                            <img src="{{$row->image}}" class="img-fluid" alt="">
+                            <div class="yanslider__aciklama d-table-cell position-absolute">
+                                <a href="" class=" yanslider-link align-middle card-kisalt">
+                                    {{$row->title_tr}}
+                                </a>
+                            </div>
                     </div>
+                    </a>
                     @php
                         $k++;
                     @endphp
@@ -68,6 +74,7 @@
                 @foreach ($ucuncuSayfa as $row )
 
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
+<a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
                         <div class="yanslider__effect position-absolute"></div>
                         <img src="{{$row->image}}" class="img-fluid" alt="">
                         <div class="yanslider__aciklama d-table-cell position-absolute">
@@ -76,6 +83,7 @@
                             </a>
                         </div>
                     </div>
+                    </a>
                     @php
                         $k++;
                     @endphp
@@ -93,6 +101,8 @@
                 @foreach ($ozel as $row )
 
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
+                        <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
+
                         <div class="yanslider__effect position-absolute"></div>
                         <img src="{{$row->image}}" class="img-fluid" alt="">
                         <div class="yanslider__aciklama d-table-cell position-absolute">
@@ -100,6 +110,7 @@
                                 {{$row->title_tr}}
                             </a>
                         </div>
+                        </a>
                     </div>
                     @php
                         $k++;

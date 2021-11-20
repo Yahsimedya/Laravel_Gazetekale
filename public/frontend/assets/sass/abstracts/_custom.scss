@@ -32,7 +32,7 @@
 * {
     box-sizing: border-box;
   }
-  
+
 .namaz {
 
     background-image: linear-gradient(-10deg, #5cb475, #9ebf5c);
@@ -51,7 +51,7 @@
         float: left !important;
         max-width: 140px !important;
         color: $white !important;
-border:none;        
+border:none;
 outline: none !important;
         box-shadow: none !important;
     }
@@ -60,8 +60,8 @@ outline: none !important;
         background: #9ebf5c;
                 color: $white !important;
 
-    
-      
+
+
                 // &:hover {
 
                 //     box-shadow: inset 20px 20px  $white !important;
@@ -75,8 +75,8 @@ outline: none !important;
     select option:hover {
         background: red;
     }
-    
-   
+
+
 }
   //////////////////PAGİNATİON BAŞLAR ///////////////////
   .pagination {
@@ -134,7 +134,7 @@ outline: none !important;
     stroke: currentColor;
     fill: currentColor;
   }
-  
+
   .navbar-social {
     // background: #fdfdfd;
     display: inline-flex;
@@ -168,7 +168,7 @@ outline: none !important;
       transform: translatex(-50%);
       opacity: 0.7;
     }
-  
+
     &__item {
       width: 50px;
       height: 50px;
@@ -180,7 +180,7 @@ outline: none !important;
       align-items: center;
       justify-content: center;
       font-size: 21px;
-  
+
       &::before,
       &:after {
         content: "";
@@ -195,31 +195,31 @@ outline: none !important;
         opacity: 0;
         transition: all .55s cubic-bezier(0.71, 0.03, 0.23, 0.95);
       }
-  
+
       &::after {
         box-shadow: 0 7px 15px currentColor;
       }
-  
+
       &.-blue {
         color: #06b8ff;
       }
-  
+
       &.-orange {
         color: #f2704d;
       }
-  
+
       &.-navy-blue {
         color: #405fff;
       }
-  
+
       &.-yellow {
         color: #f8cd4b;
       }
-  
+
       &.-purple {
         color: #8444d6;
       }
-  
+
       &:hover {
         &::before,
         &::after {
@@ -238,7 +238,7 @@ outline: none !important;
         }
       }
     }
-  
+
     &__icon {
       transition: all .5s cubic-bezier(0.71, 0.03, 0.23, 0.95);
       transition-delay: 0.1s;
@@ -247,7 +247,7 @@ outline: none !important;
       z-index: 2;
     }
   }
-  
+
 
 ////////////////SOCİAL BAR /////////////////////////
 
@@ -295,9 +295,9 @@ outline: none !important;
         opacity: .8;
         color: white;
     }
-   
+
 }
-    
+
 
     & li {
         margin: 0 5px !important;
@@ -328,8 +328,8 @@ margin-right: 10px;
 
 .detay {
 
-   
-    
+
+
 &__icerik {
     font-family: $font-work;
 }
@@ -353,7 +353,7 @@ margin-right: 10px;
 
     }
     &-item {
-        
+
 
         &:hover  .detay__liste-rakam {
 
@@ -365,7 +365,7 @@ margin-right: 10px;
 }
 
     &__sidebar {
-       
+
         &-baslik {
             font-size: 16px;
             color:#13394e;
@@ -399,7 +399,7 @@ margin-right: 10px;
 font-family: $font-work;
         & li {
             font-weight: 500;
-            
+
         }
     }
 
@@ -453,7 +453,7 @@ left: 0 !important;
         font-size: 40px !important;
         color: $color-bordo !important;
     }
-  
+
     &-active , li {
         background-image: radial-gradient(farthest-side at 102% 2%, #ab1010, #ef0037);
         color: $white;
@@ -506,9 +506,9 @@ left: 0 !important;
         opacity: .8;
         color: white;
     }
-   
+
 }
-    
+
 
     & li {
         margin: 0 5px !important;
@@ -592,7 +592,7 @@ margin-right: 10px;
     width: 100% !important;
     min-height: 450px;
 }
-}    
+}
 .detay {
 
     &-text {
@@ -636,7 +636,7 @@ margin-right: 10px;
         opacity: .8;
         color: white;
     }
-   
+
 }
     & ul {
         bottom: 40% !important;
@@ -703,11 +703,11 @@ width: 100%;
                 font-weight: 400;
     color: $black;
     }
-   
+
 
 }
 .table-spor {
-    
+
 font-size: 14px !important;
 
 &__baslik tr th , td {
@@ -720,13 +720,13 @@ font-size: 14px !important;
 .kurlar {
 
     &__col {
-        @media (min-width: 768px) and (max-width: 991.98px) { 
+        @media (min-width: 768px) and (max-width: 991.98px) {
             min-width: 25% !important;
-  
+
          }
 
     }
-    
+
     &__sosyal {
         height: 100%;
         top: 50%;
@@ -748,18 +748,18 @@ font-size: 14px !important;
             line-height: 55px !important;
             // color: $white ;
             font-size: 25px !important;
-            @media (min-width: 768px) and (max-width: 991.98px) { 
+            @media (min-width: 768px) and (max-width: 991.98px) {
                 padding: 0;
                 line-height: 40px !important;
     font-size: 20px !important;
-      
+
              }
-            
+
            }
            &-i-1 {
             color: #4267b2 !important;
 
-          
+
         }
         &-i-2 {
             color: #0aa7d6 !important;
@@ -774,12 +774,12 @@ font-size: 14px !important;
             color: $color-bordo !important;
 
         }
-           
+
         }
 
 
     }
-    
+
 }
 
 
@@ -810,8 +810,8 @@ text-decoration: none;
 &-kutu {
     background-image: linear-gradient(-10deg, #5cb475, #9ebf5c);
     border-bottom: 3px solid #5cb475 !important;
-    
-   
+
+
     &__link {
         font-size: 30px;
         color: #fff !important;
@@ -831,21 +831,21 @@ text-decoration: none;
     border-radius: 50px;
     border: 1px solid $white;
 
-    // @include media-breakpoint-down(sm) { 
+    // @include media-breakpoint-down(sm) {
 
     // transform: translate(-7%, -50%);
-    
+
     // padding: 5px 10px;
-   
+
     // border: 1px solid white;
     // font-size: 14px;
     // display: contents;
     // }
     }
-   
+
 }
 &-yazarlar {
-        
+
     background: none !important;
     border-bottom: 3px solid #5cb475 !important;
     &__link {
@@ -859,28 +859,28 @@ text-decoration: none;
     &__tum {
         top: 50%;
         right: 0;
-        transform: translate(0, -40%); 
+        transform: translate(0, -40%);
                color:  $color-gray-dark ;
         font-weight: 400;
         padding: 5px 10px;
         border-radius: 50px;
         border: 1px solid  $color-gray-dark ;
 
-        @include media-breakpoint-down(md) { 
-           
-    
+        @include media-breakpoint-down(md) {
+
+
          }
-       
+
     }
     &__isim {
         font-size: 20px;
         color: $color-bordo;
 margin-top: 10px;
-        @media (min-width: 768px) and (max-width: 991.98px) { 
+        @media (min-width: 768px) and (max-width: 991.98px) {
             font-size: 12px;
             margin-top: 0px;
 
-  
+
          }
     }
 
@@ -890,19 +890,19 @@ margin-top: 10px;
         margin-top: 10px;
         font-family: 'Work Sans';
 
-        @media (min-width: 768px) and (max-width: 991.98px) { 
+        @media (min-width: 768px) and (max-width: 991.98px) {
             font-size: 14px;
             margin-top: 0px;
 
-  
+
          }
     }
     &__image {
         width: 100%;
 
-        @media (min-width: 768px) and (max-width: 991.98px) { 
+        @media (min-width: 768px) and (max-width: 991.98px) {
             min-width: 25% !important;
-  
+
          }
     }
 }
@@ -918,8 +918,8 @@ margin-top: 10px;
 
 
 
-       
-        
+
+
     }
     // width: 268px;
     overflow: hidden;
@@ -930,7 +930,7 @@ margin-top: 10px;
     -webkit-transition: .5s all ease;
 }
 
-@include media-breakpoint-down(md) { 
+@include media-breakpoint-down(md) {
         width: 100%;
         min-height: 18rem;
         margin-bottom: 1rem;
@@ -963,7 +963,7 @@ margin-top: 10px;
             width: 16px;
             height: 16px;
             top: 2px;
-             
+
          }
      }
      &-kisalt {
@@ -989,7 +989,7 @@ margin-top: 10px;
         left:0;
     }
      }
-     
+
      &:hover &__img {
         transform: scale(1.1);
         transition: .5s all ease;
@@ -1004,7 +1004,7 @@ margin-top: 10px;
 color:white;
         }
 
-        
+
     }
 }
 .swiper-button-next,.swiper-button-prev {
@@ -1015,7 +1015,7 @@ color:white;
 .kapat {
     top: 0;
     right: 10%;
-    
+
     &__link {
         color: #000;
         background-color: #ffffff;
@@ -1032,7 +1032,7 @@ color:white;
         //     color: $white;
         //     background-color: $color-fume;
         //     padding: .5rem;
-        //     text-decoration: none; 
+        //     text-decoration: none;
         // }
     }
 }
@@ -1074,7 +1074,7 @@ font-weight: 400;
 
     &__header {
 
-        
+
 
         &::before {
 
@@ -1090,13 +1090,13 @@ font-weight: 400;
         color: white !important;
         z-index: 999 !important;
         width: 100% !important;
-         
+
         @include media-breakpoint-down(sm) {
             top: 35% !important;
-    
+
                         }
     }
-    
+
 }
 
 .padding-left {
@@ -1107,12 +1107,12 @@ font-weight: 400;
 
 
 
-   
+
 
 }
 
 .ilceler {
-  
+
     &__baslik {
         padding: 0.5rem 1.25rem !important;
     margin-bottom: 0;
@@ -1121,7 +1121,7 @@ font-weight: 400;
     color: $color-bordo;
     font-family: 'work sans';
     font-size: 20px;
-    
+
     }
 
 &__nav-item {
@@ -1143,7 +1143,7 @@ font-weight: 400;
     border-radius: 50px;
     font-size: 20px;
 
-     
+
         &:hover {
             text-decoration: none;
             color: $color-bordo !important;
@@ -1151,14 +1151,14 @@ font-weight: 400;
             background-color: #f0e8e4;
 
         }
-        
+
 
     }
     &__nav-link.active {
         border: 1px solid $color-bordo;
       color: $color-bordo !important;
             border-radius: 50px;
-    
+
   }
 
 
@@ -1168,7 +1168,7 @@ font-weight: 400;
     padding-bottom: 56.25%;
     padding-top: 30px; height: 0; overflow: hidden;
     }
-     
+
     .video-container iframe,
     .video-container object,
     .video-container embed {

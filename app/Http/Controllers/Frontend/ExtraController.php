@@ -372,9 +372,9 @@ class ExtraController extends Controller
             ]
         ];
 
-         $date = Carbon::now()->format('d.m.Y');
+        $date = Carbon::now()->format('d.m.Y');
 
-$vakit=Vakitler::where('date',$date)->get();
+        $vakit = Vakitler::where('date', $date)->get();
 
         $vakitler = array(
             "imsak" => $vakit[0]['imsak'],
@@ -445,6 +445,10 @@ $vakit=Vakitler::where('date',$date)->get();
             if (Cache::has('sehir')) return Cache::has('sehir');
             return Sehirler::orderByRaw('sehir_ad')->get();
         });
+        $ilceler = Cache::remember("ilceler", Carbon::now()->addYear(), function () {
+            if (Cache::has('ilceler')) return Cache::has('ilceler');
+            return Subdistrict::where('district_id', '=', '71')->orderByRaw('subdistrict_tr')->get();
+        });
 //        $category = Category::latest()->get();
 //        dd($category->id);
 //        foreach ($category as $cat) {
@@ -452,23 +456,39 @@ $vakit=Vakitler::where('date',$date)->get();
 //        }
         $ucuncuSayfa = Cache::remember("ucuncuSayfa", Carbon::now()->addYear(), function () {
             if (Cache::has('ucuncuSayfa')) return Cache::has('ucuncuSayfa');
-            return Post::where('category_id', 1)->where('status', 1)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', 1)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('updated_at')->get();
 
         });
         $ozel = Cache::remember("ozel", Carbon::now()->addYear(), function () {
             if (Cache::has('ozel')) return Cache::has('ozel');
-            return Post::where('category_id', 1)->where('status', 10)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', 1)->where('status', 10)->where('featured', '=', 1)->limit(10)->latest('updated_at')->get();
 
         });
+        $videogaleri = Cache::remember("videogaleri", Carbon::now()->addYear(), function () {
+            if (Cache::has('videogaleri')) return Cache::has('videogaleri');
+            return Post::where('status', 1)->whereNotNull('posts_video')->limit(14)->latest('updated_at')->get();
 
+        });
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::where('category_id', '=', 2)->where('status', 1)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 2)->where('featured', '=', 1)->where('status', 1)->limit(10)->latest('updated_at')->get();
+        });
+        $gundemcard = Cache::remember("gundemcard", Carbon::now()->addYear(), function () {
+            if (Cache::has('gundemcard')) return Cache::has('gundem');
+            return Post::where('category_id', '=', 2)->where('status', 1)->limit(3)->latest('updated_at')->get();
+        });
+        $siyasetcard = Cache::remember("siyasetcard", Carbon::now()->addYear(), function () {
+            if (Cache::has('siyasetcard')) return Cache::has('siyasetcard');
+            return Post::where('category_id', '=', 3)->where('status', 1)->limit(3)->latest('updated_at')->get();
+        });
+        $ekonomicard = Cache::remember("ekonomicard", Carbon::now()->addYear(), function () {
+            if (Cache::has('ekonomicard')) return Cache::has('ekonomicard');
+            return Post::where('category_id', '=', 5)->where('status', 1)->limit(3)->latest('updated_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::where('category_id', '=', 3)->where('status', 1)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 3)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('updated_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () {
@@ -572,7 +592,7 @@ $vakit=Vakitler::where('date',$date)->get();
 
         Session::put('havadurumu', $veri['sicaklik']);
 
-        return view('main.home', compact('home', 'ucuncuSayfa', 'surmanset','ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -580,91 +600,42 @@ $vakit=Vakitler::where('date',$date)->get();
 
     public function SinglePost($slug, $id)
     {
+        $r = $_SERVER['REQUEST_URI'];
+        $r = explode('-', $r);
+        $r = array_filter($r);
+        $r = array_merge($r, array());
+        $ids = $r;
+        $post = Post::find($ids[count($r) - 1]);
 
-        /* $post = Cache::remember("post.{$id}", Carbon::now()->addYear(), function () use ($id) {
-             if (Cache::has('post')) return Cache::has('post')->find($id); //here am simply trying Laravel Collection method -find
-             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-                 ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-                 ->leftjoin('subdistricts', 'posts.subdistrict_id', '=','subdistricts.id')
-                 ->join('users', 'posts.user_id','=', 'users.id')
-                 ->select(['posts.*', 'categories.category_tr', 'categories.category_en','categories.id', 'subcategories.subcategory_tr', 'subcategories.subcategory_en'
-                     , 'users.name'])
-                 ->latest('updated_at')->where('status','=', 1)
-                 ->where('posts.id','=', $id)->first();
-         });*/
+        $comments = Comments::where('posts_id', $ids[count($r) - 1])->where('status', 1)->get();
 
-//        $post = Post::latest('updated_at')->where('status', '=', 1)
-//                ->where('id', '=', $id)->first();
-        $post = Post::find($id);
-//        dd($post);
-        $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
-
-//dd($comments);
-//        $slider =  Post::latest('created_at')
-//            ->where('status', 1)->where('category_id', $post->category_id)
-//            ->offset(1)->limit(10)
-//            ->get();
         $slider = Post::latest('updated_at')
             ->with('category')
-            ->limit(10)
+            ->limit(6)
             ->get();
 
+        $category = Category::where('id', '=', $post->category_id)->get();
+
         $ads =
-//            Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
-////            ->join('ads','ad_categories.id','ads.category_id')
-//            ->select(['ads.*', 'ad_categories.id'])
-//            ->where('status', 1)
-//            ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
-//            ->get();
             Ad::latest('updated_at')
                 ->where('status', 1)
                 ->whereIn('id', [1, 2, 3, 12])
                 ->with('adcategory')
                 ->get();
+
         $related =
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', $id)->latest()
+                ->where('posts.id', $ids[count($r) - 1])->latest()
                 ->limit(10)
                 ->get();
-//            Post::
-//                with('tags')
-//                ->find($id)
-//                ->latest()
-//                ->limit(10)
-//                ->get();
-//        dd($related);
         $random = Post::inRandomOrder()->limit(3)->get();
 
-//        $tag = Tag::get();
-//        foreach ($tag as $item) {
-        $nextrelated =
-//                Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-//                    ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
-//                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-//                    ->where('post_tags.tag_id', $item->id)->latest()
-//                    ->get();
-            Post::latest('updated_at')
-                ->where('id', $id)
-                ->with(['tag' => function ($query) {
-                    // $query->sum('quantity');
-                    $query->select('name'); // without `order_id`
-                }
-                ])
-                ->get();
-
-//            $nextrelated = Post::leftjoin('post_tags','posts.id','post_tags.post_id')
-//                ->leftjoin('tags','tags.id','post_tags.tag_id')
-//                ->select(['posts.*','post_tags.post_id','tags.name'])
-//                ->get();
-//        }
-
-//        $related= $post->posttags()->post_id;
-//        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
-
-        return view('main.body.single_post', compact('post', 'ads', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id'));
+        $nextrelated = Post::latest('updated_at')
+            ->where('category_id', $post->category_id)->limit(10)->orderByDesc('id')
+            ->get();
+        return view('main.body.single_post', compact('post', 'ads', 'category', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id'));
 
 
     }
@@ -703,9 +674,6 @@ $vakit=Vakitler::where('date',$date)->get();
             ->paginate(20);
 
 
-//        if ($catpost->count() == 0) {
-//            return redirect('/');
-//        }
         $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())

@@ -385,75 +385,84 @@ class AjaxController extends Controller
         @$aksam = $result['result'][4]['saat'];
         @$yatsi = $result['result'][5]['saat'];
 
-//        $imsakSor=$now>$imsak ? '<i class="fas fa-check-circle text-warning"></i>' :'<i class="fas fa-hourglass text-warning"></i>';
-        $mytime = Carbon::now()->format('H:i');
-        $myminute = Carbon::now()->minute;
-        $myTimeNow = $mytime . ":" . $myminute;
-        $okunmadurumuAkşam = "fas fa-hourglass text-warning";
-        $okunmadurumuİMSAK = "fas fa-hourglass text-warning";
-        $okunmadurumuOGLE = " fas fa-hourglass text-warning";
-        $okunmadurumuİKİNDİ = " fas fa-hourglass text-warning";
-        $okunmadurumuYATSI = " fas fa-hourglass text-warning";
 
-        if ((int)strip_tags($aksam) - (int)$myTimeNow >= 0) {
-            $okunmadurumuAksam = "fas fa-check-circle text-warning";
-        }
+        return $data = ' <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/imsak.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">İmsak ' . strip_tags($imsak) . '</span></div>
+                        <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/ogle.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">öğle ' . strip_tags($ogle) . '</span></div>
+                        <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/ikindi.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">İkindi ' . strip_tags($ikindi) . '</span></div>
+                        <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/aksam.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">Akşam ' . strip_tags($aksam) . '</span></div>
+                        <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/yatsi.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">Yatsı ' . strip_tags($yatsi) . '</span></div>
+';
+    }
+    public function IlceHaberleri(Request $request){
+        $gelenil = $request->sehirsec;
+        $sehir =
+            Sehirler::where('id', $gelenil)->first();
+        $ilceid = $sehir->ilce_id;
 
-        if ($imsak>$mytime) {
-            $okunmadurumuİMSAK = "fas fa-check-circle text-success";
-        }
+        $curl = curl_init();
 
-        if ($ogle<$mytime) {
-            $okunmadurumuOGLE = "fas fa-check-circle text-warning";
-        }
-        if ($ikindi<$mytime) {
-            $okunmadurumuİKİNDİ = "fas fa-check-circle text-warning";
-        }
-        if ($yatsi<$mytime) {
-            $okunmadurumuYATSI = "fas fa-check-circle text-warning";
-        }
-        return $data = ' <table class="table table-borderless text-light" >
-        <tbody>
-<tr class="p-2" data-hour="03:26" data-time-name="imsak">
-            <td class="text-center"><i class="wi wi-day-fog text-warning"></i></td>
-            <td class="text-uppercase">İmsak</td>
-            <td class="font-weight-bold imsak">' . strip_tags($imsak) . '</td>
-            <td><i class="' . $okunmadurumuİMSAK . '"></i></td>
-        </tr>
-        <tr data-hour="05:26" data-time-name="gunes">
-            <td class="text-center"><i class="wi wi-sunrise text-warning"></i></td>
-            <td class="text-uppercase">Güneş</td>
-            <td class="font-weight-bold gunes">05:26</td>
-            <td><i class="' . $okunmadurumuİMSAK . '"></i></td>
-        </tr>
-        <tr data-hour="13:12" data-time-name="ogle">
-            <td class="text-center"><i class="wi wi-day-sunny text-warning"></i></td>
-            <td class="text-uppercase">Öğle</td>
-            <td class="font-weight-bold ogle">' . strip_tags($ogle) . '</td>
-            <td><i class="' . $okunmadurumuOGLE . '"></i></td>
-        </tr>
-        <tr data-hour="17:12" data-time-name="ikindi">
-            <td class="text-center"><i class="wi wi-sunset text-warning"></i></td>
-            <td class="text-uppercase">İkindi</td>
-            <td class="font-weight-bold ikindi">' . strip_tags($ikindi) . '</td>
-            <td><i class="' . $okunmadurumuİKİNDİ . '"></i></td>
-        </tr>
-        <tr data-hour="20:47" data-time-name="aksam">
-            <td class="text-center"><i class="wi wi-moonrise text-warning"></i></td>
-            <td class="text-uppercase">Akşam</td>
-            <td class="font-weight-bold aksam">' . strip_tags($aksam) . '</td>
-            <td>
-            <i class="' . $okunmadurumuAkşam . '"></i>
-            </td>
-        </tr>
-        <tr data-hour="22:39" data-time-name="yatsi">
-            <td class="text-center"><i class="wi wi-night-clear text-warning"></i></td>
-            <td class="text-uppercase">Yatsı</td>
-            <td class="font-weight-bold yatsi">' . strip_tags($yatsi) . '</td>
-            <td><i class="' . $okunmadurumuYATSI . '"></i></td>
-        </tr>
-        </tbody>
-    </table>';
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.collectapi.com/pray/all?data.city=".str::slug($sehir->sehir_ad),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "authorization: apikey 3GTrRbeRLxIJcguNWQlMjD:71hXZkhlz9XeAdcmRSST3B",
+                "content-type: application/json"
+            ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+        $result = json_decode($response, true);
+        @$imsak = $result['result'][0]['saat'];
+        @$gunes = $result['result'][1]['saat'];
+        @$ogle = $result['result'][2]['saat'];
+        @$ikindi =$result['result'][3]['saat'];
+        @$aksam = $result['result'][4]['saat'];
+        @$yatsi = $result['result'][5]['saat'];
+
+
+        return $data = ' <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/imsak.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">İmsak ' . strip_tags($imsak) . '</span></div>
+                        <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/ogle.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">öğle ' . strip_tags($ogle) . '</span></div>
+                        <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/ikindi.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">İkindi ' . strip_tags($ikindi) . '</span></div>
+                        <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/aksam.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">Akşam ' . strip_tags($aksam) . '</span></div>
+                        <div
+                            class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                            <img src="img/yatsi.png" width="30" class="img-fluid mr-2" alt=""><span
+                                class="text-light mb-0  namaz__kolon-text">Yatsı ' . strip_tags($yatsi) . '</span></div>
+';
     }
     public function IlGetir(Request $request)
     {

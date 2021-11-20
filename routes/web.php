@@ -264,6 +264,9 @@ Route::post('/ajax/stabilhome', [AjaxController::class, 'HavaDurumuStabil'])->na
 Route::get('/hava-durumu', [AjaxController::class, 'HavaDurum'])->name('hava.durum');
 // NAMAZ VAKİTLERİ
 Route::post('/ajax-namaz', [AjaxController::class, 'NamazVakit'])->name('il.namaz');
+//Ilçe Haberleri
+Route::post('/ilce-haber', [AjaxController::class, 'IlceHaberleri'])->name('ilce.haber');
+
 //Route::get('/ajax-namaz-seciliil', [AjaxController::class, 'NamazVakitSecili']);
 
 Route::get('/yerel-haberler', [ExtraController::class, 'GetAllDistrict'])->name('yerelhaberler');
@@ -373,10 +376,9 @@ Route::post('/Notification/send', [NotificationController::class, 'send'])->name
 
 // SİNGLE POST PAGE
 
-Route::get('/haber-{slug}/{id}', [ExtraController::class, 'SinglePost'])->name('singlePost'); // haber detay sayfası
+Route::get('/haber-{slug}-{id}', [ExtraController::class, 'SinglePost'])->name('singlePost'); // haber detay sayfası
 Route::get('/{slug}/{id}', [ExtraController::class, 'CategoryPost']);
-Route::get('/{id}/', [ExtraController::class, 'GetDistrict']);
-
+//Route::get('/{id}/', [ExtraController::class, 'GetDistrict']);
 //Route::get('/', [ExtraController::class, 'akbankkur']);
 
 

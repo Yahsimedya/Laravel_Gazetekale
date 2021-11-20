@@ -16,7 +16,7 @@ $gelenil=Session::get('gelenil');
     <div class="container p-3">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand " href="#"><img class="logo" src="{{asset($websetting->logo)}}" width="100" alt=""></a>
+            <a class="navbar-brand " href="{{URL::to('/')}}"><img class="logo" src="{{asset($websetting->logo)}}"  alt=""></a>
 
             <div class="navbar__havadurumu ml-5 d-none d-sm-block">
 
@@ -26,7 +26,7 @@ $gelenil=Session::get('gelenil');
                     <span class="float-right pl-3">{{$veri}}&deg;</span>
                 </div><br />
                 {!!$icon!!}
-                <i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>
+
                 <span class="">  </span>
             </div>
 
