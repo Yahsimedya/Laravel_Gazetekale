@@ -42,7 +42,6 @@ class CreatePostsTable extends Migration
             $table->integer('headlinetag')->nullable();
             $table->integer('flahtag')->nullable();
             $table->integer('attentiontag')->nullable();
-
             $table->integer('surmanset_photo')->nullable();
             $table->integer('bigthumbnail')->nullable();
             $table->string('post_date')->nullable();

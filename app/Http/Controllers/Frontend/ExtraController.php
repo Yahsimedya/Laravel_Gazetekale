@@ -144,7 +144,7 @@ class ExtraController extends Controller
                 "status" => $koseyazisieski[$i]->koseyazisi_durum == null ? 1 : $koseyazisieski[$i]->koseyazisi_durum,
                 "image" => "",
                 "keywords" => $koseyazisieski[$i]->koseyazisi_keyword,
-                "description" => $koseyazisieski[$i]->koseyazisi_description,
+                "description" => $koseyazisieski[$i]->koseyazisi_descripton,
             ]);
             if ($yenikoseyazisi > 0) {
                 $savedcount++;
@@ -461,7 +461,22 @@ class ExtraController extends Controller
         });
         $ozel = Cache::remember("ozel", Carbon::now()->addYear(), function () {
             if (Cache::has('ozel')) return Cache::has('ozel');
-            return Post::where('category_id', 1)->where('status', 10)->where('featured', '=', 1)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', 1)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('updated_at')->get();
+
+        });
+        $education = Cache::remember("education", Carbon::now()->addYear(), function () {
+            if (Cache::has('education')) return Cache::has('education');
+            return Post::where('category_id', 4)->where('status', 1)->where('featured', '=', 1)->limit(4)->latest('updated_at')->get();
+
+        });
+        $youtube = Cache::remember("youtube", Carbon::now()->addYear(), function () {
+            if (Cache::has('youtube')) return Cache::has('youtube');
+            return Post::where('category_id', 12)->where('status', 1)->limit(15)->latest('updated_at')->get();
+
+        });
+        $culture = Cache::remember("culture", Carbon::now()->addYear(), function () {
+            if (Cache::has('culture')) return Cache::has('education');
+            return Post::where('category_id', 8)->where('status', 1)->where('featured', '=', 1)->limit(4)->latest('updated_at')->get();
 
         });
         $videogaleri = Cache::remember("videogaleri", Carbon::now()->addYear(), function () {
@@ -592,7 +607,7 @@ class ExtraController extends Controller
 
         Session::put('havadurumu', $veri['sicaklik']);
 
-        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard',  'culture', 'siyasetcard', 'ekonomicard','youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir','education', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -645,7 +660,7 @@ class ExtraController extends Controller
     {
         $fixedPage = DB::table('fixedpage')->where('id', '=', $id)->get();
 
-        return view('main.body.fixedpapers', compact('fixedPage'));
+        return view('main.body.fixedpage', compact('fixedPage'));
     }
 
 
@@ -738,20 +753,23 @@ class ExtraController extends Controller
     public function yazilar($id)
     {
 
+
         $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->get();
         $yazar = Authors::where('id', '=', $id)->get();
         $nextauthors_posts = DB::table('authors_posts')
             ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
             ->get();
+
         return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
     }
 
     public function yazilars($id)
+
     {
 
         $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
         $nextauthors_posts = DB::table('authors_posts')
-            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
+            ->latest('updated_at')->where('status', 1)->where('id', '=', $id)->limit(10)
             ->get();
         $yazar = Authors::where('id', '=', $id)->get();
 

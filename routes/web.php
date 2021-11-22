@@ -27,6 +27,7 @@ use App\Http\Controllers\Backend\AuthorController;
 use App\Http\Controllers\Backend\CornerPostsController;
 use App\Http\Controllers\Frontend\SitemapController;
 use App\Http\Controllers\ThemeController;
+use \App\Http\Controllers\AuthorsPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -306,6 +307,9 @@ Route::post('/fixedpage/status/{id}', [FixedPageController::class, 'status'])->n
 Route::get('/fixedpage/delete/{id}', [FixedPageController::class, 'delete'])->name('fixedpage.delete');
 Route::post('/fixedpage/edit/{id}', [FixedPageController::class, 'edit'])->name('fixedpage.edit');
 Route::get('/fixedpage/editPage/{id}', [FixedPageController::class, 'editPage'])->name('fixedpage.editPage');
+
+
+Route::get('/authors/all',[AuthorsPostController::class,'all'])->name('author');
 
 
 // User Operations

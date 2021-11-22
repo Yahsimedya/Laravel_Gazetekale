@@ -88,6 +88,11 @@ $gelenil=Session::get('gelenil');
    @include('main.body.widget.namazvakitleri')
     <!--NAMAZ VAKİTLERİ BİTER-->
 
+
+    <!--Youutube BAŞLAR-->
+    @include('main.body.widget.youtube')
+    <!--Youutube BİTER-->
+
     @include('main.body.widget.ilceler')
 
     <!--VİDEO GALERİ ÜSTÜ REKLAM ALANI-->
@@ -112,193 +117,35 @@ $gelenil=Session::get('gelenil');
     <section class="">
         <div class="container mt-3">
             <div class="row ">
-                <div class="col-md-8 padding-left mx-auto">
+                @include('main.body.widget.egitimkultur')
 
-                    <div class="card-header card-kutu position-relative">
-                        <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>Günün Manşetleri</div>
-                        <a href="#">
-                            <div class="card-kutu__tum position-absolute ">Tümü</div>
-                        </a>
-                    </div>
-                    <div class="row padding-left mt-2">
-                        <div class="col-md-6 padding-left mt-1">
-                            <div class="card   d-inline-block  ">
-                                <img class="card-img-top" src="img/duvar.png" alt="Card image cap">
-                                <div class="card-body align-middle d-table-cell">
-                                    <p class="card-baslik text-center d-table-cell"><b class="card-kisalt">Kirikkale'de
-                                            Trafik Kazasi 4 Yaralı</b></p>
-                                    <span class="card__kategori position-absolute">Falan Fistık</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 padding-left mt-1">
-                            <div class="card   d-inline-block  ">
-                                <img class="card-img-top" src="img/duvar.png" alt="Card image cap">
-                                <div class="card-body align-middle d-table-cell">
-                                    <p class="card-baslik text-center  d-table-cell"><b class="card-kisalt">Kirikkale'de
-                                            Trafik Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı</b>
-                                    </p>
-                                    <span class="card__kategori position-absolute">Falan Fistık</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 padding-left mt-1">
-                            <div class="card   d-inline-block  ">
-                                <img class="card-img-top" src="img/duvar.png" alt="Card image cap">
-                                <div class="card-body align-middle d-table-cell">
-                                    <p class="card-baslik text-center  d-table-cell"><b class="card-kisalt">Kirikkale'de
-                                            Trafik Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı</b>
-                                    </p>
-                                    <span class="card__kategori position-absolute">Falan Fistık</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 padding-left mt-1">
-                            <div class="card   d-inline-block  ">
-                                <img class="card-img-top" src="img/duvar.png" alt="Card image cap">
-                                <div class="card-body align-middle d-table-cell">
-                                    <p class="card-baslik text-center  d-table-cell"><b class="card-kisalt">Kirikkale'de
-                                            Trafik Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı</b>
-                                    </p>
-                                    <span class="card__kategori position-absolute">Falan Fistık</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--REKLAM ALANI-->
-                        <div class="col-md-6 col-12 mt-2 text-center ">
-                            <div class="reklam-alani ">
-                                <img src="img/336x280.png" alt="">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 mt-2 text-center ">
-                            <div class="reklam-alani ">
-                                <img src="img/336x280.png" alt="">
-                            </div>
-                        </div>
-                        <!--REKLAM ALANI-->
-                    </div>
-
-
-                    <div class="card-header card-kutu position-relative mt-2">
-                        <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>Günün Manşetleri</div>
-                        <a href="#">
-                            <div class="card-kutu__tum position-absolute ">Tümü</div>
-                        </a>
-                    </div>
-                    <div class="row padding-left mt-2">
-                        <div class="col-md-6 padding-left mt-1">
-                            <div class="card   d-inline-block  ">
-                                <img class="card-img-top" src="img/duvar.png" alt="Card image cap">
-                                <div class="card-body align-middle d-table-cell">
-                                    <p class="card-baslik text-center d-table-cell"><b class="card-kisalt">Kirikkale'de
-                                            Trafik Kazasi 4 Yaralı</b></p>
-                                    <span class="card__kategori position-absolute">Falan Fistık</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 padding-left mt-1">
-                            <div class="card   d-inline-block  ">
-                                <img class="card-img-top" src="img/duvar.png" alt="Card image cap">
-                                <div class="card-body align-middle d-table-cell">
-                                    <p class="card-baslik text-center  d-table-cell"><b class="card-kisalt">Kirikkale'de
-                                            Trafik Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı</b>
-                                    </p>
-                                    <span class="card__kategori position-absolute">Falan Fistık</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 padding-left mt-1">
-                            <div class="card   d-inline-block  ">
-                                <img class="card-img-top" src="img/duvar.png" alt="Card image cap">
-                                <div class="card-body align-middle d-table-cell">
-                                    <p class="card-baslik text-center  d-table-cell"><b class="card-kisalt">Kirikkale'de
-                                            Trafik Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı</b>
-                                    </p>
-                                    <span class="card__kategori position-absolute">Falan Fistık</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 padding-left mt-1">
-                            <div class="card   d-inline-block  ">
-                                <img class="card-img-top" src="img/duvar.png" alt="Card image cap">
-                                <div class="card-body align-middle d-table-cell">
-                                    <p class="card-baslik text-center  d-table-cell"><b class="card-kisalt">Kirikkale'de
-                                            Trafik Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı Kazasi 4 Yaralı</b>
-                                    </p>
-                                    <span class="card__kategori position-absolute">Falan Fistık</span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
 
 
                 <!--SAĞ TARAF TEK SUTUN YAZARLAR PUSNA DURUMU VS-->
                 <div class="col-md-4 padding-left position-relative">
                     <div class="card-header card-yazarlar position-relative ">
                         <div class="card-yazarlar__link text-left pad"><b>Köşe</b> Yazarlarımız</div>
-                        <a href="#">
+                        <a href="{{route('author')}}">
                             <div class="card-yazarlar__tum position-absolute ">Tümü</div>
                         </a>
                     </div>
+@foreach($authors as $author)
+                        <a href="">
                     <div class="row  mt-2">
+
                         <div class="col-md-4 col-4 col-sm-4">
-                            <img src="img/nihal.jpg" class="rounded card-yazarlar__image" alt="">
+                            <img src="{{asset($author->image)}}" class="rounded card-yazarlar__image" alt="">
                         </div>
                         <div class="col-md-8 col-8 col-sm-8 align-middle d-inline-block">
                             <div class="d-inline-block align-middle">
-                                <div class="card-yazarlar__isim d-inline-block">Alaaddin Güneşer</div>
-                                <div class="card-yazarlar__baslik d-table-cell "><p class="card-kisalt">Kazasi 4
-                                        YaralıKazasi 4 YaralıKazasi 4 YaralıKazasi 4 YaralıKazasi 4 Yaralı</p></div>
+                                <div class="card-yazarlar__isim d-inline-block">{{Str::limit($author->name,17)}}</div>
+                                <div class="card-yazarlar__baslik d-table-cell "><p class="card-kisalt">{{$author->title}}</p></div>
                             </div>
                         </div>
+
                     </div>
-                    <div class="row  mt-2">
-                        <div class="col-md-4 col-4 col-sm-4">
-                            <img src="img/nihal.jpg" class="rounded card-yazarlar__image" alt="">
-                        </div>
-                        <div class="col-md-8 col-8 col-sm-8 align-middle d-inline-block">
-                            <div class="d-inline-block align-middle">
-                                <div class="card-yazarlar__isim d-inline-block">Alaaddin Güneşer</div>
-                                <div class="card-yazarlar__baslik d-table-cell "><p class="card-kisalt">Kazasi 4
-                                        YaralıKazasi 4 YaralıKazasi 4 YaralıKazasi 4 YaralıKazasi 4 Yaralı</p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row  mt-2">
-                        <div class="col-md-4 col-4 col-sm-4">
-                            <img src="img/nihal.jpg" class="rounded card-yazarlar__image" alt="">
-                        </div>
-                        <div class="col-md-8 col-8 col-sm-8 align-middle d-inline-block">
-                            <div class="d-inline-block align-middle">
-                                <div class="card-yazarlar__isim d-inline-block">Alaaddin Güneşer</div>
-                                <div class="card-yazarlar__baslik d-table-cell "><p class="card-kisalt">Kazasi 4
-                                        YaralıKazasi 4 YaralıKazasi 4 YaralıKazasi 4 YaralıKazasi 4 Yaralı</p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row  mt-2">
-                        <div class="col-md-4 col-4 col-sm-4">
-                            <img src="img/nihal.jpg" class="rounded card-yazarlar__image" alt="">
-                        </div>
-                        <div class="col-md-8 col-8 col-sm-8 align-middle d-inline-block">
-                            <div class="d-inline-block align-middle">
-                                <div class="card-yazarlar__isim d-inline-block">Alaaddin Güneşer</div>
-                                <div class="card-yazarlar__baslik d-table-cell "><p class="card-kisalt">Kazasi 4
-                                        YaralıKazasi 4 YaralıKazasi 4 YaralıKazasi 4 YaralıKazasi 4 Yaralı</p></div>
-                            </div>
-                        </div>
-                    </div>
+                        </a>
+                @endforeach
                     <!--PUAN DURUMU-->
                     <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
                     <div class="reklam-alani text-center">

@@ -16,7 +16,8 @@ $gelenil=Session::get('gelenil');
     <div class="container p-3">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand " href="{{URL::to('/')}}"><img class="logo" src="{{asset($websetting->logo)}}"  alt=""></a>
+            <a class="navbar-brand " href="{{URL::to('/')}}"><img class="logo" src="{{asset($websetting->logo)}}"
+                                                                  alt=""></a>
 
             <div class="navbar__havadurumu ml-5 d-none d-sm-block">
 
@@ -24,7 +25,8 @@ $gelenil=Session::get('gelenil');
                 <div class="navbar__il float-left pr-3"><b>{{$gelenil}}</b>
 
                     <span class="float-right pl-3">{{$veri}}&deg;</span>
-                </div><br />
+                </div>
+                <br/>
                 {!!$icon!!}
 
                 <span class="">  </span>
@@ -45,10 +47,20 @@ $gelenil=Session::get('gelenil');
                 </form>
                 <div class="header__top-bilgi mt-4 position-absolute d-none d-lg-block">
                     <ul class="list-unstyled">
-                        <li class="float-left ml-1 border-right text-scondary  pr-1"><i class="fa fa-pencil color-fume pr-1"></i><a class="color-fume" href="#">Yazarlar</a></li>
-                        <li class="float-left ml-1 border-right  pr-1"><i class="fa fa-stethoscope color-fume pr-1"></i>Nöbetçi Eczane</li>
-                        <li class="float-left ml-1 border-right  pr-1"><i class="fa fa-briefcase color-fume pr-1"></i>İş İlanları</li>
-                        <li class="float-left ml-1 border-right  pr-1"><i class="fa fa-map-marker color-fume pr-1"></i>Künye</li>
+                        <li class="float-left ml-1 border-right text-scondary  pr-1"><i
+                                class="fa fa-pencil color-fume pr-1"></i><a class="color-fume" href="#">Yazarlar</a>
+                        </li>
+                        <li class="float-left ml-1 border-right  pr-1"><i class="fa fa-stethoscope color-fume pr-1"></i>Nöbetçi
+                            Eczane
+                        </li>
+                        <li class="float-left ml-1 border-right  pr-1"><i class="fa fa-briefcase color-fume pr-1"></i>İş
+                            İlanları
+                        </li>
+                        <a href="{{URL::to('/sayfa/3')}}" style="color:black ">
+                            <li class="float-left ml-1 border-right  pr-1"><i
+                                    class="fa fa-map-marker color-fume pr-1"></i>Künye
+                            </li>
+                        </a>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -63,22 +75,24 @@ $gelenil=Session::get('gelenil');
 
             <nav class="navbar navbar-expand-lg navbar-dark p-0">
                 <!-- <a class="navbar-brand mx-a" href="#">Menü</a> -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" onclick="openNav()" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" onclick="openNav()"
+                        data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         @foreach($category as $categories)
-                        <li class="nav-item active position-relative">
-                            <div class="nav-item-hover position-absolute"></div>
-                            <a class="nav-link " href="#">{{$categories->category_tr}} <span class="sr-only">(current)</span></a>
-                        </li>
-                        @endforeach
-
                             <li class="nav-item active position-relative">
                                 <div class="nav-item-hover position-absolute"></div>
-                                <a class="nav-link " href="#">Yerel <span class="sr-only">(current)</span></a>
+                                <a class="nav-link " href="#">{{$categories->category_tr}} <span class="sr-only">(current)</span></a>
                             </li>
+                        @endforeach
+
+                        <li class="nav-item active position-relative">
+                            <div class="nav-item-hover position-absolute"></div>
+                            <a class="nav-link " href="#">Yerel <span class="sr-only">(current)</span></a>
+                        </li>
                     </ul>
                 </div>
 
