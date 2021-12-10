@@ -16,7 +16,7 @@ class CreateFixedpageTable extends Migration
         Schema::create('fixedpage', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content');
+            $table->string('content');
             $table->string('keyword');
             $table->string('description');
             $table->boolean('status')->default(0);

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,7 +35,7 @@
     <link href="{{asset('backend/assets/css/layout.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('backend/assets/css/components.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('backend/assets/css/colors.min.css')}}" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" type="text/css" href="{{asset('backend/global_assets/picker/coloris.min.css')}}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet"/>
 
 
@@ -105,7 +106,25 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
-
+    <script type="text/javascript" src="{{asset('backend/global_assets/picker/coloris.min.js')}}"></script>
+    <script type="text/javascript">
+        Coloris({
+            el: '.coloris',
+            swatches: [
+                '#264653',
+                '#2a9d8f',
+                '#e9c46a',
+                '#f4a261',
+                '#e76f51',
+                '#d62828',
+                '#023e8a',
+                '#0077b6',
+                '#0096c7',
+                '#00b4d8',
+                '#48cae4',
+            ]
+        });
+    </script>
     <script>
         var dropzone = new Dropzone('#file-upload', {
             previewTemplate: document.querySelector('#preview-template').innerHTML,

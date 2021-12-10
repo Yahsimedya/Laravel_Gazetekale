@@ -668,13 +668,20 @@ class ExtraController extends Controller
     {
         $category = Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
 
-
+        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
+            if (Cache::has('authors')) return Cache::has('authors');
+            return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+                ->select(['authors.*', 'authors_posts.title'])
+                ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
+                ->groupBy("authors.id")->latest("authors_posts.id")
+                ->get();
+        });
         $manset =
             Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
                 ->where('posts.category_id', $id)->where('posts.manset', 1)
                 ->orderBy('created_at', 'desc')
-                ->limit(25)->get();
+                ->limit(15)->get();
 
 
         $count = Post::join('categories', 'posts.category_id', 'categories.id')
@@ -685,7 +692,7 @@ class ExtraController extends Controller
 
         $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->offset(1)
+            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->orderBy('created_at', 'desc')->offset(1)
             ->paginate(20);
 
 
@@ -695,7 +702,7 @@ class ExtraController extends Controller
             ->inRandomOrder()->limit(10)
             ->get();
 
-        return view('main.body.category_post', compact('manset', 'category', 'catpost', 'nextnews', 'count'));
+        return view('main.body.category_post', compact('manset', 'authors', 'category', 'catpost', 'nextnews', 'count'));
 
 
     }

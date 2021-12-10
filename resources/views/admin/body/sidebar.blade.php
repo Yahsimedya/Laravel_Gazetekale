@@ -1,6 +1,6 @@
 <!-- Main sidebar -->
 @php
-$photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
+    $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
 @endphp
 
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
@@ -94,7 +94,6 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                 </li>
 
 
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#ads" class="nav-link"><i class="icon-gear"></i> <span>İha Bot Ayarı</span></a>
 
@@ -164,9 +163,6 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                 </li>
 
 
-
-
-
                 <li class="nav-item">
                     <a href="{{route('fixedpage.index')}}" class="nav-link">
                         <i class="icon-stack2"></i>
@@ -178,14 +174,13 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                         <i class="icon-comment"></i>
                         <span>Yorumlar</span>
                     </a>
-                </li>  <li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a href="{{route('notification.index')}}" class="nav-link">
                         <i class="icon-bubble-notification"></i>
                         <span>Bildirim Gönder</span>
                     </a>
                 </li>
-
-
 
 
                 <li class="nav-item nav-item-submenu">
@@ -197,13 +192,8 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                                     class="icon-list"></i> <span>Kullanıcılar</span></a></li>
 
 
-
                     </ul>
                 </li>
-
-
-
-
 
 
                 <li class="nav-item nav-item-submenu">
@@ -216,8 +206,8 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                         <li class="nav-item"><a href="{{route('seo.setting')}}" class="nav-link">SEO Ayarları</a></li>
                         <li class="nav-item"><a href="{{route('website.setting')}}" class="nav-link active"><i
                                     class="icon-list"></i> <span>Genel Ayarlar</span></a></li>
-<li class="nav-item"><a href="{{route('theme.index')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Tema Ayarları</span></a></li>
+               {{--         <li class="nav-item"><a href="{{route('theme.index')}}" class="nav-link active"><i
+                                    class="icon-list"></i> <span>Tema Ayarları</span></a></li>--}}
                     </ul>
                 </li>
 

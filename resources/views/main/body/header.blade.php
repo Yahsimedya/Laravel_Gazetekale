@@ -85,7 +85,7 @@ $gelenil=Session::get('gelenil');
                         @foreach($category as $categories)
                             <li class="nav-item active position-relative">
                                 <div class="nav-item-hover position-absolute"></div>
-                                <a class="nav-link " href="#">{{$categories->category_tr}} <span class="sr-only">(current)</span></a>
+                                <a class="nav-link " href="{{ URL::to('/Category/' . str_slug($categories->subcategory_tr) . $categories->id) }}">{{$categories->category_tr}} <span class="sr-only">(current)</span></a>
                             </li>
                         @endforeach
 

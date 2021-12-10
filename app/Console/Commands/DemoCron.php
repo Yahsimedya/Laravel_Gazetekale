@@ -169,7 +169,7 @@ class DemoCron extends Command
                         $data['district_id'] = $sehirs[0]->id;
                         $data['image'] = "storage/postimg" . "/" . $year . "/" . $month . "/" . $benzersiz . "-" . $isim . '.jpg';
                         $data['user_id'] = 1;
-                        $data['status'] = 0;
+                        $data['status'] = 1;
                         $data['haber_iha_kod'] = $haberkodu;
                         $data['created_at'] = Carbon::now();
                         Artisan::call('cache:clear');
