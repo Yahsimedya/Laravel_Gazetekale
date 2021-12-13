@@ -1,4 +1,3 @@
-
 @extends('main.home_master')
 @if(isset($seoset))
     @section('title',$seoset->meta_title)
