@@ -40,7 +40,7 @@ $("#nt-example2-infos").click(function () {
     nt_example2.newsTicker("unpause")
 }), $(document).ready(function () {
     tns({
-        container: ".baliseyh",
+        container: ".BALIŞEYH",
         items: 3,
         slideBy: "page",
         nav: !0,
@@ -57,7 +57,7 @@ $("#nt-example2-infos").click(function () {
     })
 }), $(document).ready(function () {
     tns({
-        container: ".keskin",
+        container: ".KESKİN",
         items: 3,
         slideBy: "page",
         nav: !0,
@@ -74,7 +74,7 @@ $("#nt-example2-infos").click(function () {
     })
 }), $(document).ready(function () {
     tns({
-        container: ".bahsili",
+        container: ".BAHŞİLİ",
         items: 3,
         slideBy: "page",
         nav: !0,
@@ -91,7 +91,7 @@ $("#nt-example2-infos").click(function () {
     })
 }), $(document).ready(function () {
     tns({
-        container: ".celebi",
+        container: ".ÇELEBİ",
         items: 3,
         slideBy: "page",
         nav: !0,
@@ -108,7 +108,7 @@ $("#nt-example2-infos").click(function () {
     })
 }), $(document).ready(function () {
     tns({
-        container: ".delice",
+        container: ".DELİCE",
         items: 3,
         slideBy: "page",
         nav: !0,
@@ -125,7 +125,7 @@ $("#nt-example2-infos").click(function () {
     })
 }), $(document).ready(function () {
     tns({
-        container: ".karakecili",
+        container: ".KARAKEÇİLİ",
         items: 3,
         slideBy: "page",
         nav: !0,
@@ -142,7 +142,7 @@ $("#nt-example2-infos").click(function () {
     })
 }), $(document).ready(function () {
     tns({
-        container: ".sulakyurt",
+        container: ".SULAKYURT",
         items: 3,
         slideBy: "page",
         nav: !0,
@@ -159,7 +159,7 @@ $("#nt-example2-infos").click(function () {
     })
 }), $(document).ready(function () {
     tns({
-        container: ".yahsihan",
+        container: ".YAHŞİHAN",
         items: 3,
         slideBy: "page",
         lazyload: !0,

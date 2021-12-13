@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboneApi;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthorsPostController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DistrictController;
 use App\Http\Controllers\Backend\GaleryCategoryController;

@@ -128,143 +128,19 @@ $gelenil=Session::get('gelenil');
                     <!--PUAN DURUMU-->
                     <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
                     <div class="reklam-alani text-center">
-                        <img src="img/336x280.png" alt="">
+                        <img src="img/336x280.png" alt="Reklam">
                     </div>
                     <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
 
                     <div class="spor mt-2">
                         <div class="card-header card-spor  position-relative">
-                            <div class=" card-spor__link text-left pad"><b>Bal Ligi</b> Puan Durumu</div>
+                            <div class=" card-spor__link text-left pad"><b>Süper Lig</b> Puan Durumu</div>
                             <!-- <a href="#"><div class=" position-absolute ">Tümü</div></a> -->
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-spor">
-                                <thead class="table-spor__baslik">
-                                <tr align="center">
-                                    <th scope="col-2">Takım</th>
-                                    <th scope="col">G</th>
-                                    <th scope="col">B</th>
-                                    <th scope="col">M</th>
-                                    <th scope="col">Av</th>
-                                    <th scope="col">P</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="table-puan">
-                                    <th scope="row">Kırıkkale Büyük Anadolu Spor</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">Akşehir Spor</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">1926 Polatlı Belediye Spor</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">Çubukspor Futbol Aş.</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">Akşehir Spor</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">1926 Polatlı Belediye Spor</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">Çubukspor Futbol Aş.</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">Çubukspor Futbol Aş.</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">Çubukspor Futbol Aş.</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">Çubukspor Futbol Aş.</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">Çubukspor Futbol Aş.</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                <tr class="table-puan">
-                                    <th scope="row">Çubukspor Futbol Aş.</th>
-                                    <td align="center">4</td>
-                                    <td align="center">3</td>
-                                    <td align="center">0</td>
-                                    <td align="center">8</td>
-                                    <td align="center">14</td>
-
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        @include('main.body.puan-durumu')
                     </div>
                     <div class="reklam-alani text-center">
-                        <img src="img/336x280.png" alt="">
+                        <img src="img/336x280.png" alt="Reklam">
                     </div>
             </div>
                 <!--SAĞ TARAF TEK SUTUN YAZARLAR PUSNA DURUMU VS-->

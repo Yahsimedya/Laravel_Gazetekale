@@ -38,9 +38,10 @@ $gelenil=Session::get('gelenil');
             <!-- Arama Butonu Alanı -->
             <div class="navbar-right">
 
-                <form class="search-form" role="search">
+                <form class="search-form" action="{{route('search')}}" method="POST" role="search">
+                    @csrf
                     <div class="form-group pull-right" id="search">
-                        <input type="text" class="form-control" placeholder="Ara">
+                        <input type="text" name="searchtext" class="form-control" placeholder="Ara">
                         <button type="submit" class="form-control form-control-submit">Submit</button>
                         <span class="search-label"><i class="fa fa-search"></i></span>
                     </div>
@@ -92,6 +93,10 @@ $gelenil=Session::get('gelenil');
                         <li class="nav-item active position-relative">
                             <div class="nav-item-hover position-absolute"></div>
                             <a class="nav-link " href="#">Yerel <span class="sr-only">(current)</span></a>
+                        </li>
+                            <li class="nav-item active position-relative">
+                            <div class="nav-item-hover position-absolute"></div>
+                            <a class="nav-link " href="{{route('yerelhaberler')}}">İller <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                 </div>

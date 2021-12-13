@@ -447,6 +447,7 @@ class ExtraController extends Controller
         });
         $ilceler = Cache::remember("ilceler", Carbon::now()->addYear(), function () {
             if (Cache::has('ilceler')) return Cache::has('ilceler');
+            //Buraya il seçtirerek ilçeler sıralanacak
             return Subdistrict::where('district_id', '=', '71')->orderByRaw('subdistrict_tr')->get();
         });
 //        $category = Category::latest()->get();
@@ -710,8 +711,8 @@ class ExtraController extends Controller
     public function search(Request $request)
     {
 
-
         $searchText = $request['searchtext'];
+
         $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->get();
         $searchNews = $this->change($json);
 

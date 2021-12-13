@@ -107,6 +107,14 @@ class CategorySeeder extends Seeder
                 'category_icon' => '',
                 'category_status' => '1',
                 'category_order' => '0'],
+            11 =>  ['id' => 12,
+                'category_en' => 'Youtube',
+                'category_tr' => 'Youtube',
+                'category_keywords' => 'Youtube',
+                'category_description' => 'Youtube',
+                'category_icon' => '',
+                'category_status' => '1',
+                'category_order' => '0'],
 
         ]);
     }
