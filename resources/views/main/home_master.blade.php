@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" async/>
     <link rel="manifest" href="./manifest.json">
-    <link rel="stylesheet" type="text/css" href="{{asset('frontend/assets/css/svg-turkiye-haritasi.css')}}">
+{{--    <link rel="stylesheet" type="text/css" href="{{asset('frontend/assets/css/svg-turkiye-haritasi.css')}}">--}}
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-control" content="public">
@@ -38,7 +38,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script rel="preload" src="{{mix('frontend/assets/js/combine.js')}}"></script>
-        <script type="text/javascript" src="{{asset('frontend/assets/js/svg-turkiye-haritasi.js')}}"></script>
+{{--        <script type="text/javascript" src="{{asset('frontend/assets/js/svg-turkiye-haritasi.js')}}"></script>--}}
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" async integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
