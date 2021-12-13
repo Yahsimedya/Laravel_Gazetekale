@@ -332,528 +332,6 @@
     
 })( jQuery, window, document );
 
-// $(document).ready(function(){$("#owl__yanslider").owlCarousel({loop:!0,margin:30,nav:!1,navText:["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],dots:!0,dotsData:!0,animateOut:!1,animateIn:!1,slideTransition:"",items:1});$(".owl-dot ").on("mouseover",function(){$(this).trigger("to.owl.carousel",[$(this).index()])})});var nt_example2=$("#nt-example2").newsTicker({row_height:60,max_rows:1,speed:300,duration:3e3,stopButton:$("#nt-example2 li i"),startButton:$("#nt-example2 li i"),hasMoved:function(){$("#nt-example2-infos-container").fadeOut(200,function(){$("#nt-example2-infos .infos-hour").text($("#nt-example2 li:first span").text()),$("#nt-example2-infos .infos-text").text($("#nt-example2 li:first").data("infos")),$(this).fadeIn(400)})},pause:function(){$("#nt-example2 li i").removeClass("fa-play").addClass("fa-pause pause")},unpause:function(){$("#nt-example2 li i").removeClass("fa-pause").addClass("fa-play")}});$("#nt-example2-infos").click(function(){nt_example2.newsTicker("pause")},function(){nt_example2.newsTicker("unpause")}),$(document).ready(function(){tns({container:".ilce-slider",items:3,slideBy:"page",nav:!0,navPosition:"bottom",autoplay:!0,controls:!1,autoplayButton:!1,mouseDrag:!0,autoplayTimeout:3e5,autoplayButtonOutput:!1,gutter:10,responsive:{0:{items:1},640:{items:2},700:{gutter:14},900:{items:3}}})}),$(document).ready(function(){tns({container:".ikinci-slider",items:3,slideBy:"page",nav:!0,navPosition:"bottom",autoplay:!0,controls:!1,autoplayButton:!1,mouseDrag:!0,autoplayTimeout:3e5,autoplayButtonOutput:!1,gutter:14,responsive:{0:{items:1},640:{items:2},700:{gutter:14},900:{items:3}}})}),$(document).ready(function(){$(".video-slider").slick({autoplay:!0,dots:!0,autoplaySpeed:5e5,customPaging:function(t,e){$(t.$slides[e]).data();return'<a class="dot">'+e+"</a>"},responsive:[{breakpoint:500,settings:{dots:!1,arrows:!0,infinite:!1,slidesToShow:1,slidesToScroll:1}}]})}),$(document).ready(function(){$("#search").on("click",function(t){$(".form-group").addClass("sb-search-open"),t.stopPropagation()}),$(document).on("click",function(t){!1===$(t.target).is("#search")&&0==$(".form-control").val().length&&$(".form-group").removeClass("sb-search-open")}),$(".form-control-submit").click(function(t){$(".form-control").each(function(){0==$(".form-control").val().length&&(t.preventDefault(),$(this).css("border","2px solid red"))})})}),$("img").on("error",function(){$(this).attr("src","img/resimyok.png")});
-$(document).ready(function () {
-    $("#owl__yanslider").owlCarousel({
-        loop: !0,
-        margin: 30,
-        nav: !1,
-        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-        dots: !0,
-        dotsData: !0,
-        animateOut: !1,
-        animateIn: !1,
-        slideTransition: "",
-        items: 1
-    }), $(".owl-dot ").on("mouseover", function () {
-        $(this).trigger("to.owl.carousel", [$(this).index()])
-    })
-});
-var nt_example2 = $("#nt-example2").newsTicker({
-    row_height: 60,
-    max_rows: 1,
-    speed: 300,
-    duration: 3e3,
-    stopButton: $("#nt-example2 li i"),
-    startButton: $("#nt-example2 li i"),
-    hasMoved: function () {
-        $("#nt-example2-infos-container").fadeOut(200, function () {
-            $("#nt-example2-infos .infos-hour").text($("#nt-example2 li:first span").text()), $("#nt-example2-infos .infos-text").text($("#nt-example2 li:first").data("infos")), $(this).fadeIn(400)
-        })
-    },
-    pause: function () {
-        $("#nt-example2 li i").removeClass("fa-play").addClass("fa-pause pause")
-    },
-    unpause: function () {
-        $("#nt-example2 li i").removeClass("fa-pause").addClass("fa-play")
-    }
-});
-$("#nt-example2-infos").click(function () {
-    nt_example2.newsTicker("pause")
-}, function () {
-    nt_example2.newsTicker("unpause")
-}), $(document).ready(function () {
-    tns({
-        container: ".BALIŞEYH",
-        items: 3,
-        slideBy: "page",
-        nav: !0,
-        lazyload: !0,
-        navPosition: "bottom",
-        autoplay: !0,
-        controls: !1,
-        autoplayButton: !1,
-        mouseDrag: !0,
-        autoplayTimeout: 3e5,
-        autoplayButtonOutput: !1,
-        gutter: 10,
-        responsive: {0: {items: 1}, 640: {items: 2}, 700: {gutter: 14}, 900: {items: 3}}
-    })
-}), $(document).ready(function () {
-    tns({
-        container: ".KESKİN",
-        items: 3,
-        slideBy: "page",
-        nav: !0,
-        navPosition: "bottom",
-        autoplay: !0,
-        lazyload: !0,
-        controls: !1,
-        autoplayButton: !1,
-        mouseDrag: !0,
-        autoplayTimeout: 3e5,
-        autoplayButtonOutput: !1,
-        gutter: 14,
-        responsive: {0: {items: 1}, 640: {items: 2}, 700: {gutter: 14}, 900: {items: 3}}
-    })
-}), $(document).ready(function () {
-    tns({
-        container: ".BAHŞİLİ",
-        items: 3,
-        slideBy: "page",
-        nav: !0,
-        lazyload: !0,
-        navPosition: "bottom",
-        autoplay: !0,
-        controls: !1,
-        autoplayButton: !1,
-        mouseDrag: !0,
-        autoplayTimeout: 3e5,
-        autoplayButtonOutput: !1,
-        gutter: 14,
-        responsive: {0: {items: 1}, 640: {items: 2}, 700: {gutter: 14}, 900: {items: 3}}
-    })
-}), $(document).ready(function () {
-    tns({
-        container: ".ÇELEBİ",
-        items: 3,
-        slideBy: "page",
-        nav: !0,
-        lazyload: !0,
-        navPosition: "bottom",
-        autoplay: !0,
-        controls: !1,
-        autoplayButton: !1,
-        mouseDrag: !0,
-        autoplayTimeout: 3e5,
-        autoplayButtonOutput: !1,
-        gutter: 14,
-        responsive: {0: {items: 1}, 640: {items: 2}, 700: {gutter: 14}, 900: {items: 3}}
-    })
-}), $(document).ready(function () {
-    tns({
-        container: ".DELİCE",
-        items: 3,
-        slideBy: "page",
-        nav: !0,
-        lazyload: !0,
-        navPosition: "bottom",
-        autoplay: !0,
-        controls: !1,
-        autoplayButton: !1,
-        mouseDrag: !0,
-        autoplayTimeout: 3e5,
-        autoplayButtonOutput: !1,
-        gutter: 14,
-        responsive: {0: {items: 1}, 640: {items: 2}, 700: {gutter: 14}, 900: {items: 3}}
-    })
-}), $(document).ready(function () {
-    tns({
-        container: ".KARAKEÇİLİ",
-        items: 3,
-        slideBy: "page",
-        nav: !0,
-        navPosition: "bottom",
-        autoplay: !0,
-        lazyload: !0,
-        controls: !1,
-        autoplayButton: !1,
-        mouseDrag: !0,
-        autoplayTimeout: 3e5,
-        autoplayButtonOutput: !1,
-        gutter: 14,
-        responsive: {0: {items: 1}, 640: {items: 2}, 700: {gutter: 14}, 900: {items: 3}}
-    })
-}), $(document).ready(function () {
-    tns({
-        container: ".SULAKYURT",
-        items: 3,
-        slideBy: "page",
-        nav: !0,
-        navPosition: "bottom",
-        autoplay: !0,
-        lazyload: !0,
-        controls: !1,
-        autoplayButton: !1,
-        mouseDrag: !0,
-        autoplayTimeout: 3e5,
-        autoplayButtonOutput: !1,
-        gutter: 14,
-        responsive: {0: {items: 1}, 640: {items: 2}, 700: {gutter: 14}, 900: {items: 3}}
-    })
-}), $(document).ready(function () {
-    tns({
-        container: ".YAHŞİHAN",
-        items: 3,
-        slideBy: "page",
-        lazyload: !0,
-        nav: !0,
-        navPosition: "bottom",
-        autoplay: !0,
-        controls: !1,
-        autoplayButton: !1,
-        mouseDrag: !0,
-        autoplayTimeout: 3e5,
-        autoplayButtonOutput: !1,
-        gutter: 14,
-        responsive: {0: {items: 1}, 640: {items: 2}, 700: {gutter: 14}, 900: {items: 3}}
-    })
-}), $(document).ready(function () {
-    $(".video-slider").slick({
-        autoplay: !0,
-        dots: !0,
-        autoplaySpeed: 5e5,
-        customPaging: function (t, o) {
-            return $(t.$slides[o]).data(), '<a class="dot">' + (o + 1) + "</a>"
-        },
-        responsive: [{
-            breakpoint: 500,
-            settings: {dots: !1, arrows: !0, infinite: !1, slidesToShow: 1, slidesToScroll: 1}
-        }]
-    })
-}), $(document).ready(function () {
-    $("#search").on("click", function (t) {
-        $(".form-group").addClass("sb-search-open"), t.stopPropagation()
-    }), $(document).on("click", function (t) {
-        !1 === $(t.target).is("#search") && 0 == $(".form-control").val().length && $(".form-group").removeClass("sb-search-open")
-    }), $(".form-control-submit").click(function (t) {
-        $(".form-control").each(function () {
-            0 == $(".form-control").val().length && (t.preventDefault(), $(this).css("border", "2px solid red"))
-        })
-    })
-});
-// $(document).ready(function() {
-//     $("#owl__yanslider").owlCarousel({
-//         loop: !0,
-//         margin: 30,
-//         nav: !1,
-//         navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-//         dots: !0,
-//         dotsData: !0,
-//         animateOut: !1,
-//         animateIn: !1,
-//         slideTransition: "",
-//         items: 1
-//     });
-//     $(".owl-dot ").on("mouseover", function() {
-//         $(this).trigger("to.owl.carousel", [$(this).index()])
-//     })
-// });
-// var nt_example2 = $("#nt-example2").newsTicker({
-//     row_height: 60,
-//     max_rows: 1,
-//     speed: 300,
-//     duration: 3e3,
-//     stopButton: $("#nt-example2 li i"),
-//     startButton: $("#nt-example2 li i"),
-//     hasMoved: function() {
-//         $("#nt-example2-infos-container").fadeOut(200, function() {
-//             $("#nt-example2-infos .infos-hour").text($("#nt-example2 li:first span").text()), $("#nt-example2-infos .infos-text").text($("#nt-example2 li:first").data("infos")), $(this).fadeIn(400)
-//         })
-//     },
-//     pause: function() {
-//         $("#nt-example2 li i").removeClass("fa-play").addClass("fa-pause pause")
-//     },
-//     unpause: function() {
-//         $("#nt-example2 li i").removeClass("fa-pause").addClass("fa-play")
-//     }
-// });
-// $("#nt-example2-infos").click(function() {
-//     nt_example2.newsTicker("pause")
-// }, function() {
-//     nt_example2.newsTicker("unpause")
-// }), $(document).ready(function() {
-//     tns({
-//         container: ".baliseyh",
-//         items: 3,
-//         slideBy: "page",
-//         nav: !0,
-//         lazyload:true,
-//         navPosition: "bottom",
-//         autoplay: !0,
-//         controls: !1,
-//         autoplayButton: !1,
-//         mouseDrag: !0,
-//         autoplayTimeout: 3e5,
-//         autoplayButtonOutput: !1,
-//         gutter: 10,
-//         responsive: {
-//             0: {
-//                 items: 1
-//             },
-//             640: {
-//                 items: 2
-//             },
-//             700: {
-//                 gutter: 14
-//             },
-//             900: {
-//                 items: 3
-//             }
-//         }
-//     })
-// }), $(document).ready(function() {
-//     tns({
-//         container: ".keskin",
-//         items: 3,
-//         slideBy: "page",
-//         nav: !0,
-//         navPosition: "bottom",
-//         autoplay: !0,
-//         lazyload:true,
-//         controls: !1,
-//         autoplayButton: !1,
-//         mouseDrag: !0,
-//         autoplayTimeout: 3e5,
-//         autoplayButtonOutput: !1,
-//         gutter: 14,
-//         responsive: {
-//             0: {
-//                 items: 1
-//             },
-//             640: {
-//                 items: 2
-//             },
-//             700: {
-//                 gutter: 14
-//             },
-//             900: {
-//                 items: 3
-//             }
-//         }
-//     })
-// }), $(document).ready(function() {
-//     tns({
-//         container: ".bahsili",
-//         items: 3,
-//         slideBy: "page",
-//         nav: !0,
-//         lazyload:true,
-//         navPosition: "bottom",
-//         autoplay: !0,
-//         controls: !1,
-//         autoplayButton: !1,
-//         mouseDrag: !0,
-//         autoplayTimeout: 3e5,
-//         autoplayButtonOutput: !1,
-//         gutter: 14,
-//         responsive: {
-//             0: {
-//                 items: 1
-//             },
-//             640: {
-//                 items: 2
-//             },
-//             700: {
-//                 gutter: 14
-//             },
-//             900: {
-//                 items: 3
-//             }
-//         }
-//     })
-// }),
-// $(document).ready(function() {
-//     tns({
-//         container: ".celebi",
-//         items: 3,
-//         slideBy: "page",
-//         nav: !0,
-//         lazyload:true,
-//         navPosition: "bottom",
-//         autoplay: !0,
-//         controls: !1,
-//         autoplayButton: !1,
-//         mouseDrag: !0,
-//         autoplayTimeout: 3e5,
-//         autoplayButtonOutput: !1,
-//         gutter: 14,
-//         responsive: {
-//             0: {
-//                 items: 1
-//             },
-//             640: {
-//                 items: 2
-//             },
-//             700: {
-//                 gutter: 14
-//             },
-//             900: {
-//                 items: 3
-//             }
-//         }
-//     })
-// }),
-// $(document).ready(function() {
-//     tns({
-//         container: ".delice",
-//         items: 3,
-//         slideBy: "page",
-//         nav: !0,
-//         lazyload:true,
-//         navPosition: "bottom",
-//         autoplay: !0,
-//         controls: !1,
-//         autoplayButton: !1,
-//         mouseDrag: !0,
-//         autoplayTimeout: 3e5,
-//         autoplayButtonOutput: !1,
-//         gutter: 14,
-//         responsive: {
-//             0: {
-//                 items: 1
-//             },
-//             640: {
-//                 items: 2
-//             },
-//             700: {
-//                 gutter: 14
-//             },
-//             900: {
-//                 items: 3
-//             }
-//         }
-//     })
-// }),$(document).ready(function() {
-//     tns({
-//         container: ".karakecili",
-//         items: 3,
-//         slideBy: "page",
-//         nav: !0,
-//         navPosition: "bottom",
-//         autoplay: !0,
-//         lazyload:true,
-
-//         controls: !1,
-//         autoplayButton: !1,
-//         mouseDrag: !0,
-//         autoplayTimeout: 3e5,
-//         autoplayButtonOutput: !1,
-//         gutter: 14,
-//         responsive: {
-//             0: {
-//                 items: 1
-//             },
-//             640: {
-//                 items: 2
-//             },
-//             700: {
-//                 gutter: 14
-//             },
-//             900: {
-//                 items: 3
-//             }
-//         }
-//     })
-// }),$(document).ready(function() {
-//     tns({
-//         container: ".sulakyurt",
-//         items: 3,
-//         slideBy: "page",
-//         nav: !0,
-//         navPosition: "bottom",
-//         autoplay: !0,
-//         lazyload:true,
-
-//         controls: !1,
-//         autoplayButton: !1,
-//         mouseDrag: !0,
-//         autoplayTimeout: 3e5,
-//         autoplayButtonOutput: !1,
-//         gutter: 14,
-//         responsive: {
-//             0: {
-//                 items: 1
-//             },
-//             640: {
-//                 items: 2
-//             },
-//             700: {
-//                 gutter: 14
-//             },
-//             900: {
-//                 items: 3
-//             }
-//         }
-//     })
-// }),
-// $(document).ready(function() {
-//     tns({
-//         container: ".yahsihan",
-//         items: 3,
-//         slideBy: "page",
-//         lazyload:true,
-//         nav: !0,
-//         navPosition: "bottom",
-//         autoplay: !0,
-//         controls: !1,
-//         autoplayButton: !1,
-//         mouseDrag: !0,
-//         autoplayTimeout: 3e5,
-//         autoplayButtonOutput: !1,
-//         gutter: 14,
-//         responsive: {
-//             0: {
-//                 items: 1
-//             },
-//             640: {
-//                 items: 2
-//             },
-//             700: {
-//                 gutter: 14
-//             },
-//             900: {
-//                 items: 3
-//             }
-//         }
-//     })
-// }),
-
-// $(document).ready(function() {
-//     $(".video-slider").slick({
-//         autoplay: !0,
-//         dots: !0,
-//         autoplaySpeed: 5e5,
-//         customPaging: function(t, e) {
-//             $(t.$slides[e]).data();
-//             return '<a class="dot">' +(e+1)+ "</a>"
-//         },
-//         responsive: [{
-//             breakpoint: 500,
-//             settings: {
-//                 dots: !1,
-//                 arrows: !0,
-//                 infinite: !1,
-//                 slidesToShow: 1,
-//                 slidesToScroll: 1
-//             }
-//         }]
-//     })
-// }), $(document).ready(function() {
-//     $("#search").on("click", function(t) {
-//         $(".form-group").addClass("sb-search-open"), t.stopPropagation()
-//     }), $(document).on("click", function(t) {
-//         !1 === $(t.target).is("#search") && 0 == $(".form-control").val().length && $(".form-group").removeClass("sb-search-open")
-//     }), $(".form-control-submit").click(function(t) {
-//         $(".form-control").each(function() {
-//             0 == $(".form-control").val().length && (t.preventDefault(), $(this).css("border", "2px solid red"))
-//         })
-//     })
-// });
-// , $("img").on("error", function() {
-//     $(this).attr("src", "img/resimyok.png")
-// });
-
 /*! SVG Türkiye Haritası | MIT Lisans | dnomak.com */
 
 function svgturkiyeharitasi() {
@@ -914,7 +392,7 @@ function svgturkiyeharitasi() {
 }
 
 /**
- * Swiper 7.3.0
+ * Swiper 7.3.2
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -922,7 +400,7 @@ function svgturkiyeharitasi() {
  *
  * Released under the MIT License
  *
- * Released on: November 18, 2021
+ * Released on: December 13, 2021
  */
 
 (function (global, factory) {
@@ -932,7 +410,7 @@ function svgturkiyeharitasi() {
 }(this, (function () { 'use strict';
 
     /**
-     * SSR Window 4.0.1
+     * SSR Window 4.0.2
      * Better handling for window object in SSR environment
      * https://github.com/nolimits4web/ssr-window
      *
@@ -940,7 +418,7 @@ function svgturkiyeharitasi() {
      *
      * Licensed under MIT
      *
-     * Released on: October 27, 2021
+     * Released on: December 13, 2021
      */
 
     /* eslint-disable no-param-reassign */
@@ -1111,7 +589,7 @@ function svgturkiyeharitasi() {
     }
 
     /**
-     * Dom7 4.0.1
+     * Dom7 4.0.2
      * Minimalistic JavaScript library for DOM manipulation, with a jQuery-compatible API
      * https://framework7.io/docs/dom7.html
      *
@@ -1119,7 +597,7 @@ function svgturkiyeharitasi() {
      *
      * Licensed under MIT
      *
-     * Released on: October 27, 2021
+     * Released on: December 13, 2021
      */
     /* eslint-disable no-proto */
 
@@ -3129,7 +2607,7 @@ function svgturkiyeharitasi() {
     function updateClickedSlide(e) {
       const swiper = this;
       const params = swiper.params;
-      const slide = $(e.target).closest(`.${params.slideClass}`)[0];
+      const slide = $(e).closest(`.${params.slideClass}`)[0];
       let slideFound = false;
       let slideIndex;
 
@@ -4318,7 +3796,8 @@ function svgturkiyeharitasi() {
       const timeDiff = touchEndTime - data.touchStartTime; // Tap, doubleTap, Click
 
       if (swiper.allowClick) {
-        swiper.updateClickedSlide(e);
+        const pathTree = e.path || e.composedPath && e.composedPath();
+        swiper.updateClickedSlide(pathTree && pathTree[0] || e.target);
         swiper.emit('tap click', e);
 
         if (timeDiff < 300 && touchEndTime - data.lastClickTime < 300) {
@@ -8791,23 +8270,34 @@ function svgturkiyeharitasi() {
       }
 
       function hasPagination() {
-        return swiper.pagination && swiper.params.pagination.clickable && swiper.pagination.bullets && swiper.pagination.bullets.length;
+        return swiper.pagination && swiper.pagination.bullets && swiper.pagination.bullets.length;
+      }
+
+      function hasClickablePagination() {
+        return hasPagination() && swiper.params.pagination.clickable;
       }
 
       function updatePagination() {
         const params = swiper.params.a11y;
+        if (!hasPagination()) return;
+        swiper.pagination.bullets.each(bulletEl => {
+          const $bulletEl = $(bulletEl);
 
-        if (hasPagination()) {
-          swiper.pagination.bullets.each(bulletEl => {
-            const $bulletEl = $(bulletEl);
+          if (swiper.params.pagination.clickable) {
             makeElFocusable($bulletEl);
 
             if (!swiper.params.pagination.renderBullet) {
               addElRole($bulletEl, 'button');
               addElLabel($bulletEl, params.paginationBulletMessage.replace(/\{\{index\}\}/, $bulletEl.index() + 1));
             }
-          });
-        }
+          }
+
+          if ($bulletEl.is(`.${swiper.params.pagination.bulletActiveClass}`)) {
+            $bulletEl.attr('aria-current', 'true');
+          } else {
+            $bulletEl.removeAttr('aria-current');
+          }
+        });
       }
 
       const initNavEl = ($el, wrapperId, message) => {
@@ -8876,7 +8366,7 @@ function svgturkiyeharitasi() {
         } // Pagination
 
 
-        if (hasPagination()) {
+        if (hasClickablePagination()) {
           swiper.pagination.$el.on('keydown', classesToSelector(swiper.params.pagination.bulletClass), onEnterOrSpaceKey);
         }
       }
@@ -8903,7 +8393,7 @@ function svgturkiyeharitasi() {
         } // Pagination
 
 
-        if (hasPagination()) {
+        if (hasClickablePagination()) {
           swiper.pagination.$el.off('keydown', classesToSelector(swiper.params.pagination.bulletClass), onEnterOrSpaceKey);
         }
       }

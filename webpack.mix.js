@@ -20,7 +20,6 @@ mix.js('resources/js/app.js', 'public/js')
     .combine([
         'public/frontend/assets/js/lazysizes.min.js',
         'public/frontend/assets/js/marquee.js',
-        'public/frontend/assets/js/custom.js',
         'public/frontend/assets/js/svg-turkiye-haritasi.js',
         'node_modules/swiper/swiper-bundle.js',
         'node_modules/slick-carousel/slick/slick.js',
@@ -33,10 +32,8 @@ mix.js('resources/js/app.js', 'public/js')
         'node_modules/swiper/swiper-bundle.css',
         'node_modules/slick-carousel/slick/slick.scss',
 
-
-
     ],'public/frontend/assets/css/combine.css')
 
-.sourceMaps();
+    .sourceMaps();
 
 mix.version();

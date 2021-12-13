@@ -35,7 +35,7 @@
         </div>
         <div class="row" id="gotur">
 
-               {{dd($sehirsay)}}
+
             @if($sehirsay!=0)
 
 
@@ -55,16 +55,16 @@
 
                 @foreach ($districts as $row)
 
-                    <div class="col-md-4">
-                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                            <div class="card kart kart-width shadow mb-2" style="">
-                                <img class="img-fluid kart_img" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}"/>
-                                <div class="card-body kart-body  bordercolor-6 border-3 text-dark">
-                                    <p class="card-text">{{$row->title_tr}}</p>
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-none d-md-block padding-left kartlar">
+                        <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
+                            <div class="card shadow  d-inline-block  ">
+                                <img class="card-img-top" src="{{$row->image}}" alt="Card image cap">
+                                <div class="card-body align-middle d-table-cell">
+                                    <p class="card-baslik text-center d-table-cell"><b
+                                            class="card-kisalt">{{$row->title_tr}}</b></p>
                                 </div>
                             </div>
                         </a>
-
                     </div>
                 @endforeach
             @else

@@ -24,10 +24,10 @@ $gelenil=Session::get('gelenil');
 
                 <div class="navbar__il float-left pr-3"><b>{{$gelenil}}</b>
 
-                    <span class="float-right pl-3">{{$veri}}&deg;</span>
+                    <span class="float-right pl-3">{{$veri}}&deg;{!!$icon!!}</span>
                 </div>
                 <br/>
-                {!!$icon!!}
+
 
                 <span class="">  </span>
             </div>
