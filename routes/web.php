@@ -277,6 +277,10 @@ Route::post('/ajax/home', [AjaxController::class, 'HavaDurumuHome'])->name('il.h
 Route::post('/ajax/stabilhome', [AjaxController::class, 'HavaDurumuStabil'])->name('il.stabilhome');
 
 Route::get('/hava-durumu', [AjaxController::class, 'HavaDurum'])->name('hava.durum');
+Route::get('/nobetciEczane',[AjaxController::class,'nobetciEczane'])->name('nobetciEczane');
+Route::post('/nobetciEczane',[AjaxController::class,'nobetciEczanePost'])->name('nobetciEczanePost');
+Route::get('/cenazeilanlari',[AjaxController::class,'cenazeilanlari'])->name('cenazeilanlari');
+
 // NAMAZ VAKİTLERİ
 Route::post('/ajax-namaz', [AjaxController::class, 'NamazVakit'])->name('il.namaz');
 //Ilçe Haberleri

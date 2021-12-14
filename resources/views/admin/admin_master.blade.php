@@ -97,6 +97,7 @@
     <script src="{{asset('backend/global_assets/js/demo_pages/uploader_dropzone.js')}}"></script>
     <script src="{{asset('global_assets/js/plugins/loaders/blockui.min.js')}}"></script>
     <!-- /core JS files -->
+    <script src="https://cdn.scaleflex.it/plugins/filerobot-image-editor/3.12.17/filerobot-image-editor.min.js"/></script>
 
     <!-- Theme JS files -->
     <script src="{{asset('global_assets/js/plugins/uploaders/dropzone.min.js')}}"></script>

@@ -1,7 +1,7 @@
 @extends('admin.admin_master')
 @section('admin')
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="{{asset('backend/assets/js/filerobot-image-editor.min.js')}}"></script>
+
     @php
         $sub = DB::table('subcategories')->where('category_id',$post->category_id)->get();
         $subdis = DB::table('subdistricts')->where('district_id',$post->district_id)->get();
@@ -13,16 +13,24 @@
         <div class="card">
             <div class="card-header header-elements-inline">
                 <h5 class="card-title">Haber Düzenle</h5>
-                <div class="header-elements">
-                    <div class="list-icons">
-                        <a class="list-icons-item" data-action="collapse"></a>
-                        <a class="list-icons-item" data-action="reload"></a>
-                        <a class="list-icons-item" data-action="remove"></a>
-                    </div>
-                </div>
+                <button id="image-editor-btn" class="btn btn-success col-lg-2 float-right">Fotoğrafı Düzenle <i
+                        class="icon-image-compare ml-2"></i></button>
+                <script>
+                    const ImageEditor = new window.FilerobotImageEditor();
+                    const Button = document.getElementById("image-editor-btn");
+
+                    Button.addEventListener("click", function () {
+                        ImageEditor.open(
+                            "{{asset($post->image)}}"
+                        );
+                    });
+                </script>
             </div>
 
+
             <div class="card-body">
+
+
                 <form action="{{route('update.post', $post)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$post->image}}" name="old_image" class="form-control tokenfield">
@@ -30,26 +38,34 @@
                     <div class="row">
                         <div class="col-md-6">
                             <fieldset>
-                                <legend class="font-weight-semibold"><i class="icon-reading mr-2"></i> Personal details</legend>
+                                <legend class="font-weight-semibold"><i class="icon-reading mr-2"></i> Haber Detay
+                                </legend>
 
                                 <div class="form-group">
                                     <label>Haber Başlığı:</label>
-                                    <input type="text" name="title_tr" value="{{$post->title_tr}}" class="form-control" placeholder="Başlık">
-                                </div><div class="form-group">
+                                    <input type="text" name="title_tr" value="{{$post->title_tr}}" class="form-control"
+                                           placeholder="Başlık">
+                                </div>
+                                <div class="form-group">
                                     <label>Haber Spot Başlığı:</label>
-                                    <input type="text" name="subtitle_tr" value="{{$post->subtitle_tr}}" class="form-control" placeholder="Başlık">
+                                    <input type="text" name="subtitle_tr" value="{{$post->subtitle_tr}}"
+                                           class="form-control" placeholder="Başlık">
                                 </div>
                                 <div class="form-group">
                                     <label>Video Haber Linki:</label>
-                                    <input type="text" name="posts_video" value="{{$post->posts_video}}" class="form-control" placeholder="youtube iframe">
+                                    <input type="text" name="posts_video" value="{{$post->posts_video}}"
+                                           class="form-control" placeholder="youtube iframe">
                                 </div>
                                 <div class="form-group">
                                     <label>Kategori Seçiniz:</label>
-                                    <select data-placeholder="Select your state" name="category_id" class="form-control form-control-select2" data-fouc>
+                                    <select data-placeholder="Select your state" name="category_id"
+                                            class="form-control form-control-select2" data-fouc>
                                         {{-- {{if($post->category_id == $category->id) {}}} --}}
                                         <option disabled="" selected="">Kategori Seçiniz</option>
                                         @foreach ($category as $row )
-                                            <option @php if($row->id == $post->category_id ) { echo "selected";} @endphp value="{{$row->id}}">{{$row->category_tr}} | {{$row->category_en}}</option>
+                                            <option
+                                                @php if($row->id == $post->category_id ) { echo "selected";} @endphp value="{{$row->id}}">{{$row->category_tr}}
+                                                | {{$row->category_en}}</option>
                                         @endforeach
                                     </select>
                                     @error('category_id')
@@ -59,9 +75,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Alt Kategori Seçiniz:</label>
-                                    <select data-placeholder="Select your state" id="subcategory_id" name="subcategory_id" class="form-control form-control-select2" data-fouc>
+                                    <select data-placeholder="Select your state" id="subcategory_id"
+                                            name="subcategory_id" class="form-control form-control-select2" data-fouc>
                                         @foreach ($sub as $row )
-                                            <option @php if($row->id == $post->subcategory_id ) { echo "selected";} @endphp value="{{$row->id}}">{{$row->subcategory_tr}} | {{$row->subcategory_en}}</option>
+                                            <option
+                                                @php if($row->id == $post->subcategory_id ) { echo "selected";} @endphp value="{{$row->id}}">{{$row->subcategory_tr}}
+                                                | {{$row->subcategory_en}}</option>
                                         @endforeach
 
                                     </select>
@@ -90,7 +109,9 @@
                                 <div class="form-group">
                                     <label class="font-weight-semibold text-success">Haber Etiketleri</label>
                                     <div class="form-group-feedback form-group-feedback-right">
-                                        <input id="tokenfield" type="text" autocomplete="true" name="tag[]" value="{{ $tags->pluck('name')->implode(',') }}"  class="form-control tokenfield">
+                                        <input id="tokenfield" type="text" autocomplete="true" name="tag[]"
+                                               value="{{ $tags->pluck('name')->implode(',') }}"
+                                               class="form-control tokenfield">
                                         <div class="form-control-feedback text-success">
                                             <i class="icon-checkmark-circle"></i>
                                         </div>
@@ -103,13 +124,15 @@
 
                         <div class="col-md-6">
                             <fieldset>
-                                <legend class="font-weight-semibold"><i class="icon-truck mr-2"></i> Shipping details</legend>
+                                <legend class="font-weight-semibold"><i class="icon-paperplane mr-2"></i>
+                                </legend>
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Attach screenshot:</label>
-                                            <input type="file" class="form-input-styled" name="image" id="image" data-fouc>
+                                            <input type="file" class="form-input-styled" name="image" id="image"
+                                                   data-fouc>
                                             @error('image')
                                             <span class="text-danger">{{$message}}</span>
 
@@ -120,7 +143,10 @@
                                     <div class="col-md-6">
 
                                         <div class="form-group">
-                                            <img width="100%" src="{{!empty($post->image)? url($post->image):url('upload/no_news_image.jpg')}}" id="showImage" alt="">
+
+                                            <img width="100%"
+                                                 src="{{!empty($post->image)? url($post->image):url('upload/no_news_image.jpg')}}"
+                                                 id="showImage" alt="">
                                             {{-- <label>First name:</label>
                                             <input type="text" placeholder="Eugene" class="form-control"> --}}
                                         </div>
@@ -134,10 +160,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Bölge Seçiniz:</label>
-                                            <select data-placeholder="Select your state" id="district_id" name="district_id" class="form-control form-control-select2" data-fouc>
+                                            <select data-placeholder="Select your state" id="district_id"
+                                                    name="district_id" class="form-control form-control-select2"
+                                                    data-fouc>
                                                 <option disabled="" selected="">Bölge Seçiniz</option>
                                                 @foreach ($district as $row )
-                                                    <option @php if($row->id == $post->district_id ) { echo "selected";} @endphp value="{{$row->id}}">{{$row->district_tr}} | {{$row->district_en}}</option>
+                                                    <option
+                                                        @php if($row->id == $post->district_id ) { echo "selected";} @endphp value="{{$row->id}}">{{$row->district_tr}}
+                                                        | {{$row->district_en}}</option>
                                                 @endforeach
                                             </select>
                                             @error('district_id')
@@ -151,9 +181,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Alt Bölge Seçiniz:</label>
-                                            <select data-placeholder="Select your state" id="subdistrict_id" name="subdistrict_id" class="form-control form-control-select2" data-fouc>
+                                            <select data-placeholder="Select your state" id="subdistrict_id"
+                                                    name="subdistrict_id" class="form-control form-control-select2"
+                                                    data-fouc>
                                                 @foreach ($subdis as $row )
-                                                    <option @php if($row->id == $post->subdistrict_id ) { echo "selected";} @endphp value="{{$row->id}}">{{$row->subdistrict_tr}} | {{$row->subdistrict_en}}</option>
+                                                    <option
+                                                        @php if($row->id == $post->subdistrict_id ) { echo "selected";} @endphp value="{{$row->id}}">{{$row->subdistrict_tr}}
+                                                        | {{$row->subdistrict_en}}</option>
                                                 @endforeach
 
                                             </select>
@@ -164,9 +198,11 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="font-weight-semibold text-success">Haber Anahtar Kelime</label>
+                                            <label class="font-weight-semibold text-success">Haber Anahtar
+                                                Kelime</label>
                                             <div class="form-group-feedback form-group-feedback-right">
-                                                <input id="tokenfield" type="text" value="{{$post->keywords_tr}}" name="keywords_tr" class="form-control tokenfield">
+                                                <input id="tokenfield" type="text" value="{{$post->keywords_tr}}"
+                                                       name="keywords_tr" class="form-control tokenfield">
                                                 <div class="form-control-feedback text-success">
                                                     <i class="icon-checkmark-circle"></i>
                                                 </div>
@@ -175,7 +211,9 @@
 
                                         <div class="form-group">
                                             <label class="font-weight-semibold text-success">Haber Açıklama</label>
-                                            <textarea rows="1" cols="1" maxlength="225" class="form-control maxlength-textarea" name="description_tr" placeholder="Açıklama alanı 225 karakterle sınırlandırılmıştır">{{$post->description_tr}}</textarea>
+                                            <textarea rows="1" cols="1" maxlength="225"
+                                                      class="form-control maxlength-textarea" name="description_tr"
+                                                      placeholder="Açıklama alanı 225 karakterle sınırlandırılmıştır">{{$post->description_tr}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -217,7 +255,9 @@
                             <div class="form-check">
                                 <label class="form-check-label">
 
-                                    <input type="checkbox"  name="headline" value="1" @php if($post->headline==1) {echo "checked";} @endphp class="form-check-input-styled-primary"  data-fouc>
+                                    <input type="checkbox" name="headline" value="1"
+                                           @php if($post->headline==1) {echo "checked";} @endphp class="form-check-input-styled-primary"
+                                           data-fouc>
                                     Son Dakika
                                 </label>
                             </div>
@@ -232,15 +272,20 @@
                         <div class="col-md-3 mb-3">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" name="manset" value="1" @php if($post->manset==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
+                                    <input type="checkbox" name="manset" value="1"
+                                           @php if($post->manset==1) {echo "checked";}@endphp class="form-check-input-styled-primary"
+                                           data-fouc>
                                     Manşet
                                 </label>
                             </div>
-                        </div>  <div class="col-md-3 mb-3">
+                        </div>
+                        <div class="col-md-3 mb-3">
 
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" name="story" value="1" @php if($post->story==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
+                                    <input type="checkbox" name="story" value="1"
+                                           @php if($post->story==1) {echo "checked";}@endphp class="form-check-input-styled-primary"
+                                           data-fouc>
                                     Story
                                 </label>
                             </div>
@@ -249,7 +294,9 @@
 
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" name="featured" value="1" @php if($post->featured==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
+                                    <input type="checkbox" name="featured" value="1"
+                                           @php if($post->featured==1) {echo "checked";}@endphp class="form-check-input-styled-primary"
+                                           data-fouc>
                                     Öne Çıkan Haber
                                 </label>
                             </div>
@@ -258,17 +305,14 @@
 
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" name="surmanset" value="1"  @php if($post->surmanset==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
+                                    <input type="checkbox" name="surmanset" value="1"
+                                           @php if($post->surmanset==1) {echo "checked";}@endphp class="form-check-input-styled-primary"
+                                           data-fouc>
                                     Sürmanşet
 
                                 </label>
                             </div>
                         </div>
-
-
-
-
-
 
 
                         <div class="col-md-12">
@@ -280,7 +324,9 @@
                             {{--                            <span class="custom-control-label">Warning</span>--}}
                             {{--                        </label>--}}
                             <label class="custom-control custom-control-warning custom-radio mb-2">
-                                <input type="radio" name="headlinetag" value="1"  @php if($post->headlinetag==1) {echo "checked";} @endphp class="custom-control-input"  data-fouc>
+                                <input type="radio" name="headlinetag" value="1"
+                                       @php if($post->headlinetag==1) {echo "checked";} @endphp class="custom-control-input"
+                                       data-fouc>
                                 <span class="custom-control-label">Son Dakika</span>
                             </label>
 
@@ -288,7 +334,9 @@
                         <div class="col-md-3 mb-3">
                             <div class="form-radio">
                                 <label class="custom-control custom-control-warning custom-radio mb-2">
-                                    <input type="radio" name="flahtag" value="1"  @php if($post->flahtag==1) {echo "checked";} @endphp class="custom-control-input"  data-fouc>
+                                    <input type="radio" name="flahtag" value="1"
+                                           @php if($post->flahtag==1) {echo "checked";} @endphp class="custom-control-input"
+                                           data-fouc>
                                     <span class="custom-control-label"> Flaş Flaş</span>
 
                                 </label>
@@ -297,17 +345,19 @@
                         <div class="col-md-3 mb-3">
                             <div class="form-radio">
                                 <label class="custom-control custom-control-warning custom-radio mb-2">
-                                    <input type="radio" name="attentiontag" value="1"  @php if($post->attentiontag==1) {echo "checked";}@endphp class="custom-control-input"  data-fouc>
+                                    <input type="radio" name="attentiontag" value="1"
+                                           @php if($post->attentiontag==1) {echo "checked";}@endphp class="custom-control-input"
+                                           data-fouc>
                                     <span class="custom-control-label">Bu Habere Dikkat!</span>
                                 </label>
                             </div>
                         </div>
 
 
-
                         <div class="col-md-12">
                             <div class="form-group">
-                                <textarea name="details_tr" id="editor-full" rows="4" cols="4">{{$post->details_tr}}</textarea>
+                                <textarea name="details_tr" id="editor-full" rows="4"
+                                          cols="4">{{$post->details_tr}}</textarea>
                                 <script>
                                     var options = {
                                         filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
@@ -322,12 +372,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
 
 
                 <!-- <div class="card-header header-elements-inline">
@@ -526,7 +570,8 @@
  -->
 
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary">Haber Düzenle <i class="icon-paperplane ml-2"></i></button>
+                        <button type="submit" class="btn btn-primary">Haber Düzenle <i class="icon-paperplane ml-2"></i>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -553,12 +598,12 @@
       })
     </script> --}}
     <!--Yüklenen resmi otomatik olarak gösterir-->
-    <script >
-        $(document).ready(function() {
-            $('#image').change(function(e) {
+    <script>
+        $(document).ready(function () {
+            $('#image').change(function (e) {
                 var reader = new FileReader();
-                reader.onload =function(e) {
-                    $('#showImage').attr('src',e.target.result);
+                reader.onload = function (e) {
+                    $('#showImage').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(e.target.files['0']);
             });
@@ -566,18 +611,18 @@
     </script>
     {{-- burası kategorilerin alt kategorilerini eklemek için eklendi --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('select[name="category_id"]').on('change', function(){
+        $(document).ready(function () {
+            $('select[name="category_id"]').on('change', function () {
                 var category_id = $(this).val();
-                if(category_id) {
+                if (category_id) {
                     $.ajax({
-                        url: "{{  url('/get/subcategory/') }}/"+category_id,
-                        type:"GET",
-                        dataType:"json",
-                        success:function(data) {
+                        url: "{{  url('/get/subcategory/') }}/" + category_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
                             $("#subcategory_id").empty();
-                            $.each(data,function(key,value){
-                                $("#subcategory_id").append('<option value="'+value.id+'">'+value.subcategory_tr+'</option>');
+                            $.each(data, function (key, value) {
+                                $("#subcategory_id").append('<option value="' + value.id + '">' + value.subcategory_tr + '</option>');
                             });
                             // console.log(data);
                         },
@@ -591,18 +636,18 @@
     </script>
     {{-- burası Bölgelerin alt Bölgelerini eklemek için eklendi --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('select[name="district_id"]').on('change', function(){
+        $(document).ready(function () {
+            $('select[name="district_id"]').on('change', function () {
                 var district_id = $(this).val();
-                if(district_id) {
+                if (district_id) {
                     $.ajax({
-                        url: "{{url('/get/subdistrict/') }}/"+district_id,
-                        type:"GET",
-                        dataType:"json",
-                        success:function(data) {
+                        url: "{{url('/get/subdistrict/') }}/" + district_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
                             $("#subdistrict_id").empty();
-                            $.each(data,function(key,value){
-                                $("#subdistrict_id").append('<option value="'+value.id+'">'+value.subdistrict_tr+'</option>');
+                            $.each(data, function (key, value) {
+                                $("#subdistrict_id").append('<option value="' + value.id + '">' + value.subdistrict_tr + '</option>');
                             });
                             // console.log(data);
                         },
@@ -615,13 +660,13 @@
         });
     </script>
     <!--- radio butonlarının bir defa seçilmesini sağlıyor -->
-        <script>
-            $(document).ready(function () {
-                $('input[type=radio]').change(function() {
-                    // When any radio button on the page is selected,
-                    // then deselect all other radio buttons.
-                    $('input[type=radio]:checked').not(this).prop('checked', false);
-                });
+    <script>
+        $(document).ready(function () {
+            $('input[type=radio]').change(function () {
+                // When any radio button on the page is selected,
+                // then deselect all other radio buttons.
+                $('input[type=radio]:checked').not(this).prop('checked', false);
             });
-        </script>
+        });
+    </script>
 @endsection

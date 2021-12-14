@@ -614,6 +614,7 @@ class ExtraController extends Controller
 
     }
 
+
     public function SinglePost($slug, $id)
     {
         $r = $_SERVER['REQUEST_URI'];

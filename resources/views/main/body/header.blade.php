@@ -31,13 +31,9 @@ $gelenil=Session::get('gelenil');
 
                 <span class="">  </span>
             </div>
-
-
             <div class="clearfix"></div>
-
             <!-- Arama Butonu Alanı -->
             <div class="navbar-right">
-
                 <form class="search-form" action="{{route('search')}}" method="POST" role="search">
                     @csrf
                     <div class="form-group pull-right" id="search">

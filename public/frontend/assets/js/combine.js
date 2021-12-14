@@ -392,7 +392,7 @@ function svgturkiyeharitasi() {
 }
 
 /**
- * Swiper 7.3.2
+ * Swiper 7.3.0
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -400,7 +400,7 @@ function svgturkiyeharitasi() {
  *
  * Released under the MIT License
  *
- * Released on: December 13, 2021
+ * Released on: November 18, 2021
  */
 
 (function (global, factory) {
@@ -410,7 +410,7 @@ function svgturkiyeharitasi() {
 }(this, (function () { 'use strict';
 
     /**
-     * SSR Window 4.0.2
+     * SSR Window 4.0.1
      * Better handling for window object in SSR environment
      * https://github.com/nolimits4web/ssr-window
      *
@@ -418,7 +418,7 @@ function svgturkiyeharitasi() {
      *
      * Licensed under MIT
      *
-     * Released on: December 13, 2021
+     * Released on: October 27, 2021
      */
 
     /* eslint-disable no-param-reassign */
@@ -589,7 +589,7 @@ function svgturkiyeharitasi() {
     }
 
     /**
-     * Dom7 4.0.2
+     * Dom7 4.0.1
      * Minimalistic JavaScript library for DOM manipulation, with a jQuery-compatible API
      * https://framework7.io/docs/dom7.html
      *
@@ -597,7 +597,7 @@ function svgturkiyeharitasi() {
      *
      * Licensed under MIT
      *
-     * Released on: December 13, 2021
+     * Released on: October 27, 2021
      */
     /* eslint-disable no-proto */
 
@@ -2607,7 +2607,7 @@ function svgturkiyeharitasi() {
     function updateClickedSlide(e) {
       const swiper = this;
       const params = swiper.params;
-      const slide = $(e).closest(`.${params.slideClass}`)[0];
+      const slide = $(e.target).closest(`.${params.slideClass}`)[0];
       let slideFound = false;
       let slideIndex;
 
@@ -3796,8 +3796,7 @@ function svgturkiyeharitasi() {
       const timeDiff = touchEndTime - data.touchStartTime; // Tap, doubleTap, Click
 
       if (swiper.allowClick) {
-        const pathTree = e.path || e.composedPath && e.composedPath();
-        swiper.updateClickedSlide(pathTree && pathTree[0] || e.target);
+        swiper.updateClickedSlide(e);
         swiper.emit('tap click', e);
 
         if (timeDiff < 300 && touchEndTime - data.lastClickTime < 300) {
@@ -8270,34 +8269,23 @@ function svgturkiyeharitasi() {
       }
 
       function hasPagination() {
-        return swiper.pagination && swiper.pagination.bullets && swiper.pagination.bullets.length;
-      }
-
-      function hasClickablePagination() {
-        return hasPagination() && swiper.params.pagination.clickable;
+        return swiper.pagination && swiper.params.pagination.clickable && swiper.pagination.bullets && swiper.pagination.bullets.length;
       }
 
       function updatePagination() {
         const params = swiper.params.a11y;
-        if (!hasPagination()) return;
-        swiper.pagination.bullets.each(bulletEl => {
-          const $bulletEl = $(bulletEl);
 
-          if (swiper.params.pagination.clickable) {
+        if (hasPagination()) {
+          swiper.pagination.bullets.each(bulletEl => {
+            const $bulletEl = $(bulletEl);
             makeElFocusable($bulletEl);
 
             if (!swiper.params.pagination.renderBullet) {
               addElRole($bulletEl, 'button');
               addElLabel($bulletEl, params.paginationBulletMessage.replace(/\{\{index\}\}/, $bulletEl.index() + 1));
             }
-          }
-
-          if ($bulletEl.is(`.${swiper.params.pagination.bulletActiveClass}`)) {
-            $bulletEl.attr('aria-current', 'true');
-          } else {
-            $bulletEl.removeAttr('aria-current');
-          }
-        });
+          });
+        }
       }
 
       const initNavEl = ($el, wrapperId, message) => {
@@ -8366,7 +8354,7 @@ function svgturkiyeharitasi() {
         } // Pagination
 
 
-        if (hasClickablePagination()) {
+        if (hasPagination()) {
           swiper.pagination.$el.on('keydown', classesToSelector(swiper.params.pagination.bulletClass), onEnterOrSpaceKey);
         }
       }
@@ -8393,7 +8381,7 @@ function svgturkiyeharitasi() {
         } // Pagination
 
 
-        if (hasClickablePagination()) {
+        if (hasPagination()) {
           swiper.pagination.$el.off('keydown', classesToSelector(swiper.params.pagination.bulletClass), onEnterOrSpaceKey);
         }
       }

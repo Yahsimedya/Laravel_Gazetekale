@@ -212,14 +212,14 @@ class AjaxController extends Controller
                     $icon = '<i  style="font-size: 20px;" class="wi wi-night-rain"></i>';
                 } elseif ($data->d1 == "A") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-night-rain"></i>';
-                }elseif ($data->d1 == "SY") {
+                } elseif ($data->d1 == "SY") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi wi-sprinkle"></i>';
-                }elseif ($data->d1 == "Y") {
+                } elseif ($data->d1 == "Y") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-sprinkle"></i>';
-                }elseif ($data->d1 == "CB") {
+                } elseif ($data->d1 == "CB") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
                 } else {
-                    $icon='';
+                    $icon = '';
                 }
                 $Birgundurum = degistir($data->d1);
                 $Ikigundurum = $data->d2;
@@ -249,10 +249,9 @@ class AjaxController extends Controller
     }
 
 
-
     public function HavaDurum()
     {
-        $sehir =Cache::remember("sehir", Carbon::now()->addYear(), function () {
+        $sehir = Cache::remember("sehir", Carbon::now()->addYear(), function () {
             if (Cache::has('sehir')) return Cache::has('sehir');
             return Sehirler::get();
         });
@@ -363,7 +362,7 @@ class AjaxController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.collectapi.com/pray/all?data.city=".str::slug($sehir->sehir_ad),
+            CURLOPT_URL => "https://api.collectapi.com/pray/all?data.city=" . str::slug($sehir->sehir_ad),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -383,7 +382,7 @@ class AjaxController extends Controller
         @$imsak = $result['result'][0]['saat'];
         @$gunes = $result['result'][1]['saat'];
         @$ogle = $result['result'][2]['saat'];
-        @$ikindi =$result['result'][3]['saat'];
+        @$ikindi = $result['result'][3]['saat'];
         @$aksam = $result['result'][4]['saat'];
         @$yatsi = $result['result'][5]['saat'];
 
@@ -401,17 +400,17 @@ class AjaxController extends Controller
             $okunmadurumuAksam = "fas fa-check-circle text-warning";
         }
 
-        if ($imsak>$mytime) {
+        if ($imsak > $mytime) {
             $okunmadurumuİMSAK = "fas fa-check-circle text-success";
         }
 
-        if ($ogle<$mytime) {
+        if ($ogle < $mytime) {
             $okunmadurumuOGLE = "fas fa-check-circle text-warning";
         }
-        if ($ikindi<$mytime) {
+        if ($ikindi < $mytime) {
             $okunmadurumuİKİNDİ = "fas fa-check-circle text-warning";
         }
-        if ($yatsi<$mytime) {
+        if ($yatsi < $mytime) {
             $okunmadurumuYATSI = "fas fa-check-circle text-warning";
         }
         return $data = ' <table class="table table-borderless text-light" >
@@ -457,12 +456,13 @@ class AjaxController extends Controller
         </tbody>
     </table>';
     }
+
     public function IlGetir(Request $request)
     {
 
         $gelenil = $request->district_id;
 //        dd($gelenil);
-        $districts =Cache::remember("districts", Carbon::now()->addYear(), function () use ($gelenil) {
+        $districts = Cache::remember("districts", Carbon::now()->addYear(), function () use ($gelenil) {
             if (Cache::has('districts')) return Cache::has('districts');
             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
@@ -471,7 +471,8 @@ class AjaxController extends Controller
                 ->where('districts.id', $gelenil)
                 ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'districts.district_keywords', 'districts.district_description', 'subdistricts.subdistrict_tr'])
                 ->latest('updated_at')
-                ->get();});
+                ->get();
+        });
 //                dd($districts);
 
         $districtsCount = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
@@ -537,6 +538,168 @@ class AjaxController extends Controller
             </div>';
 
     }
+
+
+    public function nobetciEczanePost(Request $request)
+    {
+        $sehir = Str::lower($request->sehir_ad);
+        function Eczane($e)
+        {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $e);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+
+
+            $eczanegetir = curl_exec($ch);
+            curl_close($ch);
+            return $eczanegetir;
+        }
+
+        if ($_POST) {
+            $site = Eczane("https://www.mynet.com/" . $sehir . "/nobetci-eczaneler");
+        } else {
+            $site = Eczane("https://www.mynet.com/kirikkale/nobetci-eczaneler");
+        }
+
+
+        preg_match_all('@<h3 class="h-title">(.*?)</h3>@si', $site, $EczaneBaslik);
+        preg_match_all('@<div class="widget-body">(.*?)</div>@si', $site, $Detaylar);
+
+        $toplam = count($Detaylar[0]);
+        $teczane = count($EczaneBaslik[0]) - 3;
+        $data = '<div style="    position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -30%);
+color: #af0f0a;">' . $EczaneBaslik[0][0] . '</div>';
+        $data3 = array();
+
+        for ($i = 0; $i < $toplam; $i++) {
+            $data2 = '  <div class="col-md-12 col-sm-12 col-xs-12 mt-2 shadow" style="   border: 1px solid #d2d2d2;
+border-radius: 10px;">
+    <div class="col-md-12 margin-top"><span class="baslik" style="color:#c20c0e; font-weight: bold;">
+' . strip_tags($EczaneBaslik[0][$i + 1]) . '</span></div>
+<div class="col-md-12 adres" style="font-weight: bold;">' . $Detaylar[0][$i] . '</div>
+
+
+
+</div>';
+            $data3 = array_add($data3, $i, $data2);
+
+        }
+        $sehirs = District::get();
+
+        return view("main.body.nobetcieczane", compact('sehirs', 'data', 'data3'));
+
+    }
+
+
+    public function nobetciEczane()
+    {
+        $sehirs = District::get();
+
+        function Eczane($e)
+        {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $e);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+
+
+            $eczanegetir = curl_exec($ch);
+            curl_close($ch);
+            return $eczanegetir;
+        }
+
+        if ($_POST) {
+            $site = Eczane("https://www.mynet.com/" . $sehir . "/nobetci-eczaneler");
+        } else {
+            $site = Eczane("https://www.mynet.com/kirikkale/nobetci-eczaneler");
+        }
+
+
+        preg_match_all('@<h3 class="h-title">(.*?)</h3>@si', $site, $EczaneBaslik);
+        preg_match_all('@<div class="widget-body">(.*?)</div>@si', $site, $Detaylar);
+
+        $toplam = count($Detaylar[0]);
+        $teczane = count($EczaneBaslik[0]) - 3;
+        $data = '<div style="    position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -30%);
+color: #af0f0a;">' . $EczaneBaslik[0][0] . '</div>';
+        $data3 = array();
+
+        for ($i = 0; $i < $toplam; $i++) {
+            $data2 = '  <div class="col-md-12 col-sm-12 col-xs-12 mt-2 shadow" style="   border: 1px solid #d2d2d2;
+border-radius: 10px;">
+    <div class="col-md-12 margin-top"><span class="baslik" style="color:#c20c0e; font-weight: bold;">
+' . strip_tags($EczaneBaslik[0][$i + 1]) . '</span></div>
+<div class="col-md-12 adres" style="font-weight: bold;">' . $Detaylar[0][$i] . '</div>
+
+
+
+</div>';
+            $data3 = array_add($data3, $i, $data2);
+        }
+
+        return view("main.body.nobetcieczane", compact('sehirs', 'data', 'data3'));
+    }
+
+
+    public function cenazeilanlari()
+    {
+
+        function cenaze($e)
+        {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $e);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            $cenazegetir = curl_exec($ch);
+            curl_close($ch);
+            return $cenazegetir;
+        }
+
+        $site = file_get_contents("https://www.kirikkale.bel.tr/tr/?sayfa=vefat");
+        preg_match_all('@<tr>(.*?)</tr>@si', $site, $cenaze);
+        $toplam = count($cenaze[0]);
+        $sirano = 0;
+        $data2 = array();
+        $baslik = '<h2 class="text-center mt-5 ">Cenaze İlanları</h2>';
+        for ($i = 0; $i < $toplam; $i++) {
+            $sirano++;
+            $string = str_replace("<center>", "</center>|", $cenaze[0][$i]);
+            $string = str_replace("<p", "|<p", $string);
+            $parcala = explode("|", $string);
+            $tarih = substr($cenaze[0][$i], -23, -10);
+            $sontarih = str_replace(">", "", $tarih);
+            $icerik = substr($parcala[3], 0, -23);
+            $data = '<div class="container ">
+    <div class="row">
+    <div class="col-md-1  border-bottom p-2">' . $sirano . '</div>
+    <div class="col-md-8 border-bottom p-2"><p class="p-0 m-0">'
+                . iconv('iso-8859-9', 'utf-8', $icerik) .
+                '</p></div>
+    <div class="col-md-2 border-bottom p-2"><p class="p-0 m-0">'
+                . $sontarih .
+
+                '</p></div>
+    </div>
+    </div>';
+            $data2 = array_add($data2, $i, $data);
+        }
+
+
+        return view("main.body.cenazeler", compact('baslik', 'data2'));
+    }
+
+
+
+
+
+
 //
 //    public function NamazVakitSecili(Request $request){
 //        function vakit($e)
