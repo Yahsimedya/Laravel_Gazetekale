@@ -1,11 +1,18 @@
+@php
+    $webSiteSetting=\App\Models\WebsiteSetting::first();
+@endphp
 <div
     class="col-md-12 col-sm-12 col-xs-12 col-lg-4 text-center position-relative yanslider padding-left">
 
     <ul class="nav nav-tabs yan__kategori">
-        <li class="active yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"href="#home">Siyaset</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab" href="#menu1">Spor</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab" href="#menu2">3.Sayfa</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link"  style="color: white!important;" data-toggle="tab" href="#menu3">Özel</a></li>
+        <li class="active yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;"
+                                               data-toggle="tab" href="#home">Siyaset</a></li>
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"
+                                        href="#menu1">Spor</a></li>
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"
+                                        href="#menu2">3.Sayfa</a></li>
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"
+                                        href="#menu3">Özel</a></li>
     </ul>
 
 
@@ -22,7 +29,9 @@
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
                             <div class="yanslider__effect position-absolute"></div>
-                            <img src="{{$row->image}}" class="img-fluid" alt="">
+                            <img src="{{$row->image}}"
+                                 onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
+                                 class="img-fluid" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class=" yanslider-link align-middle card-kisalt">
                                     {{$row->title_tr}}
@@ -49,7 +58,9 @@
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
                             <div class="yanslider__effect position-absolute"></div>
-                            <img src="{{$row->image}}" class="img-fluid" alt="">
+                            <img src="{{$row->image}}"
+                                 onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
+                                 class="img-fluid" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class=" yanslider-link align-middle card-kisalt">
                                     {{$row->title_tr}}
@@ -74,14 +85,16 @@
                 @foreach ($ucuncuSayfa as $row )
 
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
-<a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
-                        <div class="yanslider__effect position-absolute"></div>
-                        <img src="{{$row->image}}" class="img-fluid" alt="">
-                        <div class="yanslider__aciklama d-table-cell position-absolute">
-                            <a href="" class=" yanslider-link align-middle card-kisalt">
-                                {{$row->title_tr}}
-                            </a>
-                        </div>
+                        <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
+                            <div class="yanslider__effect position-absolute"></div>
+                            <img src="{{$row->image}}"
+                                 onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
+                                 class="img-fluid" alt="">
+                            <div class="yanslider__aciklama d-table-cell position-absolute">
+                                <a href="" class=" yanslider-link align-middle card-kisalt">
+                                    {{$row->title_tr}}
+                                </a>
+                            </div>
                     </div>
                     </a>
                     @php
@@ -103,13 +116,15 @@
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
 
-                        <div class="yanslider__effect position-absolute"></div>
-                        <img src="{{$row->image}}" class="img-fluid" alt="">
-                        <div class="yanslider__aciklama d-table-cell position-absolute">
-                            <a href="" class=" yanslider-link align-middle card-kisalt">
-                                {{$row->title_tr}}
-                            </a>
-                        </div>
+                            <div class="yanslider__effect position-absolute"></div>
+                            <img src="{{$row->image}}"
+                                 onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
+                                 class="img-fluid" alt="">
+                            <div class="yanslider__aciklama d-table-cell position-absolute">
+                                <a href="" class="yanslider-link align-middle card-kisalt">
+                                    {{$row->title_tr}}
+                                </a>
+                            </div>
                         </a>
                     </div>
                     @php

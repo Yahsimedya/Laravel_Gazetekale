@@ -408,7 +408,7 @@ class ExtraController extends Controller
 
         $home = Cache::remember("home", Carbon::now()->addYear(), function () {
             if (Cache::has('home')) return Cache::has('home');
-            return Post::where('status', 1)->where('manset',1)
+            return Post::where('status', 1)
                 ->latest('created_at')
                 ->get();
         });
@@ -465,21 +465,13 @@ class ExtraController extends Controller
             return Post::where('category_id', 1)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('updated_at')->get();
 
         });
-        $education = Cache::remember("education", Carbon::now()->addYear(), function () {
-            if (Cache::has('education')) return Cache::has('education');
-            return Post::where('category_id', 4)->where('status', 1)->where('featured', '=', 1)->limit(4)->latest('updated_at')->get();
 
-        });
         $youtube = Cache::remember("youtube", Carbon::now()->addYear(), function () {
             if (Cache::has('youtube')) return Cache::has('youtube');
             return Post::where('category_id', 12)->where('status', 1)->limit(15)->latest('updated_at')->get();
 
         });
-        $culture = Cache::remember("culture", Carbon::now()->addYear(), function () {
-            if (Cache::has('culture')) return Cache::has('education');
-            return Post::where('category_id', 8)->where('status', 1)->where('featured', '=', 1)->limit(4)->latest('updated_at')->get();
 
-        });
         $videogaleri = Cache::remember("videogaleri", Carbon::now()->addYear(), function () {
             if (Cache::has('videogaleri')) return Cache::has('videogaleri');
             return Post::where('status', 1)->whereNotNull('posts_video')->limit(14)->latest('updated_at')->get();
@@ -529,7 +521,6 @@ class ExtraController extends Controller
 //            ->join('ads','ad_categories.id','ads.category_id')
                 ->select(['ads.*', 'ad_categories.id'])
                 ->where('status', 1)
-                ->whereIN('ad_categories.id', [9, 15, 16, 17, 18, 19, 20, 21, 22, 23]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
                 ->get();
 
         });
@@ -608,7 +599,7 @@ class ExtraController extends Controller
 
         Session::put('havadurumu', $veri['sicaklik']);
 
-        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard',  'culture', 'siyasetcard', 'ekonomicard','youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir','education', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard',  'siyasetcard', 'ekonomicard','youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 

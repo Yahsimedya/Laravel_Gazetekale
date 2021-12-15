@@ -6,6 +6,9 @@
 @section('google_verification',$seoset->google_verification)
 @section('content')
     @php
+        $webSiteSetting=\App\Models\WebsiteSetting::first();
+    @endphp
+    @php
         $socials = DB::table('socials')->get();
 
     $themeSetting=DB::table('themes')->get();

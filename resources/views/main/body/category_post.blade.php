@@ -4,6 +4,9 @@
 {{--@section('meta_keywords',$category->category_keywords)--}}
 {{--@section('meta_description',$category->category_description)--}}
 @section('content')
+    @php
+        $webSiteSetting=\App\Models\WebsiteSetting::first();
+    @endphp
 <script>
 
 
@@ -69,7 +72,7 @@
                                         <div class="kartlar__effect position-absolute">
                                             <div class="kategori-overlay"></div>
                                         </div>
-                                        <img data-lazy="" src="{{asset($row->image)}}" class="kategori-image w-100" alt=""
+                                        <img data-lazy="" src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="kategori-image w-100" alt=""
                                              style="max-height: 460px !important;">
                                     </a>
 
@@ -104,7 +107,7 @@
                                                 <div class="position-relative">
                                                     <div class="kartlar__effect position-absolute">
                                                     </div>
-                                                    <img class="card-img-top" src="{{asset($row->image)}}" alt="img">
+                                                    <img class="card-img-top" src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" alt="img">
                                                 </div>
                                                 <div class="card-body align-middle d-table-cell">
                                                     <p class="card-baslik text-center d-table-cell"><b class="card-kisalt">{{$row->title_tr}}</b>
@@ -204,7 +207,7 @@
                                     <div class="row  mt-2">
 
                                         <div class="col-md-4 col-4 col-sm-4">
-                                            <img src="{{asset($author->image)}}" class="rounded card-yazarlar__image" alt="">
+                                            <img src="{{asset($author->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="rounded card-yazarlar__image" alt="">
                                         </div>
                                         <div class="col-md-8 col-8 col-sm-8 align-middle d-inline-block">
                                             <div class="d-inline-block align-middle">

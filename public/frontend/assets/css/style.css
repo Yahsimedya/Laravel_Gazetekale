@@ -11454,7 +11454,7 @@ input[type="text"].form-control {
 .yanslider-link:link, .yanslider-link:visited {
     font-size: 20px;
     margin: 10px 23px;
-    color: #fff;
+    color: #fff!important;
     text-decoration: none;
     font-weight: 400;
     transition: all .3s

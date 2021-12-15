@@ -45,19 +45,19 @@ $gelenil=Session::get('gelenil');
                 <div class="header__top-bilgi mt-4 position-absolute d-none d-lg-block">
                     <ul class="list-unstyled">
                         <li class="float-left ml-1 border-right text-scondary  pr-1"><i
-                                class="fa fa-pencil color-fume pr-1"></i><a class="color-fume" href="#">Yazarlar</a>
+                                class="fa fa-pencil color-fume pr-1"></i><a class="color-fume" href="{{route('author')}}">Yazarlar</a>
                         </li>
-                        <li class="float-left ml-1 border-right  pr-1"><i class="fa fa-stethoscope color-fume pr-1"></i>Nöbetçi
-                            Eczane
+                        <li class="float-left ml-1 border-right  pr-1"><i class="fa fa-stethoscope color-fume pr-1"></i><a class="color-fume" href="{{route('nobetciEczane')}}">Nöbetçi
+                            Eczane</a>
                         </li>
-                        <li class="float-left ml-1 border-right  pr-1"><i class="fa fa-briefcase color-fume pr-1"></i>İş
-                            İlanları
+                        <li class="float-left ml-1 border-right  pr-1"><i class="fa fa-briefcase color-fume pr-1"></i><a class="color-fume" href="{{route('cenazeilanlari')}}">Cenaze
+                            İlanları</a>
                         </li>
-                        <a href="{{URL::to('/sayfa/3')}}" style="color:black ">
+                      <!--  <a href="" style="color:black ">
                             <li class="float-left ml-1 border-right  pr-1"><i
                                     class="fa fa-map-marker color-fume pr-1"></i>Künye
                             </li>
-                        </a>
+                        </a>  -->
                     </ul>
                 </div>
                 <div class="clearfix"></div>

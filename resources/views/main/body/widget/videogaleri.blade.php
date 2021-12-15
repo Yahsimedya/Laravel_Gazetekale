@@ -20,7 +20,7 @@
                                 <!-- <div class="kartlar__effect position-absolute"> -->
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                 <!-- </div> -->
-                                <img data-src="{{$row->image}}" height="" style="object-fit: cover;"
+                                <img data-src="{{$row->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" height="" style="object-fit: cover;"
                                      class="video-image-slider lazyload" alt="{{$row->image}}"></a>
                         </div>
                     @endforeach
@@ -50,7 +50,7 @@
                                             <i class="fa fa-play-circle"></i>
                                         </div>
 
-                                        <img data-src="{{$videogaleri[$i]->image}}" height=""
+                                        <img data-src="{{$videogaleri[$i]->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" height=""
                                              class="video-image lazyload" alt="{{$videogaleri[$i]->image}}">
 
                                     </div>

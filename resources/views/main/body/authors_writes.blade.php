@@ -71,7 +71,7 @@ use App\Models\Authors;
                             <div class="col-md-4 col-md-6 col-sm-12">
                                 <div class="row  m-2 padding-left p-0 rounded border">
                                     <div class="col-lg-4  col-md-4 col-sm-4 col-4  p-0 border-right">
-                                        <img src="{{asset($other->image)}}" class="img-fluid" alt="">
+                                        <img src="{{asset($other->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid" alt="">
                                     </div>
 
                                     <div class="col-lg-8  col-md-8 col-sm-8 col-8">
@@ -102,7 +102,7 @@ use App\Models\Authors;
                                 <div class="kapsayici position-relative">
                                     <div class="kartlar__effect position-absolute">
                                     </div>
-                                    <img src="{{asset($yazars->image)}}"
+                                    <img src="{{asset($yazars->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                          class="detay-image" style="width: 100%;
     max-height: 250px;
     object-fit: contain;" alt="">

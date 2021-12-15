@@ -19,7 +19,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 p-0">
                 <div class="row bg-dark m-2 padding-left p-0 rounded">
                     <div class="col-lg-4  col-md-4 col-sm-4 col-4  p-0">
-                        <img src="{{asset($author->image)}}" class="img-fluid" alt="">
+                        <img src="{{asset($author->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-8  col-md-8 col-sm-8 col-8">
                         <p class="mt-3 mb-0 text-light">{{Str::limit($author->name,17)}}</p>

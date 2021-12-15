@@ -1,15 +1,18 @@
+@php
+    $themeSettings=\App\Models\WebsiteSetting::first();
+@endphp
 <section class="video mt-3 pt-3 pb-3 bg-dark">
 
     <div class="container padding-left">
         <div class="card-header card-youtube position-relative ">
             <div class="row">
-                <div class="col-md-6"><img class="  lazyload" width="180" data-src="{{asset('icon/gazetekaletv.png')}} ">
+                <div class="col-md-6"><img class="  lazyload" width="180" data-src="{{asset('icon/gazetekaletv.png')}} " >
                     <div class="card-kutu__link">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="ytube">
-                        <img src="{{asset('icon/icon-youtube-white.svg')}}" style="color: white" alt="youtube" width="75" height="21">
+                        <img src="{{asset('icon/icon-youtube-white.svg')}}"  style="color: white" alt="youtube" width="75" height="21">
                         <a href="https://www.youtube.com/channel/UCUUeGmpEvlPFjRSeOYevzag" target="_blank"
                            rel="nofollow" class="ytube-subscriber" title="Haberler.com Youtube">
                             <span>Abone Ol</span></a>
@@ -36,7 +39,7 @@
                                 <div class="card   d-inline-block  ">
                                     <img data-src="{{asset('icon/icon-youtube.png')}}" class="lazyload position-absolute ytube-icon"
                                          alt="youtube" width="70" height="45">
-                                    <img class="card-img-top tns-lazy-img lazyload" data-src="{{$row->image}}"
+                                    <img class="card-img-top tns-lazy-img lazyload" data-src="{{$row->image}}" onerror="this.onerror=null;this.src='{{$themeSettings->defaultImage}}';"
                                          alt="{{$row->title_tr}}">
                                     <div class="card-body align-middle d-table-cell" >
                                         <p class="card-baslik text-center d-table-cell"><b

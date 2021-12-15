@@ -1,18 +1,22 @@
 @php
     use App\Models\WebsiteSetting;
+use App\Models\Theme;
         $websetting=WebsiteSetting::first();
+        $themeSetting=Theme::get();
         $fixedPages = DB::table('fixedpage')->where('status','=',1)->limit(5)->latest('id')->get();
 @endphp
+
 <footer class=" footer bg-dark">
     <div class="container pt-4">
         <div class="row">
             <div class="col-md-5 col-12 position-relative p-3">
                 <img src="{{$websetting->logo}}" class="footer-logo img-fluid " alt="">
 
-                    <div class="row">
-                        <div class="">
+                <div class="row">
+                    <div class="">
+                        <div class="row text-center">
+                            @if($themeSetting[0]->apps==1)
 
-                            <div class="row text-center">
                                 <div class="col-md-3  pr-0 text-center">
                                     <a href="https://play.google.com/store/apps/details?id=com.uygulama.gazetekale"
                                        target="_blank"><img src="{{asset('image/google-play.png')}}"
@@ -26,6 +30,9 @@
                                                             class="footer-logo mt-4 img-fluid lazy " alt=""></a>
 
                                 </div>
+                            @endif
+                            @if($themeSetting[0]->subscription==1)
+
                                 <div class="col-md-3 text-center">
                                     <img src="{{asset('image/aa.png')}}" width="100"
                                          data-original="{{asset('image/aa.png')}}"
@@ -38,12 +45,12 @@
                                 </div>
                                 <p class="text-white mt-2">Gazetekale.com, Anadolu Ajansı ve İhlas Haber Ajansı
                                     abonesidir.</p>
-                            </div>
+                            @endif
                         </div>
                     </div>
+                </div>
 
             </div>
-
 
 
             <div class="col-md-2 col-6">
@@ -72,6 +79,11 @@
                     <br></p>
             </div>
         </div>
+    </div>
+    <div class="footer-copyright text-center text-light py-3">© 2021 Copyright:
+        <a class="dark-grey-text" rel="noopener" target="_blank" href="https://yahsimedya.com/"><img width="85"
+                                                                                                     class="img-fluid lazyload"
+                                                                                                     data-src="https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png"></a>
     </div>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
@@ -275,26 +287,26 @@
     <script>
 
 
-       $(document).ready(function () {
-           $(".video-slider").slick({
-               autoplay: true,
-               dots: true,
-               autoplaySpeed: 500000,
-               customPaging: function (slider, i) {
-                   var thumb = $(slider.$slides[i]).data();
-                   return '<a class="dot">' + i + '</a>';
-               },
-               responsive: [{
-                   breakpoint: 500,
-                   settings: {
-                       dots: false,
-                       arrows: true,
-                       infinite: false,
-                       slidesToShow: 1,
-                       slidesToScroll: 1
-                   }
-               }]
-           });
+        $(document).ready(function () {
+            $(".video-slider").slick({
+                autoplay: true,
+                dots: true,
+                autoplaySpeed: 500000,
+                customPaging: function (slider, i) {
+                    var thumb = $(slider.$slides[i]).data();
+                    return '<a class="dot">' + i + '</a>';
+                },
+                responsive: [{
+                    breakpoint: 500,
+                    settings: {
+                        dots: false,
+                        arrows: true,
+                        infinite: false,
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }]
+            });
 
 
 //   $('.video-slider').slick({

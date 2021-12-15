@@ -3,6 +3,9 @@
 @section('meta_keywords',$post->keywords_tr)
 @section('meta_description',$post->description_tr)
 @section('content')
+    @php
+        $webSiteSetting=\App\Models\WebsiteSetting::first();
+    @endphp
     <div class="container bg-light mt-4 mb-4 rounded shadow">
         <div class="row">
             <div class="col-md-12 mt-4">
@@ -34,7 +37,7 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                 @else
-                    <img src="{{$post->image}}" class="img-fluid w-100" alt="{{$post->title_tr}}">
+                    <img src="{{$post->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid w-100" alt="{{$post->title_tr}}">
                 @endif
 
                 <div class="wrapper">
@@ -104,7 +107,7 @@
 
                                         <div class="kartlar__effect position-absolute">
                                         </div>
-                                        <img src="{{$sliders->image}}" class="detay-image ls-is-cached lazyloaded"
+                                        <img src="{{$sliders->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="detay-image ls-is-cached lazyloaded"
                                              alt="">
                                     </a>
 

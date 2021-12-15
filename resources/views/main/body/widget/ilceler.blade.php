@@ -1,3 +1,6 @@
+@php
+    $webSiteSetting=\App\Models\WebsiteSetting::first();
+@endphp
 <section class="ilceler container-fluid  bg-light mt-2 mb-2 pb-4">
 
 
@@ -44,7 +47,7 @@
                                     <a href="{{URL::to('/haber-'.str_slug($haber->title_tr).'-'.$haber->id)}}">
                                         <div class="card d-inline-block  ">
                                             <img class="card-img-top tns-lazy-img lazyload"
-                                                 data-src="{{$haber->image}}" alt="{{asset($haber->image)}}">
+                                                 data-src="{{$haber->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" alt="{{asset($haber->image)}}">
                                             <div class="card-body align-middle d-table-cell">
                                                 <p class="card-baslik text-center d-table-cell"><b
                                                         class="card-kisalt">{{$haber->title_tr}}</b></p>

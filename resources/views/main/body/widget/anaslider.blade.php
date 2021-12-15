@@ -1,3 +1,6 @@
+@php
+    $themeSettings=\App\Models\WebsiteSetting::first();
+@endphp
 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-8 d-none d-md-block padding-left">
     <div class="owl-carousel owl-theme  shadow anaslider" id="">
         @php
@@ -10,7 +13,7 @@
                 <a href="{{URL::to('/haber-'.str_slug($home[$i]->title_tr).'-'.$home[$i]->id)}}">
                     <img
                         class="img-fluid "
-                        src="{{asset($home[$i]->image)}}"
+                        src="{{asset($home[$i]->image)}}" onerror="this.onerror=null;this.src='{{$themeSettings->defaultImage}}';"
                         alt=""></a>
 
 
