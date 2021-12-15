@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,8 +34,9 @@
     <link href="{{asset('backend/assets/css/layout.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('backend/assets/css/components.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('backend/assets/css/colors.min.css')}}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{{asset('backend/global_assets/picker/coloris.min.css')}}">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('backend/global_assets/picker/coloris.min.css')}}">
 
 
     <!-- /global stylesheets -->
@@ -97,7 +97,6 @@
     <script src="{{asset('backend/global_assets/js/demo_pages/uploader_dropzone.js')}}"></script>
     <script src="{{asset('global_assets/js/plugins/loaders/blockui.min.js')}}"></script>
     <!-- /core JS files -->
-    <script src="https://cdn.scaleflex.it/plugins/filerobot-image-editor/3.12.17/filerobot-image-editor.min.js"/></script>
 
     <!-- Theme JS files -->
     <script src="{{asset('global_assets/js/plugins/uploaders/dropzone.min.js')}}"></script>
@@ -109,6 +108,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
     <script type="text/javascript" src="{{asset('backend/global_assets/picker/coloris.min.js')}}"></script>
     <script type="text/javascript">
+
         Coloris({
             el: '.coloris',
             swatches: [
@@ -125,6 +125,7 @@
                 '#48cae4',
             ]
         });
+
     </script>
     <script>
         var dropzone = new Dropzone('#file-upload', {
@@ -198,6 +199,57 @@
             margin-right: auto;
             border: 2px dotted ;
             margin-top: 50px;
+        }
+
+    </style>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap);
+
+        input {
+            width: 150px;
+            height: 32px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            box-sizing: border-box;
+        }
+
+        .examples {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .example {
+            flex-shrink: 0;
+            width: 300px;
+            margin-bottom: 30px;
+        }
+
+        .square .clr-field button,
+        .circle .clr-field button {
+            width: 22px;
+            height: 22px;
+            left: 5px;
+            right: auto;
+            border-radius: 5px;
+        }
+
+        .square .clr-field input,
+        .circle .clr-field input {
+            padding-left: 36px;
+        }
+
+        .circle .clr-field button {
+            border-radius: 50%;
+        }
+
+        .full .clr-field button {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
         }
 
     </style>

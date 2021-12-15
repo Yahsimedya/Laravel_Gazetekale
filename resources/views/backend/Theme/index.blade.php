@@ -10,7 +10,10 @@
             $category3=$row->category3;
             $category4=$row->category4;
             $multiple_category=$row->multiple_category;
+
            $explode_id = json_decode($multiple_category, true);
+
+
         @endphp
         <script>
             $(".chosen-select").chosen({
@@ -84,8 +87,9 @@
 
                                 <div class="col-lg-2">
                                     <div class="example full" style="width: 100%; height: 30px">
+
                                         <input type="text" class="coloris"
-                                               name="economy" style="width: 100%; height: 30px;"
+                                               name="economy" style="width: 100%; height: 30px"
                                                value="{{$row->economy}}">
                                     </div>
 
@@ -120,17 +124,17 @@
 
                                 </div>
                                 <div class="col-lg-7">
-                                    <select data-placeholder="Select your state" name="category2"
-                                            style="width: 150px; height: 30px"
-                                            class="form-control form-control-select2"
-                                            data-fouc>
-                                        @foreach($Categories as $rows)
-                                            <option value="{{$rows->id}}" @php if($rows->id==$category2) {echo "selected";}  @endphp>
-                                                {{$rows->category_tr}}
-                                            </option>
-                                        @endforeach
+                                        <select data-placeholder="Select your state" name="category2"
+                                                style="width: 150px; height: 30px"
+                                                class="form-control form-control-select2"
+                                                data-fouc>
+                                            @foreach($Categories as $rows)
+                                                <option value="{{$rows->id}}" @php if($rows->id==$category2) {echo "selected";}  @endphp>
+                                                    {{$rows->category_tr}}
+                                                </option>
+                                            @endforeach
 
-                                    </select>
+                                        </select>
                                     <div class="col-lg-12 mt-4"></div>
 
 
@@ -148,17 +152,17 @@
                                 </div>
 
                                 <div class="col-lg-7">
-                                    <select data-placeholder="Select your state" name="category3"
-                                            style="width: 150px; height: 30px"
-                                            class="form-control form-control-select2"
-                                            data-fouc>
-                                        @foreach($Categories as $rows)
-                                            <option value="{{$rows->id}}" @php if($rows->id==$category3) {echo "selected";}  @endphp>
-                                                {{$rows->category_tr}}
-                                            </option>
-                                        @endforeach
+                                        <select data-placeholder="Select your state" name="category3"
+                                                style="width: 150px; height: 30px"
+                                                class="form-control form-control-select2"
+                                                data-fouc>
+                                            @foreach($Categories as $rows)
+                                                <option value="{{$rows->id}}" @php if($rows->id==$category3) {echo "selected";}  @endphp>
+                                                    {{$rows->category_tr}}
+                                                </option>
+                                            @endforeach
 
-                                    </select>
+                                        </select>
                                     <div class="col-lg-12 mt-4"></div>
 
 
@@ -175,19 +179,19 @@
 
                                 </div>
                                 <div class="col-lg-7">
-                                    <select data-placeholder="Select your state" name="category4"
-                                            style="width: 150px; height: 30px"
-                                            class="form-control form-control-select2"
-                                            data-fouc>
+                                        <select data-placeholder="Select your state" name="category4"
+                                                style="width: 150px; height: 30px"
+                                                class="form-control form-control-select2"
+                                                data-fouc>
 
-                                        @foreach($Categories as $rows)
+                                            @foreach($Categories as $rows)
 
-                                            <option value="{{$rows->id}}" @php if($rows->id==$category4) {echo "selected";}  @endphp>
-                                                {{$rows->category_tr}}
-                                            </option>
-                                        @endforeach
+                                                <option value="{{$rows->id}}" @php if($rows->id==$category4) {echo "selected";}  @endphp>
+                                                    {{$rows->category_tr}}
+                                                </option>
+                                            @endforeach
 
-                                    </select>
+                                        </select>
                                     <div class="col-lg-12 mt-4"></div>
 
 
@@ -238,20 +242,19 @@
                                 <div class="col-lg-12 mt-4"></div>
 
                                 <label class="col-form-label col-lg-3">Çoklu Kategori</label>
-                                <div class="col-md-9">
-                                    <select class="select" multiple name="multiple_category[]">
-                                        <option>Kategori Seçiniz</option>
-                                        @foreach($Categories as $rows)
-                                            <option value="{{$rows->id}}"
-                                                @php
+                                    <div class="col-md-9">
+                                        <select class="select" multiple name="multiple_category[]">
+                                            <option>Kategori Seçiniz</option>
+                                            @foreach($Categories as $rows)
+                                                <option value="{{$rows->id}}" @php
                                                     for ($i=0;$i<count($explode_id);$i++){
                                                     if($rows->id==$explode_id[$i]) {echo "selected";}
                                                 }
                                                 @endphp>
-                                                {{$rows->category_tr}}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                                    {{$rows->category_tr}}
+                                                </option>
+                                            @endforeach
+                                        </select>
 
                                 </div>
                             </div>
@@ -263,4 +266,5 @@
         </div>
     @endforeach
 @endsection
+
 

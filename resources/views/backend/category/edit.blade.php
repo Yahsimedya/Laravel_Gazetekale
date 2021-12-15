@@ -499,6 +499,19 @@
                 @enderror
             </div>
         </div>
+        <div class="col-lg-12 mt-4"></div>
+        <div class="form-group row">
+            <label class="col-form-label col-lg-2">Kategori Renk</label>
+            <div class="col-lg-10">
+                <div class="example full" style="width: 100%; height: 30px">
+
+                    <input type="text" class="coloris" name="categorycolor"
+                           style="width: 100%; height: 30px"
+                           value="{{$category->categorycolor}}">
+                </div>
+            </div>
+        </div>
+
         {{-- <div class="form-group row">
             <label class="col-form-label col-lg-2">Input with placeholder</label>
             <div class="col-lg-10">

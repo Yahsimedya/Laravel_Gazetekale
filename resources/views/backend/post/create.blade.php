@@ -16,9 +16,6 @@
             </div>
         </div>
 
-
-
-
         <div class="card-body">
             <form action="{{route('create.post')}}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -28,10 +25,6 @@
                             <legend class="font-weight-semibold"><i class="icon-reading mr-2"></i> Personal details</legend>
 
                             <div class="form-group">
-
-
-
-
                                 <label>Haber Başlığı:</label>
                                 <input type="text" name="title_tr" class="form-control" placeholder="Başlık">
                             </div>

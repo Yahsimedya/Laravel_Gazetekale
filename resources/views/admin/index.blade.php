@@ -46,8 +46,8 @@
                             <a href="{{route('website.setting')}}" class="dropdown-item"><i
                                     class="icon-accessibility"></i> Genel Ayarlar</a>
                             <div class="dropdown-divider"></div>
-                         {{--   <a href="{{route('theme.index')}}" class="dropdown-item"><i class="icon-gear"></i> Tema
-                                Ayarları</a>--}}
+                            <a href="{{route('theme.index')}}" class="dropdown-item"><i class="icon-gear"></i> Tema
+                                Ayarları</a>
                         </div>
                     </div>
                 </div>
@@ -284,8 +284,8 @@
                                             <div >
                                                 <div class="font-weight-semibold text-center" >{{Str::limit($row->name,80)}}
 
-                                                </div>
                                             </div>
+                                        </div>
                                     </td>
                                     <td>
                                         <a href="#" class="text-default">
