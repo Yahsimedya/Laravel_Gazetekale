@@ -81,9 +81,7 @@ use App\Models\Theme;
         </div>
     </div>
     <div class="footer-copyright text-center text-light py-3">© 2021 Copyright:
-        <a class="dark-grey-text" rel="noopener" target="_blank" href="https://yahsimedya.com/"><img width="85"
-                                                                                                     class="img-fluid lazyload"
-                                                                                                     data-src="https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png"></a>
+       <img width="85" class="img-fluid lazyload" data-src="{{asset('images/yahsi-logo.png')}}">
     </div>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>

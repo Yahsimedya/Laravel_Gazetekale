@@ -21,7 +21,7 @@
                             </div>
 
                 </div>
-                <div id="gotur" class="row">
+                <div id="gotur" class="row col-lg-10">
 
                     <div
                         class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
@@ -30,7 +30,7 @@
                     <div
                         class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
                         <img src="img/ogle.png" width="30" class="img-fluid mr-2" alt=""><span
-                            class="text-light mb-0  namaz__kolon-text">öğle {{$vakitler["ogle"]}}</span></div>
+                            class="text-light mb-0  namaz__kolon-text">Öğle {{$vakitler["ogle"]}}</span></div>
                     <div
                         class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
                         <img src="img/ikindi.png" width="30" class="img-fluid mr-2" alt=""><span
@@ -46,7 +46,7 @@
 
 
                 </div>
-                <div class="row" id="al">
+                <div class="row col-lg-10" id="al">
 
 
                 </div>

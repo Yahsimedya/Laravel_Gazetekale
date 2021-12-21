@@ -3,7 +3,6 @@
 use App\Models\WebsiteSetting;
     $category=Category::limit(11)->get();
     $websetting=WebsiteSetting::first();
-    $themeSetting=DB::table('themes')->get();
 $themeSetting=DB::table('themes')->get();
 $vakitler=Session::get('vakitler');
 $kurlar=Session::get('kurlar');
@@ -27,7 +26,6 @@ $gelenil=Session::get('gelenil');
                     <span class="float-right pl-3">{{$veri}}&deg;{!!$icon!!}</span>
                 </div>
                 <br/>
-
 
                 <span class="">  </span>
             </div>
@@ -66,7 +64,7 @@ $gelenil=Session::get('gelenil');
         </nav>
     </div>
 
-    <div class="container-fluid bg-bordo shadow-sm">
+    <div class="container-fluid shadow-sm"  style="background-color: {{$themeSetting[0]->siteColorTheme}}">
 
         <div class="container">
 

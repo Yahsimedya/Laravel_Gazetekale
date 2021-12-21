@@ -75,25 +75,10 @@ Route::get('/install', function () {
 
 // ADMİN Routes
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/dashboard', function () {
-        $news=DB::table('posts')->get('id');
-        $endNews=DB::table('posts')->limit(10)->latest('id')->get();
-        $endComments=DB::table('comments')->limit(10)->latest('id')->get();
-        $endAuthors_posts=AuthorsPost::leftjoin('authors', 'authors.id', '=', 'authors_posts.authors_id')
-            ->select(['authors_posts.*', 'authors.name'])
-            ->latest('created_at')
-            ->paginate(10);
-        $newsCount=count($news);
-        $comments=DB::table('comments')->get('id');
-        $commentsCount=$comments->count();
-        $authors_posts=DB::table('authors_posts')->get('id');
-        $authors_postsCount=$authors_posts->count();
-        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount'));
-    })->name('dashboard');
-    //admin Logout
-
+    Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
 
     Route::get('/DBTrans',[ExtraController::class,'DBTrans']);
+
 
 
 //Cache Clean
@@ -103,9 +88,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Artisan::call('config:clear');
         Artisan::call('view:clear');
         Artisan::call('optimize');
-
-
-
 
         return redirect()->back();
 

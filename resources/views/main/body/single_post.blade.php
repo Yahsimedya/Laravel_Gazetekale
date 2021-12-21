@@ -5,7 +5,24 @@
 @section('content')
     @php
         $webSiteSetting=\App\Models\WebsiteSetting::first();
+    $themeSetting=DB::table('themes')->get();
+
     @endphp
+    <style>
+    .detay__icon::before{
+    color: {{$themeSetting[0]->siteColorTheme}}  !important;
+    }
+    .detay__liste-rakam{
+        color: {{$themeSetting[0]->siteColorTheme}}  !important;
+
+    }
+    .slick-active, .slick li{
+        background-image:radial-gradient(farthest-side at 102% 2%, {{$themeSetting[0]->siteColorTheme}}, {{$themeSetting[0]->siteColorTheme}});
+    }
+    .detay li{
+        border:1px solid {{$themeSetting[0]->siteColorTheme}}  !important;
+    }
+    </style>
     <div class="container bg-light mt-4 mb-4 rounded shadow">
         <div class="row">
             <div class="col-md-12 mt-4">
@@ -16,7 +33,6 @@
                     </li>
                     <li class="float-left mr-2"><i
                             class="far fa-calendar-alt detay__icon"></i>{{ \Carbon\Carbon::parse($post->created_at)->isoFormat('DD MMMM YYYY') }}
-                        16:30
                     </li>
                     <li class="float-left mr-2"><i
                             class="far fa-clock detay__icon"></i>{{ Carbon\Carbon::parse($post->created_at)->isoFormat('HH:mm') }}
@@ -26,9 +42,6 @@
         <div class="row">
             <div class="col-md-8 mt-2 mb-4">
                 <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
-                <div class="reklam-alani mb-2 text-center">
-                    <img src="" class="img-fluid" alt="">
-                </div>
                 <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
                 @if (!empty($post->posts_video))
                     <iframe width="100%" height="400"
@@ -49,7 +62,15 @@
                 </p>
                 <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
                 <div class="reklam-alani mb-2 text-center">
-                    <img src="img/728x90.png" class="img-fluid" alt="reklam">
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==12)
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                         height="280"
+                                                         data-src="{{asset($ad->ads)}}"></a>
+                        @elseif($ad->type==2 && $ad->category_id==12)
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @endif
+                    @endforeach
                 </div>
                 @foreach($comments as $comment)
                     <div class="col-md-12 bg-light  border-bottom">
@@ -94,6 +115,7 @@
 
             <div class="col-md-4 mb-4 detay__sidebar">
                 <div class="detay col-12 p-0 mt-2 border shadow">
+
                     <div class="detay-slider" style="background-color: white!important;">
                         @php
                             $k=1;
@@ -124,6 +146,17 @@
 
                     </div>
                 </div>
+                <div class="reklam-alani mb-2 text-center">
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==1)
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                         height="280"
+                                                         data-src="{{asset($ad->ads)}}"></a>
+                        @elseif($ad->type==2 && $ad->category_id==1)
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @endif
+                    @endforeach
+                </div>
                 <div class="position-relative">
                     <p class="detay__sidebar-baslik mt-3"><b>SIRADAKİ</b> <span>HABERLER</span></p>
                 </div>
@@ -146,7 +179,15 @@
                     <div class="col-md-12">
                         <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
                         <div class="reklam-alani mt-2 text-center">
-                            <img src="img/336x280.png" alt="reklam">
+                            @foreach($ads as $ad)
+                                @if($ad->type==1 && $ad->category_id==3)
+                                    <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                                 height="280"
+                                                                 data-src="{{asset($ad->ads)}}"></a>
+                                @elseif($ad->type==2 && $ad->category_id==3)
+                                    <div class="w-100">{!!$ad->ad_code!!}</div>
+                                @endif
+                            @endforeach
                         </div>
                         <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
                     </div>

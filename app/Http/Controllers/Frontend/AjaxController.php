@@ -413,48 +413,30 @@ class AjaxController extends Controller
         if ($yatsi < $mytime) {
             $okunmadurumuYATSI = "fas fa-check-circle text-warning";
         }
-        return $data = ' <table class="table table-borderless text-light" >
-        <tbody>
-<tr class="p-2" data-hour="03:26" data-time-name="imsak">
-            <td class="text-center"><i class="wi wi-day-fog text-warning"></i></td>
-            <td class="text-uppercase">İmsak</td>
-            <td class="font-weight-bold imsak">' . strip_tags($imsak) . '</td>
-            <td><i class="' . $okunmadurumuİMSAK . '"></i></td>
-        </tr>
-        <tr data-hour="05:26" data-time-name="gunes">
-            <td class="text-center"><i class="wi wi-sunrise text-warning"></i></td>
-            <td class="text-uppercase">Güneş</td>
-            <td class="font-weight-bold gunes">05:26</td>
-            <td><i class="' . $okunmadurumuİMSAK . '"></i></td>
-        </tr>
-        <tr data-hour="13:12" data-time-name="ogle">
-            <td class="text-center"><i class="wi wi-day-sunny text-warning"></i></td>
-            <td class="text-uppercase">Öğle</td>
-            <td class="font-weight-bold ogle">' . strip_tags($ogle) . '</td>
-            <td><i class="' . $okunmadurumuOGLE . '"></i></td>
-        </tr>
-        <tr data-hour="17:12" data-time-name="ikindi">
-            <td class="text-center"><i class="wi wi-sunset text-warning"></i></td>
-            <td class="text-uppercase">İkindi</td>
-            <td class="font-weight-bold ikindi">' . strip_tags($ikindi) . '</td>
-            <td><i class="' . $okunmadurumuİKİNDİ . '"></i></td>
-        </tr>
-        <tr data-hour="20:47" data-time-name="aksam">
-            <td class="text-center"><i class="wi wi-moonrise text-warning"></i></td>
-            <td class="text-uppercase">Akşam</td>
-            <td class="font-weight-bold aksam">' . strip_tags($aksam) . '</td>
-            <td>
-            <i class="' . $okunmadurumuAkşam . '"></i>
-            </td>
-        </tr>
-        <tr data-hour="22:39" data-time-name="yatsi">
-            <td class="text-center"><i class="wi wi-night-clear text-warning"></i></td>
-            <td class="text-uppercase">Yatsı</td>
-            <td class="font-weight-bold yatsi">' . strip_tags($yatsi) . '</td>
-            <td><i class="' . $okunmadurumuYATSI . '"></i></td>
-        </tr>
-        </tbody>
-    </table>';
+
+        return $data = '<div
+                        class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                        <img src="img/imsak.png" width="30" class="img-fluid mr-2" alt=""><span
+                            class="text-light mb-0  namaz__kolon-text">İmsak ' . strip_tags($imsak) . '</span></div>
+                    <div
+                        class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                        <img src="img/ogle.png" width="30" class="img-fluid mr-2" alt=""><span
+                            class="text-light mb-0  namaz__kolon-text">Öğle' . strip_tags($ogle) . '</span></div>
+                    <div
+                        class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                        <img src="img/ikindi.png" width="30" class="img-fluid mr-2" alt=""><span
+                            class="text-light mb-0  namaz__kolon-text">İkindi ' . strip_tags($ikindi) . '</span></div>
+                    <div
+                        class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                        <img src="img/aksam.png" width="30" class="img-fluid mr-2" alt=""><span
+                            class="text-light mb-0  namaz__kolon-text">Akşam ' . strip_tags($aksam) . '</span></div>
+                    <div
+                        class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
+                        <img src="img/yatsi.png" width="30" class="img-fluid mr-2" alt=""><span
+                            class="text-light mb-0  namaz__kolon-text">Yatsı ' . strip_tags($yatsi) . '</span></div>
+
+';
+
     }
 
     public function IlGetir(Request $request)

@@ -6,12 +6,12 @@
                 <span class="p-2 align-middle" style="color:#262e62; line-height: 60px; font-weight: 500;">Son Dakika</span>
             </div>
             @foreach ($sondakika as $row)
-                @if(($row->headline==1) )
+                @if(($row->headline==1))
 
                     <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
                         <li>
                             <i class="fa fa-fw state fa-play"></i>
-                            <span class="hour">13:00</span> {{ $row->title_tr }}
+                            <span class="hour">{{ Carbon\Carbon::parse($row->created_at)->isoFormat('HH:mm') }}</span> {{ $row->title_tr }}
                         </li>
                     </a>
 

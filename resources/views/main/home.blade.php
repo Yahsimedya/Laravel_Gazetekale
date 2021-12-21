@@ -12,7 +12,6 @@
         $socials = DB::table('socials')->get();
 
     $themeSetting=DB::table('themes')->get();
-$themeSetting=DB::table('themes')->get();
 $vakitler=Session::get('vakitler');
 $kurlar=Session::get('kurlar');
 $veri=Session::get('havadurumu');
@@ -21,7 +20,60 @@ $gelenil=Session::get('gelenil');
 
     @endphp
 
+    <style>
+        .owl-theme .owl-dots .owl-dot.active span {
+            background-color: {{$themeSetting[0]->siteColorTheme}}  !important;
+        }
 
+        .slider_span {
+            background-color: {{$themeSetting[0]->siteColorTheme}}  !important;
+        }
+
+        .owl-prev, .anaslider-prev {
+            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+        }
+
+        .owl-next, .anaslider-prev {
+            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+        }
+
+        .ilceler__baslik {
+            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+
+        }
+
+        .ilceler__nav-link.active {
+            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            border: 1px solid {{$themeSetting[0]->siteColorTheme}}  !important;
+        }
+
+        .ilceler__nav-link:hover {
+            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+        }
+
+        .tns-nav-active {
+            background-color: {{$themeSetting[0]->siteColorTheme}}  !important;
+        }
+
+        .pl-1:hover {
+            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+        }
+        .kartlar__header::before{
+            border-left:2px solid {{$themeSetting[0]->siteColorTheme}}  !important;
+        }
+        .slick-active, .slick li{
+            background-image:radial-gradient(farthest-side at 102% 2%, {{$themeSetting[0]->siteColorTheme}}, {{$themeSetting[0]->siteColorTheme}});
+        }
+        .video li{
+            border:1px solid {{$themeSetting[0]->siteColorTheme}} ;
+        }
+        .slick-prev:before, .slick-next:before{
+            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+
+        }
+
+
+    </style>
     <script>
         $(document).ready(function (e) {
             $.ajaxSetup({
@@ -58,7 +110,15 @@ $gelenil=Session::get('gelenil');
                 <div class="kapat float-left"><a id="kapat" class="kapat__link rounded" href="">X</a></div>
                 <!-- <div class="kapat position-absolute float-right"><a id="ac" class="kapat__link" href="">Reklamı Aç</a></div> -->
 
-                <img src="img/ads.jpg" class="reklam card-img-top" alt="">
+                @foreach($ads as $ad)
+                    @if($ad->type==1 && $ad->category_id==9)
+                        <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
+                                                                     height="250"
+                                                                     data-src="{{asset($ad->ads)}}"></a>
+                    @elseif($ad->type==2 && $ad->category_id==9)
+                        <div class="w-100">{!!$ad->ad_code!!}</div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -75,20 +135,20 @@ $gelenil=Session::get('gelenil');
     <section class="w-100">
         <div class="container">
             <div class="row">
-@include('main.body.widget.anaslider')
-                <!--YAN SLİDER ALANI BAŞLAR-->
+            @include('main.body.widget.anaslider')
+            <!--YAN SLİDER ALANI BAŞLAR-->
                 @include('main.body.widget.yanslider')
 
             </div>
-            </div>
+        </div>
     </section>
 
     <!--DÖVİZ KURLARI BAŞLANGIÇ-->
-  @include('main.body.widget.dovizkurlari')
+    @include('main.body.widget.dovizkurlari')
     <!--DÖVİZ KURLARI BİTİŞ-->
 
     <!--NAMAZ VAKİTLERİ BAŞLAR-->
-   @include('main.body.widget.namazvakitleri')
+    @include('main.body.widget.namazvakitleri')
     <!--NAMAZ VAKİTLERİ BİTER-->
 
 
@@ -100,7 +160,15 @@ $gelenil=Session::get('gelenil');
 
     <!--VİDEO GALERİ ÜSTÜ REKLAM ALANI-->
     <div class="reklam-alani mb-3 mt-3 text-center">
-        <img src="img/970x90.jpg" alt="Reklam">
+        @foreach($ads as $ad)
+            @if($ad->type==1 && $ad->category_id==19)
+                <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                             height="280"
+                                             data-src="{{asset($ad->ads)}}"></a>
+            @elseif($ad->type==2 && $ad->category_id==19)
+                <div class="w-100">{!!$ad->ad_code!!}</div>
+            @endif
+        @endforeach
     </div>
 
     <!--VİDEO GALERİ ÜSTÜ REKLAM Biter-->
@@ -110,44 +178,69 @@ $gelenil=Session::get('gelenil');
     <!--SLİDER ALT KARTLAR-->
     <!--VİDEO GALERİ ÜSTÜ REKLAM ALANI-->
     <div class="reklam-alani mb-3 mt-3 text-center">
-        <img src="img/970x90.jpg" alt="Reklam">
+        @foreach($ads as $ad)
+            @if($ad->type==1 && $ad->category_id==15)
+                <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                             height="280"
+                                             data-src="{{asset($ad->ads)}}"></a>
+            @elseif($ad->type==2 && $ad->category_id==15)
+                <div class="w-100">{!!$ad->ad_code!!}</div>
+            @endif
+        @endforeach
     </div>
     <!--VİDEO GALERİ ÜSTÜ REKLAM ALANI-->
 
-   @include('main.body.widget.videogaleri')
+    @include('main.body.widget.videogaleri')
 
     <!--KARIŞIK HABERLER VE SPOR Ve YAZARLAR-->
 
     <section class="">
         <div class="container mt-3">
             <div class="row ">
-                @include('main.body.widget.egitimkultur')
+            @include('main.body.widget.egitimkultur')
 
 
-                @include('main.body.widget.authorsList')
-                <!--SAĞ TARAF TEK SUTUN YAZARLAR PUSNA DURUMU VS-->
+            @include('main.body.widget.authorsList')
+            <!--SAĞ TARAF TEK SUTUN YAZARLAR PUSNA DURUMU VS-->
 
                 <!--PUAN DURUMU-->
-                    <!--PUAN DURUMU-->
-                    <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
-                    <div class="reklam-alani text-center">
-                        <img src="img/336x280.png" alt="Reklam">
-                    </div>
-                    <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
+                <!--PUAN DURUMU-->
+                <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
+                <div class="reklam-alani text-center">
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==18)
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                         height="280"
+                                                         data-src="{{asset($ad->ads)}}"></a>
+                        @elseif($ad->type==2 && $ad->category_id==18)
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @endif
+                    @endforeach
+                </div>
+                <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
 
-                    <div class="spor mt-2">
-                        <div class="card-header card-spor  position-relative">
-                            <div class=" card-spor__link text-left pad"><b>Süper Lig</b> Puan Durumu</div>
-                            <!-- <a href="#"><div class=" position-absolute ">Tümü</div></a> -->
-                        </div>
-                        @include('main.body.puan-durumu')
+                <div class="spor mt-2">
+                    <div class="card-header card-spor  position-relative">
+                        <div class=" card-spor__link text-left pad"><b>Süper Lig</b> Puan Durumu</div>
+                        <!-- <a href="#"><div class=" position-absolute ">Tümü</div></a> -->
                     </div>
-                    <div class="reklam-alani text-center">
-                        <img src="img/336x280.png" alt="Reklam">
-                    </div>
+                    @include('main.body.puan-durumu')
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==22)
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                         height="280"
+                                                         data-src="{{asset($ad->ads)}}"></a>
+                        @elseif($ad->type==2 && $ad->category_id==22)
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @endif
+                    @endforeach
+                </div>
+                <div class="reklam-alani text-center">
+
+                </div>
             </div>
-                <!--SAĞ TARAF TEK SUTUN YAZARLAR PUSNA DURUMU VS-->
-            </div>
+            <!--SAĞ TARAF TEK SUTUN YAZARLAR PUSNA DURUMU VS-->
+        </div>
         </div>
     </section>
 

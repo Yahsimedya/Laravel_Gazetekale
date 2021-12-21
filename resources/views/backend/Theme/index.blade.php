@@ -95,13 +95,23 @@
 
 
                                 </div>
-                                <div class="col-lg-7">
+                                <div class="col-lg-2">
+                                    <div class="example full" style="width: 100%; height: 30px">
+                                        <input type="text" class="coloris"
+                                               name="politics" style="width: 100%; height: 30px"
+                                               value="{{$row->politics}}">
+                                    </div>
+
+
+                                </div>
+                                <div class="col-lg-5">
                                     <select data-placeholder="Select your state" name="category1"
 
                                             class="form-control form-control-select2"
                                             data-fouc>
                                         @foreach($Categories as $rows)
-                                            <option value="{{$rows->id}}" @php if($rows->id==$category1) {echo "selected";}  @endphp>
+                                            <option
+                                                value="{{$rows->id}}" @php if($rows->id==$category1) {echo "selected";}  @endphp>
                                                 {{$rows->category_tr}}
                                             </option>
                                         @endforeach
@@ -123,18 +133,27 @@
                                     </div>
 
                                 </div>
-                                <div class="col-lg-7">
-                                        <select data-placeholder="Select your state" name="category2"
-                                                style="width: 150px; height: 30px"
-                                                class="form-control form-control-select2"
-                                                data-fouc>
-                                            @foreach($Categories as $rows)
-                                                <option value="{{$rows->id}}" @php if($rows->id==$category2) {echo "selected";}  @endphp>
-                                                    {{$rows->category_tr}}
-                                                </option>
-                                            @endforeach
+                                <div class="col-lg-2">
+                                    <div class="example full" style="width: 100%; height: 30px">
 
-                                        </select>
+                                        <input type="text" class="coloris"
+                                               name="sport" style="width: 100%; height: 30px" value="{{$row->sport}}">
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-5">
+                                    <select data-placeholder="Select your state" name="category2"
+                                            style="width: 150px; height: 30px"
+                                            class="form-control form-control-select2"
+                                            data-fouc>
+                                        @foreach($Categories as $rows)
+                                            <option
+                                                value="{{$rows->id}}" @php if($rows->id==$category2) {echo "selected";}  @endphp>
+                                                {{$rows->category_tr}}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
                                     <div class="col-lg-12 mt-4"></div>
 
 
@@ -157,23 +176,23 @@
                                             class="form-control form-control-select2"
                                             data-fouc>
                                         @foreach($Categories as $rows)
-                                            <option value="{{$rows->id}}" @php if($rows->id==$category3) {echo "selected";}  @endphp>
+                                <option value="{{$rows->id}}" @php if($rows->id==$category3) {echo "selected";}  @endphp>
                                                 {{$rows->category_tr}}
-                                            </option>
-                                        @endforeach
+                                    </option>
+@endforeach
 
-                                    </select>
-                                    <div class="col-lg-12 mt-4"></div>
+                                </select>
+                                <div class="col-lg-12 mt-4"></div>
 
 
-                                </div>
-                                <label class="col-form-label col-lg-3">Öne Çıkan 4.Alan</label>
-                                <div class="col-lg-2">
+                            </div>
+                            <label class="col-form-label col-lg-3">Öne Çıkan 4.Alan</label>
+                            <div class="col-lg-2">
 
-                                    <div class="example full" style="width: 100%; height: 30px">
+                                <div class="example full" style="width: 100%; height: 30px">
 
-                                        <input type="text" class="coloris"
-                                               name="sport" style="width: 100%; height: 30px" value="{{$row->sport}}">
+                                    <input type="text" class="coloris"
+                                           name="sport" style="width: 100%; height: 30px" value="{{$row->sport}}">
                                     </div>
 
 
@@ -186,16 +205,16 @@
 
                                         @foreach($Categories as $rows)
 
-                                            <option value="{{$rows->id}}" @php if($rows->id==$category4) {echo "selected";}  @endphp>
+                                <option value="{{$rows->id}}" @php if($rows->id==$category4) {echo "selected";}  @endphp>
                                                 {{$rows->category_tr}}
-                                            </option>
-                                        @endforeach
+                                    </option>
+@endforeach
 
-                                    </select>
-                                    <div class="col-lg-12 mt-4"></div>
+                                </select>
+                                <div class="col-lg-12 mt-4"></div>
 
 
-                                </div>-->
+                            </div>-->
 
 
                                 <label class="col-form-label col-lg-3">Footer Uygulamalarımız</label>

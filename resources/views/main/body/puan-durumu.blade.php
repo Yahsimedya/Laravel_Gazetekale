@@ -10,8 +10,7 @@
         <a style="width: 50%;border:none;" class="nav-item nav-link  text-center  p-0 m-0 d-block my-auto border-none"
            id="birinci-lig-tab" data-toggle="tab"
            href="#fikstur" role="tab" aria-controls="birinci-lig" aria-selected="false"><span
-                class="d-inline-block my-auto"> Fikstür</span></a>
-
+                class="d-inline-block my-auto" style="color: black"> Fikstür</span></a>
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">

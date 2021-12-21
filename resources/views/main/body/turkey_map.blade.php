@@ -7,9 +7,17 @@
 @section('google_verification',$seoset->google_verification)
 @endif
 @section('content')
-<script>
-
-</script>
+    @php
+        $siteSetting=DB::table('themes')->get();
+@endphp
+    <style>
+        .il-isimleri div{
+            background: {{$siteSetting[0]->siteColorTheme}};
+        }
+        #svg-turkiye-haritasi path:hover {
+            fill: {{$siteSetting[0]->siteColorTheme}};;
+        }
+    </style>
     <div class="il-isimleri"></div>
     <div class="svg-turkiye-haritasi">
         <svg version="1.1" id="svg-turkiye-haritasi" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1007.478 527.323" xml:space="preserve">

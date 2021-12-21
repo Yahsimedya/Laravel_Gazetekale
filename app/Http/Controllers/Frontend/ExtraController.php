@@ -317,7 +317,7 @@ class ExtraController extends Controller
         $sondakika = Cache::remember("headline", Carbon::now()->addYear(), function () {
             if (Cache::has('headline')) return Cache::has('headline');
             return Post::where('posts.headline', 1)
-                ->where('updated_at', '>', Carbon::now()->subDay(1))
+                ->where('created_at', '>', Carbon::now()->subDay(1))
                 ->where('status', 1)
                 ->limit(5)
                 ->get();
@@ -539,6 +539,7 @@ class ExtraController extends Controller
         $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
         $sonuc = str_replace($bulunacak, $degistir, $bul);
         $sonuc;
+
         function cevir($string)
         {
 
@@ -553,7 +554,6 @@ class ExtraController extends Controller
             return $string;
         }
 
-//        dd($array);
 
         foreach ($array['Merkez'] as $data) {
             if ($data['ilEn'] == $sonuc) {
@@ -577,8 +577,10 @@ class ExtraController extends Controller
                     $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
                 } elseif ($data['d1'] == "SIS") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
+                } elseif ($data['d1'] == "Y") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-storm-showers"></i>';
                 } else {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-na"></i>';
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-celsius"></i>';
                 }
 
 
@@ -599,7 +601,7 @@ class ExtraController extends Controller
 
         Session::put('havadurumu', $veri['sicaklik']);
 
-        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard',  'siyasetcard', 'ekonomicard','youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -627,7 +629,6 @@ class ExtraController extends Controller
         $ads =
             Ad::latest('updated_at')
                 ->where('status', 1)
-                ->whereIn('id', [1, 2, 3, 12])
                 ->with('adcategory')
                 ->get();
 
@@ -659,6 +660,7 @@ class ExtraController extends Controller
 
     public function CategoryPost($slug, $id)
     {
+
         $category = Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
 
         $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
@@ -694,8 +696,13 @@ class ExtraController extends Controller
             ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(10)
             ->get();
+        $ads =
+            Ad::latest('updated_at')
+                ->where('status', 1)
+                ->with('adcategory')
+                ->get();
 
-        return view('main.body.category_post', compact('manset', 'authors', 'category', 'catpost', 'nextnews', 'count'));
+        return view('main.body.category_post', compact('manset', 'authors', 'category', 'ads', 'catpost', 'nextnews', 'count'));
 
 
     }
