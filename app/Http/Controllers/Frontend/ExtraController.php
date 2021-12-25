@@ -783,6 +783,7 @@ class ExtraController extends Controller
     {
 
 
+        $seoset = Seos::first();
         $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->get();
         $yazar = Authors::where('id', '=', $id)->get();
         $nextauthors_posts = DB::table('authors_posts')
@@ -796,6 +797,7 @@ class ExtraController extends Controller
 
     {
 
+        $seoset = Seos::first();
         $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
         $nextauthors_posts = DB::table('authors_posts')
             ->latest('updated_at')->where('status', 1)->where('id', '=', $id)->limit(10)

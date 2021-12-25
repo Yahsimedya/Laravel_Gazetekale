@@ -7,6 +7,10 @@
 @section('content')
     @endforeach
 @php
+    $expiresAt = now()->addMinute(20);
+        views($yazilar)
+            ->cooldown($expiresAt)
+            ->record();
 use App\Models\Authors;
     $otherauthos=  Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
                    ->select(['authors.*', 'authors_posts.title'])
@@ -14,7 +18,11 @@ use App\Models\Authors;
                    ->groupBy("authors.id")->latest("authors_posts.id")
                    ->get();
 
-@endphp
+        $webSiteSetting=DB::table('website_settings')->first();
+
+
+
+    @endphp
     <section>
 
         <div class="container bg-light mt-4 mb-4 rounded shadow">

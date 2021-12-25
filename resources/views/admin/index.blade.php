@@ -1,4 +1,3 @@
-
 @extends('admin.admin_master')
 @php
     use CyrildeWit\EloquentViewable\Support\Period;

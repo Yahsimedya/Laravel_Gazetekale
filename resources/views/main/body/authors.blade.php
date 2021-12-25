@@ -6,6 +6,9 @@
 
 @section('content')
 
+    @php
+        $webSiteSetting=DB::table('website_settings')->first();
+    @endphp
 
 <section class="">
     <div class="container bg-light mt-3 mb-3 shadow rounded ">
