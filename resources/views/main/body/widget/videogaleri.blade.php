@@ -38,7 +38,7 @@
             <div class="col-md-6 d-none d-md-block">
                 <div class="row ">
 
-                    @for($i=0;$i<=4;$i++)
+                    @for($i=0;$i<=3;$i++)
                         @if($videogaleri[$i]->featured==1 && count($videogaleri)>4)
 
                             <div class="col-md-6 mt-2 padding-left">

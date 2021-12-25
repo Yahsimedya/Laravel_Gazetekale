@@ -56,29 +56,45 @@ class ExtraController extends Controller
         $unsavedcount = 0;
 
         for ($i = 1; $i <= count($habereski) - 1; $i++) {
-            if ($habereski[$i]->kategori_id == 10) {
-                $newCategoryId = 6;
-            } elseif ($habereski[$i]->kategori_id == 13) {
-                $newCategoryId = 5;
+            if ($habereski[$i]->kategori_id == 66) {
+                $newCategoryId = 1;
+            } elseif ($habereski[$i]->kategori_id == 11) {
+                $newCategoryId = 2;
             } elseif ($habereski[$i]->kategori_id == 36) {
-                $newCategoryId = 11;
+                $newCategoryId = 2;
+            } elseif ($habereski[$i]->kategori_id == 67) {
+                $newCategoryId = 2;
+            } elseif ($habereski[$i]->kategori_id == 9) {
+                $newCategoryId = 2;
+                //Gündem haberleri
+
             } elseif ($habereski[$i]->kategori_id == 38) {
                 $newCategoryId = 3;
-            } elseif ($habereski[$i]->kategori_id == 39) {
-                $newCategoryId = 7;
-            } elseif ($habereski[$i]->kategori_id == 49) {
-                $newCategoryId = 9;
             } elseif ($habereski[$i]->kategori_id == 51) {
                 $newCategoryId = 4;
 
+
+            } elseif ($habereski[$i]->kategori_id == 13) {
+                $newCategoryId = 5;
+            } elseif ($habereski[$i]->kategori_id == 10) {
+                $newCategoryId = 6;
+
+
+            } elseif ($habereski[$i]->kategori_id == 39) {
+                $newCategoryId = 7;
+
             } elseif ($habereski[$i]->kategori_id == 52) {
                 $newCategoryId = 8;
-            } elseif ($habereski[$i]->kategori_id == 66) {
-                $newCategoryId = 1;
-            } elseif ($habereski[$i]->kategori_id == 67) {
-                $newCategoryId = 2;
+
+
+            } elseif ($habereski[$i]->kategori_id == 49) {
+                $newCategoryId = 9;
             } elseif ($habereski[$i]->kategori_id == 64) {
                 $newCategoryId = 10;
+            }elseif ($habereski[$i]->kategori_id == 36) {
+                $newCategoryId = 11;
+            }elseif ($habereski[$i]->kategori_id == 71) {
+                $newCategoryId = 12;
             }
             $newImagesroute = "storage/postimg/" . $habereski[$i]->haberfoto_resimyol;
 
@@ -93,8 +109,8 @@ class ExtraController extends Controller
                 "slug_en" => $habereski[$i]->haber_seourl,
                 "details_en" => $habereski[$i]->haber_detay,
                 "subtitle_en" => $habereski[$i]->haber_spot,
-                "featured" => 1,
-                "status" => 1,
+                "featured" => $habereski[$i]->haber_onecikar,
+                "status" => $habereski[$i]->haber_durum,
                 "posts_video" => $habereski[$i]->haber_video,
                 "keywords_tr" => $habereski[$i]->haber_keyword,
                 "keywords_en" => $habereski[$i]->haber_keyword,
@@ -409,7 +425,7 @@ class ExtraController extends Controller
         $home = Cache::remember("home", Carbon::now()->addYear(), function () {
             if (Cache::has('home')) return Cache::has('home');
             return Post::where('status', 1)
-                ->latest('created_at')
+                ->latest('created_at')->limit(25)
                 ->get();
         });
 
@@ -474,7 +490,7 @@ class ExtraController extends Controller
 
         $videogaleri = Cache::remember("videogaleri", Carbon::now()->addYear(), function () {
             if (Cache::has('videogaleri')) return Cache::has('videogaleri');
-            return Post::where('status', 1)->whereNotNull('posts_video')->limit(14)->latest('updated_at')->get();
+            return Post::where('status', 1)->whereNotNull('posts_video')->limit(12)->latest('updated_at')->get();
 
         });
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
