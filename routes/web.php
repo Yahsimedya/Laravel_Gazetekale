@@ -73,12 +73,10 @@ Route::get('/install', function () {
 });
 
 
-// ADMİN Routes
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
 
     Route::get('/DBTrans',[ExtraController::class,'DBTrans']);
-
 
 
 //Cache Clean
@@ -88,6 +86,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Artisan::call('config:clear');
         Artisan::call('view:clear');
         Artisan::call('optimize');
+
+
+
 
         return redirect()->back();
 
@@ -202,7 +203,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/social/settings', [SettingController::class, 'SocialSetting'])->name('social.setting');
     Route::post('/social/update/{id}', [SettingController::class, 'UpdateSocial'])->name('social.update');
     Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
-    Route::post('/seo/update/{id}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
+    Route::post('/seo/update/{seos}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
 
 //Website Setting Settings
     Route::get('/webiste/settings', [WebsiteSettingController::class, 'index'])->name('website.setting');
@@ -226,11 +227,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/add/photogalery', [GalleryController::class, 'AddPhotoGalery'])->name('add.photogalery');
     Route::post('/create/photo', [GalleryController::class, 'CreatePhoto'])->name('create.photo');
     Route::get('/galery/detail/{id}', [GalleryController::class, 'GaleryDetail'])->name('galery.detail');
+    Route::get('/galery/Add/{id}', [GalleryController::class, 'GaleryDetailAdd'])->name('galery.detailAdd');
 //    Route::get('/galery/update/', [GalleryController::class, 'UpdatePhoto'])->name('update.photo');
     Route::post('/add/photo/text/{photocategory_id}', [GalleryController::class, 'AddText'])->name('add.text');
     Route::post('/galery/photo/active/{id}', [GalleryController::class, 'ActivePhotoGalery'])->name('active.photogalery');
     Route::get('/galery/delete/{id}', [GalleryController::class, 'DeleteGalery'])->name('delete.galery');
     Route::get('/photo/galery/edit/{photocategory_id}', [GalleryController::class, 'EditPhotoGalery'])->name('edit.galery');
+    Route::post('/photo/galery/update', [GalleryController::class, 'GaleryUpdate'])->name('update.galery');
     Route::get('/galery/photo/delete/{id}', [GalleryController::class, 'DeletePhoto'])->name('delete.photo');
 
 // Route::get('/subdistrict', [DistrictController::class, 'index'])->name('subdistrict');

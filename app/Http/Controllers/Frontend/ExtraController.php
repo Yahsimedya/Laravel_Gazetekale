@@ -660,6 +660,12 @@ class ExtraController extends Controller
         $nextrelated = Post::latest('updated_at')
             ->where('category_id', $post->category_id)->limit(10)->orderByDesc('id')
             ->get();
+        $expiresAt = now()->addMinute(20);
+        views($post)
+            ->cooldown($expiresAt)
+            ->record();
+        $seoset = Seos::first();
+
         return view('main.body.single_post', compact('post', 'ads', 'category', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id'));
 
 
