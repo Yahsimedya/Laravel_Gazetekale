@@ -60,7 +60,7 @@ use App\Models\Theme;
                     <div class="footer-baslik"><h3>Kurumsal </h3></div>
 
                     @foreach($fixedPages as $pages)
-                        <li><a href="{{route('Open.fixedPage',$pages->id)}}" style="max-height: 20px"
+                        <li><a href="{{route('Open.fixedPage',$pages->id)}}" style="max-height: 20px;color:white!important;"
                                class="footer-link">{{$pages->title}}</a></li>
 
                     @endforeach</ul>
