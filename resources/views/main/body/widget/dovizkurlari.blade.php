@@ -1,4 +1,5 @@
 <section class="">
+
     <div class="container padding-left mt-1 ">
         <div
             class="row kurlar text-center font-weight-bold  text-secondary mx-auto bg-gradient-light light border-top border-bottom p-0 position-relative">
@@ -75,3 +76,4 @@
         </div>
     </div>
 </section>
+

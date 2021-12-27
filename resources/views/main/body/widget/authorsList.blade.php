@@ -19,7 +19,7 @@
         </a>
     </div>
     @foreach($authors as $author)
-        <a href="">
+        <a href="{{route('authors.yazilar',$author->id)}}">
             <div class="row  mt-2">
 
                 <div class="col-md-4 col-4 col-sm-4">

@@ -77,6 +77,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
 
     Route::get('/DBTrans',[ExtraController::class,'DBTrans']);
+    Route::get('/OldDByazarlar',[ExtraController::class,'OldDByazarlar']);
+    Route::get('/OldDBkoseyazisi',[ExtraController::class,'OldDBkoseyazisi']);
 
 
 //Cache Clean

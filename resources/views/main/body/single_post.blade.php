@@ -68,6 +68,16 @@
                 <p class="detay__icerik mt-4">
                     {!!$post->details_tr!!}
                 </p>
+
+                <div class="wrapper">
+
+                    <div class="navbar-social">
+                        <a href="http://twitter.com/share?url=<?php echo "https://" . $_SERVER['HTTP_HOST'] . "" . $_SERVER['REQUEST_URI'] . ""; ?>" class="icon-button twitter"><i class="icon-twitter fa fa-twitter"></i><span></span></a>
+                        <a href="https://www.facebook.com/sharer.php?u=<?php echo "https://" . $_SERVER['HTTP_HOST'] . "" . $_SERVER['REQUEST_URI'] . ""; ?>" class="icon-button facebook"><i class="icon-facebook fa fa-facebook"></i><span></span></a>
+                        <a href="https://youtube.com/gazetekale" target="_blank" class="icon-button google-plus"><i class="icon-youtube fa fa-youtube"></i><span></span></a>
+                    </div>
+                </div>
+
                 <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
                 <div class="reklam-alani mb-2 text-center">
                     @foreach($ads as $ad)

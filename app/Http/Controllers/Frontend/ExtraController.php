@@ -152,7 +152,7 @@ class ExtraController extends Controller
         for ($i = 1; $i <= count($koseyazisieski) - 1; $i++) {
             $yenikoseyazisi = AuthorsPost::insert([
                 "id" => $koseyazisieski[$i]->koseyazisi_id,
-                "authors_id" => 1,
+                "authors_id" => $koseyazisieski[$i]->yazar_id,
                 "text" => $koseyazisieski[$i]->koseyazisi_detay,
                 "title" => $koseyazisieski[$i]->koseyazisi_baslik,
                 "created_at" => $koseyazisieski[$i]->koseyazisi_zaman,
@@ -177,7 +177,41 @@ class ExtraController extends Controller
         return "Veri taşıma başarılı";
 
     }
+public function OldDByazarlar(){
+    ini_set('max_execution_time', 0);
+    $koseyazisieski = DB::table('kullanici')->get();//eklenecek eski köşe yazıları tablosu
+    $yeniData = array();
+    DB::beginTransaction();
+    $savedcount = 0;
+    $unsavedcount = 0;
 
+    for ($i = 1; $i <= count($koseyazisieski) - 1; $i++) {
+        $yenikoseyazisi = Authors::insert([
+            "id" => $koseyazisieski[$i]->kullanici_id,
+            "name" => $koseyazisieski[$i]->kullanici_ad,
+            "image" => $koseyazisieski[$i]->kullanici_resim == null ? "" : $koseyazisieski[$i]->kullanici_resim,
+            "status" => $koseyazisieski[$i]->kullanici_durum,
+            "mail" => $koseyazisieski[$i]->kullanici_mail,
+            "facebook" => $koseyazisieski[$i]->kullanici_facebook,
+            "twitter" => $koseyazisieski[$i]->kullanici_twitter,
+            "youtube" => $koseyazisieski[$i]->kullanici_youtube,
+
+        ]);
+        if ($yenikoseyazisi > 0) {
+            $savedcount++;
+        } else {
+            $unsavedcount++;
+        }
+
+    }
+    if ($unsavedcount > 0) {
+        DB::rollBack();
+    } else {
+        DB::commit();
+    }
+    return "Veri taşıma başarılı";
+
+}
 
     public function PhotoGalleryDetail($photogalery)
     {
@@ -784,7 +818,7 @@ class ExtraController extends Controller
 
 
         $seoset = Seos::first();
-        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->get();
+        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->orderByDesc('id')->get();
         $yazar = Authors::where('id', '=', $id)->get();
         $nextauthors_posts = DB::table('authors_posts')
             ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
