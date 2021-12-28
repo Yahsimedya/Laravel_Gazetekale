@@ -369,7 +369,6 @@ Route::get('/json/authorsposts/{id}', [MobilAppController::class, 'authorsposts'
 
 
 
-
 //Search
 Route::post('/search', [ExtraController::class, 'search'])->name('search');
 

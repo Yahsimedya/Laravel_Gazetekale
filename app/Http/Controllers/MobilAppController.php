@@ -310,29 +310,7 @@ class MobilAppController extends Controller
 
     function change($json)
     {
-        $json = json_decode(str_replace("&ccedil;", 'ç', json_encode($json)));
-        $json = json_decode(str_replace("&ccedil;", 'ç', json_encode($json)));
-        $json = json_decode(str_replace("&yacute;", "ı", json_encode($json)));
-        $json = json_decode(str_replace("&Ccedil;", "Ç", json_encode($json)));
-        $json = json_decode(str_replace("&Ouml;", "Ö", json_encode($json)));
-        $json = json_decode(str_replace("&Yacute;", "Ü", json_encode($json)));
-        $json = json_decode(str_replace("&ETH;", "Ğ", json_encode($json)));
-        $json = json_decode(str_replace("&THORN;", "Ş", json_encode($json)));
-        $json = json_decode(str_replace("&Yacute;", "İ", json_encode($json)));
-        $json = json_decode(str_replace("&ouml;", "ö", json_encode($json)));
-        $json = json_decode(str_replace("&thorn;", "ş", json_encode($json)));
-        $json = json_decode(str_replace("&eth;", "ğ", json_encode($json)));
-        $json = json_decode(str_replace("&uuml;", "ü", json_encode($json)));
-        $json = json_decode(str_replace("&Uuml;", "Ü", json_encode($json)));
-        $json = json_decode(str_replace("&rsquo;", "’", json_encode($json)));
-        $json = json_decode(str_replace("&yacute;", "ı", json_encode($json)));
-        $json = json_decode(str_replace("&amp;", "&", json_encode($json)));
-        $json = json_decode(str_replace("&nbsp;", "", json_encode($json)));
-        $json = json_decode(str_replace("&ldquo;", "“", json_encode($json)));
-        $json = json_decode(str_replace("&rdquo;", "”", json_encode($json)));
-        $json = json_decode(str_replace("&#65279", "", json_encode($json)));
-        $json = json_decode(str_replace("&#39;", "'", json_encode($json)));
-        $json = json_decode(str_replace("&quot;", "“", json_encode($json)));
+
         return $json;
     }
 
