@@ -156,7 +156,7 @@ class ExtraController extends Controller
                 "text" => $koseyazisieski[$i]->koseyazisi_detay,
                 "title" => $koseyazisieski[$i]->koseyazisi_baslik,
                 "created_at" => $koseyazisieski[$i]->koseyazisi_zaman,
-                "updated_at" => $koseyazisieski[$i]->koseyazisi_zaman,
+                "created_at" => $koseyazisieski[$i]->koseyazisi_zaman,
                 "status" => $koseyazisieski[$i]->koseyazisi_durum == null ? 1 : $koseyazisieski[$i]->koseyazisi_durum,
                 "image" => "",
                 "keywords" => $koseyazisieski[$i]->koseyazisi_keyword,
@@ -277,6 +277,7 @@ public function OldDByazarlar(){
             if (Cache::has('seoset')) return Cache::has('seoset');
             return Seos::first();
         });
+
         $posts = Cache::remember("posts", Carbon::now()->addYear(), function () {
             if (Cache::has('posts')) return Cache::has('posts');
             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
@@ -284,10 +285,12 @@ public function OldDByazarlar(){
                 ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
                 ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
                 ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-                ->latest('updated_at')->where('status', 1)->limit(10)
+                ->latest('created_at')->where('status', 1)->limit(10)
                 ->get();
-            return response()->view('main.body.feed', compact('posts', 'seoset'))->header('Content-Type', 'application/xml');
+
         });
+        return response()->view('main.body.feed', compact('posts', 'seoset'))->header('Content-Type', 'application/xml');
+
     }
 
     public function GetAllDistrict()
@@ -305,7 +308,7 @@ public function OldDByazarlar(){
             ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
             ->where('districts.slug', $id)
             ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-            ->latest('updated_at')
+            ->latest('created_at')
             ->count();
 
         $sehir = District::where('slug', $id)
@@ -318,7 +321,7 @@ public function OldDByazarlar(){
             ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
             ->where('districts.slug', $id)
             ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'districts.district_keywords', 'districts.district_description', 'subdistricts.subdistrict_tr'])
-            ->latest('updated_at')->limit(50)
+            ->latest('created_at')->limit(50)
             ->get();
 
         $subdistricts = Subdistrict::leftjoin('districts', 'districts.id', '=', 'subdistricts.district_id')
@@ -442,7 +445,7 @@ public function OldDByazarlar(){
 
         $video_gallary = Cache::remember("video_gallary", Carbon::now()->addYear(), function () {
             if (Cache::has('video_gallary')) return Cache::has('video_gallary');
-            return Post::where('posts_video', '!=', NULL)->limit(5)->get();
+            return Post::where('posts_video', '!=', NULL)->limit(5)->orderByDesc('created_at')->get();
         });
 //        $home =
 ////            Cache::remember("home", Carbon::now()->addYear(), function () {
@@ -452,7 +455,7 @@ public function OldDByazarlar(){
 //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
 //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
 //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-//                ->where('status', 1)->latest('updated_at')
+//                ->where('status', 1)->latest('created_at')
 //                ->get();
 ////            });
 
@@ -471,7 +474,7 @@ public function OldDByazarlar(){
 //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
 //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
 //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-//                ->where('status', 1)->latest('updated_at')->limit(4)
+//                ->where('status', 1)->latest('created_at')->limit(4)
 //                ->get();
 ////            });
 
@@ -481,14 +484,14 @@ public function OldDByazarlar(){
                 ->where('surmanset', 1)
                 ->with('category')
                 ->limit(4)
-                ->latest('updated_at')
+                ->latest('created_at')
                 ->get();
         });
 
         $sagmanset = Cache::remember("sagmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('sagmanset')) return Cache::has('sagmanset'); //here am simply trying Laravel Collection method -find
 
-            return Post::whereIn('category_id', [1, 2, 3])->where('status', 1)->latest('updated_at')->limit(15)->get();
+            return Post::whereIn('category_id', [1, 2, 3])->where('status', 1)->latest('created_at')->limit(15)->get();
         });
 
         $sehir = Cache::remember("sehir", Carbon::now()->addYear(), function () {
@@ -507,51 +510,51 @@ public function OldDByazarlar(){
 //        }
         $ucuncuSayfa = Cache::remember("ucuncuSayfa", Carbon::now()->addYear(), function () {
             if (Cache::has('ucuncuSayfa')) return Cache::has('ucuncuSayfa');
-            return Post::where('category_id', 1)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', 1)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('created_at')->get();
 
         });
         $ozel = Cache::remember("ozel", Carbon::now()->addYear(), function () {
             if (Cache::has('ozel')) return Cache::has('ozel');
-            return Post::where('category_id', 1)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', 1)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('created_at')->get();
 
         });
 
         $youtube = Cache::remember("youtube", Carbon::now()->addYear(), function () {
             if (Cache::has('youtube')) return Cache::has('youtube');
-            return Post::where('category_id', 12)->where('status', 1)->limit(15)->latest('updated_at')->get();
+            return Post::where('category_id', 12)->where('status', 1)->limit(15)->latest('created_at')->get();
 
         });
 
         $videogaleri = Cache::remember("videogaleri", Carbon::now()->addYear(), function () {
             if (Cache::has('videogaleri')) return Cache::has('videogaleri');
-            return Post::where('status', 1)->whereNotNull('posts_video')->limit(12)->latest('updated_at')->get();
+            return Post::where('status', 1)->whereNotNull('posts_video')->limit(12)->latest('created_at')->get();
 
         });
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::where('category_id', '=', 2)->where('featured', '=', 1)->where('status', 1)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 2)->where('featured', '=', 1)->where('status', 1)->limit(10)->latest('created_at')->get();
         });
         $gundemcard = Cache::remember("gundemcard", Carbon::now()->addYear(), function () {
             if (Cache::has('gundemcard')) return Cache::has('gundem');
-            return Post::where('category_id', '=', 2)->where('status', 1)->limit(3)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 2)->where('status', 1)->limit(3)->latest('created_at')->get();
         });
         $siyasetcard = Cache::remember("siyasetcard", Carbon::now()->addYear(), function () {
             if (Cache::has('siyasetcard')) return Cache::has('siyasetcard');
-            return Post::where('category_id', '=', 3)->where('status', 1)->limit(3)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 3)->where('status', 1)->limit(3)->latest('created_at')->get();
         });
         $ekonomicard = Cache::remember("ekonomicard", Carbon::now()->addYear(), function () {
             if (Cache::has('ekonomicard')) return Cache::has('ekonomicard');
-            return Post::where('category_id', '=', 5)->where('status', 1)->limit(3)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 5)->where('status', 1)->limit(3)->latest('created_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::where('category_id', '=', 3)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 3)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('created_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::where('category_id', '=', 6)->where('status', 1)->limit(10)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 6)->where('status', 1)->limit(10)->latest('created_at')->get();
         });
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
@@ -561,7 +564,7 @@ public function OldDByazarlar(){
             if (Cache::has('authors')) return Cache::has('authors');
             return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
                 ->select(['authors.*', 'authors_posts.title'])
-                ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
+                ->latest('created_at')->where('authors.status', 1)->where('authors_posts.status', 1)
                 ->groupBy("authors.id")->latest("authors_posts.id")
                 ->get();
         });
@@ -669,7 +672,7 @@ public function OldDByazarlar(){
 
         $comments = Comments::where('posts_id', $ids[count($r) - 1])->where('status', 1)->get();
 
-        $slider = Post::latest('updated_at')
+        $slider = Post::latest('created_at')
             ->with('category')
             ->limit(6)
             ->get();
@@ -677,7 +680,7 @@ public function OldDByazarlar(){
         $category = Category::where('id', '=', $post->category_id)->get();
 
         $ads =
-            Ad::latest('updated_at')
+            Ad::latest('created_at')
                 ->where('status', 1)
                 ->with('adcategory')
                 ->get();
@@ -691,7 +694,7 @@ public function OldDByazarlar(){
                 ->get();
         $random = Post::inRandomOrder()->limit(3)->get();
 
-        $nextrelated = Post::latest('updated_at')
+        $nextrelated = Post::latest('created_at')
             ->where('category_id', $post->category_id)->limit(10)->orderByDesc('id')
             ->get();
         $expiresAt = now()->addMinute(20);
@@ -723,7 +726,7 @@ public function OldDByazarlar(){
             if (Cache::has('authors')) return Cache::has('authors');
             return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
                 ->select(['authors.*', 'authors_posts.title'])
-                ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
+                ->latest('created_at')->where('authors.status', 1)->where('authors_posts.status', 1)
                 ->groupBy("authors.id")->latest("authors_posts.id")
                 ->get();
         });
@@ -753,7 +756,7 @@ public function OldDByazarlar(){
             ->inRandomOrder()->limit(10)
             ->get();
         $ads =
-            Ad::latest('updated_at')
+            Ad::latest('created_at')
                 ->where('status', 1)
                 ->with('adcategory')
                 ->get();
@@ -821,7 +824,7 @@ public function OldDByazarlar(){
         $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->orderByDesc('id')->get();
         $yazar = Authors::where('id', '=', $id)->get();
         $nextauthors_posts = DB::table('authors_posts')
-            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
+            ->latest('created_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
             ->get();
 
         return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
@@ -834,7 +837,7 @@ public function OldDByazarlar(){
         $seoset = Seos::first();
         $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
         $nextauthors_posts = DB::table('authors_posts')
-            ->latest('updated_at')->where('status', 1)->where('id', '=', $id)->limit(10)
+            ->latest('created_at')->where('status', 1)->where('id', '=', $id)->limit(10)
             ->get();
         $yazar = Authors::where('id', '=', $id)->get();
 

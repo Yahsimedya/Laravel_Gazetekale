@@ -2,33 +2,21 @@
 <?xml-stylesheet href="/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 	<url>
-	<loc>https://www.youtube.com/watch?v=ascscasc</loc>
+	<loc>https://www.youtube.com/watch?v=Ffq9LkaU1io</loc>
 		<priority>0.8</priority>
-		<lastmod>2021-12-09T13:51:04+03:00</lastmod>
+		<lastmod>2018-10-12T16:34:15+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://www.youtube.com/watch?v=dscas</loc>
+	<loc>https://www.youtube.com/watch?v=EauAyfwXDL8</loc>
 		<priority>0.8</priority>
-		<lastmod>2021-12-09T13:51:04+03:00</lastmod>
+		<lastmod>2018-10-17T10:43:23+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://www.youtube.com/watch?v=asdcas</loc>
+	<loc>https://www.youtube.com/watch?v=2ccaHpy5Ewo</loc>
 		<priority>0.8</priority>
-		<lastmod>2021-12-09T13:51:04+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=sdcasdcas</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-12-09T13:49:01+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=dsacasca</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-12-09T12:53:01+03:00</lastmod>
+		<lastmod>2018-10-11T15:06:51+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 </urlset>
