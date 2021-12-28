@@ -11,6 +11,8 @@
                                 @csrf
                                 <select class="form-control form-control-sm namaz__select mb-1 ml-4" name="sehirsec"
                                 >
+
+
                                     <option value="548">KIRIKKALE</option>
 
                                     @foreach($sehir as $row)
@@ -25,23 +27,23 @@
 
                     <div
                         class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
-                        <img src="img/imsak.png" width="30" class="img-fluid mr-2" alt=""><span
+                        <img src="{{asset('image/imsak.png')}}" width="30" class="img-fluid mr-2" alt=""><span
                             class="text-light mb-0  namaz__kolon-text">İmsak {{$vakitler['imsak']}}</span></div>
                     <div
                         class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
-                        <img src="img/ogle.png" width="30" class="img-fluid mr-2" alt=""><span
+                        <img src="{{asset('image/ogle.png')}}" width="30" class="img-fluid mr-2" alt=""><span
                             class="text-light mb-0  namaz__kolon-text">Öğle {{$vakitler["ogle"]}}</span></div>
                     <div
                         class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
-                        <img src="img/ikindi.png" width="30" class="img-fluid mr-2" alt=""><span
+                        <img src="{{asset('image/ikindi.png')}}" width="30" class="img-fluid mr-2" alt=""><span
                             class="text-light mb-0  namaz__kolon-text">İkindi {{$vakitler["ikindi"]}}</span></div>
                     <div
                         class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
-                        <img src="img/aksam.png" width="30" class="img-fluid mr-2" alt=""><span
+                        <img src="{{asset('image/aksam.png')}}" width="30" class="img-fluid mr-2" alt=""><span
                             class="text-light mb-0  namaz__kolon-text">Akşam {{$vakitler["aksam"]}}</span></div>
                     <div
                         class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold">
-                        <img src="img/yatsi.png" width="30" class="img-fluid mr-2" alt=""><span
+                        <img src="{{asset('image/yatsi.png')}}" width="30" class="img-fluid mr-2" alt=""><span
                             class="text-light mb-0  namaz__kolon-text">Yatsı {{$vakitler["yatsi"]}}</span></div>
 
 
