@@ -702,8 +702,7 @@ public function OldDByazarlar(){
             ->cooldown($expiresAt)
             ->record();
         $seoset = Seos::first();
-
-        return view('main.body.single_post', compact('post', 'ads', 'category', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id'));
+        return view('main.body.single_post', compact('post', 'ads', 'category', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
 
 
     }

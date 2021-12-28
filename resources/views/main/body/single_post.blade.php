@@ -2,16 +2,18 @@
 @section('title',$post->title_tr)
 @section('meta_keywords',$post->keywords_tr)
 @section('meta_description',$post->description_tr)
+@section('google_analytics',$seoset->google_analytics)
+@section('og:site_name',$seoset->meta_title)
 @section('og:title',$post->title_tr)
 @section('og:description',$post->title_tr)
 @section('og:image',asset($post->image))
 @section('og:url',url()->current())
 @section('twitter:url',url()->current())
 @section('twitter:domain',Request::root())
+@section('twitter:site',$seoset->meta_title)
 @section('twitter:title',$post->title_tr)
 @section('content')
-
-    @php
+@php
         $webSiteSetting=\App\Models\WebsiteSetting::first();
     $themeSetting=DB::table('themes')->get();
 
