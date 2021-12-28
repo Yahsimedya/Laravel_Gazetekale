@@ -13,8 +13,8 @@
 
                 <a href="{{URL::to('/haber-'.str_slug($home[$i]->title_tr).'-'.$home[$i]->id)}}">
                     <img
-                        class="img-fluid "
-                        src="{{asset($home[$i]->image)}}"
+                        class="img-fluid owl-lazy"
+                        data-src="{{asset($home[$i]->image)}}"
                         onerror="this.onerror=null;this.src='{{$themeSettings->defaultImage}}';"
                         alt=""></a>
 

@@ -130,7 +130,7 @@ use App\Models\Theme;
             animateOut: false,
             animateIn: false,
             slideTransition: '',
-
+            lazyLoad: true,
             items: 1
 
         });
@@ -160,7 +160,7 @@ use App\Models\Theme;
                 animateOut: false,
                 animateIn: false,
                 slideTransition: '',
-
+                lazyLoad: true,
                 items: 1
 
             });
