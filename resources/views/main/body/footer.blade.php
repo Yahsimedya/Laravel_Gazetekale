@@ -131,8 +131,24 @@ use App\Models\Theme;
             animateIn: false,
             slideTransition: '',
             lazyLoad: true,
-            items: 1
-
+            items: 1,
+            responsive:{
+                0:{
+                    items:1,
+                    nav:true,
+                    dots:false
+                },
+                600:{
+                    items:1,
+                    nav:true,
+                    dots:false
+                },
+                1000:{
+                    items:1,
+                    nav:true,
+                    loop:false
+                }
+            }
         });
 
         //             $('.owl-dot ').on('mouseover', function() {
@@ -286,7 +302,7 @@ use App\Models\Theme;
 
 
         $(document).ready(function () {
-            $(".video-slider").slick({
+            $(".video-slider").not('.slick-initialized').slick({
                 autoplay: true,
                 dots: true,
                 autoplaySpeed: 500000,

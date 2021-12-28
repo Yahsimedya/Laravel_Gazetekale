@@ -1,7 +1,7 @@
 @php
     $webSiteSetting=\App\Models\WebsiteSetting::first();
 @endphp
-<section class="ilceler container-fluid  bg-light mt-2 mb-2 pb-4">
+<section class="ilceler container-fluid d-none d-md-block bg-light mt-2 mb-2 pb-4">
 
 
     <div class="container padding-left pt-2">
