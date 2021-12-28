@@ -358,11 +358,12 @@ Route::get('/json/categories/{id}', [MobilAppController::class, 'categories']);
 Route::get('/json/fotogaleri/', [MobilAppController::class, 'fotogaleri']);
 Route::get('/json/fotogaleriDetail/', [MobilAppController::class, 'fotogaleriDetail']);
 Route::get('/json/AllPost/', [MobilAppController::class, 'AllPost']);
-Route::get('/json/categoryPost/{id}', [MobilAppController::class, 'categoryPost']);
 Route::get('/json/country/{id}', [MobilAppController::class, 'countrynews']);
+Route::get('/json/categoryPost/{id}', [MobilAppController::class, 'categoryPost']);
 Route::get('/json/benzerHaberler/{id}', [MobilAppController::class, 'benzerHaberler']);
-Route::get('/json/kirmiziMikrafon/{id}', [MobilAppController::class, 'kirmiziMikrafon']);
-
+Route::get('/json/kirmiziMikrafon/', [MobilAppController::class, 'kirmiziMikrafon']);
+Route::get('/json/allyazar/', [MobilAppController::class, 'allyazar']);
+Route::get('/json/authorsposts/{id}', [MobilAppController::class, 'authorsposts']);
 
 
 
