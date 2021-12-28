@@ -9,7 +9,7 @@
 
                 <div class="position-relative">
                     <a href="{{URL::to('/haber-'.str_slug($ekonomicard[0]->title_tr).'-'.$ekonomicard[0]->id)}}" class="kartlar__link">
-                        <img class="card-img-top position-relative rounded-0" src="{{$gundemcard[0]->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                        <img class="card-img-top position-relative rounded-0 lazyload" src="{{$gundemcard[0]->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                              alt="Card image cap">
                         <div class="kartlar__effect position-absolute"></div>
                     </a>
@@ -24,7 +24,7 @@
 
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}" class="kartlar__link">
                             <li class="list-group-item p-0">
-                                <img src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" width="150" class="float-left p-2" alt="">
+                                <img src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" width="150" class="float-left p-2 lazyload" alt="">
                                 <div class="d-table-cell">
                                     <p class="pl-1 kartlar__tittle card-kisalt "> {{$row->title_tr}} </p>
                                 </div>
@@ -44,7 +44,7 @@
 
                 <div class="position-relative">
                     <a href="{{URL::to('/haber-'.str_slug($ekonomicard[0]->title_tr).'-'.$ekonomicard[0]->id)}}" class="kartlar__link">
-                        <img class="card-img-top position-relative rounded-0" src="{{$siyasetcard[0]->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                        <img class="card-img-top position-relative rounded-0 lazyload" src="{{$siyasetcard[0]->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                              alt="Card image cap">
                         <div class="kartlar__effect position-absolute"></div>
                     </a>
@@ -59,7 +59,7 @@
 
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}" class="kartlar__link">
                             <li class="list-group-item p-0">
-                                <img src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" width="150" class="float-left p-2" alt="">
+                                <img src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" width="150" class="float-left p-2 lazyload" alt="">
                                 <div class="d-table-cell">
                                     <p class="pl-1 kartlar__tittle card-kisalt "> {{$row->title_tr}} </p>
                                 </div>
@@ -79,7 +79,7 @@
 
                 <div class="position-relative">
                     <a href="{{URL::to('/haber-'.str_slug($ekonomicard[0]->title_tr).'-'.$ekonomicard[0]->id)}}" class="kartlar__link">
-                        <img class="card-img-top position-relative rounded-0" src="{{$ekonomicard[0]->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                        <img class="card-img-top position-relative rounded-0 lazyload" src="{{$ekonomicard[0]->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                              alt="Card image cap">
                         <div class="kartlar__effect position-absolute"></div>
                     </a>
@@ -94,7 +94,7 @@
 
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}" class="kartlar__link">
                             <li class="list-group-item p-0">
-                                <img src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" width="150" class="float-left p-2" alt="">
+                                <img src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" width="150" class="float-left p-2 lazyload" alt="">
                                 <div class="d-table-cell">
                                     <p class="pl-1 kartlar__tittle card-kisalt "> {{$row->title_tr}} </p>
                                 </div>

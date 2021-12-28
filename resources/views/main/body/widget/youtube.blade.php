@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="ytube">
-                        <img src="{{asset('icon/icon-youtube-white.svg')}}"  style="color: white" alt="youtube" width="75" height="21">
+                        <img src="{{asset('icon/icon-youtube-white.svg')}}" class="lazyload" style="color: white" alt="youtube" width="75" height="21">
                         <a href="https://www.youtube.com/channel/UCUUeGmpEvlPFjRSeOYevzag" target="_blank"
                            rel="nofollow" class="ytube-subscriber" title="Haberler.com Youtube">
                             <span>Abone Ol</span></a>
