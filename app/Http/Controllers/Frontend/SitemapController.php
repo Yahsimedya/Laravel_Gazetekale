@@ -67,19 +67,7 @@ class SitemapController extends Controller
         }
 
 
-//districts
-        foreach ($districts as $d) {
-            if ($counter == 100) {
-                $sitemapdistricts->store('xml', 'sitemap-districts');
-                $sitemapdistricts->addSitemap(secure_url('sitemap-districts' . '.xml'));
-                $sitemapdistricts->model->resetItems();
-                $counter = 0;
-                $sitemapCounter++;
-            }
-            $sitemapdistricts->add("https://" . $host . "/" . str_slug($d->district_tr), $d->created_at, 0.4, "daily");
-            $counter++;
-        }
-        dd("districts");
+
 //İmages
         foreach ($posts as $p) {
             if ($counter == 1000) {
@@ -126,11 +114,7 @@ class SitemapController extends Controller
             $sitemapcategories->addSitemap(secure_url('sitemap-categories' . '.xml'));
             $sitemapcategories->model->resetItems();
         }
-        if (!empty($sitemapdistricts->model->getItems())) {
-            $sitemapdistricts->store('xml', 'sitemap-districts');
-            $sitemapdistricts->addSitemap(secure_url('sitemap-districts' . '.xml'));
-            $sitemapdistricts->model->resetItems();
-        }
+
         if (!empty($sitemapimages->model->getItems())) {
             $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
             $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
@@ -152,7 +136,7 @@ class SitemapController extends Controller
 
 
         $sitemaphome->addSitemap(URL::to('sitemap-categories.xml'), Carbon::today());
-        $sitemaphome->addSitemap(URL::to('sitemap-districts.xml'), Carbon::today());
+
         $sitemaphome->addSitemap(URL::to('sitemap-fotogaleri' . '.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to('sitemap-videogaleri' . '.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to("https://" . $host), Carbon::today());
