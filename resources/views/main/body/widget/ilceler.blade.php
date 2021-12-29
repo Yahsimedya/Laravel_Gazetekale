@@ -11,7 +11,7 @@
                 $i=0;
             @endphp
             @foreach($ilceler as $ilce)
-                <li class="nav-item ilceler__nav-item">
+                <li class="nav-item ilceler__nav-item pr-0">
 
                     <a class="ilceler__nav-link  @if($i==0)active @endif" id="pills-{{$ilce->id}}-tab"
                        data-toggle="pill"
