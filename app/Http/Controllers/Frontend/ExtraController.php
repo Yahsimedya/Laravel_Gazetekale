@@ -682,15 +682,19 @@ public function OldDByazarlar(){
     public function SinglePost($slug, $id)
     {
         $r = $_SERVER['REQUEST_URI'];
-        $r = explode('-', $r);
+        $r = explode('?', $r);
         $r = array_filter($r);
         $r = array_merge($r, array());
         $ids = $r;
-        $post = Post::find($id);
-//        dd($post);
+
+        $explodeID= explode('-',$ids[0]);
+//        dd($explodeID[count($explodeID)-1 ]);
+//        dd($explodeID);
+
+        $post = Post::find($explodeID[count($explodeID)-1 ]);
         $maybeRelated=[];
 
-        $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
+        $comments = Comments::where('posts_id', $explodeID[count($explodeID)-1 ])->where('status', 1)->get();
 
         $slider = Post::latest('created_at')
             ->with('category')
@@ -709,12 +713,12 @@ public function OldDByazarlar(){
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', $id)->latest()
+                ->where('posts.id', $explodeID[count($explodeID)-1 ])->latest()
                 ->limit(10)
                 ->get();
         $random = Post::inRandomOrder()->limit(3)->get();
-        $tag_ids = $post->tag()->get();
-        $tagCount = $tag_ids->count();
+//        $tag_ids = $post->tag()->get();
+//        $tagCount = $tag_ids->count();
 
         $tagName =
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
@@ -740,7 +744,7 @@ public function OldDByazarlar(){
                     ->get();
             }
         }
-        return view('main.body.single_post', compact('post', 'ads','tagName','maybeRelated', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id','tag_ids','tagCount'));
+        return view('main.body.single_post', compact('post', 'ads','tagName','maybeRelated', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
 
 
     }

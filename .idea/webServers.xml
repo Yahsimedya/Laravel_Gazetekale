@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="baead896-9402-402d-9ed2-da39324165f9" name="gazetekale">
+        <fileTransfer rootFolder="/home" accessType="SFTP" host="85.95.241.202" port="6655" sshConfigId="805043a3-3eac-4ea3-afe4-15f07ae192b4" sshConfig="gztkl@85.95.241.202:6655 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
