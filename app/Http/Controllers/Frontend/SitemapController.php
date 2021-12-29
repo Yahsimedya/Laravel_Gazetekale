@@ -8,7 +8,9 @@ use App\Models\Category;
 use App\Models\District;
 use App\Models\Photo;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 
 
@@ -65,8 +67,6 @@ class SitemapController extends Controller
             $sitemapcategories->add("https://" . $host . "/" . str_slug($c->category_tr) . "/" . $c->id, $c->created_at, 0.4, "daily");
             $counter++;
         }
-
-
 //districts
         foreach ($districts as $d) {
             if ($counter == 100) {
@@ -79,7 +79,6 @@ class SitemapController extends Controller
             $sitemapdistricts->add("https://" . $host . "/" . str_slug($d->district_tr), $d->created_at, 0.4, "daily");
             $counter++;
         }
-
 //İmages
         foreach ($posts as $p) {
             if ($counter == 1000) {
@@ -113,7 +112,7 @@ class SitemapController extends Controller
                 $counter = 0;
                 $sitemapCounter++;
             }
-            $sitemapvideogaleri->add("https://www.youtube.com/watch?v=" . $v->posts_video, $v->created_at, 0.8, "daily");
+            $sitemapvideogaleri->add("https://" . $host . "/" . str_slug($v->title_tr)."/".$v->id."/haberi", $v->created_at, 0.8, "daily");
             $counter++;
         }
         if (!empty($sitemaphome->model->getItems())) {
@@ -149,8 +148,6 @@ class SitemapController extends Controller
             $sitemapvideogaleri->addSitemap(secure_url('sitemap-videogaleri' . '.xml'));
             $sitemapvideogaleri->model->resetItems();
         }
-
-
         $sitemaphome->addSitemap(URL::to('sitemap-categories.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to('sitemap-districts.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to('sitemap-fotogaleri' . '.xml'), Carbon::today());
