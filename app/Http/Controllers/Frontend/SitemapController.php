@@ -8,9 +8,7 @@ use App\Models\Category;
 use App\Models\District;
 use App\Models\Photo;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Models\Post;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 
 
@@ -18,6 +16,7 @@ class SitemapController extends Controller
 {
     public function sitemap()
     {
+        dd("sitemap");
         $sitemaphome = App::make('sitemap');//home
         $sitemapcategories = App::make('sitemap');//categories
         $sitemapdistricts = App::make('sitemap');//districts
