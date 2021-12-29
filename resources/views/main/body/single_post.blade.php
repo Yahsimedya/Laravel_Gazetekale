@@ -89,20 +89,7 @@
                         </a>
                     @endforeach
                 </div>
-                @if ($tagCount>=1)
 
-                    @foreach($maybeRelated as $row)
-                        <a href="{{ URL::to('/' . str_slug($row->title_tr). '/' . $row->post_id . '/' . 'haberi') }}">
-                            <div class="row p-3 border-top">
-                                <div class="col-md-5"><img height="200" class="img-fluid lazyload" src="{{asset($row->image)}}"></div>
-                                <div class="col-md-7 my-auto">
-                                    <small class="font-weight-bold text-secondary">İlginizi Çekebilir</small>
-                                    <p class="card-kisalt font-weight-bold">{{$row->title_tr}}</p>
-                                </div>
-                            </div>
-                        </a>
-                    @endforeach
-                @endif
                 <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
                 <div class="reklam-alani mb-2 text-center">
                     @foreach($ads as $ad)
