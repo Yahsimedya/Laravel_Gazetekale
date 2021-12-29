@@ -521,7 +521,7 @@ public function OldDByazarlar(){
 
         $youtube = Cache::remember("youtube", Carbon::now()->addYear(), function () {
             if (Cache::has('youtube')) return Cache::has('youtube');
-            return Post::where('category_id', 12)->where('status', 1)->limit(15)->latest('created_at')->get();
+            return Post::where('category_id', 12)->where('status', 1)->limit(6)->latest('created_at')->get();
 
         });
 
