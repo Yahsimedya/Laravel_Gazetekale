@@ -34,8 +34,7 @@ class SitemapController extends Controller
         $sitemapCounters = 0;
         $sitemapCounterAllPage = 0;
         $sitemapCounterImages = 0;
-        $host = request()->getHost();
-dd($host);
+        $host ="www.gazetekale.com";
 
 //all page
         foreach ($posts as $p) {
