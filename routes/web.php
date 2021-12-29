@@ -379,7 +379,8 @@ Route::post('/comments/post/{postid}', [CommentsController::class, 'AddComments'
 
 
 
-
+//Eski yapıdaki urlyi yeni yapıya döndürüp haberi açıyoruz
+Route::get('/haber-{slug}', [ExtraController::class, 'redirect'])->name('redirect')
 
 //Notification
 Route::get('/Notification', [NotificationController::class, 'index'])->name("notification.index");
