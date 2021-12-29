@@ -688,7 +688,7 @@ public function OldDByazarlar(){
         $ids = $r;
         $post = Post::find($ids[count($r) - 1]);
         $maybeRelated=[];
-
+dd($ids[count($r) - 1]);
         $comments = Comments::where('posts_id', $ids[count($r) - 1])->where('status', 1)->get();
 
         $slider = Post::latest('created_at')
