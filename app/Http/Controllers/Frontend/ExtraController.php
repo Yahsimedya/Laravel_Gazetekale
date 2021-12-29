@@ -681,6 +681,7 @@ public function OldDByazarlar(){
 
     public function SinglePost($slug, $id)
     {
+        dd($id);
         $r = $_SERVER['REQUEST_URI'];
         $r = explode('-', $r);
         $r = array_filter($r);
