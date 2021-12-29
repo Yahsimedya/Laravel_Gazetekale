@@ -186,6 +186,7 @@
 
                                             </select>
                                         </div>
+
                                         <div class="col-xs-12 col-md-12">
                                             <label>İller </label>
                                             <input type="hidden" name="user_id" value="{{Auth::id()}}">

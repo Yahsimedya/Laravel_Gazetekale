@@ -147,71 +147,71 @@
             </div>
             <center>{{$message}}</center>
             @foreach($newss as $news)
+                @if($news['title']!=null)
+                    <form method="POST" action="{{route('anadoluajans.insert')}}">
+                        @csrf
+                        <div class="form-group">
+                            <div class="col-md-12" style="margin-top:40px;">
+                                <label><b>Haber Başlık<b></b></b></label><b><b>
 
 
-                <form method="POST" action="{{route('anadoluajans.insert')}}">
-                    @csrf
-                    <div class="form-group">
-                        <div class="col-md-12" style="margin-top:40px;">
-                            <label><b>Haber Başlık<b></b></b></label><b><b>
+                                        <input type="hidden" name="image" value="">
+
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-md-12">
+                                                <input type="text" id="pcinput" name="title_tr" class="form-control"
+                                                       value="{{$news['title']}}">
+                                            </div>
 
 
-                                    <input type="hidden" name="image" value="">
+                                            <div class="col-xs-12 col-md-12">
+                                                <label>Haber Kategori</label>
+                                                <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                                                <select name="category_id" id="" class="form-control">
 
-                                    <div class="row">
+                                                    @foreach ($category as $kategori )
+                                                        <option
+                                                            value="{{$kategori->id}}">{{$kategori->category_tr}}</option>
+                                                    @endforeach
 
-                                        <div class="col-xs-12 col-md-12">
-                                            <input type="text" id="pcinput" name="title_tr" class="form-control"
-                                                   value="{{$news['title']}}">
-                                        </div>
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-12 col-md-12">
+                                                <label>Haber Detay</label>
 
-
-                                        <div class="col-xs-12 col-md-12">
-                                            <label>Haber Kategori</label>
-                                            <input type="hidden" name="user_id" value="{{Auth::id()}}">
-                                            <select name="category_id" id="" class="form-control">
-
-                                                @foreach ($category as $kategori )
-                                                    <option
-                                                        value="{{$kategori->id}}">{{$kategori->category_tr}}</option>
-                                                @endforeach
-
-                                            </select>
-                                        </div>
-                                        <div class="col-xs-12 col-md-12">
-                                            <label>Haber Detay</label>
-
-                                            <textarea id="" class="form-control" name="details_tr" rows="3">{{$news['content']}}
+                                                <textarea id="" class="form-control" name="details_tr" rows="3">{{$news['content']}}
 </textarea>
 
-                                        </div>
+                                            </div>
 
-                                    </div>
+                                        </div>
+                                    </b></b></div>
+                            <b><b>
                                 </b></b></div>
                         <b><b>
-                            </b></b></div>
-                    <b><b>
-                            <hr>
+                                <hr>
 
-                            <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
 
 
-                            <div class="row">
+                                <div class="row">
 
 
-                            </div>
+                                </div>
 
 
-                            <div class="col-md-2 float-right" align="center">
-                                <button class="btn btn-success" name="botinsert" type="submit" style="width:100%;">
-                                    Ekle
-                                </button>
-                            </div>
-                            <br>
-                            <hr>
+                                <div class="col-md-2 float-right" align="center">
+                                    <button class="btn btn-success" name="botinsert" type="submit" style="width:100%;">
+                                        Ekle
+                                    </button>
+                                </div>
+                                <br>
+                                <hr>
 
 
-                        </b></b></form>
+                            </b></b></form>
+                @endif
 
 
 
