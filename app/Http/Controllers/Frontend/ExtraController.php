@@ -47,7 +47,7 @@ class ExtraController extends Controller
     public function redirect($slug)
     {
 
-        $r = $_SERVER['REQUEST_URI'];
+     /*   $r = $_SERVER['REQUEST_URI'];
         $r = explode('?', $r);
         $r = array_filter($r);
         $r = array_merge($r, array());
@@ -58,9 +58,8 @@ class ExtraController extends Controller
         $idCount = count($id) - 1;
         $alinanID = $id[$idCount];
         $replaced = Str::of($r[0])->replace('-' . $alinanID, '-' . $alinanID);
-   
         return Redirect::to($replaced);
-
+*/
     }
 
     public function DBTrans()
