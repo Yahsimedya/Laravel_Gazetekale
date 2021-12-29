@@ -712,8 +712,8 @@ dd($ids[count($r) - 1]);
                 ->limit(10)
                 ->get();
         $random = Post::inRandomOrder()->limit(3)->get();
-        $tag_ids = $post->tag()->get();
-        $tagCount = $tag_ids->count();
+//        $tag_ids = $post->tag()->get();
+//        $tagCount = $tag_ids->count();
 
         $tagName =
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
@@ -739,7 +739,7 @@ dd($ids[count($r) - 1]);
                     ->get();
             }
         }
-        return view('main.body.single_post', compact('post', 'ads','tagName','maybeRelated','tagCount', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
+        return view('main.body.single_post', compact('post', 'ads','tagName','maybeRelated', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
 
 
     }
