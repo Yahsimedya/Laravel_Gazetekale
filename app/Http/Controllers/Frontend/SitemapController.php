@@ -79,6 +79,7 @@ class SitemapController extends Controller
             $sitemapdistricts->add("https://" . $host . "/" . str_slug($d->district_tr), $d->created_at, 0.4, "daily");
             $counter++;
         }
+        dd("posts");
 
 //İmages
         foreach ($posts as $p) {
@@ -92,7 +93,6 @@ class SitemapController extends Controller
             $sitemapimages->add("https://" . $host . "/" . $p->image, $p->created_at, 0.8, "daily");
             $counter++;
         }
-        dd("posts");
 
 //fotoğraf galerisi
         foreach ($photos as $p) {
