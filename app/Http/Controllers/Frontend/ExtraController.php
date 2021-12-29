@@ -58,7 +58,6 @@ class ExtraController extends Controller
         $idCount = count($id) - 1;
         $alinanID = $id[$idCount];
         $replaced = Str::of($r[0])->replace('-' . $alinanID, '-' . $alinanID);
-        dd($replaced);
         return Redirect::to($replaced);
 
     }
