@@ -50,7 +50,7 @@ class SitemapController extends Controller
                 $counter = 0;
 
             }
-            $sitemaphome->add("https://" . $host . "/" . str_slug($p->title_tr) . "/" . $p->id . "/haberi", $p->created_at, 0.8, "daily");
+            $sitemaphome->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
             $counter++;
 
         }
@@ -111,7 +111,8 @@ class SitemapController extends Controller
                 $counter = 0;
                 $sitemapCounter++;
             }
-            $sitemapvideogaleri->add("https://" . $host . "/" . str_slug($v->title_tr)."/".$v->id."/haberi", $v->created_at, 0.8, "daily");
+            $sitemapvideogaleri->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
+
             $counter++;
         }
         if (!empty($sitemaphome->model->getItems())) {
