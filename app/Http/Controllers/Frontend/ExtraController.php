@@ -696,7 +696,7 @@ public function OldDByazarlar(){
             ->limit(6)
             ->get();
 
-        $category = Category::where('id', '=', $post->category_id)->get();
+//        $category = Category::where('id', '=', $post->category_id)->get();
 
         $ads =
             Ad::latest('created_at')
