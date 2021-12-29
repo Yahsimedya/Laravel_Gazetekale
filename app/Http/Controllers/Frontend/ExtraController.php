@@ -739,7 +739,7 @@ public function OldDByazarlar(){
                     ->get();
             }
         }
-        return view('main.body.single_post', compact('post', 'ads','tagName','maybeRelated','tagCount', 'category', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
+        return view('main.body.single_post', compact('post', 'ads','tagName','maybeRelated','tagCount', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
 
 
     }
