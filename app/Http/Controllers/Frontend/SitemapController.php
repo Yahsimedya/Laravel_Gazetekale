@@ -79,7 +79,6 @@ class SitemapController extends Controller
             $sitemapdistricts->add("https://" . $host . "/" . str_slug($d->district_tr), $d->created_at, 0.4, "daily");
             $counter++;
         }
-        dd("posts");
 
 //İmages
         foreach ($posts as $p) {
