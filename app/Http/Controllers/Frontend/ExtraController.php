@@ -706,7 +706,7 @@ public function OldDByazarlar(){
                 ->limit(10)
                 ->get();
         $nextrelated = Post::latest('created_at')
-            ->where('category_id', 1)->limit(10)->orderByDesc('id')
+            ->where('category_id', $post->category_id)->limit(10)->orderByDesc('id')
             ->get();
         $expiresAt = now()->addMinute(20);
         views($post)
