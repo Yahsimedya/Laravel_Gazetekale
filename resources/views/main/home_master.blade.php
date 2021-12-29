@@ -79,9 +79,9 @@
     <meta http-equiv="Cache-control" content="public">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script rel="preload" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+   <!-- <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>-->
     <script rel="preload" src="{{mix('frontend/assets/js/combine.js')}}"></script>
 {{--        <script type="text/javascript" src="{{asset('frontend/assets/js/svg-turkiye-haritasi.js')}}"></script>--}}
 
