@@ -669,6 +669,7 @@ public function OldDByazarlar(){
         $r = array_merge($r, array());
         $ids = $r;
         $post = Post::find($ids[count($r) - 1]);
+        $maybeRelated=[];
 
         $comments = Comments::where('posts_id', $ids[count($r) - 1])->where('status', 1)->get();
 
@@ -693,7 +694,16 @@ public function OldDByazarlar(){
                 ->limit(10)
                 ->get();
         $random = Post::inRandomOrder()->limit(3)->get();
+        $tag_ids = $post->tag()->get();
+        $tagCount = $tag_ids->count();
 
+        $tagName =
+            Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+                ->where('posts.id', $id)
+                ->limit(10)
+                ->get();
         $nextrelated = Post::latest('created_at')
             ->where('category_id', $post->category_id)->limit(10)->orderByDesc('id')
             ->get();
@@ -702,7 +712,16 @@ public function OldDByazarlar(){
             ->cooldown($expiresAt)
             ->record();
         $seoset = Seos::first();
-        return view('main.body.single_post', compact('post', 'ads', 'category', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
+        if(isset($ids)) {
+            if ($ids!=[]){
+                $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                    ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+                    ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->latest()
+                    ->get();
+            }
+        }
+        return view('main.body.single_post', compact('post', 'ads','tagName','maybeRelated','tagCount', 'category', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
 
 
     }
