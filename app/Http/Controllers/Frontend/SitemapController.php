@@ -65,7 +65,7 @@ class SitemapController extends Controller
             $sitemapcategories->add("https://" . $host . "/" . str_slug($c->category_tr) . "/" . $c->id, $c->created_at, 0.4, "daily");
             $counter++;
         }
-        dd("sitemap1");
+
 
 //districts
         foreach ($districts as $d) {
@@ -79,6 +79,7 @@ class SitemapController extends Controller
             $sitemapdistricts->add("https://" . $host . "/" . str_slug($d->district_tr), $d->created_at, 0.4, "daily");
             $counter++;
         }
+        dd("districts");
 //İmages
         foreach ($posts as $p) {
             if ($counter == 1000) {
