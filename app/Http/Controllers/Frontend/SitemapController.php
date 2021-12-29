@@ -16,7 +16,6 @@ class SitemapController extends Controller
 {
     public function sitemap()
     {
-        dd("sitemap");
         $sitemaphome = App::make('sitemap');//home
         $sitemapcategories = App::make('sitemap');//categories
         $sitemapdistricts = App::make('sitemap');//districts
@@ -35,6 +34,7 @@ class SitemapController extends Controller
         $sitemapCounterImages = 0;
         $host = request()->getHost();
 
+        dd("sitemap1");
 
 //all page
         foreach ($posts as $p) {
