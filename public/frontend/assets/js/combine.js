@@ -356,7 +356,7 @@ function svgturkiyeharitasi() {
     function (event) {
       info.style.top = event.pageY + 25 + 'px';
       info.style.left = event.pageX + 'px';
-    },false
+    }
   );
 
   element.addEventListener(
