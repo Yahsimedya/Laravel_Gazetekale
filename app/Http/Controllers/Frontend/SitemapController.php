@@ -34,7 +34,6 @@ class SitemapController extends Controller
         $sitemapCounterImages = 0;
         $host = request()->getHost();
 
-        dd("sitemap1");
 
 //all page
         foreach ($posts as $p) {
@@ -147,6 +146,8 @@ class SitemapController extends Controller
             $sitemapvideogaleri->addSitemap(secure_url('sitemap-videogaleri' . '.xml'));
             $sitemapvideogaleri->model->resetItems();
         }
+        dd("sitemap1");
+
         $sitemaphome->addSitemap(URL::to('sitemap-categories.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to('sitemap-districts.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to('sitemap-fotogaleri' . '.xml'), Carbon::today());
