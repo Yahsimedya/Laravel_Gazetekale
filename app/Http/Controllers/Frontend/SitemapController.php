@@ -65,6 +65,8 @@ class SitemapController extends Controller
             $sitemapcategories->add("https://" . $host . "/" . str_slug($c->category_tr) . "/" . $c->id, $c->created_at, 0.4, "daily");
             $counter++;
         }
+        dd("sitemap1");
+
 //districts
         foreach ($districts as $d) {
             if ($counter == 100) {
@@ -113,7 +115,6 @@ class SitemapController extends Controller
             $sitemapvideogaleri->add("https://www.youtube.com/watch?v=" . $v->posts_video, $v->created_at, 0.8, "daily");
             $counter++;
         }
-        dd("sitemap1");
         if (!empty($sitemaphome->model->getItems())) {
             $sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounter);
             $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounter . '.xml'), Carbon::today());
