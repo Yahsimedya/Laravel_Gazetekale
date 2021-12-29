@@ -4,8 +4,7 @@
     use App\Models\Category;
         $category=Category::get();
         $theme=\App\Models\Theme::first();
-        $education = Post::where('category_id', $theme->category1)->where('status', 1)->limit(4)->latest('created_at')->get();
-        $kultur = Post::where('category_id', $theme->category2)->where('status', 1)->limit(4)->latest('created_at')->get();
+
 
 
 

@@ -39,7 +39,7 @@
                 <div class="detay__baslik"><h1>{{$post->title_tr}}</h1></div>
                 <p class="detay__spot">{{$post->subtitle_tr}}</p>
                 <ul class="detay__kategori list-unstyled">
-                    <li class="float-left mr-2"><i class="far fa-circle detay__icon"></i>{{$category[0]->category_tr}}
+                    <li class="float-left mr-2"><i class="far fa-circle detay__icon"></i>{{$post->category->category_tr}}
                     </li>
                     <li class="float-left mr-2"><i
                             class="far fa-calendar-alt detay__icon"></i>{{ \Carbon\Carbon::parse($post->created_at)->isoFormat('DD MMMM YYYY') }}
