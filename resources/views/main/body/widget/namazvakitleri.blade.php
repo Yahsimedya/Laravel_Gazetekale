@@ -7,10 +7,9 @@
                     class="col-lg-2 col-md-2 col-sm-2 col-6  padding-left mt-1 namaz__kolon text-center font-weight-bold"><span
                         class="text-light mb-0  namaz__kolon-text">
                          <div class="row">
-                            <form id="form" class="text-center pb-3">
+                            <form id="form" class="text-center ">
                                 @csrf
-                                <select class="form-control form-control-sm namaz__select mb-1 ml-4" name="sehirsec"
-                                >
+                                <select class="form-control form-control-sm namaz__select mb-1 ml-4" name="sehirsec">
 
 
                                     <option value="548">KIRIKKALE</option>
