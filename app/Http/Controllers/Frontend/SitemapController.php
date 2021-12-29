@@ -8,9 +8,7 @@ use App\Models\Category;
 use App\Models\District;
 use App\Models\Photo;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Models\Post;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 
 
@@ -115,6 +113,7 @@ class SitemapController extends Controller
             $sitemapvideogaleri->add("https://www.youtube.com/watch?v=" . $v->posts_video, $v->created_at, 0.8, "daily");
             $counter++;
         }
+        dd("sitemap1");
         if (!empty($sitemaphome->model->getItems())) {
             $sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounter);
             $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounter . '.xml'), Carbon::today());
@@ -148,6 +147,8 @@ class SitemapController extends Controller
             $sitemapvideogaleri->addSitemap(secure_url('sitemap-videogaleri' . '.xml'));
             $sitemapvideogaleri->model->resetItems();
         }
+
+
         $sitemaphome->addSitemap(URL::to('sitemap-categories.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to('sitemap-districts.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to('sitemap-fotogaleri' . '.xml'), Carbon::today());
