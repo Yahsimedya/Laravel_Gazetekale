@@ -218,28 +218,21 @@
 
                             <div class="row">
 
-                                @for($k=1;$k<=1;$k++)
-
-
-                                    <input type="hidden" name="orderImages{{$k}}"
-                                           value="{{$news[$i]['resim']['image'][$k-1]}}">
-
-
-
-
-
+                              @foreach($news[$i]['resim']['image'] as $newsImage)
+                                    <input type="hidden" name="orderImages"
+                                           value="{{$newsImage}}">
                                     <div class="col-md-3 pb-2"><label>
 
 
                                             <img width="100%"
                                                  style="padding-top:20px;max-height:200px; min-height:200px;"
-                                                 src="{{$news[$i]['resim']['image'][$k-1]}}"></label>
+                                                 src="{{$newsImage}}"></label>
                                         <div><a class="btn btn-info w-100" style="padding:10px 0px; width:100%;"
-                                                href="{{$news[$i]['resim']['image'][$k-1]}}">Foto
-                                                İndir-{{$k}}</a></div>
+                                                href="{{$newsImage}}">Foto
+                                                İndir</a></div>
                                     </div>
                                     <input type="hidden" name="orderImagesitem" value="{{$k}}">
-                                @endfor
+                                @endforeach
 
                             </div>
 

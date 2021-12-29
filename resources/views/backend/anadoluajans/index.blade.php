@@ -148,6 +148,7 @@
             <center>{{$message}}</center>
             @foreach($newss as $news)
 
+
                 <form method="POST" action="{{route('anadoluajans.insert')}}">
                     @csrf
                     <div class="form-group">

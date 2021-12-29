@@ -20,9 +20,9 @@ class AnadoluAjansController extends Controller
     public function add(Request $request)
     {
         //  dd($request->sehir);
-        $anadoluajans = \DB::table('anadoluajans')->get();
-        $username = $anadoluajans[0]->username;
-        $password = $anadoluajans[0]->password;
+        $anadoluajans = \DB::table('anadoluajans')->first();
+        $username = $anadoluajans->username;
+        $password = $anadoluajans->password;
         $crawler = new \BilginPro\Agency\Aa\Crawler([
             'user_name' => $username,
             'password' => $password
@@ -159,7 +159,7 @@ class AnadoluAjansController extends Controller
             return view('backend.anadoluajans.index', compact('newss', 'yeni', 'category'));
         }
     else {
-        return view('backend.anadoluajans.index');
+        return view('backend.anadoluajans.index',compact('newss'));
     }
     }
 }
