@@ -32,6 +32,7 @@ use Illuminate\View\View;
 use Session;
 use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 //use PublicApi;
 class ExtraController extends Controller
