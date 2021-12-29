@@ -221,6 +221,7 @@ use App\Models\Theme;
 
     <script>
         $(document).ready(function () {
+            if ( $('.ilce-slider').length > 0 ) {
 
             var slider = tns({
                 container: '.ilce-slider',
@@ -255,45 +256,48 @@ use App\Models\Theme;
                 }
 
             });
+        }
         });
 
     </script>
     <script>
         $(document).ready(function () {
+            if ( $('.ilce-slider').length > 0 ) {
 
-            var slider = tns({
-                container: '.ikinci-slider',
-                items: 3,
-                slideBy: 'page',
-                nav: true,
-                navPosition: "bottom",
-                autoplay: true,
-                controls: false,
-                // controlsPosition: "bottom",
-                // controlsText: ["&#60;	", "&#62;"],
-                autoplayButton: false,
-                mouseDrag: true,
-                autoplayTimeout: 300000,
-                autoplayButtonOutput: false,
-                "gutter": 14,
-                responsive: {
-                    0: {
+                var slider = tns({
+                    container: '.ikinci-slider',
+                    items: 3,
+                    slideBy: 'page',
+                    nav: true,
+                    navPosition: "bottom",
+                    autoplay: true,
+                    controls: false,
+                    // controlsPosition: "bottom",
+                    // controlsText: ["&#60;	", "&#62;"],
+                    autoplayButton: false,
+                    mouseDrag: true,
+                    autoplayTimeout: 300000,
+                    autoplayButtonOutput: false,
+                    "gutter": 14,
+                    responsive: {
+                        0: {
 
-                        items: 1
-                    },
-                    640: {
+                            items: 1
+                        },
+                        640: {
 
-                        items: 2
-                    },
-                    700: {
-                        gutter: 14
-                    },
-                    900: {
-                        items: 3
+                            items: 2
+                        },
+                        700: {
+                            gutter: 14
+                        },
+                        900: {
+                            items: 3
+                        }
                     }
-                }
 
-            });
+                });
+            }
         });
 
     </script>
