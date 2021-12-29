@@ -667,6 +667,8 @@ public function OldDByazarlar(){
 
         $r = $_SERVER['REQUEST_URI'];
         $r = explode('-', $r);
+        $r = explode('?', $r);
+        dd($r);
         $r = array_filter($r);
         $r = array_merge($r, array());
         $ids = $r;
