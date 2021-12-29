@@ -17,14 +17,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>Resim Url</label>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <input type="text" name="image"  class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
                 <label>Bildirim İçeriği</label>
                 <div class="row">
                     <div class="col-lg-12">
@@ -32,6 +24,15 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label>Resim Url</label>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="text" name="image"  class="form-control">
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label>Bildirim Türü</label>
                 <div class="row">
