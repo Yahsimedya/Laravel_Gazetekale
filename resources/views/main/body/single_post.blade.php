@@ -74,8 +74,8 @@
                 <div class="wrapper">
 
                     <div class="navbar-social">
-                        <a href="http://twitter.com/share?url=<?php echo "https://" . $_SERVER['HTTP_HOST'] . "" . $_SERVER['REQUEST_URI'] . ""; ?>" class="icon-button twitter"><i class="icon-twitter fa fa-twitter"></i><span></span></a>
-                        <a href="https://www.facebook.com/sharer.php?u=<?php echo "https://" . $_SERVER['HTTP_HOST'] . "" . $_SERVER['REQUEST_URI'] . ""; ?>" class="icon-button facebook"><i class="icon-facebook fa fa-facebook"></i><span></span></a>
+                        <a href="https://twitter.com/share?url={{URL::to('/haber-'.str_slug($home[$i]->title_tr).'-'.$home[$i]->id)}}" class="icon-button twitter"><i class="icon-twitter fa fa-twitter"></i><span></span></a>
+                        <a href="https://www.facebook.com/sharer.php?u={{URL::to('/haber-'.str_slug($home[$i]->title_tr).'-'.$home[$i]->id)}}" class="icon-button facebook"><i class="icon-facebook fa fa-facebook"></i><span></span></a>
                         <a href="https://youtube.com/gazetekale" target="_blank" class="icon-button google-plus"><i class="icon-youtube fa fa-youtube"></i><span></span></a>
                     </div>
                 </div>
