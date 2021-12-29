@@ -57,7 +57,9 @@ class ExtraController extends Controller
         $id = array_merge($id, array());
         $idCount = count($id) - 1;
         $alinanID = $id[$idCount];
-        $replaced = Str::of($r[0])->replace('-' . $alinanID, '/' . $alinanID)->replace('/haber-', '');
+
+        $replaced = Str::of($r[0])->replace('-' . $alinanID, '/' . $alinanID);
+        dd($replaced);
         return Redirect::to($replaced . '/haberi');
 
     }
