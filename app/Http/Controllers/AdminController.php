@@ -37,9 +37,9 @@ class AdminController extends Controller
         $comments = DB::table('comments')->get('id');
         $commentsCount = $comments->count();
         $i = 0;
-        $count = views(Post::class)->period(Period::subHours(24))->count();
-        $countwrites = views(AuthorsPost::class)->period(Period::subHours(24))->count();
-        $countTekil = views(Post::class)->period(Period::subHours(24))->unique()->count();
+        $count = views(Post::class)->period(Period::subHours(24))->remember()->count();
+        $countwrites = views(AuthorsPost::class)->period(Period::subHours(24))->remember()->count();
+        $countTekil = views(Post::class)->period(Period::subHours(24))->unique()->remember()->count();
         $days = Carbon::today();
         $authors_posts = DB::table('authors_posts')->get('id');
 

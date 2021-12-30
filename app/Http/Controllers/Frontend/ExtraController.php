@@ -479,7 +479,7 @@ public function OldDByazarlar(){
 
         $home = Cache::remember("home", Carbon::now()->addYear(), function () {
             if (Cache::has('home')) return Cache::has('home');
-            return Post::where('status', 1)
+            return Post::where('status', 1)->whereManset(1)
                 ->latest('created_at')->limit(25)
                 ->get();
         });
