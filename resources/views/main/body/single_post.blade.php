@@ -88,20 +88,20 @@
                         <a href="https://youtube.com/gazetekale" target="_blank" class="icon-button google-plus"><i class="icon-youtube fa fa-youtube"></i><span></span></a>
                     </div>
                 </div>
-                <div class="row p-3">
-                    @foreach($tagName as $relate)
-                        {{--    {{dd($relate)}}--}}
+{{--                <div class="row p-3">--}}
+{{--                    @foreach($tagName as $relate)--}}
+{{--                        --}}{{--    {{dd($relate)}}--}}
 
-                        <a href="{{ URL::to('/etiket/'.str_slug($relate->name).'/'.$relate->id) }}">
-                            <div class="btn btn-sm btn-secondary  d-inline-block float-left ml-1 mb-2">{{$relate->name}}
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
+{{--                        <a href="{{ URL::to('/etiket/'.str_slug($relate->name).'/'.$relate->id) }}">--}}
+{{--                            <div class="btn btn-sm btn-secondary  d-inline-block float-left ml-1 mb-2">{{$relate->name}}--}}
+{{--                            </div>--}}
+{{--                        </a>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
                 @if ($tagCount>=1)
 
                     @foreach($maybeRelated as $row)
-                        <a href="{{ URL::to('/' . str_slug($row->title_tr). '/' . $row->post_id . '/' . 'haberi') }}">
+                        <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->post_id)}}">
                             <div class="row p-3 border-top">
                                 <div class="col-md-5"><img height="200" class="img-fluid lazyload" src="{{asset($row->image)}}"></div>
                                 <div class="col-md-7 my-auto">
