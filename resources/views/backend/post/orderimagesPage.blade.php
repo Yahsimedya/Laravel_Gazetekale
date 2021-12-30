@@ -22,8 +22,6 @@
 
                     <div align="right" class="col-md-12">
                         <button type="submit" href="{{route('Orderphotodelete',1,31)}}" name="urunfotosil" class="btn btn-danger "><i class="fa fa-trash" aria-hidden="true"></i> Seçilenleri Sil</button>
-                        <button type="submit" href="" name="kapakfotosec" class="btn btn-danger "><i class="fa fa-trash" aria-hidden="true"></i>Güncelle</button>
-
                         <a class="btn btn-success" href="{{route('all.orderImagesUploadPage',$id)}}"><i class="fa fa-plus" aria-hidden="true"></i> Haber Fotoğrafı Yükle</a>
                     </div>
                     <div class="clearfix"></div>
@@ -46,11 +44,7 @@
 
 
                                     <div class="form-group ml-2">
-                                        <div class="form-check form-check-inline mt-4">
-                                            <label class="form-check-label">
-                                                <input type="radio"  class="form-check-input-styled-success" name="haberfoto_kapak" value="{{$row->id}}"  <?php //  if ($haberfoto1==$haberfoto2) { echo "checked"; }   ?> > kapak
-                                            </label>
-                                        </div>
+
                                <!--      <input type="text" name="secilifoto" value="{{$row->image}}">-->
                                         <div class="form-check form-check-inline">
                                             <label class="form-check-label">

@@ -96,6 +96,8 @@
                     <th>Fotoğraf</th>
                     <th>Tarih</th>
 
+
+                    <th>Çoklu Foto</th>
                     <th>Durum</th>
 
                     <th class="text-center">Actions</th>
@@ -120,12 +122,12 @@
 
                     <td>{{Carbon\Carbon::parse($row->created_at)->diffForHumans()}}</td>
 
-               <!--     <td>
-                        <a href="route('all.orderImagesPage',$row->id)}}">
+                <td>
+                        <a href="{{route('all.orderImagesPage',$row->id)}}">
                         <i class="icon-images2"></i>
                         </a>
                     </td>
-                    -->
+
 
 
                     <td> @if ($row->status == 1)

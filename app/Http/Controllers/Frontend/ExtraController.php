@@ -10,6 +10,7 @@ use App\Models\AuthorsPost;
 use App\Models\Comments;
 use App\Models\District;
 use App\Models\FixedPage;
+use App\Models\OrderImages;
 use App\Models\Photo;
 use App\Models\Photocategory;
 use App\Models\Post;
@@ -47,19 +48,50 @@ class ExtraController extends Controller
     public function redirect($slug)
     {
 
-     /*   $r = $_SERVER['REQUEST_URI'];
-        $r = explode('?', $r);
-        $r = array_filter($r);
-        $r = array_merge($r, array());
-        $id = $r[0];
-        $id = explode('-', $id);
-        $id = array_filter($id);
-        $id = array_merge($id, array());
-        $idCount = count($id) - 1;
-        $alinanID = $id[$idCount];
-        $replaced = Str::of($r[0])->replace('-' . $alinanID, '-' . $alinanID);
-        return Redirect::to($replaced);
-*/
+        /*   $r = $_SERVER['REQUEST_URI'];
+           $r = explode('?', $r);
+           $r = array_filter($r);
+           $r = array_merge($r, array());
+           $id = $r[0];
+           $id = explode('-', $id);
+           $id = array_filter($id);
+           $id = array_merge($id, array());
+           $idCount = count($id) - 1;
+           $alinanID = $id[$idCount];
+           $replaced = Str::of($r[0])->replace('-' . $alinanID, '-' . $alinanID);
+           return Redirect::to($replaced);
+   */
+    }
+
+    public function haberFotoTrans(){
+        ini_set('max_execution_time', 0);
+        $OrderImagesEski = DB::table('haber_foto')->get();//eklenecek eski köşe yazıları tablosu
+        $yeniData = array();
+        DB::beginTransaction();
+        $savedcount = 0;
+        $unsavedcount = 0;
+
+
+        for ($i = 1; $i <= count($OrderImagesEski) - 1; $i++) {
+            $OrderImagespost = OrderImages::insert([
+                "id" => $OrderImagesEski[$i]->haberfoto_id,
+                "haberId" => $OrderImagesEski[$i]->haber_id,
+                "image" => "storage/postimg/" . $OrderImagesEski[$i]->haberfoto_resimyol,
+            ]);
+            if ($OrderImagespost > 0) {
+                $savedcount++;
+            } else {
+                $unsavedcount++;
+            }
+
+        }
+        if ($unsavedcount > 0) {
+            DB::rollBack();
+        } else {
+            DB::commit();
+        }
+        return "Veri taşıma başarılı";
+
     }
 
     public function DBTrans()
@@ -195,41 +227,41 @@ class ExtraController extends Controller
         return "Veri taşıma başarılı";
 
     }
-public function OldDByazarlar(){
-    ini_set('max_execution_time', 0);
-    $koseyazisieski = DB::table('kullanici')->get();//eklenecek eski köşe yazıları tablosu
-    $yeniData = array();
-    DB::beginTransaction();
-    $savedcount = 0;
-    $unsavedcount = 0;
+    public function OldDByazarlar(){
+        ini_set('max_execution_time', 0);
+        $koseyazisieski = DB::table('kullanici')->get();//eklenecek eski köşe yazıları tablosu
+        $yeniData = array();
+        DB::beginTransaction();
+        $savedcount = 0;
+        $unsavedcount = 0;
 
-    for ($i = 1; $i <= count($koseyazisieski) - 1; $i++) {
-        $yenikoseyazisi = Authors::insert([
-            "id" => $koseyazisieski[$i]->kullanici_id,
-            "name" => $koseyazisieski[$i]->kullanici_ad,
-            "image" => $koseyazisieski[$i]->kullanici_resim == null ? "" : $koseyazisieski[$i]->kullanici_resim,
-            "status" => $koseyazisieski[$i]->kullanici_durum,
-            "mail" => $koseyazisieski[$i]->kullanici_mail,
-            "facebook" => $koseyazisieski[$i]->kullanici_facebook,
-            "twitter" => $koseyazisieski[$i]->kullanici_twitter,
-            "youtube" => $koseyazisieski[$i]->kullanici_youtube,
+        for ($i = 1; $i <= count($koseyazisieski) - 1; $i++) {
+            $yenikoseyazisi = Authors::insert([
+                "id" => $koseyazisieski[$i]->kullanici_id,
+                "name" => $koseyazisieski[$i]->kullanici_ad,
+                "image" => $koseyazisieski[$i]->kullanici_resim == null ? "" : $koseyazisieski[$i]->kullanici_resim,
+                "status" => $koseyazisieski[$i]->kullanici_durum,
+                "mail" => $koseyazisieski[$i]->kullanici_mail,
+                "facebook" => $koseyazisieski[$i]->kullanici_facebook,
+                "twitter" => $koseyazisieski[$i]->kullanici_twitter,
+                "youtube" => $koseyazisieski[$i]->kullanici_youtube,
 
-        ]);
-        if ($yenikoseyazisi > 0) {
-            $savedcount++;
-        } else {
-            $unsavedcount++;
+            ]);
+            if ($yenikoseyazisi > 0) {
+                $savedcount++;
+            } else {
+                $unsavedcount++;
+            }
+
         }
+        if ($unsavedcount > 0) {
+            DB::rollBack();
+        } else {
+            DB::commit();
+        }
+        return "Veri taşıma başarılı";
 
     }
-    if ($unsavedcount > 0) {
-        DB::rollBack();
-    } else {
-        DB::commit();
-    }
-    return "Veri taşıma başarılı";
-
-}
 
     public function PhotoGalleryDetail($photogalery)
     {
@@ -696,6 +728,8 @@ public function OldDByazarlar(){
 
         $comments = Comments::where('posts_id', $explodeID[count($explodeID)-1 ])->where('status', 1)->get();
 
+        $orderImages=OrderImages::where('haberId',$explodeID[count($explodeID)-1 ])->get();
+
         $slider = Post::latest('created_at')
             ->with('category')
             ->limit(6)
@@ -744,7 +778,7 @@ public function OldDByazarlar(){
                     ->get();
             }
         }
-        return view('main.body.single_post', compact('post', 'ads','tagName','maybeRelated', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
+        return view('main.body.single_post', compact('post', 'ads','tagName','orderImages','maybeRelated', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
 
 
     }

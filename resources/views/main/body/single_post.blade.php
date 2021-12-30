@@ -71,6 +71,15 @@
                     {!!$post->details_tr!!}
                 </p>
 
+                <p class="detay__icerik mt-4">
+                   @foreach($orderImages as $Images)
+                        <img src="{{asset($Images->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid w-100">
+
+
+                    @endforeach
+                </p>
+
+
                 <div class="wrapper">
 
                     <div class="navbar-social">

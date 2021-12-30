@@ -372,44 +372,39 @@ class PostController extends Controller
     }
 
 
-    //  public function OrderphotoUpload(Request $request, $id)
-    //  {
-    //
-    //      $image = $request->file('file');
-    //      $year = date("Y");
-    //      $benzersiz = uniqid();
-    //      $month = date("m");
-    //      $imageName = time() . $benzersiz . '.' . $image->extension();
-    //      $image->move(public_path('image/postimg/' . $year . '/' . $month . '/'), $imageName);
-    //      $url = 'image/postimg/' . $year . '/' . $month . '/' . $imageName;
-    //      DB::insert('insert into order_images (haberId, image) values (?, ?)', [$id, $url]);
-    //
-    //
-    //      return response()->json(['success' => $imageName]);
-    //
-    //
-    //  }
-    //
-    //  public function Orderphotoupdate(Request $request, $update, $id)
-    //  {
-    //      dd("update" . $request);
-    //
-    //  }
-    //
-    //  public function Orderphotodelete(Request $request, $id)
-    //  {
-    //
-    //      $secilenSayi = count($request->urunfotosec);
-    //      $images = $request->urunfotosec;
-    //
-    //
-    //      foreach ($images as $image) {
-    //
-    //          DB::table('order_images')->where('id', '=', $image)->delete();
-    //
-    //      }
-    //      return Redirect()->route('all.orderImagesPage',$id);
-    //  }
+      public function OrderphotoUpload(Request $request, $id)
+      {
+
+          $image = $request->file('file');
+          $year = date("Y");
+          $benzersiz = uniqid();
+          $month = date("m");
+          $imageName = time() . $benzersiz . '.' . $image->extension();
+          $image->move(public_path('storage/postimg/' . $year . '/' . $month . '/'), $imageName);
+          $url = 'storage/postimg/' . $year . '/' . $month . '/' . $imageName;
+          DB::insert('insert into order_images (haberId, image) values (?, ?)', [$id, $url]);
+          return response()->json(['success' => $imageName]);
+      }
+
+      public function Orderphotoupdate(Request $request, $update, $id)
+      {
+          dd("update" . $request);
+
+      }
+
+      public function Orderphotodelete(Request $request, $id)
+      {
+          $secilenSayi = count($request->urunfotosec);
+          $images = $request->urunfotosec;
+
+
+          foreach ($images as $image) {
+
+              DB::table('order_images')->where('id', '=', $image)->delete();
+
+          }
+          return Redirect()->route('all.orderImagesPage',$id);
+      }
 
 
 }

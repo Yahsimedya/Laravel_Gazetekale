@@ -77,6 +77,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
 
     Route::get('/DBTrans',[ExtraController::class,'DBTrans']);
+    Route::get('/haberFotoTrans',[ExtraController::class,'haberFotoTrans']);
     Route::get('/OldDByazarlar',[ExtraController::class,'OldDByazarlar']);
     Route::get('/OldDBkoseyazisi',[ExtraController::class,'OldDBkoseyazisi']);
 
@@ -162,10 +163,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 // POSTS ALL ROUTE
     Route::get('/add/post', [PostController::class, 'AddPost'])->name('add.post');
     Route::get('/all/post', [PostController::class, 'index'])->name('all.post');
-    //  Route::get('/all/orderImagesPage/{id}', [PostController::class, 'orderImagesPage'])->name('all.orderImagesPage');
-    //  Route::get('/all/orderImagesUploadPage/{id}', [PostController::class, 'orderImagesUploadPage'])->name('all.orderImagesUploadPage');
-    //  Route::post('/all/OrderphotoUpload/{id}', [PostController::class, 'OrderphotoUpload'])->name('OrderphotoUpload');
-    //  Route::post('/all/Orderphotodelete/{id}', [PostController::class, 'Orderphotodelete'])->name('Orderphotodelete');
+      Route::get('/all/orderImagesPage/{id}', [PostController::class, 'orderImagesPage'])->name('all.orderImagesPage');
+      Route::get('/all/orderImagesUploadPage/{id}', [PostController::class, 'orderImagesUploadPage'])->name('all.orderImagesUploadPage');
+      Route::post('/all/OrderphotoUpload/{id}', [PostController::class, 'OrderphotoUpload'])->name('OrderphotoUpload');
+      Route::post('/all/Orderphotodelete/{id}', [PostController::class, 'Orderphotodelete'])->name('Orderphotodelete');
 
 
     Route::post('/create/post', [PostController::class, 'CreatePosts'])->name('create.post');
@@ -352,7 +353,7 @@ Route::get('/json/story/', [MobilAppController::class, 'story']);
 Route::get('/json/searchPost/{ad}', [MobilAppController::class, 'searchPost']);
 Route::get('/json/commentposts/{id}/{ad}/{detay}', [MobilAppController::class, 'commentposts']);
 Route::get('/json/categories/{id}', [MobilAppController::class, 'categories']);
-Route::get('/json/fotogaleri/', [MobilAppController::class, 'fotogaleri']);
+Route::get('/json/fotogaleri/', [MoborderImagesPageilAppController::class, 'fotogaleri']);
 Route::get('/json/fotogaleriDetail/', [MobilAppController::class, 'fotogaleriDetail']);
 Route::get('/json/AllPost/', [MobilAppController::class, 'AllPost']);
 Route::get('/json/country/{id}', [MobilAppController::class, 'countrynews']);

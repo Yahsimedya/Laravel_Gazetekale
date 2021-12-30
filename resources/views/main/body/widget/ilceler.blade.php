@@ -38,16 +38,13 @@
                     @endphp
 
                     <div class="row  padding-left">
-
                         <div class="col-md-12">
-
                             <div class="ilcelers-{{$ilce->id}}">
                                 @foreach($Ilcehaberleri as $haber)
-
                                     <a href="{{URL::to('/haber-'.str_slug($haber->title_tr).'-'.$haber->id)}}">
                                         <div class="card d-inline-block  ">
                                             <img class="card-img-top tns-lazy-img lazyload"
-                                                 src="{{$haber->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';">
+                                                 src="{{$haber->image}}">
                                             <div class="card-body align-middle d-table-cell">
                                                 <p class="card-baslik text-center d-table-cell"><b
                                                         class="card-kisalt">{{$haber->title_tr}}</b></p>
