@@ -36,7 +36,7 @@
         gtag('config', '@yield('google_verification')');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6265404652403069"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous" defer></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id='@yield('google_analytics')'"></script>
     <script>

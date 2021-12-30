@@ -769,6 +769,15 @@ class ExtraController extends Controller
             ->cooldown($expiresAt)
             ->record();
         $seoset = Seos::first();
+        $tag_ids = $post->tag()->get();
+        $tagCount = $tag_ids->count();
+        $ids = array();
+        foreach ($tag_ids as $tags) {
+            $ids[] = $tags->id;
+            $tag = $tags->id;
+        }
+//        dd($ids);
+        $maybeRelated = [];
         if(isset($ids)) {
             if ($ids!=[]){
                 $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
@@ -778,7 +787,7 @@ class ExtraController extends Controller
                     ->get();
             }
         }
-        return view('main.body.single_post', compact('post', 'ads','tagName','orderImages','maybeRelated', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id'));
+        return view('main.body.single_post', compact('post', 'ads','tagName','orderImages','maybeRelated', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id','tagCount'));
 
 
     }
