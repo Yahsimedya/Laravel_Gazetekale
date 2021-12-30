@@ -15,7 +15,7 @@ $gelenil=Session::get('gelenil');
     <div class="container p-3">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand " href="{{URL::to('/')}}"><img class="logo" src="{{asset($websetting->logo)}}"
+            <a class="navbar-brand " href="{{URL::to('/')}}"><img class="logo img-fluid" src="{{asset($websetting->logo)}}"
                                                                   alt=""></a>
 
             <div class="navbar__havadurumu ml-5 d-none d-sm-block">

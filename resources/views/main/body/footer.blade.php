@@ -21,13 +21,13 @@ use App\Models\Theme;
                                     <a href="https://play.google.com/store/apps/details?id=com.uygulama.gazetekale"
                                        target="_blank"><img src="{{asset('image/google-play.png')}}"
                                                             data-original="{{asset('image/google-play.png')}}"
-                                                            class="footer-logo mt-4 img-fluid lazy " alt=""></a>
+                                                            class="footer-logo mt-4 img-fluid lazyload " alt=""></a>
                                 </div>
                                 <div class="col-md-3  pr-0 text-center">
                                     <a href="https://apps.apple.com/us/app/gazetekale/id1495158560?l=tr&ls=1"
                                        target="_blank"><img src="{{asset('image/app-store.png')}}"
                                                             data-original="{{asset('image/app-store.png')}}"
-                                                            class="footer-logo mt-4 img-fluid lazy " alt=""></a>
+                                                            class="footer-logo mt-4 img-fluid lazyload " alt=""></a>
 
                                 </div>
                             @endif
@@ -36,12 +36,12 @@ use App\Models\Theme;
                                 <div class="col-md-3 text-center">
                                     <img src="{{asset('image/aa.png')}}" width="100"
                                          data-original="{{asset('image/aa.png')}}"
-                                         class="footer-logo mt-4 img-fluid lazy text-center " alt="">
+                                         class="footer-logo mt-4 img-fluid lazyload text-center " alt="">
                                 </div>
                                 <div class="col-md-3 text-center">
                                     <img src="{{asset('image/iha.png')}}" width="100"
                                          data-original="{{asset('image/iha.png')}}"
-                                         class="footer-logo mt-4 img-fluid lazy text-center " alt="">
+                                         class="footer-logo mt-4 img-fluid lazyload text-center " alt="">
                                 </div>
                                 <p class="text-white mt-2">Gazetekale.com, Anadolu Ajansı ve İhlas Haber Ajansı
                                     abonesidir.</p>
