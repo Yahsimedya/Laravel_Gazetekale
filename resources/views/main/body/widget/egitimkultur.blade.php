@@ -31,7 +31,7 @@
             <div class="col-md-6 padding-left mt-1">
                 <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
                     <div class="card   d-inline-block  ">
-                        <img class="card-img-top lazyload" src="{{$row->image}}"
+                        <img class="card-img-top lazyload img-fluid" src="{{$row->image}}"
                              onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                              alt="Card image cap">
                         <div class="card-body align-middle d-table-cell">
@@ -93,7 +93,7 @@
             <div class="col-md-6 padding-left mt-1">
                 <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
                     <div class="card   d-inline-block  ">
-                        <img class="card-img-top lazyload" src="{{$row->image}}"
+                        <img class="card-img-top lazyload img-fluid" src="{{$row->image}}"
                              onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                              alt="Card image cap">
                         <div class="card-body align-middle d-table-cell">

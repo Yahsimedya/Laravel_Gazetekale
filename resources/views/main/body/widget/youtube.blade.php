@@ -6,13 +6,13 @@
     <div class="container padding-left">
         <div class="card-header card-youtube position-relative ">
             <div class="row">
-                <div class="col-md-6"><img class="  lazyload" width="180" data-src="{{asset('icon/gazetekaletv.png')}} " >
+                <div class="col-md-6"><img class="img-fluid lazyload" width="180" data-src="{{asset('icon/gazetekaletv.png')}} " >
                     <div class="card-kutu__link">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="ytube">
-                        <img src="{{asset('icon/icon-youtube-white.svg')}}" class="lazyload" style="color: white" alt="youtube" width="75" height="21">
+                        <img src="{{asset('icon/icon-youtube-white.svg')}}" class="lazyload img-fluid" style="color: white" alt="youtube" width="75" height="21">
                         <a href="https://www.youtube.com/channel/UCUUeGmpEvlPFjRSeOYevzag" target="_blank"
                            rel="nofollow" class="ytube-subscriber" title="Haberler.com Youtube">
                             <span>Abone Ol</span></a>
@@ -37,14 +37,14 @@
 
                             <a target="_blank" href="https://www.youtube.com/watch?v={{$row->posts_video}}">
                                 <div class="card   d-inline-block  ">
-                                    <img data-src="{{asset('icon/icon-youtube.png')}}" class="lazyload position-absolute ytube-icon"
+                                    <img data-src="{{asset('icon/icon-youtube.png')}}" class="lazyload position-absolute ytube-icon img-fluid"
                                          alt="youtube" width="70" height="45">
-                                    <img class="card-img-top tns-lazy-img lazyload" data-src="{{$row->image}}" onerror="this.onerror=null;this.src='{{$themeSettings->defaultImage}}';"
+                                    <img class="card-img-top tns-lazy-img lazyload img-fluid" data-src="{{$row->image}}" onerror="this.onerror=null;this.src='{{$themeSettings->defaultImage}}';"
                                          alt="{{$row->title_tr}}">
                                     <div class="card-body align-middle d-table-cell" >
                                         <p class="card-baslik text-center d-table-cell"><b
                                                 class="card-kisalt">{{$row->title_tr}}</b></p>
-                                        <img data-src="{{asset('icon/icon-youtube.svg')}}" class="lazyload float-right"
+                                        <img data-src="{{asset('icon/icon-youtube.svg')}}" class="lazyload float-right img-fluid"
                                              alt="youtube" width="75" height="21">
                                         <span class="card__tv position-absolute text-dark">Gazetekale TV
 </span>

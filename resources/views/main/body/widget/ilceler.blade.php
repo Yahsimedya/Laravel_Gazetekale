@@ -43,7 +43,7 @@
                                 @foreach($Ilcehaberleri as $haber)
                                     <a href="{{URL::to('/haber-'.str_slug($haber->title_tr).'-'.$haber->id)}}">
                                         <div class="card d-inline-block  ">
-                                            <img class="card-img-top tns-lazy-img lazyload"
+                                            <img class="card-img-top tns-lazy-img lazyload img-fluid"
                                                  src="{{$haber->image}}">
                                             <div class="card-body align-middle d-table-cell">
                                                 <p class="card-baslik text-center d-table-cell"><b
