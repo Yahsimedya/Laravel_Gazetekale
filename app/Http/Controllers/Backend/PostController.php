@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\District;
+use App\Models\OrderImages;
 use App\Models\Post;
 use App\Models\Subcategory;
 use App\Models\Subdistrict;
@@ -372,39 +373,52 @@ class PostController extends Controller
     }
 
 
-      public function OrderphotoUpload(Request $request, $id)
-      {
+    public function OrderphotoUpload(Request $request, $id)
+    {
+        $yil = Carbon::now()->year;
+        $ay = Carbon::now()->month;
+        if (file_exists('storage/orderImage/' . $yil) == false) {
+            mkdir('storage/orderImage/' . $yil, 0777, true);
+        }
+        if (file_exists('storage/orderImage/' . $yil . '/' . $ay) == false) {
+            mkdir('storage/orderImage/' . $yil . '/' . $ay, 0777, true);
+        }
 
-          $image = $request->file('file');
-          $year = date("Y");
-          $benzersiz = uniqid();
-          $month = date("m");
-          $imageName = time() . $benzersiz . '.' . $image->extension();
-          $image->move(public_path('storage/postimg/' . $year . '/' . $month . '/'), $imageName);
-          $url = 'storage/postimg/' . $year . '/' . $month . '/' . $imageName;
-          DB::insert('insert into order_images (haberId, image) values (?, ?)', [$id, $url]);
-          return response()->json(['success' => $imageName]);
-      }
+        $image = $request->file('file');
+        if ($image) {
+            $image_one = uniqid() . '.' . Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $image->getClientOriginalExtension();
+            $new_image_name = 'storage/orderImage/' . $yil . '/' . $ay . '/' . $image_one;
+            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name,58,'jpeg');
 
-      public function Orderphotoupdate(Request $request, $update, $id)
-      {
-          dd("update" . $request);
+            OrderImages::insert([
+                "haberId" => $id,
+                "image" => $new_image_name,
+            ]);
+            return response()->json(['success' => $new_image_name]);
+        }
+        
 
-      }
+    }
 
-      public function Orderphotodelete(Request $request, $id)
-      {
-          $secilenSayi = count($request->urunfotosec);
-          $images = $request->urunfotosec;
+    public function Orderphotoupdate(Request $request, $update, $id)
+    {
+        dd("update" . $request);
+
+    }
+
+    public function Orderphotodelete(Request $request, $id)
+    {
+        $secilenSayi = count($request->urunfotosec);
+        $images = $request->urunfotosec;
 
 
-          foreach ($images as $image) {
+        foreach ($images as $image) {
 
-              DB::table('order_images')->where('id', '=', $image)->delete();
+            DB::table('order_images')->where('id', '=', $image)->delete();
 
-          }
-          return Redirect()->route('all.orderImagesPage',$id);
-      }
+        }
+        return Redirect()->route('all.orderImagesPage',$id);
+    }
 
 
 }
