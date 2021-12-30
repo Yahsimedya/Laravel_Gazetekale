@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-lg-12 mt-4"></div>
 
-                                <label class="col-form-label col-lg-3">Ana Slider Başlık</label>
+                                <label class="col-form-label col-lg-3">Slider Başlık</label>
                                 <div class="col-lg-9">
 
 

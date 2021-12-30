@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\District;
+use App\Models\OrderImages;
+use App\Models\Post;
 use Carbon\Carbon;
 use http\Client\Response;
 use Illuminate\Http\Request;
@@ -78,15 +80,9 @@ class IhaController extends Controller
             'alert-type' => 'success'
         );
         return Redirect()->route('setting.settingindex')->with($notification);
-
     }
-
-
     public function iha(Request $request)
     {
-
-
-        //$request->config=\DB::table("iha")->read("iha");
         $editiha = \DB::table('iha')->get();
 
         $cek = $editiha[0];
@@ -224,40 +220,27 @@ class IhaController extends Controller
 
     public function ihaInsert(Request $request)
     {
+
         $dir = "storage/postimg";
         $benzersiz = uniqid();
         $name = $request->title_tr;
-
         $isim = str_slug($name) . 1;
-
-
         $year = date("Y");
         $month = date("m");
-
-        // $tarih=date("d-M-Y");
         $jpegklasor = "jpeg";
-
         $filenamejpeg = $dir . "/" . $year . "/" . $month;
-
         $filenamejpegay = $dir . "/" . $year . "/" . $month;
-
         if (file_exists($filenamejpeg)) {
             if (file_exists($filenamejpegay) == false) {
                 mkdir($filenamejpegay, 0777, true);
             }
-
         } else {
             mkdir($filenamejpeg, 0777, true);
         }
-
-
         $content = file_get_contents($request->image);
-
         file_put_contents(realpath($filenamejpegay) . '/' . $benzersiz . "-" . $isim . "." . 'jpg', $content);
-        //image/postimg//2021a/09"
         $imagesArray[0] = $filenamejpeg . "/" . $benzersiz . "-" . $isim . '.jpg';
         $image = imagecreatefromstring(file_get_contents($request->image));
-
         ob_start();
         imagejpeg($image, NULL, 100);
         $cont = ob_get_contents();
@@ -280,9 +263,40 @@ class IhaController extends Controller
         DB::table('posts')->insert($data);
 
 
-
-
-
+        foreach ($request->orderImages as $imagess){
+            $dir = "storage/orderImage/";
+            $benzersiz = uniqid();
+            $name = $request->title_tr;
+            $isim = str_slug($name) . 1;
+            $year = date("Y");
+            $month = date("m");
+            $jpegklasor = "jpeg";
+            $filenamejpeg = $dir . "/" . $year . "/" . $month;
+            $filenamejpegay = $dir . "/" . $year . "/" . $month;
+            if (file_exists($filenamejpeg)) {
+                if (file_exists($filenamejpegay) == false) {
+                    mkdir($filenamejpegay, 0777, true);
+                }
+            } else {
+                mkdir($filenamejpeg, 0777, true);
+            }
+            $content = file_get_contents($imagess);
+            file_put_contents(realpath($filenamejpegay) . '/' . $benzersiz . "-" . $isim . "." . 'jpg', $content);
+            $imagesArray[0] = $filenamejpeg . "/" . $benzersiz . "-" . $isim . '.jpg';
+            $image = imagecreatefromstring(file_get_contents($imagess));
+            ob_start();
+            imagejpeg($image, NULL, 100);
+            $cont = ob_get_contents();
+            ob_end_clean();
+            imagedestroy($image);
+            $content = imagecreatefromstring($cont);
+            imagedestroy($content);
+            $ids=Post::orderByDesc('created_at')->limit(1)->get('id');
+            OrderImages::insert([
+                "haberId" => $ids[0]->id,///id çekilecek
+                "image" => $imagesArray[0],
+            ]);
+        }
         return Redirect()->route('addpage.iha');
     }
 

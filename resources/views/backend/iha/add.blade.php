@@ -220,7 +220,7 @@
                             <div class="row">
 
                               @foreach($news[$i]['resim']['image'] as $newsImage)
-                                    <input type="hidden" name="orderImages"
+                                    <input type="hidden" name="orderImages[]"
                                            value="{{$newsImage}}">
                                     <div class="col-md-3 pb-2"><label>
 
