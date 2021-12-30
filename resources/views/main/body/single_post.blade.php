@@ -73,7 +73,7 @@
 
                 <p class="detay__icerik mt-4">
                    @foreach($orderImages as $Images)
-                        <img src="{{asset($Images->image)}}" class="mb-3" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid w-100">
+                        <img src="{{asset($Images->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid w-100 mb-3">
 
 
                     @endforeach
