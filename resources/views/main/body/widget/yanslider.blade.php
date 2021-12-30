@@ -34,7 +34,7 @@
                                  class="img-fluid owl-lazy" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class=" yanslider-link align-middle card-kisalt">
-                                    {{$row->title_tr}}
+                                   @if($webSiteSetting->slider_title==1) {{$row->title_tr}} @endif
                                 </a>
                             </div>
                     </div>

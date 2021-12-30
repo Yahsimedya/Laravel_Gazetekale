@@ -35,18 +35,8 @@
     </script>
 
     <style>
-        .slick-active, .slick li {
-            background-image: radial-gradient(farthest-side at 102% 2%, {{$category->categorycolor}},{{$category->categorycolor}}) !important;
-        }
-        .kategori li{
-            border:1px solid {{$category->categorycolor}};
-        }
-        .slick-prev:before, .slick-next:before{
-            color:{{$category->categorycolor}}!important;
-        }
-        .border-danger{
-            border-color:{{$category->categorycolor}}!important;
-        }
+
+
 
     </style>
 
