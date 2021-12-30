@@ -388,15 +388,14 @@ class PostController extends Controller
         if ($image) {
             $image_one = uniqid() . '.' . Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $image->getClientOriginalExtension();
             $new_image_name = 'storage/orderImage/' . $yil . '/' . $ay . '/' . $image_one;
-            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name,58,'jpeg');
-
+            Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name,68,'jpeg');
             OrderImages::insert([
                 "haberId" => $id,
                 "image" => $new_image_name,
             ]);
             return response()->json(['success' => $new_image_name]);
         }
-        
+
 
     }
 

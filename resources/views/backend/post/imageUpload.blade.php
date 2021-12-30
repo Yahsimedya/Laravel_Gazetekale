@@ -27,7 +27,7 @@
                     <form action="{{ route('OrderphotoUpload',$id) }}" class="dropzone" id="file-upload" enctype="multipart/form-data">
                         @csrf
                         <div class="dz-message">
-                            Yüklemek istediğiniz Fotoları Sürükleyin<br>
+                            Yüklemek İstediğiniz Fotoğrafları Sürükleyin<br>
                         </div>
                     </form>
                 </div>

@@ -60,7 +60,7 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                 @else
-                    <img src="{{$post->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid w-100" alt="{{$post->title_tr}}">
+                    <img src="{{$post->image}}"  onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid w-100" alt="{{$post->title_tr}}">
                 @endif
 
                 <div class="wrapper">
@@ -73,7 +73,7 @@
 
                 <p class="detay__icerik mt-4">
                    @foreach($orderImages as $Images)
-                        <img src="{{asset($Images->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid w-100">
+                        <img src="{{asset($Images->image)}}" class="mb-3" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid w-100">
 
 
                     @endforeach
