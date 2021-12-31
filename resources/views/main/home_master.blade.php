@@ -50,9 +50,9 @@
     <link rel="preload" as="style"  href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
 
     <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'" defer>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" defer>
+{{--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" defer>--}}
     <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet' crossorigin="anonymous"">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">--}}
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet' crossorigin="anonymous"">
 {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">--}}
     <link rel="preload" href="{{asset('frontend/assets/node_modules/animate.css/animate.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
@@ -63,16 +63,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap">
     <link rel="preload" href="https://fonts.googleapis.com/css?family=Work+Sans:100,300,400,500,600,700,800,900&display=swap" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet' crossorigin="anonymous"">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:100,300,400,500,600,700,800,900&display=swap">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" as="style" onload="this.rel='stylesheet'" defer>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" as="style" onload="this.rel='stylesheet'"">
 {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">--}}
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" as="style" onload="this.rel='stylesheet'" defer>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" defer>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" as="style" onload="this.rel='stylesheet'"">
+{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">--}}
 {{--    <link rel="stylesheet" href="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css">--}}
-    <link rel="preconnect"  href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" />
+    <link rel="stylesheet"  href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" async/>
 {{--    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">--}}
-    <link rel="preconnect" href="https://unpkg.com/swiper/swiper-bundle.min.css" defer>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 {{--    <link rel="stylesheet" href="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css">--}}
-    <link rel="preconnect" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" async/>
 {{--    <link rel="stylesheet" type="text/css" href="{{asset('frontend/assets/css/svg-turkiye-haritasi.css')}}">--}}
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
