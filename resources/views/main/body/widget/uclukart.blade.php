@@ -14,13 +14,15 @@
                         <div class="kartlar__effect position-absolute"></div>
                     </a>
                 </div>
+                @if($webSiteSetting->slider_title==1)
                 <div class="card-body kartlar__body position-absolute" style="top:30%!important;">
-                    <h5 class="card-title"> @if($webSiteSetting->slider_title==1)
+                    <h5 class="card-title">
                         {{$gundemcard[0]->title_tr}}
-                    @endif
+
                     </h5>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 </div>
+                @endif
                 <ul class="list-group list-group-flush">
                     @foreach ($gundemcard as $row)
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}" class="kartlar__link">
