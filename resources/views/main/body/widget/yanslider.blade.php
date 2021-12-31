@@ -28,7 +28,9 @@
 
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
-                            <div class="yanslider__effect position-absolute"></div>
+                            @if($webSiteSetting->slider_title==1)
+                                <div class="yanslider__effect position-absolute"></div>    
+                            @endif
                             <img data-src="{{$row->image}}"
                                  onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
                                  class="img-fluid owl-lazy" alt="">
