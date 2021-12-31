@@ -445,7 +445,6 @@ class ExtraController extends Controller
 
             return $string;
         }
-
         $kurlar = [
             'DOLAR' => [
                 'oran' => $result['USD']['Değişim'],

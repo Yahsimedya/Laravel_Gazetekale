@@ -9,6 +9,47 @@ $kurlar=Session::get('kurlar');
 $veri=Session::get('havadurumu');
 $icon=Session::get('icon');
 $gelenil=Session::get('gelenil');
+if(!empty(Session::get('kurlar'))) {
+$vakitler=Session::get('vakitler');
+} else {
+$vakitler = array(
+            "imsak" => '0',
+            "gunes" => '0',
+            "ogle" => '0',
+            "ikindi" => '0',
+            "aksam" => '0',
+            "yatsi" => '0',
+        );
+}
+if(!empty(Session::get('kurlar'))) {
+$kurlar=Session::get('kurlar');
+} else{
+    $kurlar=[
+         'DOLAR' => [
+                'oran' => '0',
+                'oranyonu' => 0,00,
+                'satis' => '0'
+
+            ],
+            'EURO' => [
+                'oran' => '0',
+                'oranyonu' => 0,00,
+                'satis' => '0'
+            ],
+            'ALTIN' => [
+                'oran' => '0',
+                'oranyonu' => 0,00,
+                'satis' => '0'
+
+            ],
+            'ceyrekaltin' => [
+                'oran' => '0',
+                'oranyonu' => 0,00,
+                'satis' => '0'
+            ]
+
+];
+}
 @endphp
 <header class="border-top border-dark bg-light shadow-sm">
 
