@@ -91,8 +91,8 @@ use App\Models\Theme;
         src="{{asset('frontend/assets/node_modules/owl.carousel/dist/owl.carousel.min.js')}}"></script>
 
     <script src="{{asset('frontend/assets/js/jquery.newsTicker.js')}}"></script>
-    <script type="text/javascript"
-            src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+{{--    <script type="text/javascript"--}}
+{{--            src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>--}}
 
     <script>
         new WOW().init();
