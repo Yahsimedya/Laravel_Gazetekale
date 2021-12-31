@@ -23,6 +23,7 @@ mix.js('resources/js/app.js', 'public/js')
         'public/frontend/assets/js/svg-turkiye-haritasi.js',
         'node_modules/swiper/swiper-bundle.js',
         'node_modules/slick-carousel/slick/slick.js',
+        'public/frontend/assets/js/custom.js',
     ], 'public/frontend/assets/js/combine.js')
     .styles([
         'public/frontend/assets/css/style.css',
