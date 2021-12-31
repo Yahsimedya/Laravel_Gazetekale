@@ -7,7 +7,7 @@
         <div class="col-md-3 mb-5 mt-3" >
             <div class="card shadow  d-inline-block  " style="border-color: {{$row->category->categorycolor}}">
                 {{--                            {{$row->category->category_tr}}--}}
-                <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                <a href="{{URL::to('haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
 
                     <img class="card-img-top lazy" height="180" src="{{asset($row->image)}}"
                          onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"

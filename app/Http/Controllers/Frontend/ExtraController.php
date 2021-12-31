@@ -932,8 +932,7 @@ class ExtraController extends Controller
         $webSiteSetting = WebsiteSetting::first();
         $themeSetting = Theme::get();
 
-        $sondakika = Post::where('updated_at', '>', Carbon::now()->subDay(1))->latest()
-            ->get();
+        $sondakika = Post::where('updated_at', '>', Carbon::now()->subDay(1))->latest('created_at')->get();
 
         return view('main.body.breakingnews', compact('sondakika', 'webSiteSetting', 'themeSetting'));
     }
