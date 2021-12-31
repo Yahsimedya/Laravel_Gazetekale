@@ -12,8 +12,8 @@
                     <img class="card-img-top lazy" height="180" src="{{asset($row->image)}}"
                          onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                          alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
-                    <div class="card-body align-middle d-table-cell">
-                        <p class="card-baslik text-left d-table-cell"><b class="card-kisalt">{{$row->title_tr}}</b></p>
+                    <div class="card-body align-middle ">
+                        <p class="card-baslik text-center"><b class="card-kisalt">{{$row->title_tr}}</b></p>
                         {{--                                <span class="card__kategori position-absolute">3. Sayfa</span>--}}
                     </div>
                 </a>
