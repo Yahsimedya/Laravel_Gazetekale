@@ -270,32 +270,7 @@
         <script>
 
 
-            $(document).ready(function () {
-                $(".detay-slider").slick({
-                    autoplay: true,
-                    dots: true,
-                    arrows: false,
 
-                    autoplaySpeed: 500000,
-
-                    customPaging: function (slider, i) {
-                        var thumb = $(slider.$slides[i]).data();
-                        return '<a class="dot" style="bottom: 10%!important;">' + (i + 1) + '</a>';
-                    },
-                    responsive: [{
-                        breakpoint: 500,
-                        settings: {
-                            dots: true,
-                            arrows: false,
-                            infinite: true,
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }]
-                });
-
-
-            });
 
         </script>
 @endsection

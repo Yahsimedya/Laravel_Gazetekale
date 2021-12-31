@@ -19,7 +19,7 @@
     <div class="tab-content">
         <div id="home" class="tab-pane  active  in">
 
-            <div class="owl-carousel owl-theme  shadow" id="owl__yanslider">
+            <div class="owl-carousel owl-theme  shadow anaslider">
                 @php
                     $k=1;
                 @endphp
