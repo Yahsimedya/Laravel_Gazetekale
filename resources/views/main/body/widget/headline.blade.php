@@ -3,7 +3,7 @@
     <div id="nt-example2-container position-relative" class="container mt-1 padding-left">
         <ul id="nt-example2" class="p-0" style="height: 60px; overflow: hidden;">
             <div class="float-left h-100 d-inline" style="background-color: #f9df26;">
-                <span class="p-2 align-middle" style="color:#262e62; line-height: 60px; font-weight: 500;">Son Dakika</span>
+                <a href="{{route('breakingnews')}}"> <span class="p-2 align-middle" style="color:#262e62; line-height: 60px; font-weight: 500;">Son Dakika</span></a>
             </div>
             @foreach ($sondakika as $row)
                 @if(($row->headline==1))

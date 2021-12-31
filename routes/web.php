@@ -369,7 +369,8 @@ Route::get('/json/authorsposts/{id}', [MobilAppController::class, 'authorsposts'
 
 //Search
 Route::post('/search', [ExtraController::class, 'search'])->name('search');
-
+//BREAKİNG NEWS
+Route::get('/sondakika', [ExtraController::class, 'breakingnews'])->name('breakingnews');
 
 //Comments
 Route::get('/comments', [CommentsController::class, 'adminCommentsindex'])->name("comments.index");
