@@ -289,6 +289,13 @@ class MobilAppController extends Controller
         return $this->change($json);
     }
 
+    public function sondakika()
+    {
+        $stmt = Post::where('updated_at', '>', Carbon::now()->subDay(1))->latest()
+            ->get();
+        $json = $stmt;
+        return $this->change($json);
+    }
     public function countrynews($id)
     {
         $stmt = Post::where('district_id', '=', $id)->limit(50)->orderByDesc('created_at')->get();
