@@ -15,7 +15,10 @@
                     </a>
                 </div>
                 <div class="card-body kartlar__body position-absolute" style="top:30%!important;">
-                    <h5 class="card-title">{{$gundemcard[0]->title_tr}}</h5>
+                    <h5 class="card-title"> @if($webSiteSetting->slider_title==1)
+                        {{$gundemcard[0]->title_tr}}
+                    @endif
+                    </h5>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 </div>
                 <ul class="list-group list-group-flush">
@@ -45,7 +48,11 @@
                     </a>
                 </div>
                 <div class="card-body kartlar__body position-absolute" style="top:30%!important;">
-                    <h5 class="card-title">{{$siyasetcard[0]->title_tr}}</h5>
+                    <h5 class="card-title">
+                        @if($webSiteSetting->slider_title==1)
+                        {{$siyasetcard[0]->title_tr}}
+                    @endif
+                    </h5>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 </div>
                 <ul class="list-group list-group-flush">
@@ -56,7 +63,8 @@
                             <li class="list-group-item p-0">
                                 <img src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" width="150" class="float-left p-2 lazyload img-fluid" alt="">
                                 <div class="d-table-cell">
-                                    <p class="pl-1 kartlar__tittle card-kisalt "> {{$row->title_tr}} </p>
+                                    <p class="pl-1 kartlar__tittle card-kisalt ">
+                                        {{$row->title_tr}} </p>
                                 </div>
                             </li>
                         </a>
@@ -80,7 +88,11 @@
                     </a>
                 </div>
                 <div class="card-body kartlar__body position-absolute" style="top:30%!important;">
-                    <h5 class="card-title">{{$ekonomicard[0]->title_tr}}</h5>
+                    <h5 class="card-title">
+                        @if($webSiteSetting->slider_title==1)
+                        {{$ekonomicard[0]->title_tr}}
+                        @endif
+                    </h5>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 </div>
                 <ul class="list-group list-group-flush">
@@ -91,7 +103,9 @@
                             <li class="list-group-item p-0">
                                 <img src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" width="150" class="float-left p-2 lazyload img-fluid" alt="">
                                 <div class="d-table-cell">
-                                    <p class="pl-1 kartlar__tittle card-kisalt "> {{$row->title_tr}} </p>
+                                    <p class="pl-1 kartlar__tittle card-kisalt ">
+                                       {{$row->title_tr}}
+                                    </p>
                                 </div>
                             </li>
                         </a>
