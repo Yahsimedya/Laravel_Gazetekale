@@ -763,10 +763,7 @@ class ExtraController extends Controller
         $nextrelated = Post::latest('created_at')
             ->where('category_id', $post->category_id)->limit(10)->orderByDesc('id')
             ->get();
-        $expiresAt = now()->addMinute(20);
-        views($post)
-            ->cooldown($expiresAt)
-            ->record();
+
         $seoset = Seos::first();
         $tag_ids = $post->tag()->get();
         $tagCount = $tag_ids->count();
