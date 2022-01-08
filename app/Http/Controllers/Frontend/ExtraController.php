@@ -855,7 +855,7 @@ class ExtraController extends Controller
         $searchText = $request['searchtext'];
         $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->Where('status',1)->get();
         $searchNews = $this->change($json);
-
+dd($searchNews);
         return \view('main.body.search', compact('searchNews'));
     }
 
