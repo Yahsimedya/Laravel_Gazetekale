@@ -855,7 +855,6 @@ class ExtraController extends Controller
         $searchText = $request['searchtext'];
         $json = Post::Where('status',1)->Where('title_tr', 'LIKE', '%' . $searchText . '%')->get();
         $searchNews = $this->change($json);
-dd($searchNews);
         return \view('main.body.search', compact('searchNews'));
     }
 
