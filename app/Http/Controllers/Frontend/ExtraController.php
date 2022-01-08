@@ -839,7 +839,7 @@ class ExtraController extends Controller
             ->inRandomOrder()->limit(10)
             ->get();
         $ads =
-            Ad::latest('created_at')
+
             Ad::latest('created_at')
                 ->where('status', 1)
                 ->with('adcategory')
