@@ -722,7 +722,7 @@ class ExtraController extends Controller
 //        dd($explodeID[count($explodeID)-1 ]);
 //        dd($explodeID);
 
-        $post = Post::find($explodeID[count($explodeID)-1 ]);
+        $post = Post::where('status',1)->find($explodeID[count($explodeID)-1 ]);
         $maybeRelated=[];
 
         $comments = Comments::where('posts_id', $explodeID[count($explodeID)-1 ])->where('status', 1)->get();
@@ -746,7 +746,7 @@ class ExtraController extends Controller
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', $explodeID[count($explodeID)-1 ])->latest()
+                ->where('posts.id', $explodeID[count($explodeID)-1 ])->where('posts.status',1)->latest()
                 ->limit(10)
                 ->get();
         $random = Post::inRandomOrder()->limit(3)->get();
@@ -757,7 +757,7 @@ class ExtraController extends Controller
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', $id)
+                ->where('posts.id', $id)->where('posts.status', 1)
                 ->limit(10)
                 ->get();
         $nextrelated = Post::latest('created_at')
@@ -779,7 +779,7 @@ class ExtraController extends Controller
                 $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                     ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                     ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                    ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->latest()
+                    ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->where('posts.status',1)->latest()
                     ->get();
             }
         }
@@ -813,29 +813,30 @@ class ExtraController extends Controller
         $manset =
             Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-                ->where('posts.category_id', $id)->where('posts.manset', 1)
+                ->where('posts.category_id', $id)->where('posts.manset', 1)->where('posts.status',1)
                 ->orderBy('created_at', 'desc')
                 ->limit(15)->get();
 
 
         $count = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)
+            ->where('posts.category_id', $id)->where('posts.status',1)
             ->count();
 
 
         $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->orderBy('created_at', 'desc')->offset(1)
+            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->orderBy('created_at', 'desc')->where('posts.status',1)->offset(1)
             ->paginate(20);
 
 
         $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
+            ->where('posts.category_id', $id)->where('posts.status',1)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(10)
             ->get();
         $ads =
+
             Ad::latest('created_at')
                 ->where('status', 1)
                 ->with('adcategory')
@@ -848,12 +849,9 @@ class ExtraController extends Controller
 
     public function search(Request $request)
     {
-
         $searchText = $request['searchtext'];
-
-        $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->get();
+        $json = Post::Where('status',1)->Where('title_tr', 'LIKE', '%' . $searchText . '%')->get();
         $searchNews = $this->change($json);
-
         return \view('main.body.search', compact('searchNews'));
     }
 
