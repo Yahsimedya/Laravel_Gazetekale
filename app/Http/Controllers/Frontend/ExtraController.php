@@ -770,7 +770,7 @@ class ExtraController extends Controller
 //        dd($nextrelated);
 
         $seoset = Seos::first();
-        if ($post->tag()!=NULL) {
+        if (!empty($post->tag())) {
 
             $tag_ids = $post->tag()->get();
 //        dd($post->tag());
