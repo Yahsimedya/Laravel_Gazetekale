@@ -45,7 +45,7 @@
         gtag('js', new Date());
         gtag('config', '@yield('google_analytics')');
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"      crossorigin="anonymous" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"      crossorigin="anonymous" async></script>
 
     <link rel="preload" as="style"  href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
 
