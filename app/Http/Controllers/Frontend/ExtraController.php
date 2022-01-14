@@ -753,9 +753,7 @@ class ExtraController extends Controller
              $post= Post::where('status', 1)->find($explodeID[count($explodeID) - 1]);
 //        dd($post);
 //        $maybeRelated=[];
-        $comments = Cache()->remember("single-comments", Carbon::now()->addYear(), function () {
-         return Comments::where('posts_id', $post->id)->where('status', 1)->get();
-        });
+         $comments= Comments::where('posts_id', $post->id)->where('status', 1)->get();
 
         $orderImages=OrderImages::where('haberId',$post->id)->get();
 
