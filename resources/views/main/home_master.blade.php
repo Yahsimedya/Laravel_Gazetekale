@@ -35,8 +35,8 @@
         gtag('js', new Date());
         gtag('config', '@yield('google_verification')');
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6265404652403069"
-            crossorigin="anonymous" defer></script>
+{{--    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6265404652403069"--}}
+{{--            crossorigin="anonymous" defer></script>--}}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id='@yield('google_analytics')'"></script>
     <script>
@@ -45,7 +45,7 @@
         gtag('js', new Date());
         gtag('config', '@yield('google_analytics')');
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"      crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"      crossorigin="anonymous" defer></script>
 
     <link rel="preload" as="style"  href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
 
