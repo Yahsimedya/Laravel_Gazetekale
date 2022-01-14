@@ -12,6 +12,7 @@ return [
     | any other location as required by the application or its packages.
     |
     */
+    'log' => 'daily',
     'log_max_files' => 10,
 
     'name' => env('APP_NAME', 'Laravel'),
