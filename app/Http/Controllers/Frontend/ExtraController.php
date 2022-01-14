@@ -738,7 +738,6 @@ class ExtraController extends Controller
 
     public function SinglePost($slug, $id)
     {
-        $post = Cache()->remember("single-post", Carbon::now()->addYear(), function () {
 
 
             $r = $_SERVER['REQUEST_URI'];
@@ -751,65 +750,55 @@ class ExtraController extends Controller
 
 //        dd($explodeID[count($explodeID)-1 ]);
 
-             return Post::where('status', 1)->find($explodeID[count($explodeID) - 1]);
-        });
-//        dd(cache::get('single-post')->id);
+             $post= Post::where('status', 1)->find($explodeID[count($explodeID) - 1]);
+//        dd($post);
 //        $maybeRelated=[];
         $comments = Cache()->remember("single-comments", Carbon::now()->addYear(), function () {
-         return Comments::where('posts_id', cache::get('single-post')->id)->where('status', 1)->get();
+         return Comments::where('posts_id', $post->id)->where('status', 1)->get();
         });
-        $orderImages = Cache()->remember("single-images", Carbon::now()->addYear(), function () {
-        return OrderImages::where('haberId',cache::get('single-post')->id)->get();
-        });
-        $slider = Cache()->remember("single-slider", Carbon::now()->addYear(), function () {
-         return Post::latest('created_at')
+
+        $orderImages=OrderImages::where('haberId',$post->id)->get();
+
+        $slider = Post::latest('created_at')
             ->with('category')
             ->limit(6)
             ->get();
-        });
+
 //        $category = Category::where('id', '=', $post->category_id)->get();
-        $ads = Cache()->remember("single-ads", Carbon::now()->addYear(), function () {
-         return Ad::latest('created_at')
+
+        $ads =
+            Ad::latest('created_at')
                 ->where('status', 1)
                 ->with('adcategory')
                 ->get();
-        });
 
-        $related = Cache()->remember("single-related", Carbon::now()->addYear(), function () {
-            return Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', cache::get('single-post')->id)->where('posts.status',1)->latest()
-                ->limit(10)
-                ->get();
-        });
-        $random = Cache()->remember("single-random", Carbon::now()->addYear(), function () {
-         return Post::inRandomOrder()->limit(3)->get();
-//        $tag_ids = $post->tag()->get();
-//        $tagCount = $tag_ids->count();
-        });
-        $tagName = Cache()->remember("single-tagname", Carbon::now()->addYear(), function () {
+        $related =
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', cache::get('single-post')->id)->where('posts.status', 1)
+                ->where('posts.id', $post->id)->where('posts.status',1)->latest()
                 ->limit(10)
                 ->get();
-        });
+        $random = Post::inRandomOrder()->limit(3)->get();
+//        $tag_ids = $post->tag()->get();
+//        $tagCount = $tag_ids->count();
 
+        $tagName =
+            Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+                ->where('posts.id', $id)->where('posts.status', 1)
+                ->limit(10)
+                ->get();
 //        if($post->category_id!=NULL) {
 //        $nextrelated = Post::where('category_id', $post->category_id)->limit(10)->latest()
 //            ->get();
-        $nextrelated = Cache()->remember("single-nextrelated", Carbon::now()->addYear(), function () {
-            return  Post::limit(10)->inRandomOrder()->latest()
+            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
                 ->get();
-        });
 //        }
-
 //        dd($nextrelated);
-        $seoset = Cache()->remember("single-seoset", Carbon::now()->addYear(), function () {
-        return Seos::first();
-        });
+
+        $seoset = Seos::first();
         if (!empty($post->tag())) {
 
             $tag_ids = $post->tag()->get();
@@ -826,7 +815,6 @@ class ExtraController extends Controller
         $maybeRelated = [];
         if(isset($ids)) {
             if ($ids!=[]){
-
                 $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                     ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                     ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
