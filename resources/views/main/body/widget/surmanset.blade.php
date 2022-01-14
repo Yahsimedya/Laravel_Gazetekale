@@ -1,6 +1,4 @@
-@php
-    $webSiteSetting=\App\Models\WebsiteSetting::first();
-@endphp
+
 <div class="container mt-2 ">
     <div class="row">
         @foreach($surmanset as $row)

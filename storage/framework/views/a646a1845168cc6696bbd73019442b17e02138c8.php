@@ -1,10 +1,20 @@
 <?php
     use App\Models\Category;
 use App\Models\WebsiteSetting;
+use Carbon\Carbon;
+
     $category=Category::limit(11)->get();
-    $websetting=WebsiteSetting::first();
-$themeSetting=DB::table('themes')->get();
-$vakitler=Session::get('vakitler');
+    $websetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
+
+            return WebsiteSetting::first();
+        });
+    $themeSetting = Cache()->remember("home-themeSetting", Carbon::now()->addYear(), function () {
+return DB::table('themes')->get();
+        });
+  $vakitler = Cache()->remember("home-vakitler", Carbon::now()->addYear(), function () {
+
+            return Session::get('vakitler');
+        });
 $kurlar=Session::get('kurlar');
 $veri=Session::get('havadurumu');
 $icon=Session::get('icon');

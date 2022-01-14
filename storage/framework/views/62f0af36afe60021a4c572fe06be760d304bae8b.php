@@ -5,14 +5,17 @@
 <?php $__env->startSection('google_verification',$seoset->google_verification); ?>
 <?php $__env->startSection('content'); ?>
     <?php
-        $webSiteSetting=\App\Models\WebsiteSetting::first();
+
     ?>
     <?php
         $socials = DB::table('socials')->get();
 
-    $themeSetting=DB::table('themes')->get();
-$vakitler=Session::get('vakitler');
-$kurlar=Session::get('kurlar');
+
+  $vakitler = Cache()->remember("home-vakitler", 60*60*24, function () {
+
+            return Session::get('vakitler');
+        });
+  $kurlar=Session::get('kurlar');
 $veri=Session::get('havadurumu');
 $icon=Session::get('icon');
 $gelenil=Session::get('gelenil');
@@ -21,53 +24,53 @@ $gelenil=Session::get('gelenil');
 
     <style>
         .owl-theme .owl-dots .owl-dot.active span {
-            background-color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            background-color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
         }
 
         .slider_span {
-            background-color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            background-color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
         }
 
         .owl-prev, .anaslider-prev {
-            color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
         }
 
         .owl-next, .anaslider-prev {
-            color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
         }
 
         .ilceler__baslik {
-            color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
 
         }
 
         .ilceler__nav-link.active {
-            color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
-            border: 1px solid <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
+            border: 1px solid <?php echo e($themeSetting->siteColorTheme); ?>  !important;
         }
 
         .ilceler__nav-link:hover {
-            color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
         }
 
         .tns-nav-active {
-            background-color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            background-color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
         }
 
         .pl-1:hover {
-            color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
         }
         .kartlar__header::before{
-            border-left:2px solid <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            border-left:2px solid <?php echo e($themeSetting->siteColorTheme); ?>  !important;
         }
         .slick-active, .slick li{
-            background-image:radial-gradient(farthest-side at 102% 2%, <?php echo e($themeSetting[0]->siteColorTheme); ?>, <?php echo e($themeSetting[0]->siteColorTheme); ?>);
+            background-image:radial-gradient(farthest-side at 102% 2%, <?php echo e($themeSetting->siteColorTheme); ?>, <?php echo e($themeSetting->siteColorTheme); ?>);
         }
         .video li{
-            border:1px solid <?php echo e($themeSetting[0]->siteColorTheme); ?> ;
+            border:1px solid <?php echo e($themeSetting->siteColorTheme); ?> ;
         }
         .slick-prev:before, .slick-next:before{
-            color: <?php echo e($themeSetting[0]->siteColorTheme); ?>  !important;
+            color: <?php echo e($themeSetting->siteColorTheme); ?>  !important;
 
         }
 

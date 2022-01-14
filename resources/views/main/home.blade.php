@@ -6,14 +6,17 @@
 @section('google_verification',$seoset->google_verification)
 @section('content')
     @php
-        $webSiteSetting=\App\Models\WebsiteSetting::first();
+
     @endphp
     @php
         $socials = DB::table('socials')->get();
 
-    $themeSetting=DB::table('themes')->get();
-$vakitler=Session::get('vakitler');
-$kurlar=Session::get('kurlar');
+
+  $vakitler = Cache()->remember("home-vakitler", 60*60*24, function () {
+
+            return Session::get('vakitler');
+        });
+  $kurlar=Session::get('kurlar');
 $veri=Session::get('havadurumu');
 $icon=Session::get('icon');
 $gelenil=Session::get('gelenil');
@@ -22,53 +25,53 @@ $gelenil=Session::get('gelenil');
 
     <style>
         .owl-theme .owl-dots .owl-dot.active span {
-            background-color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            background-color: {{$themeSetting->siteColorTheme}}  !important;
         }
 
         .slider_span {
-            background-color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            background-color: {{$themeSetting->siteColorTheme}}  !important;
         }
 
         .owl-prev, .anaslider-prev {
-            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            color: {{$themeSetting->siteColorTheme}}  !important;
         }
 
         .owl-next, .anaslider-prev {
-            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            color: {{$themeSetting->siteColorTheme}}  !important;
         }
 
         .ilceler__baslik {
-            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            color: {{$themeSetting->siteColorTheme}}  !important;
 
         }
 
         .ilceler__nav-link.active {
-            color: {{$themeSetting[0]->siteColorTheme}}  !important;
-            border: 1px solid {{$themeSetting[0]->siteColorTheme}}  !important;
+            color: {{$themeSetting->siteColorTheme}}  !important;
+            border: 1px solid {{$themeSetting->siteColorTheme}}  !important;
         }
 
         .ilceler__nav-link:hover {
-            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            color: {{$themeSetting->siteColorTheme}}  !important;
         }
 
         .tns-nav-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            background-color: {{$themeSetting->siteColorTheme}}  !important;
         }
 
         .pl-1:hover {
-            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            color: {{$themeSetting->siteColorTheme}}  !important;
         }
         .kartlar__header::before{
-            border-left:2px solid {{$themeSetting[0]->siteColorTheme}}  !important;
+            border-left:2px solid {{$themeSetting->siteColorTheme}}  !important;
         }
         .slick-active, .slick li{
-            background-image:radial-gradient(farthest-side at 102% 2%, {{$themeSetting[0]->siteColorTheme}}, {{$themeSetting[0]->siteColorTheme}});
+            background-image:radial-gradient(farthest-side at 102% 2%, {{$themeSetting->siteColorTheme}}, {{$themeSetting->siteColorTheme}});
         }
         .video li{
-            border:1px solid {{$themeSetting[0]->siteColorTheme}} ;
+            border:1px solid {{$themeSetting->siteColorTheme}} ;
         }
         .slick-prev:before, .slick-next:before{
-            color: {{$themeSetting[0]->siteColorTheme}}  !important;
+            color: {{$themeSetting->siteColorTheme}}  !important;
 
         }
 

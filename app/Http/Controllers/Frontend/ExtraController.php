@@ -417,7 +417,7 @@ class ExtraController extends Controller
     {
 
 
-        $sondakika = Cache::remember("headline", Carbon::now()->addYear(), function () {
+        $sondakika = Cache()->remember("headline", Carbon::now()->addYear(), function () {
             if (Cache::has('headline')) return Cache::has('headline');
             return Post::where('posts.headline', 1)
                 ->where('created_at', '>', Carbon::now()->subDay(1))
@@ -492,7 +492,7 @@ class ExtraController extends Controller
 //dd($kurlar);
         Session::put('kurlar', $kurlar);
 
-        $video_gallary = Cache::remember("video_gallary", Carbon::now()->addYear(), function () {
+        $video_gallary = Cache()->remember("video_gallary", Carbon::now()->addYear(), function () {
             if (Cache::has('video_gallary')) return Cache::has('video_gallary');
             return Post::where('posts_video', '!=', NULL)->limit(5)->orderByDesc('created_at')->get();
         });
@@ -508,7 +508,7 @@ class ExtraController extends Controller
 //                ->get();
 ////            });
 
-        $home = Cache::remember("home", Carbon::now()->addYear(), function () {
+        $home = Cache()->remember("home", Carbon::now()->addYear(), function () {
             if (Cache::has('home')) return Cache::has('home');
             return Post::where('status', 1)->whereManset(1)
                 ->latest('created_at')->limit(25)
@@ -526,9 +526,9 @@ class ExtraController extends Controller
 //                ->where('status', 1)->latest('created_at')->limit(4)
 //                ->get();
 ////            });
-
-        $surmanset = Cache::remember("surmanset", Carbon::now()->addYear(), function () {
-            if (Cache::has('surmanset')) return Cache::has('surmanset');
+//cache()->forget('home-surmanset');
+        $surmanset = Cache()->remember("home-surmanset", Carbon::now()->addYear(), function () {
+//            if (Cache::has('surmanset')) return Cache::has('surmanset');
             return Post::where('status', 1)
                 ->where('surmanset', 1)
                 ->with('category')
@@ -537,7 +537,7 @@ class ExtraController extends Controller
                 ->get();
         });
 
-        $sagmanset = Cache::remember("sagmanset", Carbon::now()->addYear(), function () {
+        $sagmanset = Cache()->remember("sagmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('sagmanset')) return Cache::has('sagmanset'); //here am simply trying Laravel Collection method -find
 
             return Post::whereIn('category_id', [1, 2, 3])->where('status', 1)->latest('created_at')->limit(15)->get();
@@ -607,8 +607,21 @@ class ExtraController extends Controller
         });
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
-            return Theme::get();
+            return Theme::first();
         });
+//        dd($themeSetting);
+        $kultur = Cache::remember("education", Carbon::now()->addYear(), function () {
+            return Post::where('category_id', cache::get('themeSetting')->category1)->where('status', 1)->limit(4)->latest('created_at')->get();
+        });
+
+        $education = Cache::remember("education", Carbon::now()->addYear(), function () {
+            return Post::where('category_id', cache::get('themeSetting')[0]->category1)->where('status', 1)->limit(4)->latest('created_at')->get();
+        });
+        $Ilcehaberleri = Cache::remember("education", Carbon::now()->addYear(), function () {
+
+           return Post::limit(8)->where('subdistrict_id',$ilce->id)->get();
+        });
+
         $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
             if (Cache::has('authors')) return Cache::has('authors');
             return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
@@ -616,6 +629,10 @@ class ExtraController extends Controller
                 ->latest('created_at')->where('authors.status', 1)->where('authors_posts.status', 1)
                 ->groupBy("authors.id")->latest("authors_posts.id")
                 ->get();
+//            return Authors::with(['authors_posts'])
+//                ->latest('created_at')->where('status', 1)
+//                ->groupBy("id")->latest("id")
+//                ->get();
         });
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
             if (Cache::has('ads')) return Cache::has('ads');
@@ -631,7 +648,9 @@ class ExtraController extends Controller
             if (Cache::has('seoset')) return Cache::has('seoset');
             return Seos::first();
         });
-        $mgm = file_get_contents("https://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
+        $havadurumu = Cache()->remember("home-havadurumu", Carbon::now()->addYear(), function () {
+
+            $mgm = file_get_contents("https://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
         $veri = simplexml_load_string($mgm);
         $json = json_encode($veri);
         $array = json_decode($json, TRUE);
@@ -697,13 +716,20 @@ class ExtraController extends Controller
             'sicaklik' => $day1,
 //            'icon' =>$icon,
         );
+            Session::put('icon', $icon);
+            Session::put('gelenil', $gelenil);
+            Session::put('havadurumu', $veri['sicaklik']);
 
-        Session::put('icon', $icon);
-        Session::put('gelenil', $gelenil);
+        });
+        $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
 
-        Session::put('havadurumu', $veri['sicaklik']);
+            return WebsiteSetting::first();
+        });
+        $category = Cache()->remember("home-category", Carbon::now()->addYear(), function () {
 
-        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary'));
+            return category::get();
+        });
+        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary','havadurumu','webSiteSetting','education','kultur','category','Ilcehaberleri'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -712,64 +738,78 @@ class ExtraController extends Controller
 
     public function SinglePost($slug, $id)
     {
-        $r = $_SERVER['REQUEST_URI'];
+        $post = Cache()->remember("single-post", Carbon::now()->addYear(), function () {
+
+
+            $r = $_SERVER['REQUEST_URI'];
         $r = explode('?', $r);
         $r = array_filter($r);
         $r = array_merge($r, array());
         $ids = $r;
 
-        $explodeID= explode('-',$ids[0]);
+            $explodeID = explode('-', $ids[0]);
+
 //        dd($explodeID[count($explodeID)-1 ]);
-//        dd($explodeID);
 
-        $post = Post::where('status',1)->find($explodeID[count($explodeID)-1 ]);
-//        dd($post->category_id);
-        $maybeRelated=[];
-
-        $comments = Comments::where('posts_id', $explodeID[count($explodeID)-1 ])->where('status', 1)->get();
-
-        $orderImages=OrderImages::where('haberId',$explodeID[count($explodeID)-1 ])->get();
-
-        $slider = Post::latest('created_at')
+             return Post::where('status', 1)->find($explodeID[count($explodeID) - 1]);
+        });
+//        dd(cache::get('single-post')->id);
+//        $maybeRelated=[];
+        $comments = Cache()->remember("single-comments", Carbon::now()->addYear(), function () {
+         return Comments::where('posts_id', cache::get('single-post')->id)->where('status', 1)->get();
+        });
+        $orderImages = Cache()->remember("single-images", Carbon::now()->addYear(), function () {
+        return OrderImages::where('haberId',cache::get('single-post')->id)->get();
+        });
+        $slider = Cache()->remember("single-slider", Carbon::now()->addYear(), function () {
+         return Post::latest('created_at')
             ->with('category')
             ->limit(6)
             ->get();
-
+        });
 //        $category = Category::where('id', '=', $post->category_id)->get();
-
-        $ads =
-            Ad::latest('created_at')
+        $ads = Cache()->remember("single-ads", Carbon::now()->addYear(), function () {
+         return Ad::latest('created_at')
                 ->where('status', 1)
                 ->with('adcategory')
                 ->get();
+        });
 
-        $related =
-            Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+        $related = Cache()->remember("single-related", Carbon::now()->addYear(), function () {
+            return Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', $explodeID[count($explodeID)-1 ])->where('posts.status',1)->latest()
+                ->where('posts.id', cache::get('single-post')->id)->where('posts.status',1)->latest()
                 ->limit(10)
                 ->get();
-        $random = Post::inRandomOrder()->limit(3)->get();
+        });
+        $random = Cache()->remember("single-random", Carbon::now()->addYear(), function () {
+         return Post::inRandomOrder()->limit(3)->get();
 //        $tag_ids = $post->tag()->get();
 //        $tagCount = $tag_ids->count();
-
-        $tagName =
+        });
+        $tagName = Cache()->remember("single-tagname", Carbon::now()->addYear(), function () {
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', $id)->where('posts.status', 1)
+                ->where('posts.id', cache::get('single-post')->id)->where('posts.status', 1)
                 ->limit(10)
                 ->get();
+        });
+
 //        if($post->category_id!=NULL) {
 //        $nextrelated = Post::where('category_id', $post->category_id)->limit(10)->latest()
 //            ->get();
-            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
+        $nextrelated = Cache()->remember("single-nextrelated", Carbon::now()->addYear(), function () {
+            return  Post::limit(10)->inRandomOrder()->latest()
                 ->get();
+        });
 //        }
-//        dd($nextrelated);
 
-        $seoset = Seos::first();
+//        dd($nextrelated);
+        $seoset = Cache()->remember("single-seoset", Carbon::now()->addYear(), function () {
+        return Seos::first();
+        });
         if (!empty($post->tag())) {
 
             $tag_ids = $post->tag()->get();
@@ -786,6 +826,7 @@ class ExtraController extends Controller
         $maybeRelated = [];
         if(isset($ids)) {
             if ($ids!=[]){
+
                 $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                     ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                     ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
@@ -812,7 +853,6 @@ class ExtraController extends Controller
     {
 
         $category = Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
-
         $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
             if (Cache::has('authors')) return Cache::has('authors');
             return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
@@ -912,11 +952,12 @@ class ExtraController extends Controller
         $seoset = Seos::first();
         $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->orderByDesc('id')->get();
         $yazar = Authors::where('id', '=', $id)->get();
-        $nextauthors_posts = DB::table('authors_posts')
+        $nextauthors_posts = DB::table('authors_posts');
+            $webSiteSetting=cache::get('home-websitesetting')
             ->latest('created_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
             ->get();
 
-        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
+        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts','webSiteSetting'));
     }
 
     public function yazilars($id)
@@ -934,8 +975,14 @@ class ExtraController extends Controller
     }
     public function breakingnews()
     {
-        $webSiteSetting = WebsiteSetting::first();
-        $themeSetting = Theme::get();
+        $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
+
+            return WebsiteSetting::first();
+        });
+        $themeSetting = Cache()->remember("home-themeSettings", Carbon::now()->addYear(), function () {
+
+           return Theme::get();
+        });
 
         $sondakika = Post::where('created_at', '>', Carbon::now()->subHour(24))->latest()->get();
 

@@ -1,19 +1,7 @@
-@php
-    use Carbon\Carbon;
-    use App\Models\Post;
-    use App\Models\Category;
-        $category=Category::get();
-        $theme=\App\Models\Theme::first();
-        $education = Post::where('category_id', $theme->category1)->where('status', 1)->limit(4)->latest('created_at')->get();
-        $kultur = Post::where('category_id', $theme->category2)->where('status', 1)->limit(4)->latest('created_at')->get();
-
-
-
-@endphp
 <div class="col-md-8 padding-left mx-auto">
 
     <div class="card-header card-kutu position-relative"
-         style="background-image:linear-gradient(-10deg, {{$theme->economy}}, {{$theme->politics}});!important;border-bottom:3px solid {{$theme->economy}} !important">
+         style="background-image:linear-gradient(-10deg, {{$themeSetting->economy}}, {{$themeSetting->politics}});!important;border-bottom:3px solid {{$themeSetting->economy}} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
             @foreach($category as $categorys)
                 @if($categorys->id==$education[0]->category_id)
@@ -74,7 +62,7 @@
 
 
     <div class="card-header card-kutu position-relative"
-         style="background-image:linear-gradient(-10deg, {{$theme->agenda}}, {{$theme->sport}});!important;border-bottom:3px solid {{$theme->agenda}} !important">
+         style="background-image:linear-gradient(-10deg, {{$themeSetting->agenda}}, {{$themeSetting->sport}});!important;border-bottom:3px solid {{$themeSetting->agenda}} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
             @foreach($category as $categorys)

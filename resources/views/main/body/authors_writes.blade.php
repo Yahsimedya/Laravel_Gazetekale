@@ -18,7 +18,6 @@ use App\Models\Authors;
                    ->groupBy("authors.id")->latest("authors_posts.id")
                    ->get();
 
-        $webSiteSetting=DB::table('website_settings')->first();
 
 
 

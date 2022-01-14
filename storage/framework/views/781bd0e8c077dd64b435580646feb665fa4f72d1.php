@@ -1,19 +1,7 @@
-<?php
-    use Carbon\Carbon;
-    use App\Models\Post;
-    use App\Models\Category;
-        $category=Category::get();
-        $theme=\App\Models\Theme::first();
-        $education = Post::where('category_id', $theme->category1)->where('status', 1)->limit(4)->latest('created_at')->get();
-        $kultur = Post::where('category_id', $theme->category2)->where('status', 1)->limit(4)->latest('created_at')->get();
-
-
-
-?>
 <div class="col-md-8 padding-left mx-auto">
 
     <div class="card-header card-kutu position-relative"
-         style="background-image:linear-gradient(-10deg, <?php echo e($theme->economy); ?>, <?php echo e($theme->politics); ?>);!important;border-bottom:3px solid <?php echo e($theme->economy); ?> !important">
+         style="background-image:linear-gradient(-10deg, <?php echo e($themeSetting->economy); ?>, <?php echo e($themeSetting->politics); ?>);!important;border-bottom:3px solid <?php echo e($themeSetting->economy); ?> !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
             <?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categorys): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if($categorys->id==$education[0]->category_id): ?>
@@ -75,7 +63,7 @@
 
 
     <div class="card-header card-kutu position-relative"
-         style="background-image:linear-gradient(-10deg, <?php echo e($theme->agenda); ?>, <?php echo e($theme->sport); ?>);!important;border-bottom:3px solid <?php echo e($theme->agenda); ?> !important">
+         style="background-image:linear-gradient(-10deg, <?php echo e($themeSetting->agenda); ?>, <?php echo e($themeSetting->sport); ?>);!important;border-bottom:3px solid <?php echo e($themeSetting->agenda); ?> !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
             <?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categorys): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

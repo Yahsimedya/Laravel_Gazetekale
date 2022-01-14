@@ -1,6 +1,4 @@
-<?php
-    $webSiteSetting=\App\Models\WebsiteSetting::first();
-?>
+
 <div class="container mt-2 ">
     <div class="row">
         <?php $__currentLoopData = $surmanset; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

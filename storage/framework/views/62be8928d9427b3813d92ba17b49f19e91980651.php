@@ -1,6 +1,3 @@
-<?php
-    $webSiteSetting=\App\Models\WebsiteSetting::first();
-?>
 <section class="ilceler container-fluid d-none d-md-block bg-light mt-2 mb-2 pb-4">
 
 
@@ -33,9 +30,7 @@
 
                 <div class="tab-pane fade <?php if($k==0): ?> show active <?php endif; ?> " id="pills-<?php echo e($ilce->id); ?>" role="tabpanel"
                      aria-labelledby="pills-profile-tab">
-                    <?php
-                        $Ilcehaberleri=\App\Models\Post::limit(8)->where('subdistrict_id',$ilce->id)->get();
-                    ?>
+
 
                     <div class="row  padding-left">
                         <div class="col-md-12">

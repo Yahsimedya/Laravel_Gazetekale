@@ -1,6 +1,3 @@
-<?php
-    $themeSettings=\App\Models\WebsiteSetting::first();
-?>
 <section class="video mt-3 pt-3 pb-3 bg-dark">
 
     <div class="container padding-left">
@@ -39,7 +36,7 @@
                                 <div class="card   d-inline-block  ">
                                     <img data-src="<?php echo e(asset('icon/icon-youtube.png')); ?>" class="lazyload position-absolute ytube-icon img-fluid"
                                          alt="youtube" width="70" height="45">
-                                    <img class="card-img-top tns-lazy-img lazyload img-fluid" data-src="<?php echo e($row->image); ?>" onerror="this.onerror=null;this.src='<?php echo e($themeSettings->defaultImage); ?>';"
+                                    <img class="card-img-top tns-lazy-img lazyload img-fluid" data-src="<?php echo e($row->image); ?>" onerror="this.onerror=null;this.src='<?php echo e($webSiteSetting->defaultImage); ?>';"
                                          alt="<?php echo e($row->title_tr); ?>">
                                     <div class="card-body align-middle d-table-cell" >
                                         <p class="card-baslik text-center d-table-cell"><b

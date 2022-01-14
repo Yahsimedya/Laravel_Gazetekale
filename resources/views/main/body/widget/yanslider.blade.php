@@ -1,6 +1,4 @@
-@php
-    $webSiteSetting=\App\Models\WebsiteSetting::first();
-@endphp
+
 <div
     class="col-md-12 col-sm-12 col-xs-12 col-lg-4 d-none d-md-block text-center position-relative yanslider padding-left">
 

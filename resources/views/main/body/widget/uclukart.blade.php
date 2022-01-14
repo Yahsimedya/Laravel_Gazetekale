@@ -1,6 +1,3 @@
-@php
-    $webSiteSetting=\App\Models\WebsiteSetting::first();
-@endphp
 <div class="container mt-3 kartlar">
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12 padding-left ">
