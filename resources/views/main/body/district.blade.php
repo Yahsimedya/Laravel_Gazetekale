@@ -39,7 +39,7 @@
         <div class="row" id="gotur">
 
 
-            @if($sehirsay!=0)
+            @if($sehirsay!=0 & $sehir!=NULL)
 
 
                 <div class="col-md-8 pb-4 pt-4">

@@ -362,7 +362,7 @@ class ExtraController extends Controller
             ->count();
 
         $sehir = District::where('slug', $id)
-            ->first();
+            ->firstOrFail();
 
 
         $districts = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
@@ -723,6 +723,7 @@ class ExtraController extends Controller
 //        dd($explodeID);
 
         $post = Post::where('status',1)->find($explodeID[count($explodeID)-1 ]);
+//        dd($post->category_id);
         $maybeRelated=[];
 
         $comments = Comments::where('posts_id', $explodeID[count($explodeID)-1 ])->where('status', 1)->get();
@@ -760,12 +761,21 @@ class ExtraController extends Controller
                 ->where('posts.id', $id)->where('posts.status', 1)
                 ->limit(10)
                 ->get();
-        $nextrelated = Post::latest('created_at')
-            ->where('category_id', $post->category_id)->limit(10)->orderByDesc('id')
-            ->get();
+//        if($post->category_id!=NULL) {
+//        $nextrelated = Post::where('category_id', $post->category_id)->limit(10)->latest()
+//            ->get();
+            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
+                ->get();
+//        }
+//        dd($nextrelated);
 
         $seoset = Seos::first();
-        $tag_ids = $post->tag()->get();
+        if ($post->tag()!=NULL) {
+
+            $tag_ids = $post->tag()->get();
+//        dd($post->tag());
+
+
         $tagCount = $tag_ids->count();
         $ids = array();
         foreach ($tag_ids as $tags) {
@@ -782,6 +792,7 @@ class ExtraController extends Controller
                     ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->where('posts.status',1)->latest()
                     ->get();
             }
+        }
         }
         return view('main.body.single_post', compact('post', 'ads','tagName','orderImages','maybeRelated', 'random','seoset', 'slider', 'related', 'nextrelated', 'comments', 'id','tagCount'));
 
