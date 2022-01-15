@@ -3,6 +3,8 @@
 <?php $__env->startSection('meta_description',htmlspecialchars_decode(stripslashes($seoset->meta_description),ENT_QUOTES)); ?>
 <?php $__env->startSection('google_analytics',$seoset->google_analytics); ?>
 <?php $__env->startSection('google_verification',$seoset->google_verification); ?>
+<?php $__env->startSection('adsense_code',$seoset->adsense_code); ?>
+
 <?php $__env->startSection('content'); ?>
     <?php
 
