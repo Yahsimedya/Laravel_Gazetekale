@@ -75,6 +75,9 @@ class Post extends Model implements Viewable
     public function user() {
         return $this->belongsTo(User::class,'user_id');
     }
+    public function postTag() {
+        return $this->belongsTo(PostTag::class,'post_id','id');
+    }
     public function tag()
     {
         return $this->belongsToMany(Tag::class, 'post_tags');

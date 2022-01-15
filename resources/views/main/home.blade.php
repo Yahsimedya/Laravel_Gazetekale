@@ -4,6 +4,8 @@
 @section('meta_description',htmlspecialchars_decode(stripslashes($seoset->meta_description),ENT_QUOTES))
 @section('google_analytics',$seoset->google_analytics)
 @section('google_verification',$seoset->google_verification)
+@section('adsense_code',$seoset->adsense_code)
+
 @section('content')
     @php
 
