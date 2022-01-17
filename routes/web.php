@@ -353,7 +353,7 @@ Route::get('/json/story/', [MobilAppController::class, 'story']);
 Route::get('/json/searchPost/{ad}', [MobilAppController::class, 'searchPost']);
 Route::get('/json/commentposts/{id}/{ad}/{detay}', [MobilAppController::class, 'commentposts']);
 Route::get('/json/categories/{id}', [MobilAppController::class, 'categories']);
-Route::get('/json/fotogaleri/', [MoborderImagesPageilAppController::class, 'fotogaleri']);
+Route::get('/json/fotogaleri/', [MobilAppController::class, 'fotogaleri']);
 Route::get('/json/fotogaleriDetail/', [MobilAppController::class, 'fotogaleriDetail']);
 Route::get('/json/AllPost/', [MobilAppController::class, 'AllPost']);
 Route::get('/json/country/{id}', [MobilAppController::class, 'countrynews']);
@@ -363,7 +363,7 @@ Route::get('/json/kirmiziMikrafon/', [MobilAppController::class, 'kirmiziMikrafo
 Route::get('/json/allyazar/', [MobilAppController::class, 'allyazar']);
 Route::get('/json/authorsposts/{id}', [MobilAppController::class, 'authorsposts']);
 Route::get('/json/sondakika/', [MobilAppController::class, 'sondakika']);
-Route::get('/json/orderImages/', [MobilAppController::class, 'orderImages']);
+Route::get('/json/orderImages/{id}', [MobilAppController::class, 'orderImages']);
 
 
 
