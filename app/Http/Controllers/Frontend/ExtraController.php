@@ -63,7 +63,8 @@ class ExtraController extends Controller
    */
     }
 
-    public function haberFotoTrans(){
+    public function haberFotoTrans()
+    {
         ini_set('max_execution_time', 0);
         $OrderImagesEski = DB::table('haber_foto')->get();//eklenecek eski köşe yazıları tablosu
         $yeniData = array();
@@ -141,9 +142,9 @@ class ExtraController extends Controller
                 $newCategoryId = 9;
             } elseif ($habereski[$i]->kategori_id == 64) {
                 $newCategoryId = 10;
-            }elseif ($habereski[$i]->kategori_id == 36) {
+            } elseif ($habereski[$i]->kategori_id == 36) {
                 $newCategoryId = 11;
-            }elseif ($habereski[$i]->kategori_id == 71) {
+            } elseif ($habereski[$i]->kategori_id == 71) {
                 $newCategoryId = 12;
             }
             $newImagesroute = "storage/postimg/" . $habereski[$i]->haberfoto_resimyol;
@@ -227,7 +228,9 @@ class ExtraController extends Controller
         return "Veri taşıma başarılı";
 
     }
-    public function OldDByazarlar(){
+
+    public function OldDByazarlar()
+    {
         ini_set('max_execution_time', 0);
         $koseyazisieski = DB::table('kullanici')->get();//eklenecek eski köşe yazıları tablosu
         $yeniData = array();
@@ -445,6 +448,7 @@ class ExtraController extends Controller
 
             return $string;
         }
+
         $kurlar = [
             'DOLAR' => [
                 'oran' => $result['USD']['Değişim'],
@@ -619,16 +623,16 @@ class ExtraController extends Controller
         });
         $Ilcehaberleri = Cache::remember("education", Carbon::now()->addYear(), function () {
 
-           return Post::limit(8)->where('subdistrict_id',$ilce->id)->get();
+            return Post::limit(8)->where('subdistrict_id', $ilce->id)->get();
         });
 
 //        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
 //            if (Cache::has('authors')) return Cache::has('authors');
-            $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-                ->select(['authors.*', 'authors_posts.title','authors_posts.id'])
-                ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
-                ->groupBy("authors.id")->latest("authors_posts.id")
-                ->get();
+        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+            ->select(['authors.*', 'authors_posts.title', 'authors_posts.id'])
+            ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
+            ->groupBy("authors.id")->latest("authors_posts.id")
+            ->get();
 //        });
 //        dd($authors);
 
@@ -649,71 +653,71 @@ class ExtraController extends Controller
         $havadurumu = Cache()->remember("home-havadurumu", Carbon::now()->addYear(), function () {
 
             $mgm = file_get_contents("https://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
-        $veri = simplexml_load_string($mgm);
-        $json = json_encode($veri);
-        $array = json_decode($json, TRUE);
-        $gelenil = "KIRIKKALE";
-        $bul = $gelenil;
-        $bulunacak = array('ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']');
-        $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
-        $sonuc = str_replace($bulunacak, $degistir, $bul);
-        $sonuc;
+            $veri = simplexml_load_string($mgm);
+            $json = json_encode($veri);
+            $array = json_decode($json, TRUE);
+            $gelenil = "KIRIKKALE";
+            $bul = $gelenil;
+            $bulunacak = array('ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']');
+            $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
+            $sonuc = str_replace($bulunacak, $degistir, $bul);
+            $sonuc;
 
-        function cevir($string)
-        {
+            function cevir($string)
+            {
 
-            $string = str_replace("SCK", "Sıcak", $string);
-            $string = str_replace("AB", "Az Bulutlu", $string);
-            $string = str_replace("HSY", "Hafif Sağnak Yağış", $string);
-            $string = str_replace("PB", "Parçalı Bulutlu", $string);
-            $string = str_replace("GSY", "Gökgürltülü Sağnak Yağışlı", $string);
-            $string = str_replace("KGY", "Kuvvetli Gökgürltülü Sağnak Yağışlı", $string);
-            $string = str_replace("MSY", "Mevzi Sağnak Yağışlı", $string);
+                $string = str_replace("SCK", "Sıcak", $string);
+                $string = str_replace("AB", "Az Bulutlu", $string);
+                $string = str_replace("HSY", "Hafif Sağnak Yağış", $string);
+                $string = str_replace("PB", "Parçalı Bulutlu", $string);
+                $string = str_replace("GSY", "Gökgürltülü Sağnak Yağışlı", $string);
+                $string = str_replace("KGY", "Kuvvetli Gökgürltülü Sağnak Yağışlı", $string);
+                $string = str_replace("MSY", "Mevzi Sağnak Yağışlı", $string);
 
-            return $string;
-        }
-
-
-        foreach ($array['Merkez'] as $data) {
-            if ($data['ilEn'] == $sonuc) {
-                if ($data['d1'] == "GSY") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
-                } elseif ($data['d1'] == "SCK") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
-                } elseif ($data['d1'] == "KGY") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
-                } elseif ($data['d1'] == "AB") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-partly-cloudy"></i>';
-                } elseif ($data['d1'] == "PB") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-cloudy-windy"></i>';
-                } elseif ($data['d1'] == "HSY") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-rain"></i>';
-                } elseif ($data['d1'] == "MSY") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-showers"></i>';
-                } elseif ($data['d1'] == "A") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
-                } elseif ($data['d1'] == "CB") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
-                } elseif ($data['d1'] == "SIS") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
-                } elseif ($data['d1'] == "Y") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-storm-showers"></i>';
-                } else {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-celsius"></i>';
-                }
-
-
-                $day1 = $data['makk1'];
-
-
+                return $string;
             }
-        }
 
-        $veri = array(
-            'gelenil' => $gelenil,
-            'sicaklik' => $day1,
+
+            foreach ($array['Merkez'] as $data) {
+                if ($data['ilEn'] == $sonuc) {
+                    if ($data['d1'] == "GSY") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
+                    } elseif ($data['d1'] == "SCK") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
+                    } elseif ($data['d1'] == "KGY") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
+                    } elseif ($data['d1'] == "AB") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-night-partly-cloudy"></i>';
+                    } elseif ($data['d1'] == "PB") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-cloudy-windy"></i>';
+                    } elseif ($data['d1'] == "HSY") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-rain"></i>';
+                    } elseif ($data['d1'] == "MSY") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-showers"></i>';
+                    } elseif ($data['d1'] == "A") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
+                    } elseif ($data['d1'] == "CB") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
+                    } elseif ($data['d1'] == "SIS") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
+                    } elseif ($data['d1'] == "Y") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-storm-showers"></i>';
+                    } else {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-celsius"></i>';
+                    }
+
+
+                    $day1 = $data['makk1'];
+
+
+                }
+            }
+
+            $veri = array(
+                'gelenil' => $gelenil,
+                'sicaklik' => $day1,
 //            'icon' =>$icon,
-        );
+            );
             Session::put('icon', $icon);
             Session::put('gelenil', $gelenil);
             Session::put('havadurumu', $veri['sicaklik']);
@@ -727,7 +731,7 @@ class ExtraController extends Controller
 
             return category::get();
         });
-        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary','havadurumu','webSiteSetting','education','kultur','category','Ilcehaberleri'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -738,14 +742,14 @@ class ExtraController extends Controller
     {
 //dd($id);
 
-            $r = $_SERVER['REQUEST_URI'];
+        $r = $_SERVER['REQUEST_URI'];
         $r = explode('?', $r);
         $r = array_filter($r);
         $r = array_merge($r, array());
         $ids = $r;
 
-            $explodeID = explode('-', $ids[0]);
-$id=$explodeID[count($explodeID) - 1];
+        $explodeID = explode('-', $ids[0]);
+        $id = $explodeID[count($explodeID) - 1];
 //dd($id);
 //        dd($explodeID[count($explodeID)-1 ]);
 
@@ -757,7 +761,7 @@ $id=$explodeID[count($explodeID) - 1];
 //        } else{
 //            $post = Cache::get('single-post');
 //        }
-        $post=Post::where('status', 1)->find($id);
+        $post = Post::where('status', 1)->find($id);
 
 
 //        dd($post);
@@ -770,11 +774,11 @@ $id=$explodeID[count($explodeID) - 1];
 //        } else{
 //            $comments = Cache::get('single-comments');
 //        }
-         $comments= Comments::where('posts_id', $id)->where('status', 1)->get();
+        $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
 
-        $orderImages=OrderImages::where('haberId',$id)->get();
+        $orderImages = OrderImages::where('haberId', $id)->get();
         $slider = Cache()->remember("single-slider", Carbon::now()->addYear(), function () {
-             return Post::latest('created_at')
+            return Post::latest('created_at')
                 ->with('category')
                 ->limit(6)
                 ->get();
@@ -783,10 +787,10 @@ $id=$explodeID[count($explodeID) - 1];
 
 //        $category = Category::where('id', '=', $post->category_id)->get();
         $ads = Cache()->remember("single-slider", Carbon::now()->addYear(), function () {
-                return Ad::latest('created_at')
-                    ->where('status', 1)
-                    ->with('adcategory')
-                    ->get();
+            return Ad::latest('created_at')
+                ->where('status', 1)
+                ->with('adcategory')
+                ->get();
         });
 
 //        $related =
@@ -827,7 +831,7 @@ $id=$explodeID[count($explodeID) - 1];
 //        }
 //        dd($nextrelated);
         $seoset = Cache()->remember("single-seoset", Carbon::now()->addYear(), function () {
-             return  Seos::first();
+            return Seos::first();
         });
         if (!empty($post->tag())) {
 
@@ -835,25 +839,25 @@ $id=$explodeID[count($explodeID) - 1];
 //        dd($post->tag());
 
 
-        $tagCount = $tag_ids->count();
-        $ids = array();
-        foreach ($tag_ids as $tags) {
-            $ids[] = $tags->id;
-            $tag = $tags->id;
-        }
+            $tagCount = $tag_ids->count();
+            $ids = array();
+            foreach ($tag_ids as $tags) {
+                $ids[] = $tags->id;
+                $tag = $tags->id;
+            }
 //        dd($ids);
-        $maybeRelated = [];
-        if(isset($ids)) {
-            if ($ids!=[]){
-                $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-                    ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                    ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->where('posts.status',1)->latest()
-                    ->get();
+            $maybeRelated = [];
+            if (isset($ids)) {
+                if ($ids != []) {
+                    $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                        ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                        ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+                        ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->where('posts.status', 1)->latest()
+                        ->get();
+                }
             }
         }
-        }
-        return view('main.body.single_post', compact('post', 'ads','orderImages','maybeRelated', 'seoset', 'slider', 'nextrelated', 'comments','tagCount'));
+        return view('main.body.single_post', compact('post', 'ads', 'orderImages', 'maybeRelated', 'seoset', 'slider', 'nextrelated', 'comments', 'tagCount'));
 
 
     }
@@ -882,26 +886,26 @@ $id=$explodeID[count($explodeID) - 1];
         $manset =
             Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-                ->where('posts.category_id', $id)->where('posts.manset', 1)->where('posts.status',1)
+                ->where('posts.category_id', $id)->where('posts.manset', 1)->where('posts.status', 1)
                 ->orderBy('created_at', 'desc')
                 ->limit(15)->get();
 
 
         $count = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->where('posts.status',1)
+            ->where('posts.category_id', $id)->where('posts.status', 1)
             ->count();
 
 
         $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->orderBy('created_at', 'desc')->where('posts.status',1)->offset(1)
+            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->orderBy('created_at', 'desc')->where('posts.status', 1)->offset(1)
             ->paginate(20);
 
 
         $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->where('posts.status',1)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
+            ->where('posts.category_id', $id)->where('posts.status', 1)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(10)
             ->get();
         $ads =
@@ -919,7 +923,7 @@ $id=$explodeID[count($explodeID) - 1];
     public function search(Request $request)
     {
         $searchText = $request['searchtext'];
-        $json = Post::Where('status',1)->Where('title_tr', 'LIKE', '%' . $searchText . '%')->get();
+        $json = Post::Where('status', 1)->Where('title_tr', 'LIKE', '%' . $searchText . '%')->get();
         $searchNews = $this->change($json);
         return \view('main.body.search', compact('searchNews'));
     }
@@ -963,30 +967,28 @@ $id=$explodeID[count($explodeID) - 1];
     }
 
 
-    public function yazilar($id)
+    public function yazilar($slug,$id)
     {
-
-
+        $sluf=$slug;
+//        dd($id);
         $seoset = Seos::first();
-            $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->orderByDesc('id')->get();
-            $yazar = Authors::where('id', '=', $id)->get();
+        $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->orderByDesc('id')->get();
+        $yazar = Authors::where('id', '=', $id)->get();
         $nextauthors_posts = Cache()->remember("home-nextauthors_posts", Carbon::now()->addYear(), function () {
             return AuthorsPost::whereStatus(1)->skip(1)->take(10)->latest()->get();
         });
 
         $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
-
             return WebsiteSetting::first();
         });
-
 //            $webSiteSetting=cache::get('home-websitesetting')
 //            ->latest('created_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
 //            ->get();
 
-        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts','webSiteSetting'));
+        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts', 'webSiteSetting'));
     }
 
-    public function yazilars($id)
+    public function yazilars($slug,$id)
 
     {
 
@@ -999,6 +1001,7 @@ $id=$explodeID[count($explodeID) - 1];
 
         return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
     }
+
     public function breakingnews()
     {
         $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
@@ -1007,7 +1010,7 @@ $id=$explodeID[count($explodeID) - 1];
         });
         $themeSetting = Cache()->remember("home-themeSettings", Carbon::now()->addYear(), function () {
 
-           return Theme::get();
+            return Theme::get();
         });
 
         $sondakika = Post::where('created_at', '>', Carbon::now()->subHour(24))->latest()->get();
