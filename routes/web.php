@@ -363,6 +363,7 @@ Route::get('/json/kirmiziMikrafon/', [MobilAppController::class, 'kirmiziMikrafo
 Route::get('/json/allyazar/', [MobilAppController::class, 'allyazar']);
 Route::get('/json/authorsposts/{id}', [MobilAppController::class, 'authorsposts']);
 Route::get('/json/sondakika/', [MobilAppController::class, 'sondakika']);
+Route::get('/json/orderImages/', [MobilAppController::class, 'orderImages']);
 
 
 

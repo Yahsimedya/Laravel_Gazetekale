@@ -301,6 +301,11 @@ class MobilAppController extends Controller
         $stmt = Post::where('district_id', '=', $id)->limit(50)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
+    } public function orderImages($id)
+    {
+        $stmt =   DB::table('order_images')->where('haberId',$id)->get();
+        $json = $stmt;
+        return $this->change($json);
     }
 
     public function allyazar()
