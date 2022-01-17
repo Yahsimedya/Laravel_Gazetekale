@@ -622,18 +622,16 @@ class ExtraController extends Controller
            return Post::limit(8)->where('subdistrict_id',$ilce->id)->get();
         });
 
-        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
-            if (Cache::has('authors')) return Cache::has('authors');
-            return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-                ->select(['authors.*', 'authors_posts.title'])
-                ->latest('created_at')->where('authors.status', 1)->where('authors_posts.status', 1)
+//        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
+//            if (Cache::has('authors')) return Cache::has('authors');
+            $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+                ->select(['authors.*', 'authors_posts.title','authors_posts.id'])
+                ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
                 ->groupBy("authors.id")->latest("authors_posts.id")
                 ->get();
-//            return Authors::with(['authors_posts'])
-//                ->latest('created_at')->where('status', 1)
-//                ->groupBy("id")->latest("id")
-//                ->get();
-        });
+//        });
+//        dd($authors);
+
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
             if (Cache::has('ads')) return Cache::has('ads');
             return Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')

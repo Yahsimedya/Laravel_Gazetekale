@@ -7,10 +7,7 @@
 @section('content')
     @endforeach
 @php
-    $expiresAt = now()->addMinute(20);
-        views($yazilar)
-            ->cooldown($expiresAt)
-            ->record();
+
 use App\Models\Authors;
     $otherauthos=  Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
                    ->select(['authors.*', 'authors_posts.title'])
