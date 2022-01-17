@@ -970,12 +970,20 @@ $id=$explodeID[count($explodeID) - 1];
 
 
         $seoset = Seos::first();
-        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->orderByDesc('id')->get();
-        $yazar = Authors::where('id', '=', $id)->get();
-        $nextauthors_posts = DB::table('authors_posts');
-            $webSiteSetting=cache::get('home-websitesetting')
-            ->latest('created_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
-            ->get();
+            $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->orderByDesc('id')->get();
+            $yazar = Authors::where('id', '=', $id)->get();
+        $nextauthors_posts = Cache()->remember("home-nextauthors_posts", Carbon::now()->addYear(), function () {
+            return AuthorsPost::whereStatus(1)->skip(1)->take(10)->latest()->get();
+        });
+
+        $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
+
+            return WebsiteSetting::first();
+        });
+
+//            $webSiteSetting=cache::get('home-websitesetting')
+//            ->latest('created_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
+//            ->get();
 
         return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts','webSiteSetting'));
     }
