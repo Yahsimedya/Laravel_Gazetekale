@@ -37,4 +37,7 @@ mix.js('resources/js/app.js', 'public/js')
 
     .sourceMaps();
 
-mix.version();
+mix.version()
+.purgeCss({
+    enabled: true,
+});
