@@ -20,7 +20,7 @@
     </div>
     @foreach($authors as $author)
 
-        <a href="{{URL::to('/koseyazisi-'.str_slug($author->title).'-'.$author->id)}}">
+        <a href="{{URL::to('/koseyazisi/'.str_slug($author->title).'/'.$author->id)}}">
             <div class="row  mt-2">
 
                 <div class="col-md-4 col-4 col-sm-4">
