@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\hasMany;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 //use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use App\Models\AuthorsPost;
 class Authors extends Model implements Viewable
 {
     use HasFactory;
@@ -26,4 +26,10 @@ class Authors extends Model implements Viewable
         'youtube',
 
     ];
+    public function authorposts()
+    {
+        return $this->belongsTo(AuthorsPost::class,'authors_id','id')->orderBy('authors_id');
+//        return $this->belongsToMany(AuthorsPost::class, 'authors_id');
+
+    }
 }

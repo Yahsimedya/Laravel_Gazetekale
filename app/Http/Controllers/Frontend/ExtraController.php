@@ -628,12 +628,17 @@ class ExtraController extends Controller
 
 //        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
 //            if (Cache::has('authors')) return Cache::has('authors');
+//        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+//            ->select(['authors.id','authors.name', 'authors_posts.*'])
+//            ->where('authors.status', 1)->where('authors_posts.status', 1)->orderBy('authors_posts.created_at','ASC')
+//            ->groupBy("authors.id")
+//            ->get();
         $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-            ->select(['authors.*', 'authors_posts.title', 'authors_posts.id'])
-            ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
-            ->groupBy("authors.id")->latest("authors_posts.id")
+            ->where('authors.status', 1)->where('authors_posts.status', 1)
+            ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
+            ->latest("authors_posts.created_at")->limit(8)
             ->get();
-//        });
+
 //        dd($authors);
 
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
@@ -974,10 +979,12 @@ class ExtraController extends Controller
         $seoset = Seos::first();
         $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->orderByDesc('id')->get();
         $yazar = Authors::where('id', '=', $id)->get();
-        $nextauthors_posts = Cache()->remember("home-nextauthors_posts", Carbon::now()->addYear(), function () {
-            return AuthorsPost::whereStatus(1)->skip(1)->take(10)->latest()->get();
-        });
+//        $nextauthors_posts = Cache()->remember("home-nextauthors_posts", Carbon::now()->addYear(), function () {
+            $nextauthors_posts = AuthorsPost::whereStatus(1)->where('authors_id',$yazi[0]->authors_id)->skip(1)->take(10)->latest()->get();
+//        });
+//                dd($nextauthors_posts);
 
+//dd($yazi[0]->authors_id);
         $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
             return WebsiteSetting::first();
         });

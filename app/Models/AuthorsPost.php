@@ -27,8 +27,8 @@ class AuthorsPost extends Model implements Viewable
         'description',
     ];
 
-    public function author()
+    public function authors()
     {
-        return $this->belongsTo(Authors::class, 'authors_id');
+        return $this->belongsTo(Authors::class);
     }
 }
