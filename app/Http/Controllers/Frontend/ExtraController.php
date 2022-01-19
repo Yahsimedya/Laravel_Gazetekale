@@ -974,41 +974,46 @@ class ExtraController extends Controller
 
     public function yazilar($slug,$id)
     {
+//        dd($id); // yazının ID'si
+
         $sluf=$slug;
-//        dd($id);
         $seoset = Seos::first();
-        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->orderByDesc('id')->get();
+        $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->orderByDesc('id')->get();
+//        $authorsId=$yazi[0]->authors_id;
+//        dd($yazi);
         $yazar = Authors::where('id', '=', $id)->get();
-
+//        dd($yazi);
 //        $nextauthors_posts = Cache()->remember("home-nextauthors_posts", Carbon::now()->addYear(), function () {
-            $nextauthors_posts = AuthorsPost::whereStatus(1)->where('authors_id',$yazi[0]->authors_id)->skip(0)->take(10)->latest()->get();
+            $nextauthors_posts = AuthorsPost::whereStatus(1)->where('authors_id', isset($yazi[0]) ? $yazi[0]->authors_id : '')->skip(0)->take(10)->latest()->get();
 //        });
-//                dd($nextauthors_posts);
+//        dd($nextauthors_posts);
 
-//dd($yazi[0]->authors_id);
+        $otherauthos=  AuthorsPost::leftjoin('authors', 'authors_posts.authors_id', '=', 'authors.id')
+            ->select(['authors_posts.*','authors.name'])
+            ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
+            ->groupBy("authors.id")->latest("authors_posts.id")
+            ->get();
+//        dd($otherauthos);
+
         $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
             return WebsiteSetting::first();
         });
-//            $webSiteSetting=cache::get('home-websitesetting')
-//            ->latest('created_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
+        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts', 'webSiteSetting','otherauthos'));
+    }
+
+//    public function yazilars($slug,$id)
+//
+//    {
+//
+//        $seoset = Seos::first();
+//        $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
+//        $nextauthors_posts = DB::table('authors_posts')
+//            ->latest('created_at')->where('status', 1)->where('id', '=', $id)->limit(10)
 //            ->get();
-
-        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts', 'webSiteSetting'));
-    }
-
-    public function yazilars($slug,$id)
-
-    {
-
-        $seoset = Seos::first();
-        $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
-        $nextauthors_posts = DB::table('authors_posts')
-            ->latest('created_at')->where('status', 1)->where('id', '=', $id)->limit(10)
-            ->get();
-        $yazar = Authors::where('id', '=', $id)->get();
-
-        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
-    }
+//        $yazar = Authors::where('id', '=', $id)->get();
+//
+//        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
+//    }
 
     public function breakingnews()
     {

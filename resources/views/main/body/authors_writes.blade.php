@@ -9,14 +9,7 @@
     @endforeach
 @php
 
-use App\Models\Authors;
-    $otherauthos=  Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-                   ->select(['authors.*', 'authors_posts.title'])
-                   ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
-                   ->groupBy("authors.id")->latest("authors_posts.id")
-                   ->get();
-
-
+use App\Models\AuthorsPost;
 
 
     @endphp
