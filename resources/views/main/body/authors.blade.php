@@ -19,6 +19,7 @@
                 </div>
             </div>
             @foreach($authors as $author)
+
             <div class="col-lg-4 col-md-6 col-sm-12 p-0">
                 <div class="row bg-dark m-2 padding-left p-0 rounded">
                     <div class="col-lg-4  col-md-4 col-sm-4 col-4  p-0">
@@ -27,7 +28,7 @@
                     <div class="col-lg-8  col-md-8 col-sm-8 col-8">
                         <p class="mt-3 mb-0 text-light">{{Str::limit($author->name,17)}}</p>
                         <p class="text-light pb-1 mb-0 border-secondary border-bottom">{{$author->title}}</p>
-                        <a href="{{route('authors.yazilar',$author->id)}}" class=" position-relative text-light"><i class=" fa fa-caret-right mr-1"></i>Son Makaleyi Oku</a>
+                        <a href="{{route('authors.yazilar',[str_slug($author->title),$author->id])}}" class=" position-relative text-light"><i class=" fa fa-caret-right mr-1"></i>Son Makaleyi Oku</a>
                     </div>
 
                 </div>

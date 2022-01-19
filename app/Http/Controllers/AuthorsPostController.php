@@ -19,23 +19,21 @@ class AuthorsPostController extends Controller
     {
         //
     }public function all()
-{$otherauthos= Cache::remember("otherauthos", Carbon::now()->addYear(), function () {
-    if (Cache::has('otherauthos')) return Cache::has('otherauthos');
-    return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-        ->select(['authors.*', 'authors_posts.title'])
-        ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
+{
+//    $otherauthos= Cache::remember("otherauthos", Carbon::now()->addYear(), function () {
+//        if (Cache::has('otherauthos')) return Cache::has('otherauthos');
+//        return Authors::leftjoin('authors_posts', 'authors.id','=', 'authors_posts.authors_id')
+//            ->select(['authors.*', 'authors_posts.title'])
+//            ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
+//            ->groupBy("authors.id")->latest("authors_posts.id")
+//            ->get();
+//    });
+    $authors=  AuthorsPost::leftjoin('authors', 'authors_posts.authors_id', '=', 'authors.id')
+        ->select(['authors_posts.*','authors.name'])
+        ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
         ->groupBy("authors.id")->latest("authors_posts.id")
         ->get();
-});
-    $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
-        if (Cache::has('authors')) return Cache::has('authors');
-        return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-            ->select(['authors.*', 'authors_posts.title'])
-            ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
-            ->groupBy("authors.id")->latest("authors_posts.id")
-            ->get();
-    });
-    return view('main.body.authors',compact('authors','otherauthos'));
+    return view('main.body.authors',compact('authors'));
 }
 
     /**

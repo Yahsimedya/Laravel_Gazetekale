@@ -7,12 +7,6 @@
 
 @section('content')
     @endforeach
-@php
-
-use App\Models\AuthorsPost;
-
-
-    @endphp
     <section>
 
         <div class="container bg-light mt-4 mb-4 rounded shadow">

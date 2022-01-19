@@ -1001,19 +1001,19 @@ class ExtraController extends Controller
         return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts', 'webSiteSetting','otherauthos'));
     }
 
-//    public function yazilars($slug,$id)
-//
-//    {
-//
-//        $seoset = Seos::first();
-//        $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
-//        $nextauthors_posts = DB::table('authors_posts')
-//            ->latest('created_at')->where('status', 1)->where('id', '=', $id)->limit(10)
-//            ->get();
-//        $yazar = Authors::where('id', '=', $id)->get();
-//
-//        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
-//    }
+    public function yazilars($slug,$id)
+
+    {
+
+        $seoset = Seos::first();
+        $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
+        $nextauthors_posts = DB::table('authors_posts')
+            ->latest('created_at')->where('status', 1)->where('id', '=', $id)->limit(10)
+            ->get();
+        $yazar = Authors::where('id', '=', $id)->get();
+
+        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
+    }
 
     public function breakingnews()
     {
