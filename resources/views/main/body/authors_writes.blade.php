@@ -82,8 +82,8 @@ use App\Models\Authors;
                                     <div class="col-lg-8  col-md-8 col-sm-8 col-8">
                                         <p class="mt-3 mb-0 text-muted">{{$other->title}}</p>
                                         <p class="text-info pb-1 mb-0 border-muted border-bottom">{{$other->name}}</p>
-{{--                                        <a href="{{route('authors.yazilar',str_slug($other->title),$other->id)}}" class=" position-relative text-secondary"><i--}}
-{{--                                                class=" fa fa-caret-right mr-1"></i>Son Makaleyi Oku</a>--}}
+                                        <a href="{{route('authors.yazilar',[str_slug($other->title),$other->id])}}" class=" position-relative text-secondary"><i
+                                                class=" fa fa-caret-right mr-1"></i>Son Makaleyi Oku</a>
                                     </div>
 
                                 </div>
@@ -165,7 +165,7 @@ use App\Models\Authors;
                             @php
                                 $i++;
                             @endphp
-                        <a href="{{route('authors.yazilars',str_slug($row->title),$row->id)}}"
+                        <a href="{{route('authors.yazilar',[str_slug($row->title),$row->id])}}"
                            class="list-group-item list-group-item-action detay__liste-item ">
                             <i class="detay__liste-rakam d-table-cell align-middle"><?php echo $i; ?></i>
                             <span class="d-table-cell">  {{ Str::ucFirst($row->title) }}</span>

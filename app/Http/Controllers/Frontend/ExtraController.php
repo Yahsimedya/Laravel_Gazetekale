@@ -977,10 +977,11 @@ class ExtraController extends Controller
         $sluf=$slug;
 //        dd($id);
         $seoset = Seos::first();
-        $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->orderByDesc('id')->get();
+        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->orderByDesc('id')->get();
         $yazar = Authors::where('id', '=', $id)->get();
+
 //        $nextauthors_posts = Cache()->remember("home-nextauthors_posts", Carbon::now()->addYear(), function () {
-            $nextauthors_posts = AuthorsPost::whereStatus(1)->where('authors_id',$yazi[0]->authors_id)->skip(1)->take(10)->latest()->get();
+            $nextauthors_posts = AuthorsPost::whereStatus(1)->where('authors_id',$yazi[0]->authors_id)->skip(0)->take(10)->latest()->get();
 //        });
 //                dd($nextauthors_posts);
 
