@@ -122,6 +122,7 @@
                                         @endif
                                     @endforeach
                                 </div>
+                            {{$catpost->links('pagination-links')}}
 
 
                                 <!----------------728x90 REKLAM ALANI -------------------->
