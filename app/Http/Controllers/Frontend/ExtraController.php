@@ -580,10 +580,14 @@ class ExtraController extends Controller
 
         $videogaleri = Cache::remember("videogaleri", Carbon::now()->addYear(), function () {
             if (Cache::has('videogaleri')) return Cache::has('videogaleri');
-            return Post::where('status', 1)->whereNotNull('posts_video')->limit(12)->latest('created_at')->get();
+            return Post::where('status', 1)->whereNotNull('posts_video')->limit(4)->latest('created_at')->get();
 
         });
-        $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
+        $videogaleriSlider = Cache::remember("videogaleriSlider", Carbon::now()->addYear(), function () {
+            if (Cache::has('videogaleriSlider')) return Cache::has('videogaleriSlider');
+            return Post::where('status', 1)->where('manset', 1)->whereNotNull('posts_video')->limit(12)->latest('created_at')->get();
+        });
+            $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
             if (Cache::has('gundem')) return Cache::has('gundem');
             return Post::where('category_id', '=', 2)->where('featured', '=', 1)->where('status', 1)->limit(10)->latest('created_at')->get();
         });
@@ -736,7 +740,7 @@ class ExtraController extends Controller
 
             return category::get();
         });
-        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 

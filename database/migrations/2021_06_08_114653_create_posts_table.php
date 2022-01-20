@@ -42,7 +42,6 @@ class CreatePostsTable extends Migration
             $table->integer('headlinetag')->nullable();
             $table->integer('flahtag')->nullable();
             $table->integer('attentiontag')->nullable();
-
             $table->integer('surmanset_photo')->nullable();
             $table->integer('bigthumbnail')->nullable();
             $table->string('post_date')->nullable();
@@ -51,7 +50,6 @@ class CreatePostsTable extends Migration
             $table->string('posts_video')->nullable();
             $table->string('slug_tr')->nullable();
             $table->string('slug_en')->nullable();
-
             $table->timestamps();
         });
     }

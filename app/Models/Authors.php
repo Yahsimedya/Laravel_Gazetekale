@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\hasMany;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-//use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\AuthorsPost;
-class Authors extends Model implements Viewable
+class Authors extends Model
 {
     use HasFactory;
-    use InteractsWithViews;
+
     protected $fillable = [
         'id',
         'name',

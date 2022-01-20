@@ -9,7 +9,7 @@
         <div class="row  padding-left">
             <div class="col-md-6 mt-2 padding-left">
                 <div class="video-slider">
-                    @foreach($videogaleri as $row)
+                    @foreach($videogaleriSlider as $row)
                         <div class="position-relative">
                             <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
                                 <!-- <div class="kartlar__effect position-absolute"> -->
@@ -23,10 +23,10 @@
             </div>
             <div class="col-md-6 d-none d-md-block">
                 <div class="row ">
-                    @for($i=0;$i<=3;$i++)
-                        @if($videogaleri[$i]->featured==1 && count($videogaleri)>4)
+                    @foreach($videogaleri as $row)
+
                             <div class="col-md-6 mt-2 padding-left">
-                                <a href="{{$videogaleri[$i]->image}}">
+                                <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
 
                                     <div class="position-relative">
 
@@ -34,13 +34,13 @@
                                             <i class="fa fa-play-circle"></i>
                                         </div>
 
-                                        <img data-src="{{$videogaleri[$i]->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" height=""
-                                             class="video-image lazyload img-fluid" alt="{{$videogaleri[$i]->image}}">
+                                        <img data-src="{{$row->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" height=""
+                                             class="video-image lazyload img-fluid" alt="{{$row->image}}">
                                     </div>
                                 </a>
                             </div>
-                        @endif
-                    @endfor
+
+                    @endforeach
                 </div>
             </div>
         </div>
