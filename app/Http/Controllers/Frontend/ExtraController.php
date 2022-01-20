@@ -788,6 +788,7 @@ class ExtraController extends Controller
         $orderImages = OrderImages::where('haberId', $id)->get();
         $slider = Cache()->remember("single-slider", Carbon::now()->addYear(), function () {
             return Post::latest('created_at')
+                ->where('status', 1)
                 ->with('category')
                 ->limit(6)
                 ->get();
@@ -860,6 +861,7 @@ class ExtraController extends Controller
                 if ($ids != []) {
                     $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                         ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                        ->where('status', 1)
                         ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
                         ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->where('posts.status', 1)->latest()
                         ->get();
