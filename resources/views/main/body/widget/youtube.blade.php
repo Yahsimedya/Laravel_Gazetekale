@@ -42,7 +42,7 @@
                                         <p class="card-baslik text-center d-table-cell"><b
                                                 class="card-kisalt">{{$row->title_tr}}</b></p>
                                         <img data-src="{{asset('icon/icon-youtube.svg')}}" class="lazyload float-right img-fluid position-absolute"
-                                             alt="youtube" width="75" height="21" style="top: 50%;right: 0;transform: translate(0%, 237%);">
+                                             alt="youtube" width="75" height="21" style="top: 50%;right: 0;transform: translate(0%, 220%);">
                                         <span class="card__tv position-absolute text-dark">Gazetekale TV
 </span>
                                     </div>
