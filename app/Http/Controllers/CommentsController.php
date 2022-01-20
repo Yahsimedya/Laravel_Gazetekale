@@ -51,18 +51,26 @@ class CommentsController extends Controller
 
 
         $posts = DB::table('posts')->where('id', '=', $id)->get();
-        $url = "haber-" . str_slug($posts[0]->title_tr) . "-" . $id ;
+        $url = "haber-" . str_slug($posts[0]->title_tr) . "-" . $id;
         return Redirect::to($url);
     }
 
     public function AddComments(Request $request, $id)
     {
-        Comments::insert($request->except('_token', 'guvenlikkodu','yorumicerik','guvenlik',));
-        $notification = array(
-            'message' => 'Haber Başarıyla Silindi',
-            'alert-type' => 'succes'
-        );
-        return Redirect()->route('open.comments', $id)->with($notification);
+        if ($request->guvenlikkodu == $request->guvenlik) {
 
+            Comments::insert($request->except('_token', 'guvenlikkodu', 'yorumicerik', 'guvenlik',));
+            $notification = array(
+                'message' => 'Haber Başarıyla Silindi',
+                'alert-type' => 'succes'
+            );
+            return Redirect()->route('open.comments', $id)->with($notification);
+        } else {
+            $notification = array(
+                'message' => 'Haber Başarıyla Silindi',
+                'alert-type' => 'error'
+            );
+            return Redirect()->route('open.comments', $id)->with($notification);
+        }
     }
 }

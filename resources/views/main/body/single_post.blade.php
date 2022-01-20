@@ -156,8 +156,30 @@
                         <textarea class="form-control" name="details" placeholder="Yorumunuzu Giriniz"
                                   rows="3"></textarea>
                     </div>
+                    <div class="row mt-2">
+                        <div class="col-md-2 col-6">
+                            @php
+                                $guvenlikkodu= rand(10000,99999);
+                            @endphp
+                            <p class="btn btn-success">{{$guvenlikkodu}}</p>
 
-                    <button type="submit" class="button button--green btn-lg">Gönder</button>
+
+                        </div>
+                        <div class="col-md-10 col-6">
+                            <input class="form-control" name="guvenlik" placeholder="Güvenlik Kodu"
+                                   type="text">
+
+
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="posts_id" value="{{$post->id}}" id="haber_id">
+                        <input type="hidden" name="guvenlikkodu" value="{{$guvenlikkodu}}">
+                        <input type="hidden" name="yorumicerik" id="yorumicerik" class="form-control"
+                               aria-describedby="emailHelp" value="">
+
+
+                        <button type="submit" class="button button--green btn-lg">Gönder</button>
                 </form>
 
 
