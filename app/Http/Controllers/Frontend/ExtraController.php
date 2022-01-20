@@ -556,7 +556,10 @@ class ExtraController extends Controller
             //Buraya il seçtirerek ilçeler sıralanacak
             return Subdistrict::where('district_id', '=', '71')->orderByRaw('subdistrict_tr')->get();
         });
-//        $category = Category::latest()->get();
+
+
+//            dd($ilceler);
+            //        $category = Category::latest()->get();
 //        dd($category->id);
 //        foreach ($category as $cat) {
 //            $economy = Post::get();
@@ -625,10 +628,22 @@ class ExtraController extends Controller
         $education = Cache::remember("education", Carbon::now()->addYear(), function () {
             return Post::where('category_id', cache::get('themeSetting')[0]->category1)->where('status', 1)->limit(4)->latest('created_at')->get();
         });
-        $Ilcehaberleri = Cache::remember("education", Carbon::now()->addYear(), function () {
+//        $Ilcehaberleri = Cache::remember("education", Carbon::now()->addYear(), function () {
 
-            return Post::limit(8)->where('subdistrict_id', $ilce->id)->get();
-        });
+//            $Ilcehaberleri= Post::limit(8)->where('subdistrict_id', '584')->get();
+
+//        $i=-1;
+//        foreach ($ilceler as $ilce ) { $i++;
+//            dd($ilce);
+//            echo $ilce->id;
+
+//            $Ilcehaberleri= Post::where('subdistrict_id', $ilce->id)->limit(8)->get();
+//            dd($Ilcehaberleri);
+//return $Ilcehaberleri;
+//        }
+//                    dd($Ilcehaberleri);
+
+//        });
 
 //        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
 //            if (Cache::has('authors')) return Cache::has('authors');
@@ -740,7 +755,7 @@ class ExtraController extends Controller
 
             return category::get();
         });
-        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 

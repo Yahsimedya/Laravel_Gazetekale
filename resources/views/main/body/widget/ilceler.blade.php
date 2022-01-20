@@ -35,6 +35,9 @@
                     <div class="row  padding-left">
                         <div class="col-md-12">
                             <div class="ilcelers-{{$ilce->id}}">
+                                @php
+                                      $Ilcehaberleri= App\Models\Post::where('subdistrict_id', $ilce->id)->limit(8)->get();
+                                @endphp
                                 @foreach($Ilcehaberleri as $haber)
                                     <a href="{{URL::to('/haber-'.str_slug($haber->title_tr).'-'.$haber->id)}}">
                                         <div class="card d-inline-block  ">
