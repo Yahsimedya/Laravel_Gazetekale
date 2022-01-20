@@ -390,7 +390,7 @@ Route::post('/Notification/send', [NotificationController::class, 'send'])->name
 // SİNGLE POST PAGE
 
 Route::get('/haber-{slug}-{id}', [ExtraController::class, 'SinglePost'])->name('singlePost'); // haber detay sayfası
-Route::get('/{slug}/{id}', [ExtraController::class, 'CategoryPost']);
+Route::get('/{slug}/{name}/{id}', [ExtraController::class, 'CategoryPost']);
 Route::get('/{id}/', [ExtraController::class, 'GetDistrict']);
 //Route::get('/', [ExtraController::class, 'akbankkur']);
 

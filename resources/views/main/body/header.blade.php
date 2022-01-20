@@ -3,7 +3,9 @@
 use App\Models\WebsiteSetting;
 use Carbon\Carbon;
 
-    $category=Category::limit(11)->get();
+          $category = Cache()->remember("home-category", Carbon::now()->addYear(), function () {
+            return category::where('category_status',1)->where('category_menu',1)->limit(11)->orderBy('category_order')->get();
+        });
     $websetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
 
             return WebsiteSetting::first();
@@ -131,13 +133,13 @@ $kurlar=Session::get('kurlar');
                         @foreach($category as $categories)
                             <li class="nav-item active position-relative">
                                 <div class="nav-item-hover position-absolute"></div>
-                                <a class="nav-link " href="{{ URL::to('/Category/' . str_slug($categories->subcategory_tr) . $categories->id) }}">{{$categories->category_tr}} <span class="sr-only">(current)</span></a>
+                                <a class="nav-link " href="{{ URL::to('/category/' . str_slug($categories->category_tr) .'/'. $categories->id) }}">{{$categories->category_tr}} <span class="sr-only">(current)</span></a>
                             </li>
                         @endforeach
-
                         <li class="nav-item active position-relative">
                             <div class="nav-item-hover position-absolute"></div>
                             <a class="nav-link " href="#">Yerel <span class="sr-only">(current)</span></a>
+
                         </li>
                             <li class="nav-item active position-relative">
                             <div class="nav-item-hover position-absolute"></div>

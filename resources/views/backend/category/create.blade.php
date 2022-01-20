@@ -500,6 +500,21 @@
                 @enderror
             </div>
         </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-lg-2">Kategori Sıra</label>
+            <div class="col-lg-4">
+                <input type="number" name="category_order"  class="form-control">
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" name="category_menu"  class="form-check-input-styled-primary"  data-fouc>
+                        Kategori'yi Göster
+                    </label>
+                </div>
+            </div>
+        </div>
         {{-- <div class="form-group row">
             <label class="col-form-label col-lg-2">Input with placeholder</label>
             <div class="col-lg-10">

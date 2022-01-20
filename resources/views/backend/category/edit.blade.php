@@ -499,6 +499,25 @@
                 @enderror
             </div>
         </div>
+
+
+
+           <div class="form-group row">
+               <label class="col-form-label col-lg-2">Kategori Sıra</label>
+               <div class="col-lg-4">
+                   <input type="number" name="category_order" value="{{$category->category_order}}" class="form-control">
+               </div>
+               <div class="col-md-3 mb-3">
+                   <div class="form-check">
+                       <label class="form-check-label">
+                           <input type="checkbox" name="category_menu" @if($category->category_menu==1) checked @endif class="form-check-input-styled-primary"  data-fouc>
+                           Kategori'yi Göster
+                       </label>
+                   </div>
+               </div>
+       </div>
+
+
         <div class="col-lg-12 mt-4"></div>
         <div class="form-group row">
             <label class="col-form-label col-lg-2">Kategori Renk</label>

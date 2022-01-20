@@ -539,22 +539,21 @@ class AjaxController extends Controller
         }
 
         if ($_POST) {
-            $site = Eczane("https://www.mynet.com/" . $sehir . "/nobetci-eczaneler");
+            $site = Eczane("https://www.haberturk.com/nobetci-eczaneler/" . $sehir);
         } else {
-            $site = Eczane("https://www.mynet.com/kirikkale/nobetci-eczaneler");
+            $site = Eczane("https://www.haberturk.com/nobetci-eczaneler/kirikkale");
         }
 
-
-        preg_match_all('@<h3 class="h-title">(.*?)</h3>@si', $site, $EczaneBaslik);
-        preg_match_all('@<div class="widget-body">(.*?)</div>@si', $site, $Detaylar);
-
+        preg_match_all('@<div class="title">(.*?)</div>@si', $site, $EczaneBaslik);
+        preg_match_all('@<figcaption>(.*?)</figcaption>@si', $site, $Detaylar);
         $toplam = count($Detaylar[0]);
         $teczane = count($EczaneBaslik[0]) - 3;
         $data = '<div style="    position: relative;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -30%);
-color: #af0f0a;">' . $EczaneBaslik[0][0] . '</div>';
+color: #af0f0a;"></div>';
+
         $data3 = array();
 
         for ($i = 0; $i < $toplam; $i++) {
@@ -570,8 +569,8 @@ border-radius: 10px;">
             $data3 = array_add($data3, $i, $data2);
 
         }
-        $sehirs = District::get();
 
+        $sehirs = District::get();
         return view("main.body.nobetcieczane", compact('sehirs', 'data', 'data3'));
 
     }
@@ -593,16 +592,21 @@ border-radius: 10px;">
             curl_close($ch);
             return $eczanegetir;
         }
-
         if ($_POST) {
+            $site = Eczane("https://www.haberturk.com/nobetci-eczaneler" . $sehir );
+        } else {
+            $site = Eczane("https://www.haberturk.com/nobetci-eczaneler/kirikkale");
+        }
+/*
+       if ($_POST) {
             $site = Eczane("https://www.mynet.com/" . $sehir . "/nobetci-eczaneler");
         } else {
             $site = Eczane("https://www.mynet.com/kirikkale/nobetci-eczaneler");
         }
+*/
 
-
-        preg_match_all('@<h3 class="h-title">(.*?)</h3>@si', $site, $EczaneBaslik);
-        preg_match_all('@<div class="widget-body">(.*?)</div>@si', $site, $Detaylar);
+        preg_match_all('@<div class="title">(.*?)</div>@si', $site, $EczaneBaslik);
+        preg_match_all('@<figcaption>(.*?)</figcaption>@si', $site, $Detaylar);
 
         $toplam = count($Detaylar[0]);
         $teczane = count($EczaneBaslik[0]) - 3;
@@ -617,7 +621,7 @@ color: #af0f0a;">' . $EczaneBaslik[0][0] . '</div>';
             $data2 = '  <div class="col-md-12 col-sm-12 col-xs-12 mt-2 shadow" style="   border: 1px solid #d2d2d2;
 border-radius: 10px;">
     <div class="col-md-12 margin-top"><span class="baslik" style="color:#c20c0e; font-weight: bold;">
-' . strip_tags($EczaneBaslik[0][$i + 1]) . '</span></div>
+' . strip_tags($EczaneBaslik[0][$i]) . '</span></div>
 <div class="col-md-12 adres" style="font-weight: bold;">' . $Detaylar[0][$i] . '</div>
 
 
