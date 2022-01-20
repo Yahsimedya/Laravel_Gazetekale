@@ -834,7 +834,7 @@ class ExtraController extends Controller
 //                ->get();
 //        if($post->category_id!=NULL) {
 
-        $nextrelated = Post::where('category_id', $post->category_id)->limit(10)->inRandomOrder()
+        $nextrelated = Post::where('category_id', $post->category_id)->where('status', 1)->limit(10)->inRandomOrder()
             ->get();
 //            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
 //                ->get();
