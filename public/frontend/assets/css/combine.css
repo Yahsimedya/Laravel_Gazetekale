@@ -587,13 +587,7 @@
 }
 
 .table-puan th {
-    padding: 0.50rem !important;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-    width: 20px !important;
-    font-size: 15px;
-    font-weight: 400;
-    color: #000
+
 }
 
 .table-spor {
@@ -2659,9 +2653,7 @@ pre code {
 }
 
 .table th, .table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6
+
 }
 
 .table thead th {
@@ -13892,7 +13884,7 @@ img.mfp-img {
 }
 
 /**
- * Swiper 7.3.0
+ * Swiper 7.4.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -13900,7 +13892,7 @@ img.mfp-img {
  *
  * Released under the MIT License
  *
- * Released on: November 18, 2021
+ * Released on: December 24, 2021
  */
 
 @font-face {

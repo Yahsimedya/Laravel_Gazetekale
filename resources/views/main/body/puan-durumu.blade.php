@@ -13,10 +13,10 @@
                 class="d-inline-block my-auto" style="color: black"> Fikstür</span></a>
     </div>
 </nav>
-<div class="tab-content" id="nav-tabContent">
+<div class="tab-content" id="nav-tabContent"  >
     <div class="tab-pane fade show active" id="super-lig" role="tabpanel" aria-labelledby="super-lig-tab">
         <div class="table-responsive">
-            <table class="table table-striped table-spor puan_durumu shadow-sm">
+            <table class="table table-striped table-spor puan_durumu shadow-sm" >
                 <thead class="table-spor__baslik">
                 <tr align="center">
                     <th scope="col">S</th>
@@ -31,7 +31,7 @@
 
                 </tr>
                 </thead>
-                <tbody style="max-height: 100px!important;">
+                <tbody>
 
                 <!-- SÜPER LİG  BEYAZ GROUP-->
                 @include('main.body.lig')
