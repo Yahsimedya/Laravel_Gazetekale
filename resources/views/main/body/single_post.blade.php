@@ -70,7 +70,17 @@
                 <p class="detay__icerik mt-4">
                     {!!$post->details_tr!!}
                 </p>
-
+                <div class="reklam-alani mb-2 text-center">
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==12)
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                         height="280"
+                                                         data-src="{{asset($ad->ads)}}"></a>
+                        @elseif($ad->type==2 && $ad->category_id==12)
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @endif
+                    @endforeach
+                </div>
                 <p class="detay__icerik mt-4">
                    @foreach($orderImages as $Images)
                         <img src="{{asset($Images->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid w-100 mb-3">
@@ -113,17 +123,7 @@
                     @endforeach
                 @endif
                 <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
-                <div class="reklam-alani mb-2 text-center">
-                    @foreach($ads as $ad)
-                        @if($ad->type==1 && $ad->category_id==12)
-                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
-                                                         height="280"
-                                                         data-src="{{asset($ad->ads)}}"></a>
-                        @elseif($ad->type==2 && $ad->category_id==12)
-                            <div class="w-100">{!!$ad->ad_code!!}</div>
-                        @endif
-                    @endforeach
-                </div>
+
                 @foreach($comments as $comment)
                     <div class="col-md-12 bg-light  border-bottom">
 
