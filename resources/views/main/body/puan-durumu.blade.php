@@ -31,7 +31,7 @@
 
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style="max-height: 100px!important;">
 
                 <!-- SÜPER LİG  BEYAZ GROUP-->
                 @include('main.body.lig')

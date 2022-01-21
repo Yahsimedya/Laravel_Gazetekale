@@ -2,7 +2,7 @@
     <div class="container padding-left">
         <div class="card-header card-video position-relative">
             <div class="card-kutu__link"><i class="fa fa-video mr-2 "></i>Video Galeri</div>
-            <a href="#">
+            <a href="{{route('VideoGaleriAll')}}">
                 <div class="card-kutu__tum position-absolute ">Tümü</div>
             </a>
         </div>

@@ -711,6 +711,8 @@ class ExtraController extends Controller
                         $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
                     } elseif ($data['d1'] == "Y") {
                         $icon = '<i  style="font-size: 20px;" class="wi wi-storm-showers"></i>';
+                    }elseif ($data['d1'] == "YKY") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-snow-thunderstorm"></i>';
                     } else {
                         $icon = '<i  style="font-size: 20px;" class="wi wi-celsius"></i>';
                     }
@@ -832,7 +834,7 @@ class ExtraController extends Controller
 //                ->get();
 //        if($post->category_id!=NULL) {
 
-        $nextrelated = Post::where('category_id', $post->category_id)->limit(10)->inRandomOrder()
+        $nextrelated = Post::where('category_id', $post->category_id)->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
             ->get();
 //            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
 //                ->get();
@@ -924,6 +926,35 @@ class ExtraController extends Controller
                 ->get();
 
         return view('main.body.category_post', compact('manset', 'authors', 'category', 'ads', 'catpost', 'nextnews', 'count'));
+
+
+    }
+
+    public function VideoGaleriAll()
+    {
+        $manset =
+            Post::where('manset', 1)->where('posts_video', '!=', "")->where('status', 1)
+                ->orderBy('created_at', 'desc')
+                ->limit(15)->get();
+
+        $count = Post::where('posts_video', '!=', "")->where('status', 1)
+            ->count();
+
+
+        $catpost = Post::where('posts_video', '!=', "")->orWhere('manset', NULL)->orderBy('created_at', 'desc')->where('status', 1)->offset(1)
+            ->paginate(20);
+
+
+        $nextnews = Post::where('posts_video', '!=', "")->where('status', 1)->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
+            ->inRandomOrder()->limit(10)
+            ->get();
+        $ads =
+            Ad::latest('created_at')
+                ->where('status', 1)
+                ->with('adcategory')
+                ->get();
+
+        return view('main.body.video_galeri', compact('manset',   'ads', 'catpost', 'nextnews', 'count'));
 
 
     }

@@ -33,12 +33,13 @@
                                  onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
                                  class="img-fluid owl-lazy" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
-                                <a href="" class=" yanslider-link align-middle card-kisalt">
+                                <a href="" class="yanslider-link align-middle card-kisalt">
                                    @if($webSiteSetting->slider_title==1) {{$row->title_tr}} @endif
                                 </a>
                             </div>
+                        </a>
+
                     </div>
-                    </a>
                     @php
                         $k++;
                     @endphp
@@ -63,7 +64,7 @@
                                  class="img-fluid" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class=" yanslider-link align-middle card-kisalt">
-                                    {{$row->title_tr}}
+                                    @if($webSiteSetting->slider_title==1) {{$row->title_tr}} @endif
                                 </a>
                             </div>
                     </div>
@@ -92,7 +93,7 @@
                                  class="img-fluid" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class=" yanslider-link align-middle card-kisalt">
-                                    {{$row->title_tr}}
+                                    @if($webSiteSetting->slider_title==1) {{$row->title_tr}} @endif
                                 </a>
                             </div>
                     </div>
@@ -122,7 +123,7 @@
                                  class="img-fluid" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class="yanslider-link align-middle card-kisalt">
-                                    {{$row->title_tr}}
+                                    @if($webSiteSetting->slider_title==1) {{$row->title_tr}} @endif
                                 </a>
                             </div>
                         </a>

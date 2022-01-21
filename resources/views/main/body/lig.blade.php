@@ -45,11 +45,11 @@
      } else if($son_uc<$i) {
         echo'<tr class="table-puan border-left border-danger" > ';
       } else {
-    echo'<tr class="table-puan" >';
+    echo'<tr class="table-puan style="max-height: 12px!important;" >';
     }
       if ($i<3){
           echo '<td align="center" style="background-color:#28a745;color:white;" >'.($i+1).'</td>
-              <th scope="row" style="font-size:13px;font-weight:500!important;">'.$takimismi.'</th>
+              <th scope="row" style="font-size:10px;font-weight:500!important;">'.$takimismi.'</th>
               <td align="center" >'.$galibiyet.'</td>
               <td align="center" >'.$beraberlik.'</td>
               <td align="center" >'.$malubiyet.'</td>
@@ -59,17 +59,17 @@
      }
        elseif ($son_uc<$i){
           echo '<td align="center" style="background-color:red;color:white" >'.($i+1).'</td>
-                    <th scope="row" style="font-size:13px;font-weight:500!important;">'.$takimismi.'</th>
-              <td align="center" >'.$galibiyet.'</td>
-              <td align="center" >'.$beraberlik.'</td>
-              <td align="center" >'.$malubiyet.'</td>
-              <td align="center" >'.$avaraj.'</td>
-              <td align="center" >'.$puan.'</td>
+                    <th scope="row" style="font-size:10px;font-weight:500!important;">'.$takimismi.'</th>
+              <td align="center" style="font-size:10px;font-weight:500!important;">'.$galibiyet.'</td>
+              <td align="center" style="font-size:10px;font-weight:500!important;">'.$beraberlik.'</td>
+              <td align="center" style="font-size:10px;font-weight:500!important;">'.$malubiyet.'</td>
+              <td align="center" style="font-size:10px;font-weight:500!important;">'.$avaraj.'</td>
+              <td align="center" style="font-size:10px;font-weight:500!important;">'.$puan.'</td>
             </tr>';
      }
       else{
            echo '<td align="center" >'.($i+1).'</td>
-                 <th scope="row" style="font-size:13px;font-weight:500!important;">'.$takimismi.'</th>
+                 <th scope="row" style="font-size:10px;font-weight:500!important;">'.$takimismi.'</th>
               <td align="center" >'.$galibiyet.'</td>
               <td align="center" >'.$beraberlik.'</td>
               <td align="center" >'.$malubiyet.'</td>

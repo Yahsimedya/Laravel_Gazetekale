@@ -219,7 +219,7 @@
 
                                 </div>
 
-                                <div class="position-relative bg-light text-dark" style="height: 60px"><p
+                                <div class="position-relative bg-light text-dark" ><p
                                         class=" detay-text d-table-cell align-middle">{{$sliders->title_tr}}</p></div>
                             </div>
 

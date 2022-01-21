@@ -26,7 +26,8 @@ mix.js('resources/js/app.js', 'public/js')
         'public/frontend/assets/js/custom.js',
     ], 'public/frontend/assets/js/combine.js')
     .styles([
-        'public/frontend/assets/css/style.css',
+        'public/frontend/assets/css/' +
+        '.css',
         'public/frontend/assets/css/weather-icons.css',
         'public/frontend/assets/css/magnific-popup.css',
         'public/frontend/assets/css/svg-turkiye-haritasi.css',
