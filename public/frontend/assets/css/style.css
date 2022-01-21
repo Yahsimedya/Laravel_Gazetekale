@@ -369,7 +369,8 @@
 .slick-active, .slick li {
     background-image: radial-gradient(farthest-side at 102% 2%, #ab1010, #ef0037);
     color: #fff;
-    outline: none
+    outline: none;
+    position: absolute;
 }
 
 .slick-dots {
