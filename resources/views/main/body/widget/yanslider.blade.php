@@ -3,13 +3,13 @@
     class="col-md-12 col-sm-12 col-xs-12 col-lg-4 d-none d-md-block text-center position-relative yanslider padding-left">
 
     <ul class="nav nav-tabs yan__kategori">
-        <li class="active yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;"
+        <li class="active yan__kategori-li"><a class="yan__kategori-li-link"
                                                data-toggle="tab" href="#home">Siyaset</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="" data-toggle="tab"
                                         href="#menu1">Spor</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link"   data-toggle="tab"
                                         href="#menu2">3.Sayfa</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link"   data-toggle="tab"
                                         href="#menu3">Özel</a></li>
     </ul>
 
@@ -27,7 +27,9 @@
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
                             @if($webSiteSetting->slider_title==1)
+                                   @if($webSiteSetting->slider_title==1)
                                 <div class="yanslider__effect position-absolute"></div>
+                            @endif
                             @endif
                             <img data-src="{{$row->image}}"
                                  onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
@@ -58,7 +60,9 @@
 
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
-                            <div class="yanslider__effect position-absolute"></div>
+                               @if($webSiteSetting->slider_title==1)
+                                <div class="yanslider__effect position-absolute"></div>
+                            @endif
                             <img src="{{$row->image}}"
                                  onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
                                  class="img-fluid" alt="">
@@ -87,7 +91,9 @@
 
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
-                            <div class="yanslider__effect position-absolute"></div>
+                               @if($webSiteSetting->slider_title==1)
+                                <div class="yanslider__effect position-absolute"></div>
+                            @endif
                             <img src="{{$row->image}}"
                                  onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
                                  class="img-fluid" alt="">
@@ -117,7 +123,9 @@
                     <div class="item yanslider__yanitem position-relative" data-dot="<span>{{$k}}</span>">
                         <a href="{{URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)}}">
 
-                            <div class="yanslider__effect position-absolute"></div>
+                               @if($webSiteSetting->slider_title==1)
+                                <div class="yanslider__effect position-absolute"></div>
+                            @endif
                             <img src="{{$row->image}}"
                                  onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';"
                                  class="img-fluid" alt="">

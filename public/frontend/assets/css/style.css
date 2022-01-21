@@ -11393,7 +11393,8 @@ input[type="text"].form-control {
     font-weight: 300;
     background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #fff 50%);
     background-size: 240%;
-    transition: all .3s
+    transition: all .3s;
+
 }
 
 @media (max-width: 767.98px) {
@@ -11419,7 +11420,7 @@ input[type="text"].form-control {
 }
 
 .yan__kategori-li:hover .yan__kategori-li-link {
-    color: #3f4150
+    color: #ffffff
 }
 
 .yan__kategori-1 {
@@ -11465,7 +11466,7 @@ input[type="text"].form-control {
     color: #d70811
 }
 
-.yanslider.owl-carousel.owl-theme.owl-loaded.owl-drag, .yanslider .owl-stage-outer, .yanslider .owl-stage, .yanslider .owl-item, .yanslider .item, .yanslider .owl-item, .yanslider .img-responsive {
+.yanslider.owl-carousel.owl-theme.owl-loaded.owl-drag, .yanslider .owl-stage-outer, .yanslider .owl-stage, .yanslider .owl-item, .yanslider .item, .yanslideryanslider .owl-item, .yanslider .img-responsive {
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover
