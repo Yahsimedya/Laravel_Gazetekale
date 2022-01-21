@@ -712,7 +712,7 @@ class ExtraController extends Controller
                     } elseif ($data['d1'] == "Y") {
                         $icon = '<i  style="font-size: 20px;" class="wi wi-storm-showers"></i>';
                     }elseif ($data['d1'] == "YKY") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-snow-thunderstorm"></i>';
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-rain-mix"></i>';
                     } else {
                         $icon = '<i  style="font-size: 20px;" class="wi wi-celsius"></i>';
                     }
