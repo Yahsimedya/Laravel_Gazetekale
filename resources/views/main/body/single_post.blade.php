@@ -68,6 +68,16 @@
 
                 <!--BU ALANA PHP SORGUSU İLE ÇOKLU RESİMLERDE SLİDER GÖSTERİLECEK-->
                 <p class="detay__icerik mt-4">
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==22)
+                            <a href="{{$ad->link}}"> <img class="img-fluid pb-1 pt-2 lazyload float-left mr-2 " width="200"
+                                                          height="200"
+                                                          src="{{asset($ad->ads)}}"></a>
+                @elseif($ad->type==2 && $ad->category_id==22)
+                    <div class="float-left mr-2" style="width: 200px;height: 200px;">{!!$ad->ad_code!!}</div>
+                @endif
+                @endforeach
+
                     {!!$post->details_tr!!}
                 </p>
                 <div class="reklam-alani mb-2 text-center">
