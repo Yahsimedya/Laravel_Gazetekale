@@ -11406,7 +11406,7 @@ input[type="text"].form-control {
 
 .yan__kategori-li-link:link, .yan__kategori-li-link:visited {
     font-size: 16px;
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
     font-weight: 400;
     transition: all .3s;
@@ -11420,7 +11420,7 @@ input[type="text"].form-control {
 }
 
 .yan__kategori-li:hover .yan__kategori-li-link {
-    color: #ffffff
+    color: #000 !important;
 }
 
 .yan__kategori-1 {
