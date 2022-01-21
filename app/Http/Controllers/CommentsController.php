@@ -49,7 +49,6 @@ class CommentsController extends Controller
     public function OpenComments(Request $request, $id)
     {
 
-
         $posts = DB::table('posts')->where('id', '=', $id)->get();
         $url = "haber-" . str_slug($posts[0]->title_tr) . "-" . $id;
         return Redirect::to($url);
@@ -58,7 +57,7 @@ class CommentsController extends Controller
     public function AddComments(Request $request, $id)
     {
         if ($request->guvenlikkodu == $request->guvenlik) {
-
+            $request['created_at']=Carbon::now();
             Comments::insert($request->except('_token', 'guvenlikkodu', 'yorumicerik', 'guvenlik',));
             $notification = array(
                 'message' => 'Haber Başarıyla Silindi',

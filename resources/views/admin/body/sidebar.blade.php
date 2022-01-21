@@ -1,10 +1,12 @@
 <!-- Main sidebar -->
 @php
+use App\Models\Comments;
+use Carbon\Carbon;
 $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
+        $commentsBadge=count(Comments::where('status', 0)->get());
 @endphp
 
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
-
     <!-- Sidebar mobile toggler -->
     <div class="sidebar-mobile-toggler text-center">
         <a href="#" class="sidebar-mobile-main-toggle">
@@ -177,13 +179,15 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                 </li>
                 <li class="nav-item">
                     <a href="{{route('comments.index')}}" class="nav-link">
-                        <i class="icon-comment"></i>
-                        <span>Yorumlar</span>
+                        <i class="icon-comment"></i>Yorumlar
+                        <span class="badge badge-light ml-2"> {{$commentsBadge}}</span>
                     </a>
-                </li>  <li class="nav-item">
+                </li>  <li class="nav-item" >
                     <a href="{{route('notification.index')}}" class="nav-link">
                         <i class="icon-bubble-notification"></i>
-                        <span>Bildirim Gönder</span>
+                        <span>Bildirim Gönder
+
+                            </span>
                     </a>
                 </li>
 

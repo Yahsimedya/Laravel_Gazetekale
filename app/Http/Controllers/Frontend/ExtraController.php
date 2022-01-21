@@ -794,7 +794,7 @@ class ExtraController extends Controller
 
 
 //        $category = Category::where('id', '=', $post->category_id)->get();
-        $ads = Cache()->remember("single-slider", Carbon::now()->addYear(), function () {
+        $ads = Cache()->remember("single-ads", Carbon::now()->addYear(), function () {
             return Ad::latest('created_at')
                 ->where('status', 1)
                 ->with('adcategory')
