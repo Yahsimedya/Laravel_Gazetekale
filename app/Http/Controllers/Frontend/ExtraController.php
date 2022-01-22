@@ -617,14 +617,28 @@ class ExtraController extends Controller
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
             return Theme::first();
         });
-//        dd($themeSetting);
-        $kultur = Cache::remember("education", Carbon::now()->addYear(), function () {
-            return Post::where('category_id', cache::get('themeSetting')->category1)->where('status', 1)->limit(4)->latest('created_at')->get();
+
+
+
+        $category1=$themeSetting->category1;
+        $category2=$themeSetting->category2;
+        $education  = Cache::remember("kultur", Carbon::now()->addYear(), function () use ($category1) {
+            if (Cache::has('kultur')) return Cache::has('kultur');
+            return Post::where('category_id', '=', $category1)->where('status', 1)
+                ->Where('featured',1)
+                ->limit(4)->latest('created_at')->get();
+        });
+         $kultur= Cache::remember("education", Carbon::now()->addYear(), function () use ($category2) {
+            if (Cache::has('education')) return Cache::has('education');
+            return Post::where('category_id', '=', $category2)->where('status', 1)
+                ->Where('featured',1)
+                ->limit(6)->latest('created_at')->get();
         });
 
-        $education = Cache::remember("education", Carbon::now()->addYear(), function () {
-            return Post::where('category_id', cache::get('themeSetting')[0]->category1)->where('status', 1)->limit(4)->latest('created_at')->get();
-        });
+
+
+
+
         $Ilcehaberleri = Cache::remember("education", Carbon::now()->addYear(), function () {
 
             return Post::limit(8)->where('subdistrict_id', $ilce->id)->get();

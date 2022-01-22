@@ -21,6 +21,7 @@
                     @endforeach
                 </div>
             </div>
+
             <div class="col-md-6 d-none d-md-block">
                 <div class="row ">
                     @foreach($videogaleri as $row)
