@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\District;
 use App\Models\OrderImages;
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\Subcategory;
 use App\Models\Subdistrict;
 use App\Models\Tag;
@@ -179,49 +180,92 @@ class PostController extends Controller
             ]
         );
 
-
+//        $post=Post::create([
+//            'category_id'=>$request->category_id,
+//            'subcategory_id'=>$request->category_id,
+//            'district_id'=>$request->district_id,
+//            'subdistrict_id'=>$request->subdistrict_id,
+////            'user_id'=>$request->user_id,
+//            'title_tr'=>$request->title_tr,
+//            'subtitle_tr'=>$request->subtitle_tr,
+//            'subtitle_en'=>$request->subtitle_en,
+////            'image'=>$price,
+//            'details_tr'=>$request->details_tr,
+//            'details_en'=>$request->details_en,
+//            'tags_tr'=>$request->tags_tr,
+//            'tags_en'=>$request->tags_en,
+//            'keywords_tr'=>$request->keywords_tr,
+//            'description_tr'=>$request->description_tr,
+//            'keywords_en'=>$request->keywords_en,
+//            'description_en'=>$request->description_en,
+//            'manset'=>$request->manset,
+//            'story'=>$request->story,
+//            'headline'=>$request->headline,
+//            'featured'=>$request->featured,
+//            'surmanset'=>$request->surmanset,
+//            'haber_iha_kod'=>$request->haber_iha_kod,
+//            'headlinetag'=>$request->headlinetag,
+//            'flahtag'=>$request->flahtag,
+//            'attentiontag'=>$request->attentiontag,
+//            'surmanset_photo'=>$request->surmanset_photo,
+//            'bigthumbnail'=>$request->bigthumbnail,
+//            'post_date'=>$request->post_date,
+//            'post_month'=>$request->post_month,
+//            'status'=>$request->status,
+//            'posts_video'=>$request->posts_video,
+//            'slug_tr'=>$request->slug_tr,
+//            'slug_en'=>$request->slug_en,
+//            'publish_date'=>$request->publish_date,
+//        ]);
         $post = Post::create($request->all());
+//        $post = Carbon::parse($request->publish_date);
+//dd($post->publish_date);
+//        dd($post->Carbon::createFromFormat('Y-m-d\TH:i:s.0000000 P', $publish_date));
+ if($request->publish_date=Carbon::now()->format('Y-m-d')) {
 
-        $yil = Carbon::now()->year;
-        $ay = Carbon::now()->month;
-        if (file_exists('storage/postimg/' . $yil) == false) {
-            mkdir('storage/postimg/' . $yil, 0777, true);
-        }
-        if (file_exists('storage/postimg/' . $yil . '/' . $ay) == false) {
-            mkdir('storage/postimg/' . $yil . '/' . $ay, 0777, true);
-        }
-
-        $image = $request->image;
-        if ($image) {
-            $image_one = uniqid() . '.' . Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $image->getClientOriginalExtension();
-
-            $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
-
-            Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name,68,'jpg');
-
-            $post->image = $new_image_name;
-        }
-
-        $tagNames = explode(',', $request->get('tag')[0]);
-        $tagIds = [];
-        foreach ($tagNames as $tagName) {
-//                    $post->tag()->create(['name'=>$tagName]);
-            //Or to take care of avoiding duplication of Tag
-            //you could substitute the above line as
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            if ($tag) {
-                $tagIds[] = $tag->id;
+            $yil = Carbon::now()->year;
+            $ay = Carbon::now()->month;
+            if (file_exists('storage/postimg/' . $yil) == false) {
+                mkdir('storage/postimg/' . $yil, 0777, true);
+            }
+            if (file_exists('storage/postimg/' . $yil . '/' . $ay) == false) {
+                mkdir('storage/postimg/' . $yil . '/' . $ay, 0777, true);
             }
 
+            $image = $request->image;
+            if ($image) {
+                $image_one = uniqid() . '.' . Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $image->getClientOriginalExtension();
+
+                $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
+
+                Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name,68,'jpg');
+
+                $post->image = $new_image_name;
+            }
+
+            $tagNames = explode(',', $request->get('tag')[0]);
+            $tagIds = [];
+            foreach ($tagNames as $tagName) {
+//                    $post->tag()->create(['name'=>$tagName]);
+                //Or to take care of avoiding duplication of Tag
+                //you could substitute the above line as
+                $tag = Tag::firstOrCreate(['name' => $tagName]);
+                if ($tag) {
+                    $tagIds[] = $tag->id;
+                }
+
+            }
+            $post->tag()->sync($tagIds);
+
+            $post->save();
+
+            return Redirect()->route('all.post')->with([
+                'message' => 'Haber Başarıyla Eklendi',
+                'alert-type' => 'success'
+            ]);
         }
-        $post->tag()->sync($tagIds);
 
-        $post->save();
 
-        return Redirect()->route('all.post')->with([
-            'message' => 'Haber Başarıyla Eklendi',
-            'alert-type' => 'success'
-        ]);
     }
 
     public function EditPosts(Post $post)

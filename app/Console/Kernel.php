@@ -31,7 +31,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
        // php artisan make:command NamazVakitleri --command=namaz:cron
         Commands\DemoCron::class,
-        Commands\NamazVakitleri::class
+        Commands\NamazVakitleri::class,
+        Commands\Posttask::class,
     ];
 
     /**
@@ -42,8 +43,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        ///   $schedule->command('demo:cron')->everyMinute();
-        $schedule->command('namaz:cron')->everyMinute();
+        $schedule->command('demo:cron')->everyMinute();
+        $schedule->command('command:posttask')->everyMinute();
+        //$schedule->command('namaz:cron')->everyMinute();
         ///php artisan schedule:run ile tek sefer çalışıyor
         ///php artisan schedule:work ile devamlı çalışıyor
     }

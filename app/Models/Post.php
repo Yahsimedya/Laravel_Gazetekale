@@ -3,11 +3,11 @@
 namespace App\Models;
 
 
+use Artisan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\hasMany;
-
 //use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -53,6 +53,7 @@ class Post extends Model
         'headlinetag',
         'flahtag',
         'attentiontag',
+        'publish_date',
 
 
     ];
@@ -86,11 +87,20 @@ class Post extends Model
 //    {
 //        return $this->morphToMany(Tag::class,'tags','post_tags');
 //    }
-    public function scopePublished($query) {
+//    public function scopePublished($query) {
+//         $query->where('publish_date','<=', now());
+//
+//
+////        return $query->where('status',1);
+//    }
+    public function scopeStatus($query) {
         return $query->where('status',1);
+
+//        return $query->where('status',1);
     }
     public function scopeDrafted($query) {
         return $query->where('status',0);
+
     }
     public function getPublishedAttribute($query) {
         return ($this->is_published) ? 'Yes' : 'No';
