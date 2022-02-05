@@ -229,7 +229,7 @@ $gelenil=Session::get('gelenil');
                         <div class=" card-spor__link text-left pad"><b>Süper Lig</b> Puan Durumu</div>
                         <!-- <a href="#"><div class=" position-absolute ">Tümü</div></a> -->
                     </div>
-                    @include('main.body.puan-durumu')
+                <!--    @ include('main.body.puan-durumu')-->
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==22)
                             <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
