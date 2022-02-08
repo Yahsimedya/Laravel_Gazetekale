@@ -802,7 +802,7 @@ class ExtraController extends Controller
 
         $orderImages = OrderImages::where('haberId', $id)->get();
         $slider = Cache()->remember("single-slider", Carbon::now()->addYear(), function () {
-            return Post::latest('created_at')
+            return Post::latest('created_at')->status()
                 ->with('category')
                 ->limit(6)
                 ->get();
@@ -848,7 +848,7 @@ class ExtraController extends Controller
 //                ->get();
 //        if($post->category_id!=NULL) {
 
-        $nextrelated = Post::where('category_id', $post->category_id)->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
+        $nextrelated = Post::where('category_id', $post->category_id)->status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
             ->get();
 //            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
 //                ->get();
