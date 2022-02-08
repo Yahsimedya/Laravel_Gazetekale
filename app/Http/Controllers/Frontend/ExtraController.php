@@ -910,20 +910,22 @@ class ExtraController extends Controller
         $manset =
             Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-                ->where('posts.category_id', $id)->where('posts.manset', 1)->where('posts.status', 1)
+                ->where('posts.status', 1)
+                ->where('posts.category_id', $id)->where('posts.manset', 1)
                 ->orderBy('created_at', 'desc')
                 ->limit(15)->get();
 
 
         $count = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->where('posts.status', 1)
+            ->where('posts.status', 1)
+            ->where('posts.category_id', $id)
             ->count();
 
 
         $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
-            ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->orderBy('created_at', 'desc')->where('posts.status', 1)->offset(1)
+            ->select('posts.*', 'categories.category_tr', 'categories.category_en')->where('posts.status', 1)
+            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->orderBy('created_at', 'desc')->offset(1)
             ->paginate(20);
 
 
