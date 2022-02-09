@@ -105,6 +105,7 @@ class SitemapController extends Controller
         }
 //video galerisi
         foreach ($postsvideo as $v) {
+
             if ($counter == 1000) {
                 $sitemapvideogaleri->store('xml', 'sitemap-videogaleri');
                 $sitemapvideogaleri->addSitemap(secure_url('sitemap-videogaleri' . '.xml'));
@@ -112,7 +113,7 @@ class SitemapController extends Controller
                 $counter = 0;
                 $sitemapCounter++;
             }
-            $sitemapvideogaleri->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
+            $sitemapvideogaleri->add("https://" . $host . "/". "haber-" . str_slug($v->title_tr) . "-" . $v->id , $v->created_at, 0.8, "daily");
             $counter++;
         }
         if (!empty($sitemaphome->model->getItems())) {
