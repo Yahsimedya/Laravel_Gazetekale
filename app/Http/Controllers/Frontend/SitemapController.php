@@ -27,7 +27,7 @@ class SitemapController extends Controller
         $sitemapvideogaleri = App::make('sitemap');//videogaleri
         $posts = Post::orderByDesc('id')->orderByDesc('id')->where('status', 1)->get();
         $postsvideo = Post::where('posts_video', '!=', NULL)->orderByDesc('updated_at')->where('status', 1)->get();
-        $photos =Post::orderByDesc('updated_at')->get();
+        $photos =Photo::orderByDesc('updated_at')->get();
         $categories = Category::where('category_status', 1)->get();
         $districts = District::get();
         $counter = 0;
@@ -82,37 +82,38 @@ class SitemapController extends Controller
 //İmages
         foreach ($posts as $p) {
             if ($counter == 1000) {
+                $sitemapCounterImages++;
                 $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
                 $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
                 $sitemapimages->model->resetItems();
                 $counter = 0;
-                $sitemapCounterImages++;
             }
             $sitemapimages->add("https://" . $host . "/" . $p->image, $p->created_at, 0.8, "daily");
             $counter++;
         }
 //fotoğraf galerisi
-        foreach ($photos as $ph) {
+        foreach ($photos as $p) {
 
             if ($counter == 1000) {
+                $sitemapCounter++;
                 $sitemapfotogaleri->store('xml', 'sitemap-fotogaleri-'.$sitemapCounter);
-                $sitemapfotogaleri->addSitemap(secure_url('sitemap-fotogaleri' .$sitemapCounter. '.xml'));
+                $sitemapfotogaleri->addSitemap(secure_url('sitemap-fotogaleri-' .$sitemapCounter. '.xml'));
                 $sitemapfotogaleri->model->resetItems();
                 $counter = 0;
-                $sitemapCounter++;
             }
-            $sitemapfotogaleri->add("https://" . $host . "/" . $ph->image, $ph->created_at, 0.8, "daily");
+            $sitemapfotogaleri->add("https://" . $host . "/" . $p->photo, $p->created_at, 0.8, "daily");
             $counter++;
         }
 //video galerisi
         foreach ($postsvideo as $v) {
 
             if ($counter == 1000) {
-                $sitemapvideogaleri->store('xml', 'sitemap-videogaleri');
-                $sitemapvideogaleri->addSitemap(secure_url('sitemap-videogaleri' . '.xml'));
+                $sitemapCounter++;
+                $sitemapvideogaleri->store('xml', 'sitemap-videogaleri-'.  $sitemapCounter);
+                $sitemapvideogaleri->addSitemap(secure_url('sitemap-videogaleri-'.  $sitemapCounter . '.xml'));
                 $sitemapvideogaleri->model->resetItems();
                 $counter = 0;
-                $sitemapCounter++;
+
             }
             $sitemapvideogaleri->add("https://" . $host . "/". "haber-" . str_slug($v->title_tr) . "-" . $v->id , $v->created_at, 0.8, "daily");
             $counter++;
