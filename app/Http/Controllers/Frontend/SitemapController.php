@@ -18,6 +18,7 @@ class SitemapController extends Controller
 {
     public function sitemap()
     {
+        ini_set('memory_limit', '-1');
         $sitemaphome = App::make('sitemap');//home
         $sitemapcategories = App::make('sitemap');//categories
         $sitemapdistricts = App::make('sitemap');//districts
