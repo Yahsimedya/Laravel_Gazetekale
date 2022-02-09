@@ -18,17 +18,16 @@ class SitemapController extends Controller
 {
     public function sitemap()
     {
-        ini_set('memory_limit', '-1');
         $sitemaphome = App::make('sitemap');//home
         $sitemapcategories = App::make('sitemap');//categories
         $sitemapdistricts = App::make('sitemap');//districts
         $sitemapimages = App::make('sitemap');//images
         $sitemapfotogaleri = App::make('sitemap');//fotogaleri
         $sitemapvideogaleri = App::make('sitemap');//videogaleri
-        $posts = Post::orderByDesc('id')->where('status',1)->orderByDesc('created_at')->get();
-        $postsvideo = Post::where('posts_video', '!=', "")->orderByDesc('created_at')->where('status',1)->get();
-        $photos =Photo::orderByDesc('created_at')->get();
-        $categories = Category::get();
+        $posts = Post::orderByDesc('id')->orderByDesc('id')->where('status', 1)->get();
+        $postsvideo = Post::where('posts_video', '!=', "")->orderByDesc('id')->where('status', 1)->get();
+        $photos =Photo::orderByDesc('id')->get();
+        $categories = Category::where('category_status', 1)->get();
         $districts = District::get();
         $counter = 0;
         $sitemapCounter = 0;
@@ -52,7 +51,7 @@ class SitemapController extends Controller
 
             }
             $sitemaphome->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
-            $counter++;
+              $counter++;
 
         }
 //Kategori
@@ -113,7 +112,6 @@ class SitemapController extends Controller
                 $sitemapCounter++;
             }
             $sitemapvideogaleri->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
-
             $counter++;
         }
         if (!empty($sitemaphome->model->getItems())) {
@@ -135,7 +133,7 @@ class SitemapController extends Controller
             $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
             $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
             $sitemapimages->model->resetItems();
-            for ($Images = 0; $Images <= $sitemapCounter+1; $Images++) {
+            for ($Images = 0; $Images <= $sitemapCounter; $Images++) {
                 $sitemaphome->addSitemap(URL::to('sitemap-images-' . $Images . '.xml'), Carbon::today());
             }
         }
