@@ -92,16 +92,16 @@ class SitemapController extends Controller
             $counter++;
         }
 //fotoğraf galerisi
-        foreach ($photos as $p) {
+        foreach ($photos as $ph) {
 
             if ($counter == 1000) {
-                $sitemapfotogaleri->store('xml', 'sitemap-fotogaleri');
-                $sitemapfotogaleri->addSitemap(secure_url('sitemap-fotogaleri' . '.xml'));
+                $sitemapfotogaleri->store('xml', 'sitemap-fotogaleri-'.$sitemapCounter);
+                $sitemapfotogaleri->addSitemap(secure_url('sitemap-fotogaleri' .$sitemapCounter. '.xml'));
                 $sitemapfotogaleri->model->resetItems();
                 $counter = 0;
                 $sitemapCounter++;
             }
-            $sitemapfotogaleri->add("https://" . $host . "/" . $p->photo, $p->created_at, 0.8, "daily");
+            $sitemapfotogaleri->add("https://" . $host . "/" . $ph->image, $ph->created_at, 0.8, "daily");
             $counter++;
         }
 //video galerisi
