@@ -27,7 +27,7 @@ class SitemapController extends Controller
         $sitemapvideogaleri = App::make('sitemap');//videogaleri
         $posts = Post::orderByDesc('id')->orderByDesc('id')->where('status', 1)->get();
         $postsvideo = Post::where('posts_video', '!=', NULL)->orderByDesc('updated_at')->where('status', 1)->get();
-        $photos =Photo::orderByDesc('updated_at')->get();
+        $photos =Post::orderByDesc('updated_at')->get();
         $categories = Category::where('category_status', 1)->get();
         $districts = District::get();
         $counter = 0;
@@ -93,6 +93,7 @@ class SitemapController extends Controller
         }
 //fotoğraf galerisi
         foreach ($photos as $p) {
+
             if ($counter == 1000) {
                 $sitemapfotogaleri->store('xml', 'sitemap-fotogaleri');
                 $sitemapfotogaleri->addSitemap(secure_url('sitemap-fotogaleri' . '.xml'));
