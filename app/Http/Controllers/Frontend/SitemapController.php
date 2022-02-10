@@ -34,23 +34,19 @@ class SitemapController extends Controller
         $sitemapCounter = 0;
         $sitemapCounters = 0;
         $sitemapCounterAllPage = 0;
+        $sitemapCounterAllImage= 0;
         $sitemapCounterImages = 0;
         $host = request()->getHost();
 
 
 //all page
         foreach ($posts as $p) {
-
-
-
             if ($counter == 1000) {
                 $sitemapCounterAllPage++;
                 $sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounterAllPage);
                 $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounterAllPage . '.xml'), Carbon::today());
                 $sitemaphome->model->resetItems();
-
                 $counter = 0;
-
             }
             $sitemaphome->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
               $counter++;
@@ -83,15 +79,30 @@ class SitemapController extends Controller
 //İmages
         foreach ($posts as $p) {
             if ($counter == 1000) {
-                $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
-                $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
-                $sitemapimages->model->resetItems();
+                $sitemapCounterAllImage++;
+                $sitemaphome->store('xml', 'sitemap-images-' . $sitemapCounterAllImage);
+                $sitemaphome->addSitemap(secure_url('sitemap-images-' . $sitemapCounterAllImage . '.xml'), Carbon::today());
+                $sitemaphome->model->resetItems();
                 $counter = 0;
-                $sitemapCounterImages++;
             }
-            $sitemapimages->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
+            $sitemaphome->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
             $counter++;
+
         }
+
+     //   foreach ($posts as $p) {
+     //       if ($counter == 1000) {
+     //           $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
+     //           $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
+     //           $sitemapimages->model->resetItems();
+     //           $counter = 0;
+     //           $sitemapCounterImages++;
+     //       }
+     //       $sitemapimages->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
+     //       $counter++;
+     //   }
+
+
 //fotoğraf galerisi
         foreach ($photos as $p) {
 
@@ -135,10 +146,10 @@ class SitemapController extends Controller
             $sitemapdistricts->model->resetItems();
         }
 
-        if (!empty($sitemapimages->model->getItems())) {
-            $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounter);
-            $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounter . '.xml'), Carbon::today());
-            $sitemapimages->model->resetItems();
+        if (!empty($sitemaphome->model->getItems())) {
+            $sitemaphome->store('xml', 'sitemap-images-' . $sitemapCounter);
+            $sitemaphome->addSitemap(secure_url('sitemap-images-' . $sitemapCounter . '.xml'), Carbon::today());
+            $sitemaphome->model->resetItems();
         }
 
        // if (!empty($sitemapimages->model->getItems())) {
