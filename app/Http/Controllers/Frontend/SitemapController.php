@@ -83,11 +83,11 @@ class SitemapController extends Controller
 //İmages
         foreach ($posts as $p) {
             if ($counter == 1000) {
-                $sitemapCounterImages++;
                 $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
                 $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
                 $sitemapimages->model->resetItems();
                 $counter = 0;
+                $sitemapCounterImages++;
             }
             $sitemapimages->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
             $counter++;
