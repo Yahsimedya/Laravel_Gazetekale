@@ -37,6 +37,7 @@ class SitemapController extends Controller
         $sitemapCounterImages = 0;
         $host = request()->getHost();
 
+
 //all page
         foreach ($posts as $p) {
 
@@ -88,7 +89,7 @@ class SitemapController extends Controller
                 $sitemapimages->model->resetItems();
                 $counter = 0;
             }
-            $sitemapimages->add("https://" . $host . "/" . $p->image, $p->created_at, 0.8, "daily");
+            $sitemapimages->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
             $counter++;
         }
 //fotoğraf galerisi
@@ -135,7 +136,7 @@ class SitemapController extends Controller
         }
         if (!empty($sitemapimages->model->getItems())) {
             $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
-            $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
+            $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'), Carbon::today());
             $sitemapimages->model->resetItems();
             for ($Images = 0; $Images <= $sitemapCounter; $Images++) {
                 $sitemaphome->addSitemap(URL::to('sitemap-images-' . $Images . '.xml'), Carbon::today());
