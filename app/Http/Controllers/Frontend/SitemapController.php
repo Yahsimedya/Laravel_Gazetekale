@@ -134,14 +134,15 @@ class SitemapController extends Controller
             $sitemapdistricts->addSitemap(secure_url('sitemap-districts' . '.xml'));
             $sitemapdistricts->model->resetItems();
         }
+
+
         if (!empty($sitemapimages->model->getItems())) {
-            $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
-            $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'), Carbon::today());
+            $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounter);
+            $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounter . '.xml'), Carbon::today());
             $sitemapimages->model->resetItems();
-            for ($Images = 0; $Images <= $sitemapCounter; $Images++) {
-                $sitemaphome->addSitemap(URL::to('sitemap-images-' . $Images . '.xml'), Carbon::today());
-            }
         }
+
+       
         if (!empty($sitemapfotogaleri->model->getItems())) {
             $sitemapfotogaleri->store('xml', 'sitemap-fotogaleri');
             $sitemapfotogaleri->addSitemap(secure_url('sitemap-fotogaleri' . '.xml'));
