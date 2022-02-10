@@ -80,12 +80,12 @@ class SitemapController extends Controller
         foreach ($posts as $p) {
             if ($counter == 1000) {
                 $sitemapCounterAllImage++;
-                $sitemaphome->store('xml', 'sitemap-images-' . $sitemapCounterAllImage);
-                $sitemaphome->addSitemap(secure_url('sitemap-images-' . $sitemapCounterAllImage . '.xml'), Carbon::today());
-                $sitemaphome->model->resetItems();
+                $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterAllImage);
+                $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterAllImage . '.xml'), Carbon::today());
+                $sitemapimages->model->resetItems();
                 $counter = 0;
             }
-            $sitemaphome->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
+            $sitemapimages->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
             $counter++;
 
         }
@@ -146,10 +146,13 @@ class SitemapController extends Controller
             $sitemapdistricts->model->resetItems();
         }
 
-        if (!empty($sitemaphome->model->getItems())) {
-            $sitemaphome->store('xml', 'sitemap-images-' . $sitemapCounter);
-            $sitemaphome->addSitemap(secure_url('sitemap-images-' . $sitemapCounter . '.xml'), Carbon::today());
-            $sitemaphome->model->resetItems();
+        if (!empty($sitemapimages->model->getItems())) {
+            $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounter);
+            $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounter . '.xml'), Carbon::today());
+            $sitemapimages->model->resetItems();
+                for ($Images = 0; $Images <= $sitemapCounter; $Images++) {
+                 $sitemaphome->addSitemap(URL::to('sitemap-images-' . $Images . '.xml'), Carbon::today());
+                }
         }
 
        // if (!empty($sitemapimages->model->getItems())) {
@@ -172,7 +175,7 @@ class SitemapController extends Controller
         }
         $sitemaphome->addSitemap(URL::to('sitemap-categories.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to('sitemap-districts.xml'), Carbon::today());
-        $sitemaphome->addSitemap(URL::to('sitemap-fotogaleri' . '.xml'), Carbon::today());
+       // $sitemaphome->addSitemap(URL::to('sitemap-fotogaleri' . '.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to('sitemap-videogaleri' . '.xml'), Carbon::today());
         $sitemaphome->addSitemap(URL::to("https://" . $host), Carbon::today());
         $sitemaphome->store('sitemapindex', 'sitemap');
