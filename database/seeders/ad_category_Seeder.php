@@ -79,6 +79,8 @@ class ad_category_Seeder extends Seeder
                 'title' => '[Ana Sayfa] Spor Altı 200x200'],
             20 => ['id' => 17,
                 'title' => '[Ana Sayfa]- Sağ manşet Altı 336x280'],
+            20 => ['id' => 23,
+                'title' => '[Haber Detay] İçerik Resim Altı 728x90'],
         ]);
     }
 }
