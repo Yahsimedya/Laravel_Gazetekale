@@ -295,7 +295,7 @@ $kurlar=Session::get('kurlar');
     /*-------------------------------*/
 
     .hamburger {
-        position: fixed;
+        position: absolute;
         top: 20px;
         z-index: 999;
         display: block;
@@ -443,7 +443,8 @@ $kurlar=Session::get('kurlar');
                     <ul class="nav sidebar-nav">
                         <div class="sidebar-header">
                             <div class="sidebar-brand">
-                                <a href="#">Brand</a></div></div>
+                                <a href="#"><img class=" img-fluid" src="{{asset($websetting->logo)}}"
+                                                 alt=""></a></div></div>
                         <form class="search-form" action="{{route('search')}}" method="POST" role="search">
                             @csrf
 
