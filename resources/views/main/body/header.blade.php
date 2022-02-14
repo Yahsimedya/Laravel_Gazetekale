@@ -240,18 +240,18 @@ $kurlar=Session::get('kurlar');
         top: 0;
     }
     /*Fontawesome icons*/
-    .nav.sidebar-nav li a::before {
-        font-family: fontawesome;
-        content: "\f12e";
-        vertical-align: baseline;
-        display: inline-block;
-        padding-right: 5px;
-    }
+    /*.nav.sidebar-nav li a::before {*/
+    /*    font-family: fontawesome;*/
+    /*    content: "\f12e";*/
+    /*    vertical-align: baseline;*/
+    /*    display: inline-block;*/
+    /*    padding-right: 5px;*/
+    /*}*/
     a[href*="#home"]::before {
         content: "\f015" !important;
     }
-    a[href*="#about"]::before {
-        content: "\f129" !important;
+    a[href*="#gundem/2"]::before {
+        content: "\f015" !important;
     }
     a[href*="#events"]::before {
         content: "\f073" !important;
@@ -452,12 +452,12 @@ $kurlar=Session::get('kurlar');
                                 <input type="search" id="form1" class="form-control" placeholder="arama yap" aria-label="Search" />
                             </div>
                         </form>
-                        <li><a href="#home">Ana Sayfa</a></li>
+                        <li><a href="#">Ana Sayfa</a></li>
 
                     @foreach($Fullcategory as $categories)
                             <li class="nav-item active position-relative">
                                 <div class="nav-item-hover position-absolute"></div>
-                                <a class="nav-link " href="{{ URL::to('/category/' . str_slug($categories->category_tr) .'/'. $categories->id) }}">{{$categories->category_tr}} <span class="sr-only">(current)</span></a>
+                                <a class="nav-link " id="#{{str_slug($categories->category_tr) .'/'. $categories->id}}" href="{{ URL::to('/category/' . str_slug($categories->category_tr) .'/'. $categories->id) }}">{{$categories->category_tr}} <span class="sr-only">(current)</span></a>
                             </li>
                         @endforeach
                         <li class="list-group-item active position-relative">
@@ -495,14 +495,14 @@ $kurlar=Session::get('kurlar');
             <!-- Arama Butonu Alanı -->
             <div class=" mx-auto my-auto">
                 <ul class="list-group list-group-horizontal my-auto" style="font-size: 15px;">
-                    <li class="list-group-item font-weight-bold border-0 pr-1 pl-1">{{$gelenil}}<span class="float-right pl-3">{{$veri}}&deg;{!!$icon!!}</span></li>
+                    <li class="list-group-item font-weight-bold border-0 pr-1 pl-1 w-100 d-block text-center">{{$gelenil}}<span class=" pl-2 pr-2 text-center">{{$veri}}&deg;{!!$icon!!}</span></li>
                     <li class="list-group-item  border-right text-scondary  pr-1 pl-1 border-0 border-0 d-none d-sm-block "><i
                             class="fa fa-pencil color-fume pr-1 pl-1 "></i><a class="color-fume" href="{{route('author')}}">Yazarlar</a>
                     </li>
-                    <li class="list-group-item float-left border-right  pr-1 pl-1 border-0"><i class="fa fa-stethoscope color-fume pr-1"></i><a class="color-fume" href="{{route('nobetciEczane')}}">Nöbetçi
+                    <li class="list-group-item float-left border-right  pr-1 pl-1 border-0 w-100"><i class="fa fa-stethoscope color-fume pr-1"></i><a class="color-fume" href="{{route('nobetciEczane')}}">Nöbetçi
                             Eczane</a>
                     </li>
-                    <li class="list-group-item float-left border-right pr-1 pl-1 border-0"><i class="fa fa-briefcase color-fume pr-1"></i><a class="color-fume" href="{{route('cenazeilanlari')}}">Cenaze
+                    <li class="list-group-item float-left border-right pr-1 pl-1 border-0 w-100"><i class="fa fa-briefcase color-fume pr-1"></i><a class="color-fume" href="{{route('cenazeilanlari')}}">Cenaze
                             İlanları</a>
                     </li>
                     {{--                <li class="list-group-item">ss</li>--}}
@@ -511,7 +511,7 @@ $kurlar=Session::get('kurlar');
 
             </div>
 
-            <div class="navbar-right position-absolute">
+            <div class="navbar-right position-absolute d-none d-sm-block">
                 <form class="search-form" action="{{route('search')}}" method="POST" role="search">
                     @csrf
                     <div class="form-group pull-right" id="search">
