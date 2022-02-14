@@ -2,14 +2,14 @@
     <div class="container padding-left">
         <div class="card-header card-video position-relative">
             <div class="card-kutu__link"><i class="fa fa-video mr-2 "></i>Video Galeri</div>
-            <a href="#">
+            <a href="<?php echo e(route('VideoGaleriAll')); ?>">
                 <div class="card-kutu__tum position-absolute ">Tümü</div>
             </a>
         </div>
         <div class="row  padding-left">
             <div class="col-md-6 mt-2 padding-left">
                 <div class="video-slider">
-                    <?php $__currentLoopData = $videogaleri; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $videogaleriSlider; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="position-relative">
                             <a href="<?php echo e(URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)); ?>">
                                 <!-- <div class="kartlar__effect position-absolute"> -->
@@ -21,12 +21,13 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
+
             <div class="col-md-6 d-none d-md-block">
                 <div class="row ">
-                    <?php for($i=0;$i<=3;$i++): ?>
-                        <?php if($videogaleri[$i]->featured==1 && count($videogaleri)>4): ?>
+                    <?php $__currentLoopData = $videogaleri; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
                             <div class="col-md-6 mt-2 padding-left">
-                                <a href="<?php echo e($videogaleri[$i]->image); ?>">
+                                <a href="<?php echo e(URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)); ?>">
 
                                     <div class="position-relative">
 
@@ -34,13 +35,13 @@
                                             <i class="fa fa-play-circle"></i>
                                         </div>
 
-                                        <img data-src="<?php echo e($videogaleri[$i]->image); ?>" onerror="this.onerror=null;this.src='<?php echo e($webSiteSetting->defaultImage); ?>';" height=""
-                                             class="video-image lazyload img-fluid" alt="<?php echo e($videogaleri[$i]->image); ?>">
+                                        <img data-src="<?php echo e($row->image); ?>" onerror="this.onerror=null;this.src='<?php echo e($webSiteSetting->defaultImage); ?>';" height=""
+                                             class="video-image lazyload img-fluid" alt="<?php echo e($row->image); ?>">
                                     </div>
                                 </a>
                             </div>
-                        <?php endif; ?>
-                    <?php endfor; ?>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>

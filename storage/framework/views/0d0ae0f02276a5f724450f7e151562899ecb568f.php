@@ -49,10 +49,10 @@ a:hover
  </style>
  <td align="center" style="color:black;" >'.($i+1).'</td>
 
-              <th scope="center" style="font-size:13px;font-weight:500!important;color: black;text-decoration: none; text-align:center;">'.$tarih." ".$saat.'</th>
-              <th scope="center" style="font-size:13px;font-weight:500!important;color: #0060B6;text-decoration: none;">'.$stadTablo.'</th>
-              <td align="center" style="color: #0060B6;text-decoration: none;">'.$evsahibi.'</td>
-              <td align="center" style="color: #0060B6;text-decoration: none;">'.$misafir.'</td>
+              <th scope="center" style="font-size:10px;font-weight:500!important;color: black;text-decoration: none; text-align:center;">'.$tarih." ".$saat.'</th>
+              <th scope="center" style="font-size:10px;font-weight:500!important;color: #0060B6;text-decoration: none;">'.$stadTablo.'</th>
+              <td align="center" style="font-size:10px;color: #0060B6;text-decoration: none;">'.$evsahibi.'</td>
+              <td align="center" style="font-size:10px;color: #0060B6;text-decoration: none;">'.$misafir.'</td>
             </tr>';
 
 

@@ -19,9 +19,9 @@
         </a>
     </div>
     <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <a href="<?php echo e(route('authors.yazilar',$author->id)); ?>">
-            <div class="row  mt-2">
 
+        <a href="<?php echo e(route('authors.yazilar',[str_slug($author->title),$author->id])); ?>">
+            <div class="row  mt-2">
                 <div class="col-md-4 col-4 col-sm-4">
                     <img src="<?php echo e(asset($author->image)); ?>" onerror="this.onerror=null;this.src='<?php echo e($webSiteSetting->defaultImage); ?>';" class="rounded card-yazarlar__image lazyload img-fluid" alt="">
                 </div>

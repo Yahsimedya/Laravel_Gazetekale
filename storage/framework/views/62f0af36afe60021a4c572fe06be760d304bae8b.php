@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title',$seoset->meta_title); ?>
 <?php $__env->startSection('meta_keywords',$seoset->meta_keyword); ?>
 <?php $__env->startSection('meta_description',htmlspecialchars_decode(stripslashes($seoset->meta_description),ENT_QUOTES)); ?>
@@ -228,7 +229,7 @@ $gelenil=Session::get('gelenil');
                         <div class=" card-spor__link text-left pad"><b>Süper Lig</b> Puan Durumu</div>
                         <!-- <a href="#"><div class=" position-absolute ">Tümü</div></a> -->
                     </div>
-                    <?php echo $__env->make('main.body.puan-durumu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <?php echo $__env->make('main.body.puan-durumu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     <?php $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <?php if($ad->type==1 && $ad->category_id==22): ?>
                             <a href="<?php echo e($ad->link); ?>"><img class="img-fluid pb-1 pt-2 lazyload" width="336"

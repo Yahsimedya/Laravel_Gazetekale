@@ -3,13 +3,13 @@
     class="col-md-12 col-sm-12 col-xs-12 col-lg-4 d-none d-md-block text-center position-relative yanslider padding-left">
 
     <ul class="nav nav-tabs yan__kategori">
-        <li class="active yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;"
+        <li class="active yan__kategori-li"><a class="yan__kategori-li-link"
                                                data-toggle="tab" href="#home">Siyaset</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="" data-toggle="tab"
                                         href="#menu1">Spor</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link"   data-toggle="tab"
                                         href="#menu2">3.Sayfa</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="color: white!important;" data-toggle="tab"
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link"   data-toggle="tab"
                                         href="#menu3">Özel</a></li>
     </ul>
 
@@ -27,18 +27,21 @@
                     <div class="item yanslider__yanitem position-relative" data-dot="<span><?php echo e($k); ?></span>">
                         <a href="<?php echo e(URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)); ?>">
                             <?php if($webSiteSetting->slider_title==1): ?>
+                                   <?php if($webSiteSetting->slider_title==1): ?>
                                 <div class="yanslider__effect position-absolute"></div>
+                            <?php endif; ?>
                             <?php endif; ?>
                             <img data-src="<?php echo e($row->image); ?>"
                                  onerror="this.onerror=null;this.src='<?php echo e(asset($webSiteSetting->defaultImage)); ?>';"
                                  class="img-fluid owl-lazy" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
-                                <a href="" class=" yanslider-link align-middle card-kisalt">
+                                <a href="" class="yanslider-link align-middle card-kisalt">
                                    <?php if($webSiteSetting->slider_title==1): ?> <?php echo e($row->title_tr); ?> <?php endif; ?>
                                 </a>
                             </div>
+                        </a>
+
                     </div>
-                    </a>
                     <?php
                         $k++;
                     ?>
@@ -57,14 +60,15 @@
 
                     <div class="item yanslider__yanitem position-relative" data-dot="<span><?php echo e($k); ?></span>">
                         <a href="<?php echo e(URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)); ?>">
-                            <div class="yanslider__effect position-absolute"></div>
+                               <?php if($webSiteSetting->slider_title==1): ?>
+                                <div class="yanslider__effect position-absolute"></div>
+                            <?php endif; ?>
                             <img src="<?php echo e($row->image); ?>"
                                  onerror="this.onerror=null;this.src='<?php echo e(asset($webSiteSetting->defaultImage)); ?>';"
                                  class="img-fluid" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class=" yanslider-link align-middle card-kisalt">
-                                    <?php echo e($row->title_tr); ?>
-
+                                    <?php if($webSiteSetting->slider_title==1): ?> <?php echo e($row->title_tr); ?> <?php endif; ?>
                                 </a>
                             </div>
                     </div>
@@ -87,14 +91,15 @@
 
                     <div class="item yanslider__yanitem position-relative" data-dot="<span><?php echo e($k); ?></span>">
                         <a href="<?php echo e(URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)); ?>">
-                            <div class="yanslider__effect position-absolute"></div>
+                               <?php if($webSiteSetting->slider_title==1): ?>
+                                <div class="yanslider__effect position-absolute"></div>
+                            <?php endif; ?>
                             <img src="<?php echo e($row->image); ?>"
                                  onerror="this.onerror=null;this.src='<?php echo e(asset($webSiteSetting->defaultImage)); ?>';"
                                  class="img-fluid" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class=" yanslider-link align-middle card-kisalt">
-                                    <?php echo e($row->title_tr); ?>
-
+                                    <?php if($webSiteSetting->slider_title==1): ?> <?php echo e($row->title_tr); ?> <?php endif; ?>
                                 </a>
                             </div>
                     </div>
@@ -118,14 +123,15 @@
                     <div class="item yanslider__yanitem position-relative" data-dot="<span><?php echo e($k); ?></span>">
                         <a href="<?php echo e(URL::to('/haber-'.str_slug($row->title_tr).'-'.$row->id)); ?>">
 
-                            <div class="yanslider__effect position-absolute"></div>
+                               <?php if($webSiteSetting->slider_title==1): ?>
+                                <div class="yanslider__effect position-absolute"></div>
+                            <?php endif; ?>
                             <img src="<?php echo e($row->image); ?>"
                                  onerror="this.onerror=null;this.src='<?php echo e(asset($webSiteSetting->defaultImage)); ?>';"
                                  class="img-fluid" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class="yanslider-link align-middle card-kisalt">
-                                    <?php echo e($row->title_tr); ?>
-
+                                    <?php if($webSiteSetting->slider_title==1): ?> <?php echo e($row->title_tr); ?> <?php endif; ?>
                                 </a>
                             </div>
                         </a>

@@ -34,15 +34,15 @@
 
                             <a target="_blank" href="https://www.youtube.com/watch?v=<?php echo e($row->posts_video); ?>">
                                 <div class="card   d-inline-block  ">
-                                    <img data-src="<?php echo e(asset('icon/icon-youtube.png')); ?>" class="lazyload position-absolute ytube-icon img-fluid"
+                                    <img data-src="<?php echo e(asset('icon/icon-youtube.png')); ?>" class="lazyload position-absolute ytube-icon img-fluid "
                                          alt="youtube" width="70" height="45">
                                     <img class="card-img-top tns-lazy-img lazyload img-fluid" data-src="<?php echo e($row->image); ?>" onerror="this.onerror=null;this.src='<?php echo e($webSiteSetting->defaultImage); ?>';"
                                          alt="<?php echo e($row->title_tr); ?>">
                                     <div class="card-body align-middle d-table-cell" >
                                         <p class="card-baslik text-center d-table-cell"><b
                                                 class="card-kisalt"><?php echo e($row->title_tr); ?></b></p>
-                                        <img data-src="<?php echo e(asset('icon/icon-youtube.svg')); ?>" class="lazyload float-right img-fluid"
-                                             alt="youtube" width="75" height="21">
+                                        <img data-src="<?php echo e(asset('icon/icon-youtube.svg')); ?>" class="lazyload float-right img-fluid position-absolute"
+                                             alt="youtube" width="75" height="21" style="top: 50%;right: 0;transform: translate(0%, 220%);">
                                         <span class="card__tv position-absolute text-dark">Gazetekale TV
 </span>
                                     </div>

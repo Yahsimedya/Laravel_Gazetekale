@@ -35,6 +35,9 @@
                     <div class="row  padding-left">
                         <div class="col-md-12">
                             <div class="ilcelers-<?php echo e($ilce->id); ?>">
+                                <?php
+                                      $Ilcehaberleri= App\Models\Post::where('subdistrict_id', $ilce->id)->limit(8)->get();
+                                ?>
                                 <?php $__currentLoopData = $Ilcehaberleri; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $haber): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <a href="<?php echo e(URL::to('/haber-'.str_slug($haber->title_tr).'-'.$haber->id)); ?>">
                                         <div class="card d-inline-block  ">
