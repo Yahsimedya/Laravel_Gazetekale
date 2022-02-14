@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->integer('user_id')->default(1);
             $table->string('title_tr')->nullable();
             $table->string('title_en')->nullable();
-            $table->string('subtitle_tr')->nullable();
+            $table->text('subtitle_tr')->nullable();
             $table->string('subtitle_en')->nullable();
             $table->string('image')->nullable();
             $table->text('details_tr')->nullable();
