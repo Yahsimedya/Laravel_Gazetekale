@@ -449,7 +449,7 @@ $kurlar=Session::get('kurlar');
                             @csrf
 
                             <div class="form-outline">
-                                <input type="search" id="form1" class="form-control" placeholder="arama yap" aria-label="Search" />
+                                <input type="search" id="form1" name="searchtext" class="form-control" placeholder="arama yap" aria-label="Search" />
                             </div>
                         </form>
                         <li><a href="#">Ana Sayfa</a></li>
