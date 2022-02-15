@@ -23,7 +23,8 @@
         <a href="{{route('authors.yazilar',[str_slug($author->title),$author->id])}}">
             <div class="row  mt-2">
                 <div class="col-md-4 col-4 col-sm-4">
-                    <img src="{{asset($author->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="rounded card-yazarlar__image lazyload img-fluid" alt="">
+
+                    <img src="{{asset($author->image)}}" class="rounded card-yazarlar__image lazyload img-fluid" alt="">
                 </div>
                 <div class="col-md-8 col-8 col-sm-8 align-middle d-inline-block">
                     <div class="d-inline-block align-middle">
