@@ -61,7 +61,7 @@ class SitemapController extends Controller
                 $counter = 0;
                 $sitemapCounter++;
             }
-            $sitemapcategories->add("https://" . $host . "/category" . str_slug($c->category_tr) . "/" . $c->id, $c->created_at, 0.4, "daily");
+            $sitemapcategories->add("https://" . $host . "/category/" . str_slug($c->category_tr) . "/" . $c->id, $c->created_at, 0.4, "daily");
             $counter++;
         }
 //districts
