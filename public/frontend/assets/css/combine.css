@@ -11634,6 +11634,16 @@ img.lazyload:not([src]) {
     content: '';
     border-radius: 100%;
 }
+.top-menu {
+    width: 50% !important;
+
+}
+@media (max-width: 767.98px) {
+    .top-menu {
+    width: 100% !important;
+
+}
+}
 
 /*!
  *  Weather Icons 2.0.10
@@ -13915,7 +13925,7 @@ img.mfp-img {
 }
 
 /**
- * Swiper 7.3.0
+ * Swiper 7.4.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -13923,7 +13933,7 @@ img.mfp-img {
  *
  * Released under the MIT License
  *
- * Released on: November 18, 2021
+ * Released on: December 24, 2021
  */
 
 @font-face {

@@ -17533,6 +17533,7 @@
                     /**
          * Retrieve the mobile grading, using self::MOBILE_GRADE_* constants.
          *
+         * @deprecated This is no longer being maintained, it was an experiment at the time.
          * @return string One of the self::MOBILE_GRADE_* constants.
          * @static 
          */ 

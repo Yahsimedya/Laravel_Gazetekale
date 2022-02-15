@@ -11634,3 +11634,13 @@ img.lazyload:not([src]) {
     content: '';
     border-radius: 100%;
 }
+.top-menu {
+    width: 50% !important;
+
+}
+@media (max-width: 767.98px) {
+    .top-menu {
+    width: 100% !important;
+
+}
+}
