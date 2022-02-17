@@ -1,6 +1,10 @@
 <section class="video mt-3 pt-3 pb-3 bg-dark">
 
     <div class="container padding-left">
+        <div class="row">
+            <div class="col-md-9">
+
+
         <div class="card-header card-youtube position-relative ">
             <div class="row">
                 <div class="col-md-6"><img class="img-fluid lazyload" width="180" data-src="{{asset('icon/gazetekaletv.png')}} " >
@@ -58,6 +62,43 @@
 
 
         </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-header card-egazete position-relative d-flex">
+                    <h5 class="card-title text-light my-auto">YENİ SAYIMIZ</h5>
+
+
+
+
+
+                </div>
+                <div class="e-gazete">
+                    @foreach ($youtube as $row)
+
+                        <div>
+
+                            <a target="_blank" href="https://www.youtube.com/watch?v={{$row->posts_video}}">
+                                <div class="card   d-inline-block  ">
+                                    <img data-src="{{asset('icon/icon-youtube.png')}}" class="lazyload position-absolute ytube-icon img-fluid "
+                                         alt="youtube" width="70" height="45">
+                                    <img class="card-img-top tns-lazy-img lazyload img-fluid" data-src="{{$row->image}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                         alt="{{$row->title_tr}}">
+                                    <div class="card-body align-middle d-table-cell" >
+                                        <p class="card-baslik text-center d-table-cell"><b
+                                                class="card-kisalt">{{$row->title_tr}}</b></p>
+                                        <img data-src="{{asset('icon/icon-youtube.svg')}}" class="lazyload float-right img-fluid position-absolute"
+                                             alt="youtube" width="75" height="21" style="top: 50%;right: 0;transform: translate(0%, 220%);">
+                                        <span class="card__tv position-absolute text-dark">Gazetekale TV
+</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
         </div>
 </section>
 <script>
@@ -92,4 +133,37 @@
              }
          })
      })
+</script>
+<script>
+    $(document).ready(function() {
+        tns({
+            container: ".e-gazete",
+            items: 3,
+            slideBy: "page",
+            nav: !0,
+            navPosition: "bottom",
+            autoplay: !0,
+            lazyload:true,
+            controls: !1,
+            autoplayButton: !1,
+            mouseDrag: !0,
+            autoplayTimeout: 3e5,
+            autoplayButtonOutput: !1,
+            gutter: 14,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                640: {
+                    items: 1
+                },
+                700: {
+                    gutter: 14
+                },
+                900: {
+                    items: 1
+                }
+            }
+        })
+    })
 </script>
