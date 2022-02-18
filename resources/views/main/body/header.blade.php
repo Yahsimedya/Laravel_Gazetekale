@@ -517,10 +517,12 @@ $kurlar=Session::get('kurlar');
                 <form class="search-form" action="{{route('search')}}" method="POST" role="search">
                     @csrf
                     <div class="form-group pull-right" id="search">
-                        <input type="text" name="searchtext" class="form-control" placeholder="Ara">
-                        <button type="submit" class="form-control form-control-submit">Submit</button>
+                        <input type="search" name="searchtext" class="form-control" placeholder="Ara">
+                        <button type="submit" class="btn btn-success">Submit</button>
+
                         <span class="search-label"><i class="fa fa-search"></i></span>
                     </div>
+
                 </form>
             </div>
 
