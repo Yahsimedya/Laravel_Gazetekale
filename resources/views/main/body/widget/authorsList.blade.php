@@ -11,9 +11,7 @@
         @endforeach
     </div>
     <div class="card-header card-yazarlar position-relative ">
-
-
-        <div class="card-yazarlar__link text-left pad"><b>Köşe</b> Yazarlarımız</div>
+     <div class="card-yazarlar__link text-left pad"><b>Köşe</b> Yazarlarımız</div>
         <a href="{{route('author')}}">
             <div class="card-yazarlar__tum position-absolute ">Tümü</div>
         </a>

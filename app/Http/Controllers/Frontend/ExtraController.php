@@ -10,6 +10,7 @@ use App\Models\AuthorsPost;
 use App\Models\Comments;
 use App\Models\District;
 use App\Models\FixedPage;
+use App\Models\Gazetesayis;
 use App\Models\OrderImages;
 use App\Models\Photo;
 use App\Models\Photocategory;
@@ -657,6 +658,7 @@ class ExtraController extends Controller
             ->latest("authors_posts.created_at")->limit(8)
             ->get();
 
+
 //        dd($authors);
 
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
@@ -755,8 +757,11 @@ class ExtraController extends Controller
             return category::where('category_status',1)->where('category_menu',1)->limit(11)->orderBy('category_order')->get();
 
         });
+$egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function () {
+    return Gazetesayis::latest()->where('status',1)->limit(9)->get();
+});
 
-        return view('main.home', compact('home', 'ucuncuSayfa', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
+        return view('main.home', compact('home', 'ucuncuSayfa','egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -978,7 +983,7 @@ class ExtraController extends Controller
     public function search(Request $request)
     {
         $searchText = $request['searchtext'];
-        $json = Post::Where('status', 1)->Where('title_tr', 'LIKE', '%' . $searchText . '%')->get();
+        $json = Post::Where('status', 1)->Where('title_tr', 'LIKE', '%' . $searchText . '%')->latest()->get();
         $searchNews = $this->change($json);
         return \view('main.body.search', compact('searchNews'));
     }

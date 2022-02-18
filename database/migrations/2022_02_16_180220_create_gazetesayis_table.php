@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGazetesayisiTable extends Migration
+class CreateGazetesayisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateGazetesayisiTable extends Migration
      */
     public function up()
     {
-        Schema::create('gazetesayisi', function (Blueprint $table) {
+        Schema::create('gazetesayis', function (Blueprint $table) {
             $table->id();
             $table->string('title_tr');
             $table->string('image');
             $table->string('date');
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateGazetesayisiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gazetesayisi');
+        Schema::dropIfExists('gazetesayis');
     }
 }

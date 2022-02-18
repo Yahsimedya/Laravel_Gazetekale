@@ -90,7 +90,7 @@
 {{--                    <div class="float-left mr-2" style="width: 200px;height: 200px;">{!!$ad->ad_code!!}</div>--}}
 {{--                    @endif--}}
 {{--                    @endforeach--}}
-                   
+
                     {!!$post->details_tr!!}
                     </p>
                     <div class="reklam-alani mb-2 text-center">
@@ -106,10 +106,18 @@
                     </div>
                     <p class="detay__icerik mt-4">
                         @foreach($orderImages as $Images)
-                            <img src="{{asset($Images->image)}}"
+                            <a class="example-image-link lb-number" target="_blank" href="{{$Images->image}}"
+                               data-lightbox="example-set" data-title="">
+                                <img src="{{asset($Images->image)}}"
                                  onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                  class="img-fluid w-100 mb-3">
-
+                            </a>
+                            <script>
+                                lightbox.option({
+                                    'albumLabel': "{{$post->title_tr}}",
+                                    //   'disableScrolling':true,
+                                })
+                            </script>
 
                         @endforeach
                     </p>

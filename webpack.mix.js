@@ -21,6 +21,7 @@ mix.js('resources/js/app.js', 'public/js')
         'public/frontend/assets/js/lazysizes.min.js',
         'public/frontend/assets/js/marquee.js',
         'public/frontend/assets/js/svg-turkiye-haritasi.js',
+        'public/frontend/assets/js/lightbox-plus-jquery.min.js',
         'node_modules/swiper/swiper-bundle.js',
         'node_modules/slick-carousel/slick/slick.js',
         'public/frontend/assets/js/custom.js',
@@ -30,6 +31,7 @@ mix.js('resources/js/app.js', 'public/js')
         'public/frontend/assets/css/weather-icons.css',
         'public/frontend/assets/css/magnific-popup.css',
         'public/frontend/assets/css/svg-turkiye-haritasi.css',
+        'public/frontend/assets/css/lightbox.css',
         'node_modules/swiper/swiper-bundle.css',
         'node_modules/slick-carousel/slick/slick.scss',
 
