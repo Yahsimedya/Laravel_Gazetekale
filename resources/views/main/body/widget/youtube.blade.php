@@ -2,7 +2,7 @@
 
     <div class="container padding-left">
         <div class="row">
-            <div @if(count($egazete)>0 && $themeSetting->gazetesayisi==1) class="col-md-10" @else class="col-md-12"@endif >
+            <div @if(count($egazete)>0 && $themeSetting->gazetesayisi==1) class="col-md-9" @else class="col-md-12"@endif >
 
 
                 <div class="card-header card-youtube position-relative ">
@@ -69,9 +69,9 @@
                 </div>
             </div>
             @if(count($egazete)>=1 && $themeSetting->gazetesayisi==1)
-                <div class="col-md-2"  >
+                <div class="col-md-3"  >
                     <div class="card-header card-egazete position-relative d-flex">
-                        <h5 class="card-title text-light my-auto">SAYILARIMIZ</h5>
+                        <h5 class="card-title text-light my-auto">YENİ SAYIMIZ</h5>
 
 
                     </div>
