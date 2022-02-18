@@ -24,5 +24,6 @@ class Theme extends Model
         'category3',
         'category4',
         'multiple_category',
+        'gazetesayisi',
     ];
 }

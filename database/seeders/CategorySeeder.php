@@ -119,6 +119,15 @@ class CategorySeeder extends Seeder
                 'category_status' => '1',
                 'category_menu' => '1',
                 'category_order' => '11'],
+            11 =>  ['id' => 12,
+                'category_en' => 'Video',
+                'category_tr' => 'Video',
+                'category_keywords' => 'Video',
+                'category_description' => 'Video',
+                'category_icon' => '',
+                'category_status' => '1',
+                'category_menu' => '0',
+                'category_order' => '12'],
 
         ]);
     }

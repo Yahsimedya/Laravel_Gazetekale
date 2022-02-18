@@ -30,6 +30,7 @@ class themeSeeder extends Seeder
             'category3' => 3,
             'category4' => 4,
             'multiple_category' => '["3","2","1"]',
+            'gazetesayisi' => 0,
         ]);
     }
 }

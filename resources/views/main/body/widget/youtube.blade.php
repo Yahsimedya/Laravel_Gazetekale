@@ -2,13 +2,13 @@
 
     <div class="container padding-left">
         <div class="row">
-            <div @if(count($egazete)>0) class="col-md-9" @else class="col-md-12"@endif >
+            <div @if(count($egazete)>0 && $themeSetting->gazetesayisi==1) class="col-md-10" @else class="col-md-12"@endif >
 
 
                 <div class="card-header card-youtube position-relative ">
                     <div class="d-flex justify-content-between">
                         <div class="col-md-9 col-8"><img class="img-fluid lazyload" width="180"
-                                                   data-src="{{asset('icon/gazetekaletv.png')}} ">
+                                                         data-src="{{asset('icon/gazetekaletv.png')}} ">
                             <div class="card-kutu__link">
                             </div>
                         </div>
@@ -68,21 +68,21 @@
 
                 </div>
             </div>
-            @if(count($egazete)>=1)
-                <div class="col-md-3">
+            @if(count($egazete)>=1 && $themeSetting->gazetesayisi==1)
+                <div class="col-md-2"  >
                     <div class="card-header card-egazete position-relative d-flex">
-                        <h5 class="card-title text-light my-auto">YENİ SAYIMIZ</h5>
+                        <h5 class="card-title text-light my-auto">SAYILARIMIZ</h5>
 
 
                     </div>
-                    <div class="e-gazete">
+                    <div class="e-gazete" >
                         @foreach($egazete as $row)
 
                             <div>
 
                                 <a class="example-image-link lb-number" target="_blank" href="{{$row->image}}"
                                    data-lightbox="example-set" data-title="{{$row->title_tr}}">
-                                    <div class="card   d-inline-block  ">
+                                    <div class="card   d-inline-block  " >
 
                                         <img class="card-img-top tns-lazy-img lazyload img-fluid example-image"
                                              data-src="{{$row->image}}"
