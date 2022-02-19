@@ -69,12 +69,15 @@
                 </div>
             </div>
             @if(count($egazete)>=1 && $themeSetting->gazetesayisi==1)
-                <div class="col-md-3"  >
+                <div class="col-md-2"  >
                     <div class="card-header card-egazete position-relative d-flex">
-                        <h5 class="card-title text-light my-auto">YENİ SAYIMIZ</h5>
+                        <h5 class="card-title text-light my-auto">SAYILARMIZ</h5>
 
 
                     </div>
+
+
+
                     <div class="e-gazete" >
                         @foreach($egazete as $row)
 
@@ -87,20 +90,9 @@
                                         <img class="card-img-top tns-lazy-img lazyload img-fluid example-image"
                                              data-src="{{$row->image}}"
                                              alt="{{$row->title_tr}}">
-                                        <div class="card-body align-middle d-table-cell">
-                                            <p class="card-baslik text-center d-table-cell"><b
-                                                    class="card-kisalt">{{$row->title_tr}}</b></p>
-                                            {{ \Carbon\Carbon::parse($row->date)->isoFormat('DD MMMM YYYY') }}
-
-                                            <script>
-                                                lightbox.option({
-                                                    'albumLabel': "",
-                                                    //   'disableScrolling':true,
-                                                })
-                                            </script>
-
-                                        </div>
+                                        {{$row->title_tr}}
                                     </div>
+
                                 </a>
                             </div>
 
