@@ -91,6 +91,12 @@
                                              data-src="{{$row->image}}"
                                              alt="{{$row->title_tr}}">
                                         {{$row->title_tr}}
+                                        <script>
+                                            lightbox.option({
+                                                'albumLabel': "{{$row->title_tr}}",
+                                                //   'disableScrolling':true,
+                                            })
+                                        </script>
                                     </div>
 
                                 </a>
