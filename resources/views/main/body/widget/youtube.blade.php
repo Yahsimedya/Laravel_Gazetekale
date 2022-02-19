@@ -2,7 +2,7 @@
 
     <div class="container padding-left">
         <div class="row">
-            <div @if(count($egazete)>0 && $themeSetting->gazetesayisi==1) class="col-md-9" @else class="col-md-12"@endif >
+            <div @if(count($egazete)>0 && $themeSetting->gazetesayisi==1) class="col-md-10" @else class="col-md-12"@endif >
 
 
                 <div class="card-header card-youtube position-relative ">
