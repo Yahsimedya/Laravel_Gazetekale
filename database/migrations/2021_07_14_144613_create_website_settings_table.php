@@ -16,6 +16,7 @@ class CreateWebsiteSettingsTable extends Migration
         Schema::create('website_settings', function (Blueprint $table) {
             $table->id();
             $table->string('logo');
+            $table->text('logowhite');
             $table->text('adress');
             $table->string('phone');
             $table->string('email');

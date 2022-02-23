@@ -1,10 +1,7 @@
 <section class="video mt-3 pt-3 pb-3 bg-dark">
-
     <div class="container padding-left">
         <div class="row">
             <div @if(count($egazete)>0 && $themeSetting->gazetesayisi==1) class="col-md-10" @else class="col-md-12"@endif >
-
-
                 <div class="card-header card-youtube position-relative ">
                     <div class="d-flex justify-content-between">
                         <div class="col-md-9 col-8"><img class="img-fluid lazyload" width="180"
@@ -22,20 +19,12 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
                 <div class="row  padding-left">
-
                     <div class="col-md-12 mt-2 padding-left">
                         <div class="keskin">
-
-
                             @foreach ($youtube as $row)
-
                                 <div>
-
                                     <a target="_blank" href="https://www.youtube.com/watch?v={{$row->posts_video}}">
                                         <div class="card   d-inline-block  ">
                                             <img data-src="{{asset('icon/icon-youtube.png')}}"
@@ -59,56 +48,38 @@
                                     </a>
                                 </div>
                             @endforeach
-
                         </div>
-
-
                     </div>
-
-
                 </div>
             </div>
             @if(count($egazete)>=1 && $themeSetting->gazetesayisi==1)
                 <div class="col-md-2"  >
                     <div class="card-header card-egazete position-relative d-flex">
-                        <h5 class="card-title text-light my-auto">SAYILARMIZ</h5>
-
-
+                        <h5 class="card-title text-light my-auto">E-Gazete</h5>
                     </div>
-
-
-
                     <div class="e-gazete" >
                         @foreach($egazete as $row)
-
                             <div>
-
                                 <a class="example-image-link lb-number" target="_blank" href="{{$row->image}}"
                                    data-lightbox="example-set" data-title="{{$row->title_tr}}">
                                     <div class="card   d-inline-block  " >
-
                                         <img class="card-img-top tns-lazy-img lazyload img-fluid example-image"
                                              data-src="{{$row->image}}"
                                              alt="{{$row->title_tr}}">
                                         {{$row->title_tr}}
                                         <script>
                                             lightbox.option({
-                                                'albumLabel': "{{$row->title_tr}}",
+                                                'albumLabel': "",
                                                 //   'disableScrolling':true,
                                             })
                                         </script>
                                     </div>
-
                                 </a>
                             </div>
-
                         @endforeach
-
                     </div>
-
                 </div>
             @endif
-
         </div>
     </div>
 </section>

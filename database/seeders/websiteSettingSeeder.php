@@ -16,6 +16,7 @@ class websiteSettingSeeder extends Seeder
     {
         WebsiteSetting::create([
             'logo' => 'Admin',
+            'logowhite' => 'Admin',
             'adress' => 'admin@gmail.com',
             'phone' => 'Admin',
             'email' => 'Admin',

@@ -443,9 +443,13 @@ $kurlar=Session::get('kurlar');
                     <ul class="nav sidebar-nav">
                         <div class="sidebar-header">
                             <div class="sidebar-brand">
-                                <a href="#"><img class=" img-fluid" src="{{asset($websetting->logo)}}"
+                                <a href="#"><img class=" img-fluid" src="{{asset($websetting->logowhite)}}"
                                                  alt=""></a></div></div>
-                        <form class="search-form" action="{{route('search')}}" method="POST" role="search">
+
+                     <!--  <div class="cizgi mt-2 mb-2" style="width: 100%;height: 1px;background-color:white ; ">
+
+                       </div> -->
+                        <form class="search-form mt-3" action="{{route('search')}}" method="POST" role="search">
                             @csrf
 
                             <div class="form-outline">
@@ -496,9 +500,7 @@ $kurlar=Session::get('kurlar');
 {{--            <div class=" mx-auto my-auto">--}}
                 <ul class="list-group list-group-horizontal my-auto top-menu" style="font-size: 15px;">
                     <li class="list-group-item font-weight-bold border-0 pr-1 pl-1 w-100 d-block text-center bg-transparent">{{$gelenil}}<span class=" pl-2 pr-2 text-center">{{$veri}}&deg;{!!$icon!!}</span></li>
-{{--                    <li class="list-group-item  border-right text-scondary  pr-1 pl-1 border-0 border-0 d-none d-sm-block "><i--}}
-{{--                            class="fa fa-pencil color-fume pr-1 pl-1 "></i><a class="color-fume" href="{{route('author')}}">Yazarlar</a>--}}
-{{--                    </li>--}}
+
                     <li class="list-group-item float-left border-right  pr-1 pl-1 border-0 d-none d-sm-block w-100 bg-transparent text-center"><i class="fa fa-pencil color-fume pr-1"></i><a class="color-fume" href="{{route('author')}}">Yazarlar</a>
                     </li>
                     <li class="list-group-item float-left border-right  pr-1 pl-1 border-0 w-100 bg-transparent"><i class="fa fa-stethoscope color-fume pr-1"></i><a class="color-fume" href="{{route('nobetciEczane')}}">Nöbetçi
