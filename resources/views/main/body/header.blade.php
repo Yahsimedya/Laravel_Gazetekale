@@ -432,6 +432,18 @@ $kurlar=Session::get('kurlar');
 <header class="border-top border-dark bg-light shadow-sm">
 
     <div class="container position-relative">
+        <div class="navbar-right position-absolute d-none d-sm-block">
+            <form class="search-form" action="{{route('search')}}" method="POST" role="search">
+                @csrf
+                <div class="form-group pull-right" id="search">
+                    <input type="search" name="searchtext" class="form-control" placeholder="Ara">
+                    <button type="submit" class="btn btn-success">Submit</button>
+
+                    <span class="search-label"><i class="fa fa-search"></i></span>
+                </div>
+
+            </form>
+        </div>
         <div class="row">
 
             <div id="wrapper">
@@ -515,18 +527,6 @@ $kurlar=Session::get('kurlar');
 
 {{--            </div>--}}
 
-            <div class="navbar-right position-absolute d-none d-sm-block">
-                <form class="search-form" action="{{route('search')}}" method="POST" role="search">
-                    @csrf
-                    <div class="form-group pull-right" id="search">
-                        <input type="search" name="searchtext" class="form-control" placeholder="Ara">
-                        <button type="submit" class="btn btn-success">Submit</button>
-
-                        <span class="search-label"><i class="fa fa-search"></i></span>
-                    </div>
-
-                </form>
-            </div>
 
 {{--            <div class="navbar-right">--}}
 {{--                <form class="search-form" action="{{route('search')}}" method="POST" role="search">--}}
@@ -611,6 +611,8 @@ $kurlar=Session::get('kurlar');
                 </script>
 
         </div>
+
+
     </div>
     <div class="container-fluid "  style="background-color: {{$themeSetting[0]->siteColorTheme}}">
 
