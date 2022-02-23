@@ -259,35 +259,6 @@
                         </label>
                     </div>
                 </div>
-                    <div class="col-md-12">
-                        <h3>Görsel Etiketleri</h3>
-                    </div>
-                    <div class="col-md-3 mb-3">
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" name="headlinetag" value="1"  class="form-check-input-styled-primary" data-fouc>
-                                Son Dakika
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" name="flahtag" value="1"  class="form-check-input-styled-primary" data-fouc>
-                                Flaş Flaş
-
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" name="attentiontag" value="1"  class="form-check-input-styled-primary"  data-fouc>
-                                Bu Habere Dikkat!
-                            </label>
-                        </div>
-                    </div>
 
 
 
