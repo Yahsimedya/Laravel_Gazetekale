@@ -93,7 +93,7 @@
 
 @include('main.body.header')
 
-@include('main.body.footer')
+@yield('content')
 
 <script>
     svgturkiyeharitasi();
