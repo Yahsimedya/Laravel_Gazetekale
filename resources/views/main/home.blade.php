@@ -9,10 +9,7 @@
 @section('content')
     @php
         $socials = DB::table('socials')->get();
-
-
   $vakitler = Cache()->remember("home-vakitler", 60*60*24, function () {
-
             return Session::get('vakitler');
         });
   $kurlar=Session::get('kurlar');

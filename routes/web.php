@@ -42,7 +42,14 @@ use App\Http\Controllers\Backend\EgazeteController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('cache-clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('route:clear');
+    dd("Cache Clear Success");
+});
 Route::get('/', function () {
 
     return view('main.home');
