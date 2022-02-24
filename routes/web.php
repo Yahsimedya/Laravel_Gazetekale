@@ -44,7 +44,7 @@ use App\Http\Controllers\Backend\EgazeteController;
 */
 
 Route::get('/', function () {
-    return view('main.home');
+    return view('main.body.turkey_map');
 });
 
 
