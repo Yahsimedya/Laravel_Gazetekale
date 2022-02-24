@@ -449,7 +449,7 @@ class ExtraController extends Controller
             return $string;
         }
 
-     /*   $kurlar = [
+        $kurlar = [
             'DOLAR' => [
                 'oran' => $result['USD']['Değişim'],
                 'oranyonu' => str_replace(',', '.', degistir($result['USD']['Değişim'])),
@@ -477,37 +477,7 @@ class ExtraController extends Controller
                 'satis' => str_replace(',', '.', degistir($result['ceyrek-altin']['Satış']))
             ]
         ];
-
-*/
-        $kurlar = [
-            'DOLAR' => [
-                'oran' => "00",
-                'oranyonu' => "00",
-//                    'alis' => $usd['Buy'],
-                'satis' => "00"
-
-            ],
-            'EURO' => [
-                'oran' => "00",
-                'oranyonu' => "00",
-//                    'alis' => $usd['Buy'],
-                'satis' => "00"
-            ],
-            'ALTIN' => [
-                'oran' => "00",
-                'oranyonu' => "00",
-//                    'alis' => $usd['Buy'],
-                'satis' => "00"
-
-            ],
-            'ceyrekaltin' => [
-                'oran' => "00",
-                'oranyonu' => "00",
-//                    'alis' => $usd['Buy'],
-                'satis' => "00"
-            ]
-        ];
-
+ 
 
         $date = Carbon::now()->format('d.m.Y');
 
