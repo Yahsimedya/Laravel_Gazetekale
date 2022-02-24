@@ -43,14 +43,13 @@ use App\Http\Controllers\Backend\EgazeteController;
 |
 */
 
-
-
-
-
 Route::get('/', function () {
-
     return view('main.home');
 });
+
+
+
+
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link --relative');
 });
