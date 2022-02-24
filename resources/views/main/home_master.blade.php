@@ -91,7 +91,7 @@
 </head>
 <body>
 
-@include('main.body.header')
+
 
 @yield('content')
 @include('main.body.footer')

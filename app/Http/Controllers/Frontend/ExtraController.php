@@ -477,7 +477,7 @@ class ExtraController extends Controller
                 'satis' => str_replace(',', '.', degistir($result['ceyrek-altin']['Satış']))
             ]
         ];
- 
+
 
         $date = Carbon::now()->format('d.m.Y');
 
