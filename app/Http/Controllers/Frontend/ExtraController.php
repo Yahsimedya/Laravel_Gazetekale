@@ -442,7 +442,6 @@ class ExtraController extends Controller
 
         $result = json_decode($output, true);
 
-
         function degistir($string)
         {
             $string = str_replace('%', '', $string);
@@ -450,7 +449,7 @@ class ExtraController extends Controller
             return $string;
         }
 
-        $kurlar = [
+     /*   $kurlar = [
             'DOLAR' => [
                 'oran' => $result['USD']['Değişim'],
                 'oranyonu' => str_replace(',', '.', degistir($result['USD']['Değişim'])),
@@ -479,10 +478,40 @@ class ExtraController extends Controller
             ]
         ];
 
+*/
+        $kurlar = [
+            'DOLAR' => [
+                'oran' => "00",
+                'oranyonu' => "00",
+//                    'alis' => $usd['Buy'],
+                'satis' => "00"
+
+            ],
+            'EURO' => [
+                'oran' => "00",
+                'oranyonu' => "00",
+//                    'alis' => $usd['Buy'],
+                'satis' => "00"
+            ],
+            'ALTIN' => [
+                'oran' => "00",
+                'oranyonu' => "00",
+//                    'alis' => $usd['Buy'],
+                'satis' => "00"
+
+            ],
+            'ceyrekaltin' => [
+                'oran' => "00",
+                'oranyonu' => "00",
+//                    'alis' => $usd['Buy'],
+                'satis' => "00"
+            ]
+        ];
+
+
         $date = Carbon::now()->format('d.m.Y');
 
         $vakit = Vakitler::where('date', $date)->get();
-
         $vakitler = array(
             "imsak" => $vakit[0]['imsak'],
             "gunes" => $vakit[0]['gunes'],
@@ -492,8 +521,6 @@ class ExtraController extends Controller
             "yatsi" => $vakit[0]['yatsi'],
         );
         Session::put('vakitler', $vakitler);
-
-
 //dd($kurlar);
         Session::put('kurlar', $kurlar);
 
