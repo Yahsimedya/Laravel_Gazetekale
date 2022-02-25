@@ -16,7 +16,7 @@ class NotificationController extends Controller
     public function send(Request $request)
     {
         $url = "https://fcm.googleapis.com/fcm/send";
-        $token = "/topics/all";
+        $token = "/topics/developmentSound";
         $serverKey = 'AAAAQr8k5vM:APA91bHwYhR54ePQiatPetQi5YK1bNMPnn9O5uG_Ihwbhkb3XzrbuO-fQ1rkLmxdxi1vABhFfkt4h9tcVAkm9BM8-FAwpEyCJLK0v11yekJwAbbQjvV1MGUsN373l0PLnmJQbpfdK75h';
         $title = $request->title;
         $body = $request->body;
