@@ -1039,12 +1039,16 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
         $nextauthors_posts = AuthorsPost::whereStatus(1)->where('authors_id', isset($yazi[0]) ? $yazi[0]->authors_id : '')->skip(0)->take(10)->latest()->get();
 //        });
 //        dd($nextauthors_posts);
-
-        $otherauthos=  AuthorsPost::leftjoin('authors', 'authors_posts.authors_id', '=', 'authors.id')
-            ->select(['authors_posts.*','authors.name'])
-            ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
-            ->groupBy("authors.id")->latest("authors_posts.id")
+        $otherauthos = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+            ->where('authors.status', 1)->where('authors_posts.status', 1)
+            ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
+            ->latest("authors_posts.created_at")->limit(8)
             ->get();
+//        $otherauthos=  AuthorsPost::leftjoin('authors', 'authors_posts.authors_id', '=', 'authors.id')
+//            ->select(['authors_posts.*','authors.name'])
+//            ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
+//            ->groupBy("authors.id")->latest("authors_posts.id")
+//            ->get();
 //        dd($otherauthos);
 
         $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
