@@ -110,8 +110,10 @@ class AdController extends Controller
                 $data['ads'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one;
 //            DB::table('posts')->insert($data);
                 Ad::find($ad->id)->update($data);
-                unlink($old_image);
 
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
                 $notification = array(
                     'message' => 'Reklam Başarıyla Düzenlendi',
                     'alert-type' => 'success'
