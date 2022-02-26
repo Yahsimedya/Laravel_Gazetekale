@@ -2,22 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Seos;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
 
-    public function index()
-    {
-        return view('backend.notification.index');
+    public function index(){
+        $firebaseserverKey=Seos::first();
+        $serverKey = $firebaseserverKey->fcmserver;
+        if (empty($serverKey)){
+            $notification = array(
+                'message' => 'Lütfen Api Key Girininiz',
+                'alert-type' => 'success'
+            );
+            return Redirect()->route('seo.setting')->with($notification);
+
+        }else{
+            return view('backend.notification.index');
+        }
     }
+
 
 
     public function send(Request $request)
     {
+        $firebaseserverKey=Seos::first();
         $url = "https://fcm.googleapis.com/fcm/send";
         $token = "/topics/developmentSound";
-        $serverKey = 'AAAAQr8k5vM:APA91bHwYhR54ePQiatPetQi5YK1bNMPnn9O5uG_Ihwbhkb3XzrbuO-fQ1rkLmxdxi1vABhFfkt4h9tcVAkm9BM8-FAwpEyCJLK0v11yekJwAbbQjvV1MGUsN373l0PLnmJQbpfdK75h';
+        $serverKey = $firebaseserverKey->fcmserver;
+        // GAzetekale Key AAAAQr8k5vM:APA91bHwYhR54ePQiatPetQi5YK1bNMPnn9O5uG_Ihwbhkb3XzrbuO-fQ1rkLmxdxi1vABhFfkt4h9tcVAkm9BM8-FAwpEyCJLK0v11yekJwAbbQjvV1MGUsN373l0PLnmJQbpfdK75h
         $title = $request->title;
         $body = $request->body;
         $id= (int)$request->id;
@@ -76,3 +90,4 @@ class NotificationController extends Controller
 
     }
 }
+
