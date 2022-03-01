@@ -79,8 +79,19 @@ class ad_category_Seeder extends Seeder
                 'title' => '[Ana Sayfa] Spor Altı 200x200'],
             20 => ['id' => 17,
                 'title' => '[Ana Sayfa]- Sağ manşet Altı 336x280'],
-            20 => ['id' => 23,
+            21 => ['id' => 23,
                 'title' => '[Haber Detay] İçerik Resim Altı 728x90'],
+
+
+
+            22 => ['id' => 24,
+                'title' => '[Mobil Uygulama] AnaSayfa En Üst 728x90'],
+            23 => ['id' => 25,
+                'title' => '[Mobil Uygulama] AnaSayfa Öne Çıkanlar Altı 1024x1024'],
+            24 => ['id' => 26,
+                'title' => '[Mobil Uygulama] Haber Detay En Üst 728x90'],
+            25 => ['id' => 27,
+                'title' => '[Mobil Uygulama] Haber Detay Spot Altı 1024x1024'],
         ]);
     }
 }
