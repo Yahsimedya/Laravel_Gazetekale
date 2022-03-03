@@ -38,8 +38,7 @@ class MobilAppController extends Controller
     {
         $stmt = Gazetesayis::latest('id')->get();
         $json = $stmt;
-
-        return count($json);
+        return $json;
     }
 
     public function AllPost()
