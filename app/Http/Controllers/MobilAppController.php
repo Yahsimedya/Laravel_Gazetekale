@@ -7,6 +7,7 @@ use App\Models\Authors;
 use App\Models\AuthorsPost;
 use App\Models\Comments;
 use App\Models\District;
+use App\Models\Gazetesayis;
 use App\Models\Photo;
 use App\Models\Photocategory;
 use App\Models\Post;
@@ -30,6 +31,12 @@ class MobilAppController extends Controller
     public function commentsCount($id)
     {
         $stmt = Comments::where('posts_id', '=', $id)->where('status', '=', 1)->get();
+        $json = $stmt;
+
+        return count($json);
+    }public function egazete()
+    {
+        $stmt = Gazetesayis::latest('id')->get();
         $json = $stmt;
 
         return count($json);

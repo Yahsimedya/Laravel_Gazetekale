@@ -383,6 +383,7 @@ Route::get('/json/authorsposts/{id}', [MobilAppController::class, 'authorsposts'
 Route::get('/json/sondakika/', [MobilAppController::class, 'sondakika']);
 Route::get('/json/videogallary/', [MobilAppController::class, 'videogallary']);
 Route::get('/json/orderImages/{id}', [MobilAppController::class, 'orderImages']);
+Route::get('/json/egazete/', [MobilAppController::class, 'egazete']);
 Route::get('/json/fotogaleriDetailid/{id}', [MobilAppController::class, 'fotogaleriDetailid']);
 
 
