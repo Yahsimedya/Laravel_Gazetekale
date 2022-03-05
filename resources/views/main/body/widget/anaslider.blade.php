@@ -9,11 +9,11 @@
                 @if($home[$i] == "1")
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==28)
-                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
-                                                         height="280"
-                                                         src="{{asset($ad->ads)}}"></a>
+                            <a href="{{$ad->link}}">
+                                <img class="img-fluid owl-lazy"
+                                     data-src="{{asset($ad->ads)}}"></a>
                         @elseif($ad->type==2 && $ad->category_id==28)
-                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                            {!!$ad->ad_code!!}
                         @endif
                     @endforeach
                 @else
