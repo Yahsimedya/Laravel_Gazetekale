@@ -757,6 +757,13 @@ class ExtraController extends Controller
 $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function () {
     return Gazetesayis::latest()->where('status',1)->limit(9)->get();
 });
+        foreach ($ads as $ad){
+            $home = $home;//collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15,16,17,18,19]);
+            if ($ad->category_id==28){
+                $adsSlider=1;
+                $home = $home->chunk(4)->each->push($adsSlider)->collapse();
+            }
+        }
 
         return view('main.home', compact('home', 'ucuncuSayfa','egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
 //        return view('main.home_master', compact('seoset'))

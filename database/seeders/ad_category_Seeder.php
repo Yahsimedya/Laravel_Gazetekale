@@ -92,6 +92,8 @@ class ad_category_Seeder extends Seeder
                 'title' => '[Mobil Uygulama] Haber Detay En Üst 728x90'],
             25 => ['id' => 27,
                 'title' => '[Mobil Uygulama] Haber Detay Spot Altı 1024x1024'],
+            27 =>  ['id' => 28,
+                'title' => '[Ana Sayfa] Ana Slider 1024x1024'],
         ]);
     }
 }

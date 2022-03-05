@@ -4,15 +4,27 @@
             $k=1;
         @endphp
         @for($i=0;$i<=18;$i++)
-            <div class="item owl-anaitem " data-dot="<span>{{$k}}</span>">
 
+            <div class="item owl-anaitem " @if($home[$i] == "1")data-dot="<span>R</span>" @else data-dot="<span>{{$k}}</span>" @endif>
+                @if($home[$i] == "1")
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==28)
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                         height="280"
+                                                         src="{{asset($ad->ads)}}"></a>
+                        @elseif($ad->type==2 && $ad->category_id==28)
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @endif
+                    @endforeach
+                @else
 
-                <a href="{{URL::to('/haber-'.str_slug($home[$i]->title_tr).'-'.$home[$i]->id)}}">
-                    <img
-                        class="img-fluid owl-lazy"
-                        data-src="{{asset($home[$i]->image)}}"
-                        onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                        alt=""></a>
+                    <a href="{{URL::to('/haber-'.str_slug($home[$i]->title_tr).'-'.$home[$i]->id)}}">
+                        <img
+                            class="img-fluid owl-lazy"
+                            data-src="{{asset($home[$i]->image)}}"
+                            onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                            alt=""></a>
+                @endif
 
 
                 @php
