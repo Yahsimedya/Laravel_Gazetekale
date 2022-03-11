@@ -32,7 +32,6 @@ class MobilAppController extends Controller
     {
         $stmt = Comments::where('posts_id', '=', $id)->where('status', '=', 1)->get();
         $json = $stmt;
-
         return count($json);
     }public function egazete()
     {
@@ -328,7 +327,7 @@ class MobilAppController extends Controller
 
 
 
-    public function reklamsliderüst()
+    public function reklamsliderust()
     {
         $stmt = Ad::where('status',1)->where('category_id',24)->orderByDesc('created_at')->get();
         $json = $stmt;
@@ -341,7 +340,7 @@ class MobilAppController extends Controller
         return $this->change($json);
     }
 
-    public function reklamhaberdetayüst()
+    public function reklamhaberdetayust()
 {
     $stmt = Ad::where('status',1)->where('category_id',26)->orderByDesc('created_at')->get();
     $json = $stmt;
