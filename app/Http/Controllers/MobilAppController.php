@@ -11,8 +11,8 @@ use App\Models\Gazetesayis;
 use App\Models\Photo;
 use App\Models\Photocategory;
 use App\Models\Post;
+use App\Models\Ad;
 use Carbon\Carbon;
-
 use Composer\Semver\Interval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
