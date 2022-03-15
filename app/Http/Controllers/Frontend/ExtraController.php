@@ -857,7 +857,7 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
 //                ->get();
 //        if($post->category_id!=NULL) {
 
-        $nextrelated = Post::status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
+        $nextrelated = Post::where('category_id', $post->category_id)->status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
             ->get();
 //            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
 //                ->get();
