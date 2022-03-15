@@ -794,7 +794,7 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
 //        } else{
 //            $post = Cache::get('single-post');
 //        }
-        $post = Post::where('id', $id)->where('status', 1)->first();
+        $post = Post::where('status', 1)->find($id);
 
 
 //        dd($post);
@@ -855,15 +855,13 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
 //                ->where('posts.id', $id)->where('posts.status', 1)
 //                ->limit(10)
 //                ->get();
+//        if($post->category_id!=NULL) {
 
-     if($post->category_id == NULL) {
-        $nextrelated = Post::where('category_id', $post->category_id)->status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
+        $nextrelated = Post::status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
             ->get();
-       }
-     else{
-         $nextrelated = Post::status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
-             ->get();
-     }
+//            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
+//                ->get();
+//        }
 //        dd($nextrelated);
         $seoset = Cache()->remember("single-seoset", Carbon::now()->addYear(), function () {
             return Seos::first();
