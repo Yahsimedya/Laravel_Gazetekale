@@ -855,13 +855,15 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
 //                ->where('posts.id', $id)->where('posts.status', 1)
 //                ->limit(10)
 //                ->get();
-//        if($post->category_id!=NULL) {
+     if($post->category_id!=NULL) {
 
         $nextrelated = Post::where('category_id', $post->category_id)->status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
             ->get();
-//            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
-//                ->get();
-//        }
+       }
+     else{
+         $nextrelated = Post::status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
+             ->get();
+     }
 //        dd($nextrelated);
         $seoset = Cache()->remember("single-seoset", Carbon::now()->addYear(), function () {
             return Seos::first();
