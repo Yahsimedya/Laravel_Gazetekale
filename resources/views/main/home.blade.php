@@ -177,6 +177,7 @@ $gelenil=Session::get('gelenil');
     <!--SLİDER ALT KARTLAR-->
     <!--VİDEO GALERİ ÜSTÜ REKLAM ALANI-->
     <div class="container">
+
         <div class="reklam-alani mb-3 mt-3 text-center">
             @foreach($ads as $ad)
                 @if($ad->type==1 && $ad->category_id==15)
@@ -187,6 +188,7 @@ $gelenil=Session::get('gelenil');
                 @endif
             @endforeach
         </div>
+
     </div>
     <!--VİDEO GALERİ ÜSTÜ REKLAM ALANI-->
 
