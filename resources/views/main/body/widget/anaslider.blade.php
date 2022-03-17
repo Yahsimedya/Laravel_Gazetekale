@@ -13,7 +13,7 @@
                                 <img class="img-fluid owl-lazy"
                                      data-src="{{asset($ad->ads)}}"></a>
                         @elseif($ad->type==2 && $ad->category_id==28)
-                            {!!$ad->ad_code!!}
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
                     @endforeach
                 @else
