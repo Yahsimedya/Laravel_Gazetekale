@@ -94,6 +94,8 @@ class ad_category_Seeder extends Seeder
                 'title' => '[Mobil Uygulama] Haber Detay Spot Altı 1024x1024'],
             27 =>  ['id' => 28,
                 'title' => '[Ana Sayfa] Ana Slider 1024x1024'],
+            28 =>  ['id' => 29,
+                'title' => '[Ana Sayfa] Namaz Vakitleri 1024x1024'],
         ]);
     }
 }

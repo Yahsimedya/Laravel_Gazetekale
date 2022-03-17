@@ -120,6 +120,20 @@
         </div>
     </div>
 </section>
+<div class="container">
+
+    <div class="reklam-alani mb-3 mt-3 text-center">
+        @foreach($ads as $ad)
+            @if($ad->type==1 && $ad->category_id==29)
+                <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="100%"
+                                             data-src="{{asset($ad->ads)}}"></a>
+            @elseif($ad->type==2 && $ad->category_id==29)
+                <div class="w-100">{!!$ad->ad_code!!}</div>
+            @endif
+        @endforeach
+    </div>
+
+</div>
 <script>
     $(document).ready(function (e) {
         $('#form select').on('change', function () {
