@@ -7,9 +7,9 @@
                                         href="#homesiyaset">Siyaset</a></li>
         <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="" data-toggle="tab"
                                         href="#menu1">Spor</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" data-toggle="tab"
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="" data-toggle="tab"
                                         href="#menu2">3.Sayfa</a></li>
-        <li class="yan__kategori-li"><a class="yan__kategori-li-link" data-toggle="tab"
+        <li class="yan__kategori-li"><a class="yan__kategori-li-link" style="" data-toggle="tab"
                                         href="#menu3">Özel</a></li>
     </ul>
 
