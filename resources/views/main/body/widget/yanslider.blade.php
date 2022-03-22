@@ -82,7 +82,7 @@
 
             </div>
         </div>
-        <div id="menu2" class="tab-pane fade">
+        <div id="menu2" class="tab-pane">
             <div class="owl-carousel owl-theme  shadow anaslider" id="">
                 @php
                     $k=1;
@@ -113,7 +113,7 @@
 
             </div>
         </div>
-        <div id="menu3" class="tab-pane fade">
+        <div id="menu3" class="tab-pane">
             <div class="owl-carousel owl-theme  shadow anaslider" id="">
                 @php
                     $k=1;
