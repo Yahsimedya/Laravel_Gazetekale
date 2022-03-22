@@ -248,7 +248,6 @@ $kurlar=Session::get('kurlar');
     /*    padding-right: 5px;*/
     /*}*/
     a[href*="#home"]::before {
-        content: "\f015" !important;
     }
     a[href*="#gundem/2"]::before {
         content: "\f015" !important;
