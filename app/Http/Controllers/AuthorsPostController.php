@@ -28,11 +28,17 @@ class AuthorsPostController extends Controller
 //            ->groupBy("authors.id")->latest("authors_posts.id")
 //            ->get();
 //    });
-    $authors=  AuthorsPost::leftjoin('authors', 'authors_posts.authors_id', '=', 'authors.id')
-        ->select(['authors_posts.*','authors.name'])
-        ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
-        ->groupBy("authors.id")->latest("authors_posts.id")
+//    $authors=  AuthorsPost::leftjoin('authors', 'authors_posts.authors_id', '=', 'authors.id')
+//        ->select(['authors_posts.*','authors.name'])
+//        ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
+//        ->groupBy("authors.id")->latest("authors_posts.id")
+//        ->get();
+    $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+        ->where('authors.status', 1)->where('authors_posts.status', 1)
+        ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
+        ->latest("authors_posts.created_at")->limit(8)
         ->get();
+
     return view('main.body.authors',compact('authors'));
 }
 
