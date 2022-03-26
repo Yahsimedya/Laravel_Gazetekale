@@ -182,7 +182,17 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                         <i class="icon-comment"></i>Yorumlar
                         <span class="badge badge-light ml-2"> {{$commentsBadge}}</span>
                     </a>
-                </li>  <li class="nav-item" >
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route('authorscomments.index')}}" class="nav-link">
+                        <i class="fa fa-comments"></i>
+                        <span>Yazar Yorumları</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item" >
                     <a href="{{route('notification.index')}}" class="nav-link">
                         <i class="icon-bubble-notification"></i>
                         <span>Bildirim Gönder

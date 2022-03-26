@@ -1034,7 +1034,6 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
     public function yazilar($slug,$id)
     {
 //        dd($id); // yazının ID'si
-
         $sluf=$slug;
         $seoset = Seos::first();
         $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->orderByDesc('id')->get();
@@ -1057,11 +1056,11 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
 //            ->groupBy("authors.id")->latest("authors_posts.id")
 //            ->get();
 //        dd($otherauthos);
-
+        $comments = DB::table('authorscomments')->where('authors_posts_id', $yazi[0]->id)->where('status',1)->get();
         $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
             return WebsiteSetting::first();
         });
-        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts', 'webSiteSetting','otherauthos'));
+        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts', 'webSiteSetting','otherauthos','comments'));
     }
 
     public function yazilars($slug,$id)
@@ -1074,7 +1073,6 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
             ->latest('created_at')->where('status', 1)->where('id', '=', $id)->limit(10)
             ->get();
         $yazar = Authors::where('id', '=', $id)->get();
-
         return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
     }
 

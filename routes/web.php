@@ -30,7 +30,7 @@ use App\Http\Controllers\Backend\CornerPostsController;
 use App\Http\Controllers\Frontend\SitemapController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\Backend\EgazeteController;
-
+use App\Http\Controllers\Frontend\AuthorsCommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -402,6 +402,14 @@ Route::get('/comments/delete/{id}', [CommentsController::class, 'DeleteComments'
 Route::get('/comments/openPost/{postid}', [CommentsController::class, 'OpenComments'])->name('open.comments');
 Route::post('/comments/post/{postid}', [CommentsController::class, 'AddComments'])->name('add.comments');
 
+
+
+//Authors Comments
+Route::get('/authorscomments', [AuthorsCommentsController::class, 'adminCommentsindex'])->name("authorscomments.index");
+Route::post('/authorscomments/active/{id}', [AuthorsCommentsController::class, 'ActiveComments'])->name('active.authorscomments');
+Route::get('/authorscomments/delete/{id}', [AuthorsCommentsController::class, 'DeleteComments'])->name('delete.authorscomments');
+Route::get('/authorscomments/openPost/{postid}', [AuthorsCommentsController::class, 'OpenComments'])->name('open.authorscomments');
+Route::post('/authorscomments/post/{postid}', [AuthorsCommentsController::class, 'AddComments'])->name('add.authorscomments');
 
 //Notification
 Route::get('/Notification', [NotificationController::class, 'index'])->name("notification.index");
