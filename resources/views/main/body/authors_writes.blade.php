@@ -37,13 +37,16 @@
                     <!------------------728x90 İÇERİK ALTI REKLAM ALANI -------------------->
 
 
-                    <div class="reklam-alani mt-3 mb-3 text-center">
-                        <a target="_blank" href="#"><img src="" class="img-fluid" alt="Reklam"></a>
-                    </div>
-
-                    <div class="reklam-alani mt-3 text-center">
-
-
+                    <div class="reklam-alani text-center mt-4">
+                        @foreach($ads as $ad)
+                            @if($ad->type==1 && $ad->category_id==12)
+                                <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                             height="280"
+                                                             data-src="{{asset($ad->ads)}}"></a>
+                            @elseif($ad->type==2 && $ad->category_id==12)
+                                <div class="w-100">{!!$ad->ad_code!!}</div>
+                            @endif
+                        @endforeach
                     </div>
 
 
@@ -166,14 +169,16 @@
                         <div class="col-md-12">
                             <!------------------336x280 REKLAM ALANI -------------------->
 
-                            <div class="reklam-alani mt-3 mb-3 text-center">
-                                <a target="_blank" href=""><img
-                                        src=""
-                                        class="img-fluid" alt="Reklam"></a>
-                            </div>
-
-                            <div class="reklam-alani mt-3 text-center">
-
+                            <div class="reklam-alani text-center mt-4">
+                                @foreach($ads as $ad)
+                                    @if($ad->type==1 && $ad->category_id==3)
+                                        <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                                     height="280"
+                                                                     data-src="{{asset($ad->ads)}}"></a>
+                                    @elseif($ad->type==2 && $ad->category_id==3)
+                                        <div class="w-100">{!!$ad->ad_code!!}</div>
+                                    @endif
+                                @endforeach
                             </div>
 
                         <!----------------336x280 REKLAM ALANI -------------------->

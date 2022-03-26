@@ -1060,7 +1060,13 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
         $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
             return WebsiteSetting::first();
         });
-        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts', 'webSiteSetting','otherauthos','comments'));
+        $ads = Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
+//            ->join('ads','ad_categories.id','ads.category_id')
+            ->select(['ads.*', 'ad_categories.id'])
+            ->where('status', 1)
+            ->whereIN('ad_categories.id', [12,3]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
+            ->get();
+        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts', 'webSiteSetting','otherauthos','comments','ads'));
     }
 
     public function yazilars($slug,$id)
