@@ -238,7 +238,7 @@
                         </div>
 
                         <button class="btn text-white"
-                                style="background-color: {{$webSiteSetting->siteColorTheme}}">Gönder
+                                style="background-color: {{$themeSetting->siteColorTheme}}">Gönder
                         </button>
 
                     </form>
