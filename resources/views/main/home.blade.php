@@ -216,6 +216,9 @@ $gelenil=Session::get('gelenil');
                         <!-- <a href="#"><div class=" position-absolute ">Tümü</div></a> -->
                     </div>
             @include('main.body.puan-durumu')
+
+                </div>
+                <div class="reklam-alani text-center mt-4">
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==22)
                             <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
@@ -226,12 +229,8 @@ $gelenil=Session::get('gelenil');
                         @endif
                     @endforeach
                 </div>
-                <div class="reklam-alani text-center">
-
-                </div>
             </div>
             <!--SAĞ TARAF TEK SUTUN YAZARLAR PUSNA DURUMU VS-->
-        </div>
         </div>
     </section>
 
