@@ -52,7 +52,9 @@ class AuthorsCommentsController extends Controller
 
     public function OpenComments(Request $request, $id)
     {
+
         $posts = AuthorsPost::where('id', '=', $id)->get();
+
         $url = "/koseyazisi/" . str_slug($posts[0]->title) . "/" . $id;
 
         return Redirect::to($url);
@@ -67,13 +69,13 @@ class AuthorsCommentsController extends Controller
                 'message' => 'Haber Başarıyla Silindi',
                 'alert-type' => 'succes'
             );
-            return Redirect()->route('open.authorscomments', $id)->with($notification);
+            return Redirect()->back()->with($notification);
         } else {
             $notification = array(
                 'message' => 'Haber Başarıyla Silindi',
                 'alert-type' => 'error'
             );
-            return Redirect()->route('open.authorscomments', $id)->with($notification);
+            return Redirect()->back()->with($notification);
         }
 
     }

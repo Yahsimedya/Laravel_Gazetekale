@@ -6,11 +6,13 @@
             @foreach($category as $categorys)
                 @if($categorys->id==$education[0]->category_id)
                     {{$categorys->category_tr}}
-
+                    @php
+                        $categoryNameOne=$categorys->category_tr;
+                    @endphp
                 @endif
             @endforeach
         </div>
-        <a href="{{ URL::to('/Category/' . str_slug($education[0]->subcategory_tr) . $education[0]->category_id)}}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) ."/". $education[0]->category_id)}}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
     </div>
@@ -68,11 +70,14 @@
             @foreach($category as $categorys)
                 @if($categorys->id==$kultur[0]->category_id)
                     {{$categorys->category_tr}}
-
+@php
+$categoryName=$categorys->category_tr;
+@endphp
                 @endif
             @endforeach
         </div>
-        <a href="{{ URL::to('/Category/' . str_slug($kultur[0]->subcategory_tr) . $kultur[0]->category_id)}}">
+
+        <a href="{{ URL::to('/Category/' . str_slug($categoryName) ."/". $kultur[0]->category_id)}}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
     </div>
