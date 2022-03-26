@@ -14,7 +14,7 @@ use App\Models\Theme;
 
                 <div class="d-flex justify-content-center">
                     <div class="">
-                        <div class="row text-center">
+                        <div class="row text-center mt-4">
                             @if($themeSetting[0]->apps==1)
                                 <div class="d-flex justify-content-between">
                                     <p class="ml-2 mr-2">
