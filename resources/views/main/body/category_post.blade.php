@@ -103,6 +103,7 @@
                                 @endforeach
 
                             </div>
+                        {{$catpost->links('pagination-links')}}
 
                             <!--REKLAM ALANI-->
                             <div class="reklam-alani mb-2 col-md-4 mt-1 padding-left text-center">
@@ -122,7 +123,6 @@
                                         @endif
                                     @endforeach
                                 </div>
-                            {{$catpost->links('pagination-links')}}
 
 
                                 <!----------------728x90 REKLAM ALANI -------------------->

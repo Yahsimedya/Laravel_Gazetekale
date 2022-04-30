@@ -932,10 +932,10 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
             ->count();
 
 
-        $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
-            ->select('posts.*', 'categories.category_tr', 'categories.category_en')->where('posts.status', 1)
-            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->orderBy('created_at', 'desc')->offset(1)
-            ->paginate(20);
+        $dataToEliminate= $manset->pluck('id');
+
+        $catpost=Post::with(['category:id,category_tr'])->whereNotIn('id',$dataToEliminate)->where('category_id', $id)->latest()->paginate(20);
+        ;
 
 
         $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
