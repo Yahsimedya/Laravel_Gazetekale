@@ -158,7 +158,7 @@
     var swiper = new Swiper(".mySwiper2", {
         loop: true,
         autoplay: {
-            delay: 2200,
+            delay: 4000,
             disableOnInteraction: false
         },
     });

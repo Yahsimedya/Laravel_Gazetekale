@@ -131,7 +131,13 @@ $gelenil=Session::get('gelenil');
 
                 <!-- Initialize Swiper -->
                 <script>
-                    var swiper = new Swiper(".mySwiper", {});
+                    var swiper = new Swiper(".mySwiper", {
+                        loop: true,
+                        autoplay: {
+                            delay: 4000,
+                            disableOnInteraction: false
+                        },
+                    });
                 </script>
 
             </div>
