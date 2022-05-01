@@ -1,5 +1,5 @@
 <div
-    class="col-md-12 col-sm-12 col-xs-12 col-lg-4 d-none d-md-block text-center position-relative yanslider padding-left">
+    class="col-md-12 col-sm-12 col-xs-12 col-lg-4  text-center position-relative yanslider padding-left">
 
     <ul class="nav nav-tabs yan__kategori">
 
