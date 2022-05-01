@@ -111,7 +111,7 @@ $gelenil=Session::get('gelenil');
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
                         @foreach($ads as $ad)
-                            @if($ad->type==1 && $ad->category_id==9)
+                            @if($ad->type==1 && $ad->category_id==9 && $ad->status==1)
                                 <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
                                                                              height="250"
                                                                              data-src="{{asset($ad->ads)}}"></a></div>
@@ -184,7 +184,7 @@ $gelenil=Session::get('gelenil');
         <div class="swiper mySwiper3">
             <div class="swiper-wrapper">
                 @foreach($ads as $ad)
-                    @if($ad->type==1 && $ad->category_id==19)
+                    @if($ad->type==1 && $ad->category_id==19 && $ad->status==1)
                         <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
                                                                                                height="250"
                                                                                                data-src="{{asset($ad->ads)}}"></a></div>
