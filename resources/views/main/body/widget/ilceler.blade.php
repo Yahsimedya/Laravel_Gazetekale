@@ -64,7 +64,39 @@
                 @endphp
             @endforeach
         </div>
+<div class="container">
+    <div class="swiper mySwiper3">
+        <div class="swiper-wrapper">
+            @foreach($ads as $ad)
+                @if($ad->type==1 && $ad->category_id==19)
+                    <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
+                                                                                           height="250"
+                                                                                           data-src="{{asset($ad->ads)}}"></a></div>
+                    <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
+                                                                                           height="250"
+                                                                                           data-src="{{asset($ad->ads1)}}"></a></div>
+                    <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
+                                                                                           height="250"
+                                                                                           data-src="{{asset($ad->ads2)}}"></a></div>
+                @elseif($ad->type==2 && $ad->category_id==19)
+                    <div class="w-100">{!!$ad->ad_code!!}</div>
+                @endif
+            @endforeach
 
+        </div>
+    </div>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper3", {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false
+            },
+        });
+    </script>
+</div>
 
     </div>
 </section>
