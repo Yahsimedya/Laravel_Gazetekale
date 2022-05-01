@@ -20,6 +20,8 @@
                 <form action="{{route('update.ads',$ads)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$ads->ads}}" name="old_image" class="form-control tokenfield">
+                    <input type="text" value="{{$ads->ads1}}" name="old_image1" class="form-control tokenfield">
+                    <input type="text" value="{{$ads->ads2}}" name="old_image2" class="form-control tokenfield">
 
                     <div class="row">
                         <div class="col-md-6">
@@ -59,6 +61,22 @@
                                         <div class="form-group">
                                             <label>Attach screenshot:</label>
                                             <input type="file" class="form-input-styled" multiple name="ads"  id="image" data-fouc>
+                                            @error('ads')
+                                            <span class="text-danger">{{$message}}</span>
+
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Attach screenshot:</label>
+                                            <input type="file" class="form-input-styled" multiple name="ads1"  id="image" data-fouc>
+                                            @error('ads')
+                                            <span class="text-danger">{{$message}}</span>
+
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Attach screenshot:</label>
+                                            <input type="file" class="form-input-styled" multiple name="ads2"  id="image" data-fouc>
                                             @error('ads')
                                             <span class="text-danger">{{$message}}</span>
 

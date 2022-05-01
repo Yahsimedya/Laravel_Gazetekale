@@ -62,6 +62,22 @@
 
                                             @enderror
                                         </div>
+                                        <div class="form-group">
+                                            <label>Attach screenshot:</label>
+                                            <input type="file" class="form-input-styled" multiple name="ads1" id="image" data-fouc>
+                                            @error('ads')
+                                            <span class="text-danger">{{$message}}</span>
+
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Attach screenshot:</label>
+                                            <input type="file" class="form-input-styled" multiple name="ads2" id="image" data-fouc>
+                                            @error('ads')
+                                            <span class="text-danger">{{$message}}</span>
+
+                                            @enderror
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6">

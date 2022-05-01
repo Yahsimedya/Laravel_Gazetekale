@@ -108,16 +108,32 @@ $gelenil=Session::get('gelenil');
             <div class="col-12 padding-left">
                 <div class="kapat float-left"><a id="kapat" class="kapat__link rounded" href="">X</a></div>
                 <!-- <div class="kapat position-absolute float-right"><a id="ac" class="kapat__link" href="">Reklamı Aç</a></div> -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        @foreach($ads as $ad)
+                            @if($ad->type==1 && $ad->category_id==9)
+                                <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
+                                                                             height="250"
+                                                                             data-src="{{asset($ad->ads)}}"></a></div>
+                                <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
+                                                                                                       height="250"
+                                                                                                       data-src="{{asset($ad->ads1)}}"></a></div>
+                                <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
+                                                                                                       height="250"
+                                                                                                       data-src="{{asset($ad->ads2)}}"></a></div>
+                            @elseif($ad->type==2 && $ad->category_id==9)
+                                <div class="w-100">{!!$ad->ad_code!!}</div>
+                            @endif
+                        @endforeach
 
-                @foreach($ads as $ad)
-                    @if($ad->type==1 && $ad->category_id==9)
-                        <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                                     height="250"
-                                                                     data-src="{{asset($ad->ads)}}"></a>
-                    @elseif($ad->type==2 && $ad->category_id==9)
-                        <div class="w-100">{!!$ad->ad_code!!}</div>
-                    @endif
-                @endforeach
+                    </div>
+                </div>
+
+                <!-- Initialize Swiper -->
+                <script>
+                    var swiper = new Swiper(".mySwiper", {});
+                </script>
+
             </div>
         </div>
     </div>

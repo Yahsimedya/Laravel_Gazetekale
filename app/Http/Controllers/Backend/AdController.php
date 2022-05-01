@@ -48,11 +48,19 @@ class AdController extends Controller
                 mkdir('storage/ads/' . $yil . '/' . $ay, 0777, true);
             }
             $image = $request->ads;
-            if ($image) {
-                $image_one = uniqid() . '.' . $image->getClientOriginalName();
+            $image1 = $request->ads1;
+            $image2 = $request->ads2;
 
+            if ($image || $image1 || $image2) {
+                $image_one = uniqid() . '.' . $image->getClientOriginalName();
                 Image::make($image)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one);
                 $data['ads'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one;
+                $image_one1 = uniqid() . '.' . $image->getClientOriginalName();
+                Image::make($image1)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one1);
+                $data['ads1'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one1;
+                $image_one2 = uniqid() . '.' . $image->getClientOriginalName();
+                Image::make($image2)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one2);
+                $data['ads2'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one2;
 //            DB::table('posts')->insert($data);
                 Ad::create($data);
 
@@ -62,7 +70,7 @@ class AdController extends Controller
                 );
                 return Redirect()->route('list.add');
             }
-            Ad::create($data);
+//            Ad::create($data);
             return Redirect()->route('list.add');
         } else {
             $notification = array(
@@ -90,6 +98,8 @@ class AdController extends Controller
 //        $data['link']=$request->link;
 //        $data['category_id']=$request->category_id;
         $old_image = $request->old_image;
+        $old_image1 = $request->old_image1;
+        $old_image2 = $request->old_image2;
 
         if ($request->type == 1) {
             $data['type'] == 1;
@@ -103,16 +113,37 @@ class AdController extends Controller
                 mkdir('storage/ads/' . $yil . '/' . $ay, 0777, true);
             }
             $image = $request->ads;
-            if ($image) {
+            $image1 = $request->ads1;
+            $image2 = $request->ads2;
+            if ($image || $image1 || $image2) {
+                if(isset($image)) {
                 $image_one = uniqid() . '.' . $image->getClientOriginalName();
-
                 Image::make($image)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one);
                 $data['ads'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one;
+                }
+                if(isset($image1)) {
+                    $image_one1 = uniqid() . '.' . $image1->getClientOriginalName();
+                    Image::make($image1)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one1);
+                    $data['ads1'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one1;
+                }
+                if(isset($image2)) {
+                    $image_one2 = uniqid() . '.' . $image2->getClientOriginalName();
+                    Image::make($image2)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one2);
+                    $data['ads2'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one2;
+                }
+
 //            DB::table('posts')->insert($data);
+
                 Ad::find($ad->id)->update($data);
 
                 if (file_exists($old_image)) {
                     unlink($old_image);
+                }
+                if (file_exists($old_image1)) {
+                    unlink($old_image1);
+                }
+                if (file_exists($old_image2)) {
+                    unlink($old_image2);
                 }
                 $notification = array(
                     'message' => 'Reklam Başarıyla Düzenlendi',
@@ -123,6 +154,8 @@ class AdController extends Controller
             } else {
 
                 $data['ads'] = $old_image;
+                $data['ads1'] = $old_image1;
+                $data['ads2'] = $old_image2;
 
                 $ad->update($data);
 
