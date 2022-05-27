@@ -1,4 +1,4 @@
-@php
+{{-- @php
 
 $url = 'http://www.amatorfutbol.org/tff/superlig/puandurumu-7027.html';
 if ($url) {
@@ -69,4 +69,4 @@ a:hover
 //exit;
 // $dizi=[];
 
-@endphp
+@endphp --}}

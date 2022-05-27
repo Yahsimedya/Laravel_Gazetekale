@@ -1,4 +1,4 @@
-@php
+{{-- @php
 $url = 'http://www.amatorfutbol.org/tff/superlig/puandurumu-7027.html';
 $veri = file_get_contents($url);
 $takimlar = '@<tr bgcolor="#f6f6f6" class="hucre">(.*?)</tr>@si';
@@ -121,4 +121,4 @@ for ($i = 0; $i < $satirsayi; $i++) {
         // print_r($puanlar[0]);
         // echo "</pre>";
 }
-@endphp
+@endphp --}}
