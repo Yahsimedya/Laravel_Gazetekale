@@ -568,7 +568,9 @@ if (!empty(Session::get('kurlar'))) {
             <!-- Arama Butonu Alanı -->
             {{-- <div class=" mx-auto my-auto"> --}}
             <ul class="list-group list-group-horizontal my-auto top-menu" style="font-size: 15px;">
-                {{-- <li class="list-group-item font-weight-bold border-0 pr-1 pl-1 w-100 d-block text-center bg-transparent">{{$gelenil}}<span class=" pl-2 pr-2 text-center">{{$veri}}&deg;{!!$icon!!}</span></li> --}}
+                <li
+                    class="list-group-item font-weight-bold border-0 pr-1 pl-1 w-100 d-block text-center bg-transparent">
+                    {{ $gelenil }}<span class=" pl-2 pr-2 text-center">{{ $veri }}&deg;</span></li>
 
                 <li
                     class="list-group-item float-left border-right  pr-1 pl-1 border-0 d-none d-sm-block w-100 bg-transparent text-center">
