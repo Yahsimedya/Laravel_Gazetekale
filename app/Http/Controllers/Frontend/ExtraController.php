@@ -39,12 +39,12 @@ use Illuminate\Support\Str;
 //use PublicApi;
 class ExtraController extends Controller
 {
-//    public function GetSubDistrict($district_id)
-//    {
-//        $districts = Subdistrict::where('district_id',$district_id)->get();
-//
-//        return response()->json($districts);
-//    }
+    //    public function GetSubDistrict($district_id)
+    //    {
+    //        $districts = Subdistrict::where('district_id',$district_id)->get();
+    //
+    //        return response()->json($districts);
+    //    }
 
     public function redirect($slug)
     {
@@ -67,7 +67,7 @@ class ExtraController extends Controller
     public function haberFotoTrans()
     {
         ini_set('max_execution_time', 0);
-        $OrderImagesEski = DB::table('haber_foto')->get();//eklenecek eski köşe yazıları tablosu
+        $OrderImagesEski = DB::table('haber_foto')->get(); //eklenecek eski köşe yazıları tablosu
         $yeniData = array();
         DB::beginTransaction();
         $savedcount = 0;
@@ -85,7 +85,6 @@ class ExtraController extends Controller
             } else {
                 $unsavedcount++;
             }
-
         }
         if ($unsavedcount > 0) {
             DB::rollBack();
@@ -93,7 +92,6 @@ class ExtraController extends Controller
             DB::commit();
         }
         return "Veri taşıma başarılı";
-
     }
 
     public function DBTrans()
@@ -101,7 +99,7 @@ class ExtraController extends Controller
 
 
         ini_set('max_execution_time', 0);
-        $habereski = DB::table('haber')->get();//eklenecek eski haber tablosu
+        $habereski = DB::table('haber')->get(); //eklenecek eski haber tablosu
         $yeniData = array();
         DB::beginTransaction();
         $savedcount = 0;
@@ -124,21 +122,14 @@ class ExtraController extends Controller
                 $newCategoryId = 3;
             } elseif ($habereski[$i]->kategori_id == 51) {
                 $newCategoryId = 4;
-
-
             } elseif ($habereski[$i]->kategori_id == 13) {
                 $newCategoryId = 5;
             } elseif ($habereski[$i]->kategori_id == 10) {
                 $newCategoryId = 6;
-
-
             } elseif ($habereski[$i]->kategori_id == 39) {
                 $newCategoryId = 7;
-
             } elseif ($habereski[$i]->kategori_id == 52) {
                 $newCategoryId = 8;
-
-
             } elseif ($habereski[$i]->kategori_id == 49) {
                 $newCategoryId = 9;
             } elseif ($habereski[$i]->kategori_id == 64) {
@@ -181,7 +172,6 @@ class ExtraController extends Controller
             } else {
                 $unsavedcount++;
             }
-
         }
         if ($unsavedcount > 0) {
             DB::rollBack();
@@ -189,13 +179,12 @@ class ExtraController extends Controller
             DB::commit();
         }
         return $this->OldDBkoseyazisi();
-
     }
 
     public function OldDBkoseyazisi()
     {
         ini_set('max_execution_time', 0);
-        $koseyazisieski = DB::table('kose_yazilari')->get();//eklenecek eski köşe yazıları tablosu
+        $koseyazisieski = DB::table('kose_yazilari')->get(); //eklenecek eski köşe yazıları tablosu
         $yeniData = array();
         DB::beginTransaction();
         $savedcount = 0;
@@ -219,7 +208,6 @@ class ExtraController extends Controller
             } else {
                 $unsavedcount++;
             }
-
         }
         if ($unsavedcount > 0) {
             DB::rollBack();
@@ -227,13 +215,12 @@ class ExtraController extends Controller
             DB::commit();
         }
         return "Veri taşıma başarılı";
-
     }
 
     public function OldDByazarlar()
     {
         ini_set('max_execution_time', 0);
-        $koseyazisieski = DB::table('kullanici')->get();//eklenecek eski köşe yazıları tablosu
+        $koseyazisieski = DB::table('kullanici')->get(); //eklenecek eski köşe yazıları tablosu
         $yeniData = array();
         DB::beginTransaction();
         $savedcount = 0;
@@ -256,7 +243,6 @@ class ExtraController extends Controller
             } else {
                 $unsavedcount++;
             }
-
         }
         if ($unsavedcount > 0) {
             DB::rollBack();
@@ -264,7 +250,6 @@ class ExtraController extends Controller
             DB::commit();
         }
         return "Veri taşıma başarılı";
-
     }
 
     public function PhotoGalleryDetail($photogalery)
@@ -279,10 +264,10 @@ class ExtraController extends Controller
             ->get();
         $relatedgalery = Photo::where('status', 1)->skip(1)->take(10)->groupBy('photocategory_id')->latest()->get();
 
-//    $relatedgalery =Photo::leftjoin('photocategories','photos.photocategory_id','=','photocategories.id')
-//        ->select(['photos.*','photocategories.id','photocategories.category_title'])
-//        ->where('photos.photocategory_id',$photogalery)->where('photos.photocategory_id','!=',$photos->photocategory_id)->groupBy('photocategory_id')
-//        ->get();
+        //    $relatedgalery =Photo::leftjoin('photocategories','photos.photocategory_id','=','photocategories.id')
+        //        ->select(['photos.*','photocategories.id','photocategories.category_title'])
+        //        ->where('photos.photocategory_id',$photogalery)->where('photos.photocategory_id','!=',$photos->photocategory_id)->groupBy('photocategory_id')
+        //        ->get();
 
         return view('main.body.foto_galery', compact('photos', 'category', 'relatedgalery'));
     }
@@ -297,10 +282,10 @@ class ExtraController extends Controller
             ->groupBy('post_tags.post_id')
             ->where('post_tags.tag_id', $id)->where('status', 1)->latest()
             ->get();
-//       echo $category = $tagPosts->category_id;
-//        foreach ($category as $object){
-//         $object->title;
-//        }
+        //       echo $category = $tagPosts->category_id;
+        //        foreach ($category as $object){
+        //         $object->title;
+        //        }
         $nextnews = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
             ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
             ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
@@ -315,7 +300,7 @@ class ExtraController extends Controller
             ->where('post_tags.tag_id', $id)->latest()
             ->count();
         $ads = Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
-//            ->join('ads','ad_categories.id','ads.category_id')
+            //            ->join('ads','ad_categories.id','ads.category_id')
             ->select(['ads.*', 'ad_categories.id'])
             ->where('status', 1)
             ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
@@ -341,10 +326,8 @@ class ExtraController extends Controller
                 ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
                 ->latest('created_at')->where('status', 1)->limit(10)
                 ->get();
-
         });
         return response()->view('main.body.feed', compact('posts', 'seoset'))->header('Content-Type', 'application/xml');
-
     }
 
     public function GetAllDistrict()
@@ -404,18 +387,18 @@ class ExtraController extends Controller
        }
    */
 
-//    public function Categories()
-//    {
-//        $data = Category::latest()->get();
-//        $websetting =WebsiteSetting::first();
-//
-////        View::composer('main.body.header', function ($view) {
-////            //
-////            $view->with('websetting');
-////        });
-//        return view('main.body.header',compact('data','websetting'));
-//
-//    }
+    //    public function Categories()
+    //    {
+    //        $data = Category::latest()->get();
+    //        $websetting =WebsiteSetting::first();
+    //
+    ////        View::composer('main.body.header', function ($view) {
+    ////            //
+    ////            $view->with('websetting');
+    ////        });
+    //        return view('main.body.header',compact('data','websetting'));
+    //
+    //    }
 
     public function Home()
     {
@@ -453,27 +436,27 @@ class ExtraController extends Controller
             'DOLAR' => [
                 'oran' => $result['USD']['Değişim'],
                 'oranyonu' => str_replace(',', '.', degistir($result['USD']['Değişim'])),
-//                    'alis' => $usd['Buy'],
+                //                    'alis' => $usd['Buy'],
                 'satis' => str_replace(',', '.', $result['USD']['Satış'])
 
             ],
             'EURO' => [
                 'oran' => $result['EUR']['Değişim'],
                 'oranyonu' => str_replace(',', '.', degistir($result['EUR']['Değişim'])),
-//                    'alis' => $usd['Buy'],
+                //                    'alis' => $usd['Buy'],
                 'satis' => str_replace(',', '.', degistir($result['EUR']['Satış']))
             ],
             'ALTIN' => [
                 'oran' => $result['gram-altin']['Değişim'],
                 'oranyonu' => $result['gram-altin']['Değişim'],
-//                    'alis' => $usd['Buy'],
+                //                    'alis' => $usd['Buy'],
                 'satis' => str_replace(',', '.', degistir($result['gram-altin']['Satış']))
 
             ],
             'ceyrekaltin' => [
                 'oran' => $result['ceyrek-altin']['Değişim'],
                 'oranyonu' => $result['ceyrek-altin']['Değişim'],
-//                    'alis' => $usd['Buy'],
+                //                    'alis' => $usd['Buy'],
                 'satis' => str_replace(',', '.', degistir($result['ceyrek-altin']['Satış']))
             ]
         ];
@@ -491,24 +474,24 @@ class ExtraController extends Controller
             "yatsi" => $vakit[0]['yatsi'],
         );
         Session::put('vakitler', $vakitler);
-//dd($kurlar);
+        //dd($kurlar);
         Session::put('kurlar', $kurlar);
 
         $video_gallary = Cache()->remember("video_gallary", Carbon::now()->addYear(), function () {
             if (Cache::has('video_gallary')) return Cache::has('video_gallary');
             return Post::where('posts_video', '!=', NULL)->orderByDesc('created_at')->get();
         });
-//        $home =
-////            Cache::remember("home", Carbon::now()->addYear(), function () {
-////            if (Cache::has('home')) return Cache::has('home');
-//            Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-//                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-//                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-//                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-//                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-//                ->where('status', 1)->latest('created_at')
-//                ->get();
-////            });
+        //        $home =
+        ////            Cache::remember("home", Carbon::now()->addYear(), function () {
+        ////            if (Cache::has('home')) return Cache::has('home');
+        //            Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+        //                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+        //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+        //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
+        //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
+        //                ->where('status', 1)->latest('created_at')
+        //                ->get();
+        ////            });
 
         $home = Cache()->remember("home", Carbon::now()->addYear(), function () {
             if (Cache::has('home')) return Cache::has('home');
@@ -517,20 +500,20 @@ class ExtraController extends Controller
                 ->get();
         });
 
-//        $surmanset =
-////            Cache::remember("surmanset", Carbon::now()->addYear(), function () {
-////            if (Cache::has('surmanset')) return Cache::has('surmanset');
-//            Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-//                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-//                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-//                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-//                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-//                ->where('status', 1)->latest('created_at')->limit(4)
-//                ->get();
-////            });
-//cache()->forget('home-surmanset');
+        //        $surmanset =
+        ////            Cache::remember("surmanset", Carbon::now()->addYear(), function () {
+        ////            if (Cache::has('surmanset')) return Cache::has('surmanset');
+        //            Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+        //                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+        //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+        //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
+        //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
+        //                ->where('status', 1)->latest('created_at')->limit(4)
+        //                ->get();
+        ////            });
+        //cache()->forget('home-surmanset');
         $surmanset = Cache()->remember("home-surmanset", Carbon::now()->addYear(), function () {
-//            if (Cache::has('surmanset')) return Cache::has('surmanset');
+            //            if (Cache::has('surmanset')) return Cache::has('surmanset');
             return Post::where('status', 1)
                 ->where('surmanset', 1)
                 ->with('category')
@@ -554,32 +537,28 @@ class ExtraController extends Controller
             //Buraya il seçtirerek ilçeler sıralanacak
             return Subdistrict::where('district_id', '=', '71')->orderByRaw('subdistrict_tr')->get();
         });
-//        $category = Category::latest()->get();
-//        dd($category->id);
-//        foreach ($category as $cat) {
-//            $economy = Post::get();
-//        }
+        //        $category = Category::latest()->get();
+        //        dd($category->id);
+        //        foreach ($category as $cat) {
+        //            $economy = Post::get();
+        //        }
         $ucuncuSayfa = Cache::remember("ucuncuSayfa", Carbon::now()->addYear(), function () {
             if (Cache::has('ucuncuSayfa')) return Cache::has('ucuncuSayfa');
             return Post::where('category_id', 1)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('created_at')->get();
-
         });
         $ozel = Cache::remember("ozel", Carbon::now()->addYear(), function () {
             if (Cache::has('ozel')) return Cache::has('ozel');
             return Post::where('category_id', 1)->where('status', 1)->where('featured', '=', 1)->limit(10)->latest('created_at')->get();
-
         });
 
         $youtube = Cache::remember("youtube", Carbon::now()->addYear(), function () {
             if (Cache::has('youtube')) return Cache::has('youtube');
             return Post::where('category_id', 12)->where('status', 1)->limit(6)->latest('created_at')->get();
-
         });
 
         $videogaleri = Cache::remember("videogaleri", Carbon::now()->addYear(), function () {
             if (Cache::has('videogaleri')) return Cache::has('videogaleri');
             return Post::where('status', 1)->whereNotNull('posts_video')->limit(4)->latest('created_at')->get();
-
         });
         $videogaleriSlider = Cache::remember("videogaleriSlider", Carbon::now()->addYear(), function () {
             if (Cache::has('videogaleriSlider')) return Cache::has('videogaleriSlider');
@@ -618,18 +597,18 @@ class ExtraController extends Controller
 
 
 
-        $category1=$themeSetting->category1;
-        $category2=$themeSetting->category2;
+        $category1 = $themeSetting->category1;
+        $category2 = $themeSetting->category2;
         $education  = Cache::remember("kultur", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('kultur')) return Cache::has('kultur');
             return Post::where('category_id', '=', $category1)->status()
-                ->where('featured',1)
+                ->where('featured', 1)
                 ->limit(4)->latest('created_at')->get();
         });
-         $kultur= Cache::remember("education", Carbon::now()->addYear(), function () use ($category2) {
+        $kultur = Cache::remember("education", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('education')) return Cache::has('education');
             return Post::where('category_id', '=', $category2)->status()
-                ->where('featured',1)
+                ->where('featured', 1)
                 ->limit(6)->latest('created_at')->get();
         });
 
@@ -642,30 +621,29 @@ class ExtraController extends Controller
             return Post::limit(8)->where('subdistrict_id', $ilce->id)->get();
         });
 
-//        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
-//            if (Cache::has('authors')) return Cache::has('authors');
-//        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-//            ->select(['authors.id','authors.name', 'authors_posts.*'])
-//            ->where('authors.status', 1)->where('authors_posts.status', 1)->orderBy('authors_posts.created_at','ASC')
-//            ->groupBy("authors.id")
-//            ->get();
+        //        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
+        //            if (Cache::has('authors')) return Cache::has('authors');
+        //        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+        //            ->select(['authors.id','authors.name', 'authors_posts.*'])
+        //            ->where('authors.status', 1)->where('authors_posts.status', 1)->orderBy('authors_posts.created_at','ASC')
+        //            ->groupBy("authors.id")
+        //            ->get();
         $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
             ->where('authors.status', 1)->where('authors_posts.status', 1)
             ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
-            ->latest("authors_posts.created_at")->limit(8)
+            ->latest("authors_posts.created_at")
             ->get();
 
 
-//        dd($authors);
+        //        dd($authors);
 
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
             if (Cache::has('ads')) return Cache::has('ads');
             return Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
-//            ->join('ads','ad_categories.id','ads.category_id')
+                //            ->join('ads','ad_categories.id','ads.category_id')
                 ->select(['ads.*', 'ad_categories.id'])
                 ->where('status', 1)
                 ->get();
-
         });
 
         $seoset = Cache::remember("seoset", Carbon::now()->addYear(), function () {
@@ -724,7 +702,7 @@ class ExtraController extends Controller
                         $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
                     } elseif ($data['d1'] == "Y") {
                         $icon = '<i  style="font-size: 20px;" class="wi wi-storm-showers"></i>';
-                    }elseif ($data['d1'] == "YKY") {
+                    } elseif ($data['d1'] == "YKY") {
                         $icon = '<i  style="font-size: 20px;" class="wi wi-day-rain-mix"></i>';
                     } else {
                         $icon = '<i  style="font-size: 20px;" class="wi wi-celsius"></i>';
@@ -732,15 +710,13 @@ class ExtraController extends Controller
 
 
                     $day1 = $data['makk1'];
-
-
                 }
             }
 
             $veri = array(
                 'gelenil' => $gelenil,
                 'sicaklik' => $day1,
-//            'icon' =>$icon,
+                //            'icon' =>$icon,
             );
             Session::put('icon', $icon);
             Session::put('gelenil', $gelenil);
@@ -751,30 +727,29 @@ class ExtraController extends Controller
             return WebsiteSetting::first();
         });
         $category = Cache()->remember("home-category", Carbon::now()->addYear(), function () {
-            return category::where('category_status',1)->where('category_menu',1)->limit(11)->orderBy('category_order')->get();
-
+            return category::where('category_status', 1)->where('category_menu', 1)->limit(11)->orderBy('category_order')->get();
         });
-$egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function () {
-    return Gazetesayis::latest()->where('status',1)->limit(9)->get();
-});
-        foreach ($ads as $ad){
-            $home = $home;//collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15,16,17,18,19]);
-            if ($ad->category_id==28){
-                $adsSlider=1;
+        $egazete = Cache()->remember("home-egazete", Carbon::now()->addYear(), function () {
+            return Gazetesayis::latest()->where('status', 1)->limit(9)->get();
+        });
+        foreach ($ads as $ad) {
+            $home = $home; //collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15,16,17,18,19]);
+            if ($ad->category_id == 28) {
+                $adsSlider = 1;
                 $home = $home->chunk(4)->each->push($adsSlider)->collapse();
             }
         }
 
-        return view('main.home', compact('home', 'ucuncuSayfa','egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
-//        return view('main.home_master', compact('seoset'))
-//        return view('main.body.header', compact('vakitler'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
+        //        return view('main.home_master', compact('seoset'))
+        //        return view('main.body.header', compact('vakitler'));
 
     }
 
 
     public function SinglePost($slug, $id)
     {
-//dd($id);
+        //dd($id);
 
         $r = $_SERVER['REQUEST_URI'];
         $r = explode('?', $r);
@@ -783,30 +758,30 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
         $ids = $r;
         $explodeID = explode('-', $ids[0]);
         $id = $explodeID[count($explodeID) - 1];
-//dd($id);
-//        dd($explodeID[count($explodeID)-1 ]);
+        //dd($id);
+        //        dd($explodeID[count($explodeID)-1 ]);
 
-//             $post= Post::where('status', 1)->find($explodeID[count($explodeID) - 1]);
-//        if (!Cache::has('single-post'))
-//        {
-//            $post=Post::where('status', 1)->find($id);
-//            Cache::put('single-post', $post, Carbon::now()->addYear());
-//        } else{
-//            $post = Cache::get('single-post');
-//        }
+        //             $post= Post::where('status', 1)->find($explodeID[count($explodeID) - 1]);
+        //        if (!Cache::has('single-post'))
+        //        {
+        //            $post=Post::where('status', 1)->find($id);
+        //            Cache::put('single-post', $post, Carbon::now()->addYear());
+        //        } else{
+        //            $post = Cache::get('single-post');
+        //        }
         $post = Post::where('status', 1)->find($id);
 
 
-//        dd($post);
-//        $maybeRelated=[];
-//        if (!Cache::has('single-comments'))
-//        {
-//            $comments= Comments::where('posts_id', $id)->where('status', 1)->get();
-////            dd($comments);
-//            Cache::put('single-comments', $comments, Carbon::now()->addYear());
-//        } else{
-//            $comments = Cache::get('single-comments');
-//        }
+        //        dd($post);
+        //        $maybeRelated=[];
+        //        if (!Cache::has('single-comments'))
+        //        {
+        //            $comments= Comments::where('posts_id', $id)->where('status', 1)->get();
+        ////            dd($comments);
+        //            Cache::put('single-comments', $comments, Carbon::now()->addYear());
+        //        } else{
+        //            $comments = Cache::get('single-comments');
+        //        }
         $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
 
         $orderImages = OrderImages::where('haberId', $id)->get();
@@ -818,7 +793,7 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
         });
 
 
-//        $category = Category::where('id', '=', $post->category_id)->get();
+        //        $category = Category::where('id', '=', $post->category_id)->get();
         $ads = Cache()->remember("single-ads", Carbon::now()->addYear(), function () {
             return Ad::latest('created_at')
                 ->where('status', 1)
@@ -826,50 +801,50 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
                 ->get();
         });
 
-//        $related =
-//            Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-//                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-//                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-//                ->where('posts.id', $id)->where('posts.status',1)->latest()
-//                ->limit(1)
-//                ->get();
-//        $related =Post::with(['PostTag:post_id'])->where('id', $id)->where('status', 1)->latest('updated_at')->limit(10)->get();
+        //        $related =
+        //            Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+        //                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+        //                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+        //                ->where('posts.id', $id)->where('posts.status',1)->latest()
+        //                ->limit(1)
+        //                ->get();
+        //        $related =Post::with(['PostTag:post_id'])->where('id', $id)->where('status', 1)->latest('updated_at')->limit(10)->get();
 
-//        $related = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-//                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-//                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-//                ->where('posts.id', $id)->where('posts.status',1)->latest()
-//                ->limit(10)
-//                ->get();
-//            $random = Cache()->remember("single-random", Carbon::now()->addYear(), function () {
-//             return Post::inRandomOrder()->limit(3)->get();
-//        });
+        //        $related = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+        //                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+        //                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+        //                ->where('posts.id', $id)->where('posts.status',1)->latest()
+        //                ->limit(10)
+        //                ->get();
+        //            $random = Cache()->remember("single-random", Carbon::now()->addYear(), function () {
+        //             return Post::inRandomOrder()->limit(3)->get();
+        //        });
 
-//        $tag_ids = $post->tag()->get();
-//        $tagCount = $tag_ids->count();
+        //        $tag_ids = $post->tag()->get();
+        //        $tagCount = $tag_ids->count();
 
-//        $tagName =
-//            Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-//                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-//                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-//                ->where('posts.id', $id)->where('posts.status', 1)
-//                ->limit(10)
-//                ->get();
-//        if($post->category_id!=NULL) {
+        //        $tagName =
+        //            Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+        //                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+        //                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+        //                ->where('posts.id', $id)->where('posts.status', 1)
+        //                ->limit(10)
+        //                ->get();
+        //        if($post->category_id!=NULL) {
 
         $nextrelated = Post::where('category_id', $post->category_id)->status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
             ->get();
-//            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
-//                ->get();
-//        }
-//        dd($nextrelated);
+        //            $nextrelated = Post::limit(10)->inRandomOrder()->latest()
+        //                ->get();
+        //        }
+        //        dd($nextrelated);
         $seoset = Cache()->remember("single-seoset", Carbon::now()->addYear(), function () {
             return Seos::first();
         });
         if (!empty($post->tag())) {
 
             $tag_ids = $post->tag()->get();
-//        dd($post->tag());
+            //        dd($post->tag());
 
 
             $tagCount = $tag_ids->count();
@@ -878,7 +853,7 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
                 $ids[] = $tags->id;
                 $tag = $tags->id;
             }
-//        dd($ids);
+            //        dd($ids);
             $maybeRelated = [];
             if (isset($ids)) {
                 if ($ids != []) {
@@ -891,8 +866,6 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
             }
         }
         return view('main.body.single_post', compact('post', 'ads', 'orderImages', 'maybeRelated', 'seoset', 'slider', 'nextrelated', 'comments', 'tagCount'));
-
-
     }
 
     //Fixed Page Open
@@ -904,7 +877,7 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
     }
 
 
-    public function CategoryPost($slug,$name, $id)
+    public function CategoryPost($slug, $name, $id)
     {
 
         $category = Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
@@ -918,11 +891,11 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
         });
         $manset =
             Post::join('categories', 'posts.category_id', 'categories.id')
-                ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-                ->where('posts.status', 1)
-                ->where('posts.category_id', $id)->where('posts.manset', 1)
-                ->orderBy('created_at', 'desc')
-                ->limit(15)->get();
+            ->select('posts.*', 'categories.category_tr', 'categories.category_en')
+            ->where('posts.status', 1)
+            ->where('posts.category_id', $id)->where('posts.manset', 1)
+            ->orderBy('created_at', 'desc')
+            ->limit(15)->get();
 
 
         $count = Post::join('categories', 'posts.category_id', 'categories.id')
@@ -932,10 +905,9 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
             ->count();
 
 
-        $dataToEliminate= $manset->pluck('id');
+        $dataToEliminate = $manset->pluck('id');
 
-        $catpost=Post::with(['category:id,category_tr'])->whereNotIn('id',$dataToEliminate)->where('category_id', $id)->latest()->paginate(20);
-        ;
+        $catpost = Post::with(['category:id,category_tr'])->whereNotIn('id', $dataToEliminate)->where('category_id', $id)->latest()->paginate(20);;
 
 
         $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
@@ -946,21 +918,19 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
         $ads =
 
             Ad::latest('created_at')
-                ->where('status', 1)
-                ->with('adcategory')
-                ->get();
+            ->where('status', 1)
+            ->with('adcategory')
+            ->get();
 
         return view('main.body.category_post', compact('manset', 'authors', 'category', 'ads', 'catpost', 'nextnews', 'count'));
-
-
     }
 
     public function VideoGaleriAll()
     {
         $manset =
             Post::where('manset', 1)->where('posts_video', '!=', "")->where('status', 1)
-                ->orderBy('created_at', 'desc')
-                ->limit(15)->get();
+            ->orderBy('created_at', 'desc')
+            ->limit(15)->get();
 
         $count = Post::where('posts_video', '!=', "")->where('status', 1)
             ->count();
@@ -975,13 +945,11 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
             ->get();
         $ads =
             Ad::latest('created_at')
-                ->where('status', 1)
-                ->with('adcategory')
-                ->get();
+            ->where('status', 1)
+            ->with('adcategory')
+            ->get();
 
         return view('main.body.video_galeri', compact('manset',   'ads', 'catpost', 'nextnews', 'count'));
-
-
     }
 
     public function search(Request $request)
@@ -1031,47 +999,47 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
     }
 
 
-    public function yazilar($slug,$id)
+    public function yazilar($slug, $id)
     {
-//        dd($id); // yazının ID'si
-        $sluf=$slug;
+        //        dd($id); // yazının ID'si
+        $sluf = $slug;
         $seoset = Seos::first();
         $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->orderByDesc('id')->get();
-//        $authorsId=$yazi[0]->authors_id;
-//        dd($yazi);
+        //        $authorsId=$yazi[0]->authors_id;
+        //        dd($yazi);
         $yazar = Authors::where('id', '=', $id)->get();
-//        dd($yazi);
-//        $nextauthors_posts = Cache()->remember("home-nextauthors_posts", Carbon::now()->addYear(), function () {
+        //        $nextauthors_posts = Cache()->remember("home-nextauthors_posts", Carbon::now()->addYear(), function () {
         $nextauthors_posts = AuthorsPost::whereStatus(1)->where('authors_id', isset($yazi[0]) ? $yazi[0]->authors_id : '')->skip(0)->take(10)->latest()->get();
-//        });
-//        dd($nextauthors_posts);
+        //        });
+        //        dd($nextauthors_posts);
         $otherauthos = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
             ->where('authors.status', 1)->where('authors_posts.status', 1)
             ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
-            ->latest("authors_posts.created_at")->limit(8)
+            ->latest("authors_posts.created_at")
             ->get();
-//        $otherauthos=  AuthorsPost::leftjoin('authors', 'authors_posts.authors_id', '=', 'authors.id')
-//            ->select(['authors_posts.*','authors.name'])
-//            ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
-//            ->groupBy("authors.id")->latest("authors_posts.id")
-//            ->get();
-//        dd($otherauthos);
-        $comments = DB::table('authorscomments')->where('authors_posts_id', $yazi[0]->id)->where('status',1)->get();
+
+        //        $otherauthos=  AuthorsPost::leftjoin('authors', 'authors_posts.authors_id', '=', 'authors.id')
+        //            ->select(['authors_posts.*','authors.name'])
+        //            ->latest()->where('authors.status', 1)->where('authors_posts.status', 1)
+        //            ->groupBy("authors.id")->latest("authors_posts.id")
+        //            ->get();
+        //        dd($otherauthos);
+        $comments = DB::table('authorscomments')->where('authors_posts_id', $yazi[0]->id)->where('status', 1)->get();
         $webSiteSetting = Cache()->remember("home-websitesetting", Carbon::now()->addYear(), function () {
             return WebsiteSetting::first();
         });
 
         $themeSetting = Theme::first();
         $ads = Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
-//            ->join('ads','ad_categories.id','ads.category_id')
+            //            ->join('ads','ad_categories.id','ads.category_id')
             ->select(['ads.*', 'ad_categories.id'])
             ->where('status', 1)
-            ->whereIN('ad_categories.id', [12,3]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
+            ->whereIN('ad_categories.id', [12, 3]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
             ->get();
-        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts','themeSetting', 'webSiteSetting','otherauthos','comments','ads'));
+        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts', 'themeSetting', 'webSiteSetting', 'otherauthos', 'comments', 'ads'));
     }
 
-    public function yazilars($slug,$id)
+    public function yazilars($slug, $id)
 
     {
 
@@ -1081,6 +1049,7 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
             ->latest('created_at')->where('status', 1)->where('id', '=', $id)->limit(10)
             ->get();
         $yazar = Authors::where('id', '=', $id)->get();
+
         return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
     }
 
@@ -1105,61 +1074,59 @@ $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function (
 
 
 
-//    public function akbankkur()
-//    {
-//        $ch = curl_init();
-//        curl_setopt_array($ch, [
-//            CURLOPT_URL => 'https://www.akbank.com/_vti_bin/AkbankServicesSecure/FrontEndServiceSecure.svc/GetExchangeData?_=' . time(),
-//            CURLOPT_RETURNTRANSFER => true,
-//            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false),
-//
-//        ]);
-//        $output = curl_exec($ch);
-//        curl_close($ch);
-//
-//
-//        $output = json_decode($output, true);
-//        $results = json_decode($output['GetExchangeDataResult'], true);
-//
-//// print_r($results);
-//        $usd = $results['Currencies'][16];
-//        $euro = $results['Currencies'][6];
-//        $altin = $results['Currencies'][17];
-//        $imkb = $results['BIST'];
-//
-//        $kurlar= [
-//            'DOLAR' => [
-//                'oran' => $usd['Rate'],
-//                'oranyonu' => $usd['RateDiretion'],
-//                'alis' => $usd['Buy'],
-//                'satis' => str_replace (',', '.' ,$usd['Sell'])
-//
-//            ],
-//            'EURO' => [
-//                'oran' => $euro['Rate'],
-//                'oranyonu' => $euro['RateDiretion'],
-//                'alis' => $euro['Buy'],
-//                'satis' => str_replace (',', '.' ,$euro['Sell'])
-//
-//            ],
-//            'ALTIN' => [
-//                'oran' => $altin['Rate'],
-//                'oranyonu' => $altin['RateDiretion'],
-//                'alis' => $altin['Buy'],
-//                'satis' => str_replace (',', '.' ,$altin['Sell'])
-//
-//            ],
-//            'imkb' => [
-//                'oran' => $imkb['Rate'],
-//                'oranyonu' => $imkb['RateDirection'],
-//                'deger' => str_replace (',', '.' ,$imkb['Index'])
-//            ]
-//        ];
-//
-//        return view('main.home',compact('kurlar'));
-//    }
+    //    public function akbankkur()
+    //    {
+    //        $ch = curl_init();
+    //        curl_setopt_array($ch, [
+    //            CURLOPT_URL => 'https://www.akbank.com/_vti_bin/AkbankServicesSecure/FrontEndServiceSecure.svc/GetExchangeData?_=' . time(),
+    //            CURLOPT_RETURNTRANSFER => true,
+    //            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false),
+    //
+    //        ]);
+    //        $output = curl_exec($ch);
+    //        curl_close($ch);
+    //
+    //
+    //        $output = json_decode($output, true);
+    //        $results = json_decode($output['GetExchangeDataResult'], true);
+    //
+    //// print_r($results);
+    //        $usd = $results['Currencies'][16];
+    //        $euro = $results['Currencies'][6];
+    //        $altin = $results['Currencies'][17];
+    //        $imkb = $results['BIST'];
+    //
+    //        $kurlar= [
+    //            'DOLAR' => [
+    //                'oran' => $usd['Rate'],
+    //                'oranyonu' => $usd['RateDiretion'],
+    //                'alis' => $usd['Buy'],
+    //                'satis' => str_replace (',', '.' ,$usd['Sell'])
+    //
+    //            ],
+    //            'EURO' => [
+    //                'oran' => $euro['Rate'],
+    //                'oranyonu' => $euro['RateDiretion'],
+    //                'alis' => $euro['Buy'],
+    //                'satis' => str_replace (',', '.' ,$euro['Sell'])
+    //
+    //            ],
+    //            'ALTIN' => [
+    //                'oran' => $altin['Rate'],
+    //                'oranyonu' => $altin['RateDiretion'],
+    //                'alis' => $altin['Buy'],
+    //                'satis' => str_replace (',', '.' ,$altin['Sell'])
+    //
+    //            ],
+    //            'imkb' => [
+    //                'oran' => $imkb['Rate'],
+    //                'oranyonu' => $imkb['RateDirection'],
+    //                'deger' => str_replace (',', '.' ,$imkb['Index'])
+    //            ]
+    //        ];
+    //
+    //        return view('main.home',compact('kurlar'));
+    //    }
 
 
 }
-
-
