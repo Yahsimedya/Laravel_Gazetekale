@@ -52,26 +52,32 @@
                 <h5 class="card-header kartlar__header bg-white">Siyaset</h5>
 
                 <div class="position-relative">
-                    <a href="{{ URL::to('/haber-' . str_slug($siyasetcard[0]->title_tr) . '-' . $siyasetcard[0]->id) }}"
-                        class="kartlar__link">
-                        <img class="card-img-top position-relative rounded-0 lazyload img-fluid"
-                            src="{{ $siyasetcard[0]->image }}"
-                            onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                            alt="Card image cap">
-                        @if ($webSiteSetting->slider_title == 1)
-                            <div class="kartlar__effect position-absolute"></div>
-                        @endif
-                    </a>
+                    @if (isset($siyasetcard[0]->title_tr))
+
+                        <a href="{{ URL::to('/haber-' . str_slug($siyasetcard[0]->title_tr) . '-' . $siyasetcard[0]->id) }}"
+                            class="kartlar__link">
+                            <img class="card-img-top position-relative rounded-0 lazyload img-fluid"
+                                src="{{ $siyasetcard[0]->image }}"
+                                onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
+                                alt="Card image cap">
+                            @if ($webSiteSetting->slider_title == 1)
+                                <div class="kartlar__effect position-absolute"></div>
+                            @endif
+                        </a>
+                    @endif
                 </div>
-                @if ($webSiteSetting->slider_title == 1)
-                    <div class="card-body kartlar__body position-absolute" style="top:30%!important;">
-                        <h5 class="card-title">
+                @if (isset($webSiteSetting->slider_title))
 
-                            {{ $siyasetcard[0]->title_tr }}
+                    @if ($webSiteSetting->slider_title == 1)
+                        <div class="card-body kartlar__body position-absolute" style="top:30%!important;">
+                            <h5 class="card-title">
 
-                        </h5>
-                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                    </div>
+                                {{ $siyasetcard[0]->title_tr }}
+
+                            </h5>
+                            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                        </div>
+                    @endif
                 @endif
                 <ul class="list-group list-group-flush">
                     @foreach ($siyasetcard as $row)
@@ -99,26 +105,31 @@
                 <h5 class="card-header kartlar__header bg-white">Ekonomi</h5>
 
                 <div class="position-relative">
-                    <a href="{{ URL::to('/haber-' . str_slug($ekonomicard[0]->title_tr) . '-' . $ekonomicard[0]->id) }}"
-                        class="kartlar__link">
-                        <img class="card-img-top position-relative rounded-0 lazyload img-fluid"
-                            src="{{ $ekonomicard[0]->image }}"
-                            onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                            alt="Card image cap">
-                        @if ($webSiteSetting->slider_title == 1)
-                            <div class="kartlar__effect position-absolute"></div>
-                        @endif
-                    </a>
+                    @if (isset($ekonomicard[0]->title_tr))
+
+                        <a href="{{ URL::to('/haber-' . str_slug($ekonomicard[0]->title_tr) . '-' . $ekonomicard[0]->id) }}"
+                            class="kartlar__link">
+                            <img class="card-img-top position-relative rounded-0 lazyload img-fluid"
+                                src="{{ $ekonomicard[0]->image }}"
+                                onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
+                                alt="Card image cap">
+                            @if ($webSiteSetting->slider_title == 1)
+                                <div class="kartlar__effect position-absolute"></div>
+                            @endif
+                        </a>
+                    @endif
                 </div>
-                @if ($webSiteSetting->slider_title == 1)
-                    <div class="card-body kartlar__body position-absolute" style="top:30%!important;">
-                        <h5 class="card-title">
+                @if (isset($webSiteSetting->slider_title))
+                    @if ($webSiteSetting->slider_title == 1)
+                        <div class="card-body kartlar__body position-absolute" style="top:30%!important;">
+                            <h5 class="card-title">
 
-                            {{ $ekonomicard[0]->title_tr }}
+                                {{ $ekonomicard[0]->title_tr }}
 
-                        </h5>
-                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                    </div>
+                            </h5>
+                            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                        </div>
+                    @endif
                 @endif
                 <ul class="list-group list-group-flush">
                     @foreach ($ekonomicard as $row)
