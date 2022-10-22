@@ -5,7 +5,7 @@
                 <h5 class="card-header kartlar__header bg-white">Gündem</h5>
 
                 <div class="position-relative">
-                    @if (iset($gundemcard[0]->title_tr))
+                    @if (isset($gundemcard[0]->title_tr))
                         <a href="{{ URL::to('/haber-' . str_slug($gundemcard[0]->title_tr) . '-' . $gundemcard[0]->id) }}"
                             class="kartlar__link">
                             <img class="card-img-top position-relative rounded-0 lazyload img-fluid"
