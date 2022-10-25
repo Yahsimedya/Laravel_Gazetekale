@@ -51,7 +51,7 @@ class WebsiteSettingController extends Controller
             WebsiteSetting::find($websetting->id)->update($data);
         } else {
             $data['logo'] = $old_image;
-            $websetting->update($request->all());
+            // $websetting->update($request->all());
         }
         if (isset($defaultImage)) {
             $image_two = uniqid() . '.' . $defaultImage->getClientOriginalName();
@@ -60,7 +60,7 @@ class WebsiteSettingController extends Controller
             WebsiteSetting::find($websetting->id)->update($data);
         } else {
             $data['defaultImage'] = $old_defaultImage;
-            $websetting->update($request->all());
+            // $websetting->update($request->all());
         }
         if (isset($logowhite)) {
             $image_three = uniqid() . '.' . $logowhite->getClientOriginalName();
@@ -69,10 +69,10 @@ class WebsiteSettingController extends Controller
             WebsiteSetting::find($websetting->id)->update($data);
         } else {
             $data['logowhite'] = $old_logowhite;
-            $websetting->update($request->all());
+            // $websetting->update($request->all());
         }
 
-        $websetting->update($request->all());
+        // $websetting->update($request->all());
 
         return Redirect()->route('website.setting');
     }
