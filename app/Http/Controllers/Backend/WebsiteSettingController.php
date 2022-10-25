@@ -27,7 +27,7 @@ class WebsiteSettingController extends Controller
     {
         $data = $request->all();
 
-//        $websetting->update($request->all());
+        //        $websetting->update($request->all());
         $old_image = $request->old_image;
         $old_defaultImage = $request->old_defaultImage;
         $old_logowhite = $request->old_logowhite;
@@ -44,7 +44,7 @@ class WebsiteSettingController extends Controller
         $defaultImage = $request->defaultImage;
         $logowhite = $request->logowhite;
 
-        if ($image) {
+        if (isset($image)) {
             $image_one = uniqid() . '.' . $image->getClientOriginalName();
             Image::make($image)->save('image/logo/' . $yil . '/' . $ay . '/' . $image_one);
             $data['logo'] = 'image/logo/' . $yil . '/' . $ay . '/' . $image_one;
@@ -53,17 +53,16 @@ class WebsiteSettingController extends Controller
             $data['logo'] = $old_image;
             $websetting->update($request->all());
         }
-        if ($defaultImage) {
+        if (isset($defaultImage)) {
             $image_two = uniqid() . '.' . $defaultImage->getClientOriginalName();
             Image::make($defaultImage)->save('image/logo/' . $yil . '/' . $ay . '/' . $image_two);
             $data['defaultImage'] = 'image/logo/' . $yil . '/' . $ay . '/' . $image_two;
             WebsiteSetting::find($websetting->id)->update($data);
-
         } else {
             $data['defaultImage'] = $old_defaultImage;
             $websetting->update($request->all());
         }
-        if ($logowhite) {
+        if (isset($logowhite)) {
             $image_three = uniqid() . '.' . $logowhite->getClientOriginalName();
             Image::make($logowhite)->save('image/logo/' . $yil . '/' . $ay . '/' . $image_three);
             $data['logowhite'] = 'image/logo/' . $yil . '/' . $ay . '/' . $image_three;
@@ -76,7 +75,6 @@ class WebsiteSettingController extends Controller
         $websetting->update($request->all());
 
         return Redirect()->route('website.setting');
-
     }
 
     /**
