@@ -1,94 +1,104 @@
 @extends('main.home_master')
-@section('title',$seoset->meta_title)
-@section('meta_keywords',$seoset->meta_keyword)
-@section('meta_description',htmlspecialchars_decode(stripslashes($seoset->meta_description),ENT_QUOTES))
-@section('google_analytics',$seoset->google_analytics)
-@section('google_verification',$seoset->google_verification)
-@section('adsense_code',$seoset->adsense_code)
+@section('title', $seoset->meta_title)
+@section('meta_keywords', $seoset->meta_keyword)
+@section('meta_description', htmlspecialchars_decode(stripslashes($seoset->meta_description), ENT_QUOTES))
+@section('google_analytics', $seoset->google_analytics)
+@section('google_verification', $seoset->google_verification)
+@section('adsense_code', $seoset->adsense_code)
 
 @section('content')
     @php
         $socials = DB::table('socials')->get();
-  $vakitler = Cache()->remember("home-vakitler", 60*60*24, function () {
+        $vakitler = Cache()->remember('home-vakitler', 60 * 60 * 24, function () {
             return Session::get('vakitler');
         });
-  $kurlar=Session::get('kurlar');
-$veri=Session::get('havadurumu');
-$icon=Session::get('icon');
-$gelenil=Session::get('gelenil');
+        $kurlar = Session::get('kurlar');
+        $veri = Session::get('havadurumu');
+        $icon = Session::get('icon');
+        $gelenil = Session::get('gelenil');
 
     @endphp
 
     <style>
         .owl-theme .owl-dots .owl-dot.active span {
-            background-color: {{$themeSetting->siteColorTheme}}  !important;
+            background-color: {{ $themeSetting->siteColorTheme }} !important;
         }
 
         .slider_span {
-            background-color: {{$themeSetting->siteColorTheme}}  !important;
+            background-color: {{ $themeSetting->siteColorTheme }} !important;
         }
 
-        .owl-prev, .anaslider-prev {
-            color: {{$themeSetting->siteColorTheme}}  !important;
+        .owl-prev,
+        .anaslider-prev {
+            color: {{ $themeSetting->siteColorTheme }} !important;
         }
 
-        .owl-next, .anaslider-prev {
-            color: {{$themeSetting->siteColorTheme}}  !important;
+        .owl-next,
+        .anaslider-prev {
+            color: {{ $themeSetting->siteColorTheme }} !important;
         }
 
         .ilceler__baslik {
-            color: {{$themeSetting->siteColorTheme}}  !important;
+            color: {{ $themeSetting->siteColorTheme }} !important;
 
         }
 
         .ilceler__nav-link.active {
-            color: {{$themeSetting->siteColorTheme}}  !important;
-            border: 1px solid {{$themeSetting->siteColorTheme}}  !important;
+            color: {{ $themeSetting->siteColorTheme }} !important;
+            border: 1px solid {{ $themeSetting->siteColorTheme }} !important;
         }
 
         .ilceler__nav-link:hover {
-            color: {{$themeSetting->siteColorTheme}}  !important;
+            color: {{ $themeSetting->siteColorTheme }} !important;
         }
 
         .tns-nav-active {
-            background-color: {{$themeSetting->siteColorTheme}}  !important;
+            background-color: {{ $themeSetting->siteColorTheme }} !important;
         }
 
         .pl-1:hover {
-            color: {{$themeSetting->siteColorTheme}}  !important;
-        }
-        .kartlar__header::before{
-            border-left:2px solid {{$themeSetting->siteColorTheme}}  !important;
-        }
-        .slick-active, .slick li{
-            background-image:radial-gradient(farthest-side at 102% 2%, {{$themeSetting->siteColorTheme}}, {{$themeSetting->siteColorTheme}});
-        }
-        .video li{
-            border:1px solid {{$themeSetting->siteColorTheme}} ;
-        }
-        .slick-prev:before, .slick-next:before{
-            color: {{$themeSetting->siteColorTheme}}  !important;
-
+            color: {{ $themeSetting->siteColorTheme }} !important;
         }
 
+        .kartlar__header::before {
+            border-left: 2px solid {{ $themeSetting->siteColorTheme }} !important;
+        }
 
+        .slick-active,
+        .slick li {
+            background-image: radial-gradient(farthest-side at 102% 2%, {{ $themeSetting->siteColorTheme }}, {{ $themeSetting->siteColorTheme }});
+        }
+
+        .video li {
+            border: 1px solid {{ $themeSetting->siteColorTheme }};
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+            color: {{ $themeSetting->siteColorTheme }} !important;
+
+        }
     </style>
     <script>
-        $(document).ready(function (e) {
+        $(document).ready(function(e) {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('#havadurum select').on('change', function () {
+            $('#havadurum select').on('change', function() {
                 e = $('#ilsec').val();
-// var str =$(this).serialize();
+                // var str =$(this).serialize();
                 $.ajax({
                     type: "POST",
-                    url: "{{  route('il.home') }}",
-                    headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'},
-                    data: {ilsec: $('#ilsec').val()},
-                    success: function (donen) {
+                    url: "{{ route('il.home') }}",
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    data: {
+                        ilsec: $('#ilsec').val()
+                    },
+                    success: function(donen) {
                         veri = donen;
                         console.log(veri);
                         $('#ilsec').attr("disabled", false);
@@ -110,19 +120,19 @@ $gelenil=Session::get('gelenil');
                 <!-- <div class="kapat position-absolute float-right"><a id="ac" class="kapat__link" href="">Reklamı Aç</a></div> -->
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        @foreach($ads as $ad)
-                            @if($ad->type==1 && $ad->category_id==9 && $ad->status==1)
-                                <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                                             height="250"
-                                                                             data-src="{{asset($ad->ads)}}"></a></div>
-                                <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                                                                       height="250"
-                                                                                                       data-src="{{asset($ad->ads1)}}"></a></div>
-                                <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                                                                       height="250"
-                                                                                                       data-src="{{asset($ad->ads2)}}"></a></div>
-                            @elseif($ad->type==2 && $ad->category_id==9)
-                                <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @foreach ($ads as $ad)
+                            @if ($ad->type == 1 && $ad->category_id == 9 && $ad->status == 1)
+                                <div class="swiper-slide"><a target="_blank" href="{{ $ad->link }}"><img
+                                            class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
+                                            data-src="{{ asset($ad->ads) }}"></a></div>
+                                <div class="swiper-slide"><a target="_blank" href="{{ $ad->link }}"><img
+                                            class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
+                                            data-src="{{ asset($ad->ads1) }}"></a></div>
+                                <div class="swiper-slide"><a target="_blank" href="{{ $ad->link }}"><img
+                                            class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
+                                            data-src="{{ asset($ad->ads2) }}"></a></div>
+                            @elseif($ad->type == 2 && $ad->category_id == 9)
+                                <div class="w-100">{!! $ad->ad_code !!}</div>
                             @endif
                         @endforeach
 
@@ -156,8 +166,8 @@ $gelenil=Session::get('gelenil');
     <section class="w-100">
         <div class="container">
             <div class="row">
-            @include('main.body.widget.anaslider')
-            <!--YAN SLİDER ALANI BAŞLAR-->
+                @include('main.body.widget.anaslider')
+                <!--YAN SLİDER ALANI BAŞLAR-->
                 @include('main.body.widget.yanslider')
 
             </div>
@@ -183,19 +193,19 @@ $gelenil=Session::get('gelenil');
     <div class="container">
         <div class="swiper mySwiper3">
             <div class="swiper-wrapper">
-                @foreach($ads as $ad)
-                    @if($ad->type==1 && $ad->category_id==19 && $ad->status==1)
-                        <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                                                               height="250"
-                                                                                               data-src="{{asset($ad->ads)}}"></a></div>
-                        <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                                                               height="250"
-                                                                                               data-src="{{asset($ad->ads1)}}"></a></div>
-                        <div class="swiper-slide"><a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                                                               height="250"
-                                                                                               data-src="{{asset($ad->ads2)}}"></a></div>
-                    @elseif($ad->type==2 && $ad->category_id==19)
-                        <div class="w-100">{!!$ad->ad_code!!}</div>
+                @foreach ($ads as $ad)
+                    @if ($ad->type == 1 && $ad->category_id == 19 && $ad->status == 1)
+                        <div class="swiper-slide"><a target="_blank" href="{{ $ad->link }}"><img
+                                    class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
+                                    data-src="{{ asset($ad->ads) }}"></a></div>
+                        <div class="swiper-slide"><a target="_blank" href="{{ $ad->link }}"><img
+                                    class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
+                                    data-src="{{ asset($ad->ads1) }}"></a></div>
+                        <div class="swiper-slide"><a target="_blank" href="{{ $ad->link }}"><img
+                                    class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
+                                    data-src="{{ asset($ad->ads2) }}"></a></div>
+                    @elseif($ad->type == 2 && $ad->category_id == 19)
+                        <div class="w-100">{!! $ad->ad_code !!}</div>
                     @endif
                 @endforeach
 
@@ -230,23 +240,22 @@ $gelenil=Session::get('gelenil');
     <section class="">
         <div class="container mt-3">
             <div class="row ">
-            @include('main.body.widget.egitimkultur')
+                @include('main.body.widget.egitimkultur')
 
 
-            @include('main.body.widget.authorsList')
-            <!--SAĞ TARAF TEK SUTUN YAZARLAR PUSNA DURUMU VS-->
+                @include('main.body.widget.authorsList')
+                <!--SAĞ TARAF TEK SUTUN YAZARLAR PUSNA DURUMU VS-->
 
                 <!--PUAN DURUMU-->
                 <!--PUAN DURUMU-->
                 <!--REKLAM ALANI BAL LİGİ ÜSTÜ-->
-                <div class="reklam-alani text-center">
-                    @foreach($ads as $ad)
-                        @if($ad->type==1 && $ad->category_id==18)
-                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
-                                                         height="280"
-                                                         data-src="{{asset($ad->ads)}}"></a>
-                        @elseif($ad->type==2 && $ad->category_id==18)
-                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                <div class="reklam-alani text-center mt-2 mb-2">
+                    @foreach ($ads as $ad)
+                        @if ($ad->type == 1 && $ad->category_id == 18)
+                            <a href="{{ $ad->link }}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                    height="280" data-src="{{ asset($ad->ads) }}"></a>
+                        @elseif($ad->type == 2 && $ad->category_id == 18)
+                            <div class="w-100">{!! $ad->ad_code !!}</div>
                         @endif
                     @endforeach
                 </div>
@@ -257,17 +266,16 @@ $gelenil=Session::get('gelenil');
                         <div class=" card-spor__link text-left pad"><b>Süper Lig</b> Puan Durumu</div>
                         <!-- <a href="#"><div class=" position-absolute ">Tümü</div></a> -->
                     </div>
-            @include('main.body.puan-durumu')
+                    @include('main.body.puan-durumu')
 
                 </div>
                 <div class="reklam-alani text-center mt-4">
-                    @foreach($ads as $ad)
-                        @if($ad->type==1 && $ad->category_id==22)
-                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
-                                                         height="280"
-                                                         data-src="{{asset($ad->ads)}}"></a>
-                        @elseif($ad->type==2 && $ad->category_id==22)
-                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                    @foreach ($ads as $ad)
+                        @if ($ad->type == 1 && $ad->category_id == 22)
+                            <a href="{{ $ad->link }}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                    height="280" data-src="{{ asset($ad->ads) }}"></a>
+                        @elseif($ad->type == 2 && $ad->category_id == 22)
+                            <div class="w-100">{!! $ad->ad_code !!}</div>
                         @endif
                     @endforeach
                 </div>
