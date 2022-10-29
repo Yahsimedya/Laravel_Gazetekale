@@ -1,13 +1,13 @@
 @php
-use App\Models\WebsiteSetting;
-use App\Models\Theme;
-$websetting = WebsiteSetting::first();
-$themeSetting = Theme::get();
-$fixedPages = DB::table('fixedpage')
-    ->where('status', '=', 1)
-    ->limit(5)
-    ->latest('id')
-    ->get();
+    use App\Models\WebsiteSetting;
+    use App\Models\Theme;
+    $websetting = WebsiteSetting::first();
+    $themeSetting = Theme::get();
+    $fixedPages = DB::table('fixedpage')
+        ->where('status', '=', 1)
+        ->limit(5)
+        ->latest('id')
+        ->get();
 @endphp
 
 <footer class=" footer bg-dark">
@@ -53,8 +53,8 @@ $fixedPages = DB::table('fixedpage')
                                              data-original="{{asset('image/iha.png')}}"
                                              class="footer-logo mt-4 img-fluid lazyload text-center " alt="">
                                     </div> --}}
-                                    <p class="text-white mt-2">Gazetekale.com, Anadolu Ajansı
-                                        abonesidir.</p>
+                                    {{-- <p class="text-white mt-2">Gazetekale.com, Anadolu Ajansı
+                                        abonesidir.</p> --}}
                                 </div>
                             @endif
                         </div>
