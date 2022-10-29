@@ -1,4 +1,4 @@
-@php
+{{-- @php
     $url = 'http://www.amatorfutbol.org/tff/superlig/puandurumu-7818.html';
     $veri = file_get_contents($url);
     $takimlar = '@<tr bgcolor="#f6f6f6" class="hucre">(.*?)</tr>@si';
@@ -123,4 +123,4 @@
             // echo "</pre>";
         }
     }
-@endphp
+@endphp --}}
