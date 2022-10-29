@@ -43,7 +43,7 @@
                                     <a href="{{ URL::to('/haber-' . str_slug($haber->title_tr) . '-' . $haber->id) }}">
                                         <div class="card d-inline-block  ">
                                             <img class="card-img-top tns-lazy-img img-fluid"
-                                                onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}"
+                                                onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
                                                 data-src="{{ $haber->image }}">
                                             <div class="card-body align-middle d-table-cell">
                                                 <p class="card-baslik text-center d-table-cell"><b
