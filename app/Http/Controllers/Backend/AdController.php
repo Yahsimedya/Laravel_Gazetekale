@@ -55,7 +55,7 @@ class AdController extends Controller
                 if (isset($image)) {
 
                     $image_one = uniqid() . '.' . $image->getClientOriginalName();
-                    dd($image_one);
+                    // dd($image_one);
                     Image::make($image)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one);
                     $data['ads'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one;
                 }
