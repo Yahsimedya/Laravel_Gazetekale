@@ -15,8 +15,8 @@ class AdController extends Controller
     //
     public function Listads()
     {
-//$ads= Ad::paginate(20);
-//$ads=DB::table('ads')->get();
+        //$ads= Ad::paginate(20);
+        //$ads=DB::table('ads')->get();
         $ads = Ad::leftjoin('ad_categories', 'ad_categories.id', '=', 'ads.category_id')
             ->select(['ads.*', 'ad_categories.title'])
             ->latest('created_at')
@@ -61,7 +61,7 @@ class AdController extends Controller
                 $image_one2 = uniqid() . '.' . $image->getClientOriginalName();
                 Image::make($image2)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one2);
                 $data['ads2'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one2;
-//            DB::table('posts')->insert($data);
+                //            DB::table('posts')->insert($data);
                 Ad::create($data);
 
                 $notification = array(
@@ -70,7 +70,7 @@ class AdController extends Controller
                 );
                 return Redirect()->route('list.add');
             }
-//            Ad::create($data);
+            //            Ad::create($data);
             return Redirect()->route('list.add');
         } else {
             $notification = array(
@@ -79,9 +79,7 @@ class AdController extends Controller
             );
             Ad::create($request->all());
             return Redirect()->route('list.add')->with($notification);
-
         }
-
     }
 
     public function EditAds(Ad $ads)
@@ -94,9 +92,9 @@ class AdController extends Controller
     public function UpdateAds(Request $request, Ad $ad)
     {
         $data = $request->all();
-//       echo $request->ads;
-//        $data['link']=$request->link;
-//        $data['category_id']=$request->category_id;
+        //       echo $request->ads;
+        //        $data['link']=$request->link;
+        //        $data['category_id']=$request->category_id;
         $old_image = $request->old_image;
         $old_image1 = $request->old_image1;
         $old_image2 = $request->old_image2;
@@ -116,23 +114,24 @@ class AdController extends Controller
             $image1 = $request->ads1;
             $image2 = $request->ads2;
             if ($image || $image1 || $image2) {
-                if(isset($image)) {
-                $image_one = uniqid() . '.' . $image->getClientOriginalName();
-                Image::make($image)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one);
-                $data['ads'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one;
+                if (isset($image)) {
+                    $image_one = uniqid() . '.' . $image->getClientOriginalName();
+                    Image::make($image)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one);
+                    $data['ads'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one;
                 }
-                if(isset($image1)) {
+                if (isset($image1)) {
                     $image_one1 = uniqid() . '.' . $image1->getClientOriginalName();
                     Image::make($image1)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one1);
                     $data['ads1'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one1;
                 }
-                if(isset($image2)) {
+                if (isset($image2)) {
                     $image_one2 = uniqid() . '.' . $image2->getClientOriginalName();
                     Image::make($image2)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one2);
                     $data['ads2'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one2;
                 }
 
-//            DB::table('posts')->insert($data);
+
+                //            DB::table('posts')->insert($data);
 
                 Ad::find($ad->id)->update($data);
 
@@ -165,7 +164,6 @@ class AdController extends Controller
                 );
                 return Redirect()->route('list.add')->with($notification);
             }
-
         } elseif ($request->type == 2) {
             $data['type'] = 2;
 
