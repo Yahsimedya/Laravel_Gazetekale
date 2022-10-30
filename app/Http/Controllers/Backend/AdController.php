@@ -115,16 +115,21 @@ class AdController extends Controller
             $image2 = $request->ads2;
             if ($image || $image1 || $image2) {
                 if (isset($image)) {
+
                     $image_one = uniqid() . '.' . $image->getClientOriginalName();
                     Image::make($image)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one);
                     $data['ads'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one;
                 }
+
                 if (isset($image1)) {
+
                     $image_one1 = uniqid() . '.' . $image1->getClientOriginalName();
                     Image::make($image1)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one1);
                     $data['ads1'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one1;
                 }
+
                 if (isset($image2)) {
+
                     $image_one2 = uniqid() . '.' . $image2->getClientOriginalName();
                     Image::make($image2)->save('storage/ads/' . $yil . '/' . $ay . '/' . $image_one2);
                     $data['ads2'] = 'storage/ads/' . $yil . '/' . $ay . '/' . $image_one2;
