@@ -10,9 +10,9 @@
                 {{-- @if (isset($education[0]->category_id)) --}}
                 @if ($educat->category_id == $themeSetting->category1)
                     {{ $educat->category->category_tr }}
-                    @php
+                    {{-- @php
                         $categoryNameOne = $educat->category->category_tr;
-                    @endphp
+                    @endphp --}}
                 @endif
                 {{-- @endif --}}
             @endforeach
