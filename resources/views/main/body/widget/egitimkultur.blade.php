@@ -74,7 +74,7 @@
             @foreach ($kultur as $culter)
                 {{-- {{ dd($culter->category->category_tr) }} --}}
                 @if ($culter->category_id == $themeSetting->category2)
-                    {{ $culter->category->category_tr }}
+                    {{-- {{ $culter->category->category_tr }} --}}
                     @php
                         $categoryName = $culter->category->category_tr;
                     @endphp
