@@ -614,7 +614,7 @@ class ExtraController extends Controller
         //         ->limit(6)->latest('created_at')->get();
         // });
         $category = Post::with('category')->get();
-        // dd($category->category->category_tr);
+        dd($category[0]->category->category_tr);
 
 
 
@@ -746,7 +746,7 @@ class ExtraController extends Controller
             }
         }
 
-        return view('main.home', compact('home', 'ucuncuSayfa', 'egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'category', 'Ilcehaberleri'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
         //        return view('main.home_master', compact('seoset'))
         //        return view('main.body.header', compact('vakitler'));
 
