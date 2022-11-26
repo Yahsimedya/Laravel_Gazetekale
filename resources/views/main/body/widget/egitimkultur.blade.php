@@ -8,15 +8,15 @@
                     @if ($categorys->id == $education[0]->category_id)
                         {{ $categorys->category_tr }}
                         @php
-                            // $categoryNameOne = $categorys->category_tr;
+                            $categoryNameOne = $categorys->category_tr;
                         @endphp
                     @endif
                 @endif
             @endforeach
         </div>
-        {{-- <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a> --}}
+        </a>
     </div>
     <div class="row padding-left mt-2">
         @foreach ($education as $row)
@@ -68,11 +68,13 @@
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
             @foreach ($category as $categorys)
-                @if ($categorys->id == $kultur[0]->category_id)
-                    {{ $categorys->category_tr }}
-                    @php
-                        $categoryName = $categorys->category_tr;
-                    @endphp
+                @if (isset($kultur[0]->category_id))
+                    @if ($categorys->id == $kultur[0]->category_id)
+                        {{ $categorys->category_tr }}
+                        @php
+                            $categoryName = $categorys->category_tr;
+                        @endphp
+                    @endif
                 @endif
             @endforeach
         </div>
