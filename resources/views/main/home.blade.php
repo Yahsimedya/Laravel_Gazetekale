@@ -168,6 +168,7 @@
                 @include('main.body.widget.anaslider');
                 <!--YAN SLİDER ALANI BAŞLAR-->
                 <div class="col-md-4">asdsad</div>
+
                 {{-- @include('main.body.widget.yanslider'); --}}
             </div>
         </div>
