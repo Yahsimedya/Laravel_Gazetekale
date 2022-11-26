@@ -748,7 +748,7 @@ class ExtraController extends Controller
             }
         }
 
-        return view('main.home', compact('home', 'ucuncuSayfa', 'egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri', 'categoryPost'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
         //        return view('main.home_master', compact('seoset'))
         //        return view('main.body.header', compact('vakitler'));
 
