@@ -600,13 +600,11 @@ class ExtraController extends Controller
 
         $category1 = $themeSetting->category1;
         $category2 = $themeSetting->category2;
-        $education  = Cache::remember("kultur", Carbon::now()->addYear(), function () use ($category1) {
-            if (Cache::has('kultur')) return Cache::has('kultur');
-            return Post::where('category_id', '=', $category1)->status()
-                ->where('featured', 1)
-                ->limit(4)->latest('created_at')->get();
-        });
-        dd($category1);
+        $education  = Post::where('category_id', '=', $category1)->status()
+            ->where('featured', 1)
+            ->limit(4)->latest('created_at')->get();
+
+        dd($education);
         $kultur = Cache::remember("education", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('education')) return Cache::has('education');
             return Post::where('category_id', '=', $category2)->status()
