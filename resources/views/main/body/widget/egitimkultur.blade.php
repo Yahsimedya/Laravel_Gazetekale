@@ -9,7 +9,7 @@
                 {{-- {{ dd($educat) }} --}}
                 {{-- @if (isset($education[0]->category_id)) --}}
                 @if ($educat->category_id == $themeSetting->category1)
-                    {{ $educat->category->category_tr }}
+                    {{ $educat->category->category_tr->first() }}
                     @php
                         $categoryNameOne = $educat->category->category_tr;
                     @endphp
