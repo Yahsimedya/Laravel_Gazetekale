@@ -10,15 +10,14 @@
                 {{-- @if (isset($education[0]->category_id)) --}}
                 @if ($educat->category_id == $themeSetting->category1)
                     {{ $educat->category->category_tr }}
-                    {{-- @php
+                    @php
                         $categoryNameOne = $educat->category->category_tr;
-                    @endphp --}}
+                    @endphp
                 @endif
                 {{-- @endif --}}
             @endforeach
         </div>
-        <a
-            href="{{ URL::to('/Category/' . str_slug($education[0]->category->category_tr) . '/' . $themeSetting->category1) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $themeSetting->category1) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
     </div>
@@ -75,17 +74,15 @@
             @foreach ($kultur as $culter)
                 {{-- {{ dd($culter->category->category_tr) }} --}}
                 @if ($culter->category_id == $themeSetting->category2)
-                    {{ $culter->category()->where('id', $culter->category_id)->category_tr }}
-
-                    {{-- @php
+                    {{ $culter->category->category_tr }}
+                    @php
                         $categoryName = $culter->category->category_tr;
-                    @endphp --}}
+                    @endphp
                 @endif
             @endforeach
         </div>
         {{-- {{ dd($kultur[0]->category->category_tr) }} --}}
-        <a
-            href="{{ URL::to('/Category/' . str_slug($kultur[0]->category->category_tr) . '/' . $themeSetting->category2) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $themeSetting->category2) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
     </div>
