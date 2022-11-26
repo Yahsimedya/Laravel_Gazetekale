@@ -167,7 +167,8 @@
             <div class="row">
                 @include('main.body.widget.anaslider');
                 <!--YAN SLİDER ALANI BAŞLAR-->
-                @include('main.body.widget.yanslider');
+                <div class="col-md-4">asdsad</div>
+                {{-- @include('main.body.widget.yanslider'); --}}
             </div>
         </div>
     </section>
