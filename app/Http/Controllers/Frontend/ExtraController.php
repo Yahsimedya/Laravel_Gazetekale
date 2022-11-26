@@ -35,6 +35,7 @@ use Session;
 use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use PharIo\Manifest\Author;
 
 //use PublicApi;
 class ExtraController extends Controller
@@ -628,14 +629,16 @@ class ExtraController extends Controller
         //            ->where('authors.status', 1)->where('authors_posts.status', 1)->orderBy('authors_posts.created_at','ASC')
         //            ->groupBy("authors.id")
         //            ->get();
-        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-            ->where('authors.status', 1)->where('authors_posts.status', 1)
-            ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
-            ->latest("authors_posts.created_at")
-            ->get();
+        // $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+        //     ->where('authors.status', 1)->where('authors_posts.status', 1)
+        //     ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
+        //     ->latest("authors_posts.created_at")
+        //     ->get();
+        $authorLists = Authors::pluck('id')->toArray();
+        // dd($authorLists);
+        $authors = AuthorsPost::with('authors')->latest('id')->get();
 
-
-        //        dd($authors);
+        // dd($authors[0]->authors->image);
 
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
             if (Cache::has('ads')) return Cache::has('ads');
