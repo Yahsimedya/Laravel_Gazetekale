@@ -4,18 +4,7 @@
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->economy }}, {{ $themeSetting->politics }});!important;border-bottom:3px solid {{ $themeSetting->economy }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
             {{-- {{ dd($category) }} --}}
-
-            @foreach ($education as $educat)
-                {{-- {{ dd($educat) }} --}}
-                {{-- @if (isset($education[0]->category_id)) --}}
-                @if ($educat->category_id == $themeSetting->category1)
-                    {{ $educat->category->category_tr }}
-                    @php
-                        $categoryNameOne = $educat->category->category_tr;
-                    @endphp
-                @endif
-                {{-- @endif --}}
-            @endforeach
+            {{ $education[0]->category->category_tr }}
         </div>
         <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $themeSetting->category1) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
@@ -69,19 +58,8 @@
     <div class="card-header card-kutu position-relative"
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->agenda }}, {{ $themeSetting->sport }});!important;border-bottom:3px solid {{ $themeSetting->agenda }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
-
-
-            {{-- @foreach ($kultur as $culter) --}}
-            {{-- {{ dd($culter->category->category_tr) }} --}}
-            {{-- @if ($kultur[0]->category->category_id == $themeSetting->category2) --}}
             {{ $kultur[0]->category->category_tr }}
-            {{-- @php
-                    $categoryName = $culter->category->category_tr;
-                @endphp
-            @endif --}}
-            {{-- @endforeach --}}
         </div>
-        {{-- {{ dd($kultur[0]->category->category_tr) }} --}}
         <a
             href="{{ URL::to('/Category/' . str_slug($kultur[0]->category->category_tr) . '/' . $themeSetting->category2) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
