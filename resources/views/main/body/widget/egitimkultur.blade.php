@@ -75,6 +75,7 @@
                 @if ($culter->category_id == $themeSetting->category1)
                     {{ $culter->category->category_tr }}
                     @php
+                        dd($culter->category);
                         $categoryName = $culter->category->category_tr;
                     @endphp
                 @endif
