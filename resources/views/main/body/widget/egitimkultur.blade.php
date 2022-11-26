@@ -71,7 +71,7 @@
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
             @foreach ($kultur as $culter)
-                {{ dd($culter->category->category_tr) }}
+                {{-- {{ dd($culter->category->category_tr) }} --}}
                 @if ($culter->category_id == $themeSetting->category1)
                     {{ $culter->category->category_tr }}
                     @php
@@ -80,7 +80,7 @@
                 @endif
             @endforeach
         </div>
-
+        {{ dd($categoryName) }}
         <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $themeSetting->category2) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
