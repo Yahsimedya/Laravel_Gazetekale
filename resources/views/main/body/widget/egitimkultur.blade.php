@@ -5,8 +5,8 @@
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
             {{-- {{ dd($category) }} --}}
 
-            @foreach ($categoryPost as $categorys)
-                {{-- {{ dd($themeSetting->category1) }} --}}
+            @foreach ($category as $categorys)
+                {{ dd($themeSetting->category1) }}
                 {{-- @if (isset($education[0]->category_id)) --}}
                 @if ($categorys->category->id == $themeSetting->category1)
                     {{ $categorys->category->category_tr }}
@@ -17,9 +17,9 @@
                 {{-- @endif --}}
             @endforeach
         </div>
-        {{-- <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $themeSetting->category1) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a> --}}
+        </a>
     </div>
     <div class="row padding-left mt-2">
         @foreach ($education as $row)
@@ -70,8 +70,8 @@
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->agenda }}, {{ $themeSetting->sport }});!important;border-bottom:3px solid {{ $themeSetting->agenda }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
-            @foreach ($categoryPost as $categorys)
-                @if ($categorys->category->id == $themeSetting->category2)
+            @foreach ($category as $categorys)
+                @if ($categorys->category->id == $themeSetting->category1)
                     {{ $categorys->category->category_tr }}
                     @php
                         $categoryName = $categorys->category->category_tr;
@@ -80,9 +80,9 @@
             @endforeach
         </div>
 
-        {{-- <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $themeSetting->category2) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $kultur[0]->category_id) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a> --}}
+        </a>
     </div>
     <div class="row padding-left mt-2">
         @foreach ($kultur as $row)
