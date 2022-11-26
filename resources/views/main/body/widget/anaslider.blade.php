@@ -23,19 +23,18 @@
                                 alt=""></a>
                     @endif
             @endif
-
-            @php
-                $k++;
-            @endphp
     </div>
+
+    @php
+        $k++;
+    @endphp
     @endfor
 
 
-</div>
-<div class="item d-inline">
-    <span class="slider_span"><a href="#" class="mx-auto text-center align-middle text-white"><i
-                class="fa fa-th-large"></i></a></span>
+    <div class="item d-inline">
+        <span class="slider_span"><a href="#" class="mx-auto text-center align-middle text-white"><i
+                    class="fa fa-th-large"></i></a></span>
 
-</div>
+    </div>
 
 </div>
