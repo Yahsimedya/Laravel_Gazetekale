@@ -78,7 +78,7 @@
                 @if ($culter->category_id == $themeSetting->category1)
                     {{ $culter->category->category_tr }}
                     @php
-                        $categoryName .= $culter->category->category_tr;
+                        $categoryName = $culter->category->category_tr->first();
                     @endphp
                 @endif
             @endforeach
