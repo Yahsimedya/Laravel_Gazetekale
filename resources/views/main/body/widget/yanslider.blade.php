@@ -1,4 +1,4 @@
-<div class="col-md-12 col-sm-12 col-xs-12 col-lg-4  text-center position-relative yanslider padding-left">
+<div class="col-md-4 col-sm-12 col-xs-12 col-lg-4  text-center position-relative yanslider padding-left">
 
     <ul class="nav nav-tabs yan__kategori">
 
@@ -150,14 +150,15 @@
 
             </div>
         </div>
-        @foreach ($ads as $ad)
-            @if ($ad->type == 1 && $ad->category_id == 17)
-                <a href="{{ $ad->link }}"><img class="img-fluid pb-1 pt-2 lazyload"
-                        onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                        data-src="{{ asset($ad->ads) }}"></a>
-            @elseif($ad->type == 2 && $ad->category_id == 17)
-                <div class="w-100">{!! $ad->ad_code !!}</div>
-            @endif
-        @endforeach
-
     </div>
+    @foreach ($ads as $ad)
+        @if ($ad->type == 1 && $ad->category_id == 17)
+            <a href="{{ $ad->link }}"><img class="img-fluid pb-1 pt-2 lazyload"
+                    onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
+                    data-src="{{ asset($ad->ads) }}"></a>
+        @elseif($ad->type == 2 && $ad->category_id == 17)
+            <div class="w-100">{!! $ad->ad_code !!}</div>
+        @endif
+    @endforeach
+
+</div>
