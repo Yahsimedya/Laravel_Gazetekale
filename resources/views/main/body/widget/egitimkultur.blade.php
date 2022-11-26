@@ -6,9 +6,9 @@
             {{-- {{ dd($category) }} --}}
 
             @foreach ($education as $educat)
-                {{ dd($educat) }}
+                {{-- {{ dd($educat) }} --}}
                 {{-- @if (isset($education[0]->category_id)) --}}
-                @if ($educat->category->id == $themeSetting->category1)
+                @if ($educat->category_id == $themeSetting->category1)
                     {{ $educat->category->category_tr }}
                     @php
                         $categoryNameOne = $educat->category->category_tr;
@@ -17,7 +17,7 @@
                 {{-- @endif --}}
             @endforeach
         </div>
-        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $themeSetting->category1) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
     </div>
@@ -70,17 +70,17 @@
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->agenda }}, {{ $themeSetting->sport }});!important;border-bottom:3px solid {{ $themeSetting->agenda }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
-            @foreach ($category as $categorys)
-                @if ($categorys->category->id == $themeSetting->category1)
-                    {{ $categorys->category->category_tr }}
+            @foreach ($kultur as $culter)
+                @if ($culter->category_id == $themeSetting->category1)
+                    {{ $culter->category->category_tr }}
                     @php
-                        $categoryName = $categorys->category->category_tr;
+                        $categoryName = $culter->category->category_tr;
                     @endphp
                 @endif
             @endforeach
         </div>
 
-        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $kultur[0]->category_id) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $themeSetting->category2) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
     </div>
