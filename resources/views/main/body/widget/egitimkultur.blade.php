@@ -3,22 +3,23 @@
     <div class="card-header card-kutu position-relative"
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->economy }}, {{ $themeSetting->politics }});!important;border-bottom:3px solid {{ $themeSetting->economy }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
+            {{ dd($category) }}
 
-            @foreach ($category->where('category_id', $themeSetting->category1)->get() as $categorys)
-                {{ dd($categorys) }}
+            @foreach ($category as $categorys)
+                {{ dd($themeSetting->category1) }}
                 {{-- @if (isset($education[0]->category_id)) --}}
                 @if ($categorys->category->id == $themeSetting->category1)
                     {{ $categorys->category->category_tr }}
                     @php
-                        // $categoryNameOne = $categorys->category->category_tr;
+                        $categoryNameOne = $categorys->category->category_tr;
                     @endphp
                 @endif
                 {{-- @endif --}}
             @endforeach
         </div>
-        {{-- <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a> --}}
+        </a>
     </div>
     <div class="row padding-left mt-2">
         @foreach ($education as $row)
