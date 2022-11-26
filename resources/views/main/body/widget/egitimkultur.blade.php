@@ -3,15 +3,16 @@
     <div class="card-header card-kutu position-relative"
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->economy }}, {{ $themeSetting->politics }});!important;border-bottom:3px solid {{ $themeSetting->economy }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
+
             @foreach ($category as $categorys)
-                @if (isset($education[0]->category_id))
-                    @if ($categorys->id == $education[0]->category_id)
-                        {{ $categorys->category_tr }}
-                        @php
-                            $categoryNameOne = $categorys->category_tr;
-                        @endphp
-                    @endif
+                {{-- @if (isset($education[0]->category_id)) --}}
+                @if ($categorys->category->category_tr == $themeSetting->category1)
+                    {{ $categorys->category->category_tr }}
+                    @php
+                        $categoryNameOne = $categorys->category->category_tr;
+                    @endphp
                 @endif
+                {{-- @endif --}}
             @endforeach
         </div>
         <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
