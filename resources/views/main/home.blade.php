@@ -163,13 +163,11 @@
 
     <!--SLİDER BAŞLAR-->
     <section class="w-100">
-        <div class="container">
-            <div class="row">
+
                 @include('main.body.widget.anaslider')
                 <!--YAN SLİDER ALANI BAŞLAR-->
                 @include('main.body.widget.yanslider')
-            </div>
-        </div>
+
     </section>
 
     <!--DÖVİZ KURLARI BAŞLANGIÇ-->
