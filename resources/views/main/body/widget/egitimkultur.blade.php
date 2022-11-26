@@ -71,7 +71,7 @@
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
             @foreach ($categoryPost as $categorys)
-                @if ($categorys->category->id == $themeSetting->category1)
+                @if ($categorys->category->id == $themeSetting->category2)
                     {{ $categorys->category->category_tr }}
                     @php
                         $categoryName = $categorys->category->category_tr;
@@ -80,7 +80,7 @@
             @endforeach
         </div>
 
-        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $kultur[0]->category_id) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $themeSetting->category2) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
     </div>
