@@ -4,7 +4,7 @@
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->economy }}, {{ $themeSetting->politics }});!important;border-bottom:3px solid {{ $themeSetting->economy }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
-            @foreach ($category->where('category_id', $themeSetting->category1) as $categorys)
+            @foreach ($category->where('category_id', $themeSetting->category1)->get() as $categorys)
                 {{ dd($categorys) }}
                 {{-- @if (isset($education[0]->category_id)) --}}
                 @if ($categorys->category->id == $themeSetting->category1)
