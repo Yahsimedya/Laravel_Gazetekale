@@ -606,6 +606,7 @@ class ExtraController extends Controller
                 ->where('featured', 1)
                 ->limit(4)->latest('created_at')->get();
         });
+        dd($education);
         $kultur = Cache::remember("education", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('education')) return Cache::has('education');
             return Post::where('category_id', '=', $category2)->status()
