@@ -4,24 +4,19 @@
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->economy }}, {{ $themeSetting->politics }});!important;border-bottom:3px solid {{ $themeSetting->economy }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
             @foreach ($category as $categorys)
-                @if (isset($categorys))
-                    @if (isset($education[0]->category_id))
-                        @if ($categorys->id == $education[0]->category_id)
-                            {{ $categorys->category_tr }}
-                            @php
-                                $categoryNameOne = $categorys->category_tr;
-                            @endphp
-                        @endif
+                @if (isset($education[0]->category_id))
+                    @if ($categorys->id == $education[0]->category_id)
+                        {{ $categorys->category_tr }}
+                        @php
+                            $categoryNameOne = $categorys->category_tr;
+                        @endphp
                     @endif
                 @endif
-
             @endforeach
         </div>
-        @if (isset($categoryName))
-            <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
-                <div class="card-kutu__tum position-absolute ">Tümü</div>
-            </a>
-        @endif
+        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
+            <div class="card-kutu__tum position-absolute ">Tümü</div>
+        </a>
     </div>
     <div class="row padding-left mt-2">
         @foreach ($education as $row)
@@ -73,25 +68,19 @@
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
             @foreach ($category as $categorys)
-                @if (isset($categorys))
-                    @if (isset($kultur[0]->category_id))
-                        @if ($categorys->id == $kultur[0]->category_id)
-                            {{ $categorys->category_tr }}
-                            @php
-                                $categoryName = $categorys->category_tr;
-                            @endphp
-                        @endif
-                    @endif
+                @if ($categorys->id == $kultur[0]->category_id)
+                    {{ $categorys->category_tr }}
+                    @php
+                        $categoryName = $categorys->category_tr;
+                    @endphp
                 @endif
-
             @endforeach
         </div>
-        @if (isset($categoryName))
-            <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $kultur[0]->category_id) }}">
-                <div class="card-kutu__tum position-absolute ">Tümü</div>
-            </a>
+
+        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $kultur[0]->category_id) }}">
+            <div class="card-kutu__tum position-absolute ">Tümü</div>
+        </a>
     </div>
-    @endif
     <div class="row padding-left mt-2">
         @foreach ($kultur as $row)
             <div class="col-md-6 padding-left mt-1">
