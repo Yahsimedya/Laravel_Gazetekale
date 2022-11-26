@@ -611,7 +611,7 @@ class ExtraController extends Controller
                 ->limit(6)->latest('created_at')->get();
         });
 
-        dd($education . $kultur);
+        dd($education);
 
 
 
