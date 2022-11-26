@@ -614,7 +614,7 @@ class ExtraController extends Controller
         //         ->limit(6)->latest('created_at')->get();
         // });
         $category = Post::with('category')->get();
-        dd($category);
+        dd($category->category->category_tr);
 
 
 
