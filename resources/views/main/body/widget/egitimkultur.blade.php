@@ -75,14 +75,15 @@
                 {{-- {{ dd($culter->category->category_tr) }} --}}
                 @if ($culter->category_id == $themeSetting->category1)
                     {{ $culter->category->category_tr }}
-                    @php
+                    {{-- @php
                         $categoryName = $culter->category->category_tr;
-                    @endphp
+                    @endphp --}}
                 @endif
             @endforeach
         </div>
-        {{ dd($kultur[0]->category->category_tr) }}
-        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $themeSetting->category2) }}">
+        {{-- {{ dd($kultur[0]->category->category_tr) }} --}}
+        <a
+            href="{{ URL::to('/Category/' . str_slug($kultur[0]->category->category_tr) . '/' . $themeSetting->category2) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
     </div>
