@@ -19,66 +19,7 @@
 
     @endphp
 
-    <style>
-        .owl-theme .owl-dots .owl-dot.active span {
-            background-color: {{ $themeSetting->siteColorTheme }} !important;
-        }
 
-        .slider_span {
-            background-color: {{ $themeSetting->siteColorTheme }} !important;
-        }
-
-        .owl-prev,
-        .anaslider-prev {
-            color: {{ $themeSetting->siteColorTheme }} !important;
-        }
-
-        .owl-next,
-        .anaslider-prev {
-            color: {{ $themeSetting->siteColorTheme }} !important;
-        }
-
-        .ilceler__baslik {
-            color: {{ $themeSetting->siteColorTheme }} !important;
-
-        }
-
-        .ilceler__nav-link.active {
-            color: {{ $themeSetting->siteColorTheme }} !important;
-            border: 1px solid {{ $themeSetting->siteColorTheme }} !important;
-        }
-
-        .ilceler__nav-link:hover {
-            color: {{ $themeSetting->siteColorTheme }} !important;
-        }
-
-        .tns-nav-active {
-            background-color: {{ $themeSetting->siteColorTheme }} !important;
-        }
-
-        .pl-1:hover {
-            color: {{ $themeSetting->siteColorTheme }} !important;
-        }
-
-        .kartlar__header::before {
-            border-left: 2px solid {{ $themeSetting->siteColorTheme }} !important;
-        }
-
-        .slick-active,
-        .slick li {
-            background-image: radial-gradient(farthest-side at 102% 2%, {{ $themeSetting->siteColorTheme }}, {{ $themeSetting->siteColorTheme }});
-        }
-
-        .video li {
-            border: 1px solid {{ $themeSetting->siteColorTheme }};
-        }
-
-        .slick-prev:before,
-        .slick-next:before {
-            color: {{ $themeSetting->siteColorTheme }} !important;
-
-        }
-    </style>
     <script>
         $(document).ready(function(e) {
             $.ajaxSetup({
@@ -169,7 +110,6 @@
                 @include('main.body.widget.anaslider')
                 <!--YAN SLİDER ALANI BAŞLAR-->
                 @include('main.body.widget.yanslider')
-
             </div>
         </div>
     </section>
