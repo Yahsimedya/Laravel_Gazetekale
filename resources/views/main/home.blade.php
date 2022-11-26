@@ -169,9 +169,9 @@
                 <!--YAN SLİDER ALANI BAŞLAR-->
                 {{-- <div class="col-md-8">asdsad</div> --}}
 
-                <div class="col-md-4">asdsad</div>
+                {{-- <div class="col-md-4">asdsad</div> --}}
 
-                {{-- @include('main.body.widget.yanslider'); --}}
+                @include('main.body.widget.yanslider')
             </div>
         </div>
     </section>
