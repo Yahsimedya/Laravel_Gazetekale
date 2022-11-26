@@ -71,15 +71,15 @@
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
 
-            @foreach ($kultur as $culter)
-                {{-- {{ dd($culter->category->category_tr) }} --}}
-                @if ($culter->category_id == $themeSetting->category2)
-                    {{-- {{ $culter->category->category_tr }} --}}
-                    @php
-                        $categoryName = $culter->category->category_tr;
-                    @endphp
-                @endif
-            @endforeach
+            {{-- @foreach ($kultur as $culter) --}}
+            {{-- {{ dd($culter->category->category_tr) }} --}}
+            @if ($kultur[0]->category->category_id == $themeSetting->category2)
+                {{-- {{ $culter->category->category_tr }} --}}
+                @php
+                    $categoryName = $culter->category->category_tr;
+                @endphp
+            @endif
+            {{-- @endforeach --}}
         </div>
         {{-- {{ dd($kultur[0]->category->category_tr) }} --}}
         <a
