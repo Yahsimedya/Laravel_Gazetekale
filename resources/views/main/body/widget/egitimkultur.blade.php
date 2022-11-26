@@ -5,7 +5,7 @@
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
             @foreach ($category as $categorys)
-                {{ dd($categorys) }}
+                {{ dd($themeSetting->category1) }}
                 {{-- @if (isset($education[0]->category_id)) --}}
                 @if ($categorys->category->id == $themeSetting->category1)
                     {{ $categorys->category->category_tr }}
