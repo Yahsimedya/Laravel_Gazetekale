@@ -22,6 +22,8 @@
                                 onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
                                 alt=""></a>
                     @endif
+                </div>
+
             @endif
 
             @php
