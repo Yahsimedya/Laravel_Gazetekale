@@ -619,7 +619,7 @@ class ExtraController extends Controller
         $kultur = Post::with('category')->whereHas('category', function ($categorId) use ($category2) {
             $categorId->where('category_id', $category2);
         })->get();
-        dd($kultur);
+        // dd($kultur);
 
 
 
