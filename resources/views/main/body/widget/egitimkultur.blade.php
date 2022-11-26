@@ -6,7 +6,7 @@
             {{-- {{ dd($category) }} --}}
 
             @foreach ($category as $categorys)
-                {{ dd($themeSetting->category1) }}
+                {{-- {{ dd($themeSetting->category1) }} --}}
                 {{-- @if (isset($education[0]->category_id)) --}}
                 @if ($categorys->category->id == $themeSetting->category1)
                     {{ $categorys->category->category_tr }}
