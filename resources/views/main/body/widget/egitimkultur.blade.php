@@ -10,15 +10,15 @@
                 @if ($categorys->category->id == $themeSetting->category1)
                     {{ $categorys->category->category_tr }}
                     @php
-                        $categoryNameOne = $categorys->category->category_tr;
+                        // $categoryNameOne = $categorys->category->category_tr;
                     @endphp
                 @endif
                 {{-- @endif --}}
             @endforeach
         </div>
-        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
+        {{-- <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a>
+        </a> --}}
     </div>
     <div class="row padding-left mt-2">
         @foreach ($education as $row)
