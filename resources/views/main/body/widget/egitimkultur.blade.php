@@ -70,8 +70,11 @@
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->agenda }}, {{ $themeSetting->sport }});!important;border-bottom:3px solid {{ $themeSetting->agenda }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
+            @php
+                $categoryName = '';
+            @endphp
             @foreach ($kultur as $culter)
-                {{ dd($culter->category->category_tr) }}
+                {{-- {{ dd($culter->category->category_tr) }} --}}
                 @if ($culter->category_id == $themeSetting->category1)
                     {{ $culter->category->category_tr }}
                     @php
