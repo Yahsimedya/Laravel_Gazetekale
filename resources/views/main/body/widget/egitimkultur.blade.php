@@ -5,13 +5,13 @@
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
             {{-- {{ dd($category) }} --}}
 
-            @foreach ($category as $categorys)
-                {{-- {{ dd($themeSetting->category1) }} --}}
+            @foreach ($education as $educat)
+                {{ dd($educat) }}
                 {{-- @if (isset($education[0]->category_id)) --}}
-                @if ($categorys->category->id == $themeSetting->category1)
-                    {{ $categorys->category->category_tr }}
+                @if ($educat->category->id == $themeSetting->category1)
+                    {{ $educat->category->category_tr }}
                     @php
-                        $categoryNameOne = $categorys->category->category_tr;
+                        $categoryNameOne = $educat->category->category_tr;
                     @endphp
                 @endif
                 {{-- @endif --}}
