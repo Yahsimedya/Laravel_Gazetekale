@@ -1,19 +1,19 @@
 <div class="col-md-8 padding-left mx-auto">
-
-    <div class="card-header card-kutu position-relative"
-        style="background-image:linear-gradient(-10deg, {{ $themeSetting->economy }}, {{ $themeSetting->politics }});!important;border-bottom:3px solid {{ $themeSetting->economy }} !important">
-        <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
-            {{-- {{ dd($category) }} --}}
-            @if (isset($education[0]->category->category_tr))
+    @if (isset($education[0]->category->category_tr))
+        <div class="card-header card-kutu position-relative"
+            style="background-image:linear-gradient(-10deg, {{ $themeSetting->economy }}, {{ $themeSetting->politics }});!important;border-bottom:3px solid {{ $themeSetting->economy }} !important">
+            <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
+                {{-- {{ dd($category) }} --}}
                 {{ $education[0]->category->category_tr }}
-        </div>
-        <a
-            href="{{ URL::to('/Category/' . str_slug($education[0]->category->category_tr) . '/' . $themeSetting->category1) }}">
-            <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a>
-        @endif
+            </div>
+            <a
+                href="{{ URL::to('/Category/' . str_slug($education[0]->category->category_tr) . '/' . $themeSetting->category1) }}">
+                <div class="card-kutu__tum position-absolute ">Tümü</div>
+            </a>
 
-    </div>
+        </div>
+    @endif
+
     <div class="row padding-left mt-2">
         @foreach ($education as $row)
             <div class="col-md-6 padding-left mt-1">
@@ -58,21 +58,20 @@
         <!--REKLAM ALANI-->
     </div>
 
-
-    <div class="card-header card-kutu position-relative"
-        style="background-image:linear-gradient(-10deg, {{ $themeSetting->agenda }}, {{ $themeSetting->sport }});!important;border-bottom:3px solid {{ $themeSetting->agenda }} !important">
-        <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
-            @if (isset($kultur[0]->category->category_tr))
+    @if (isset($kultur[0]->category->category_tr))
+        <div class="card-header card-kutu position-relative"
+            style="background-image:linear-gradient(-10deg, {{ $themeSetting->agenda }}, {{ $themeSetting->sport }});!important;border-bottom:3px solid {{ $themeSetting->agenda }} !important">
+            <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
                 {{ $kultur[0]->category->category_tr }}
-            @endif
-        </div>
-        <a
-            href="{{ URL::to('/Category/' . str_slug($kultur[0]->category->category_tr) . '/' . $themeSetting->category2) }}">
-            <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a>
-        @endif
+            </div>
+            <a
+                href="{{ URL::to('/Category/' . str_slug($kultur[0]->category->category_tr) . '/' . $themeSetting->category2) }}">
+                <div class="card-kutu__tum position-absolute ">Tümü</div>
+            </a>
 
-    </div>
+        </div>
+    @endif
+
     <div class="row padding-left mt-2">
         @foreach ($kultur as $row)
             <div class="col-md-6 padding-left mt-1">
