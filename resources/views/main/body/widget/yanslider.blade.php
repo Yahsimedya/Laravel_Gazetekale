@@ -1,4 +1,4 @@
-<div class="col-md-4 col-sm-12 col-xs-12 col-lg-4  text-center position-relative yanslider padding-left">
+<div class="col-md-12 col-sm-12 col-xs-12 col-lg-4  text-center position-relative yanslider padding-left">
 
     <ul class="nav nav-tabs yan__kategori">
 
@@ -161,8 +161,4 @@
         @endif
     @endforeach
 
-</div>
-
-
-</div>
 </div>
