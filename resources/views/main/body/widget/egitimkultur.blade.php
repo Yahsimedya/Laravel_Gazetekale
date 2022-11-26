@@ -4,7 +4,9 @@
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->economy }}, {{ $themeSetting->politics }});!important;border-bottom:3px solid {{ $themeSetting->economy }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
             {{-- {{ dd($category) }} --}}
-            {{ $education[0]->category->category_tr }}
+            @if (isset($education[0]->category->category_tr))
+                {{ $education[0]->category->category_tr }}
+            @endif
         </div>
         <a
             href="{{ URL::to('/Category/' . str_slug($education[0]->category->category_tr) . '/' . $themeSetting->category1) }}">
@@ -59,7 +61,9 @@
     <div class="card-header card-kutu position-relative"
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->agenda }}, {{ $themeSetting->sport }});!important;border-bottom:3px solid {{ $themeSetting->agenda }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
-            {{ $kultur[0]->category->category_tr }}
+            @if (isset($kultur[0]->category->category_tr))
+                {{ $kultur[0]->category->category_tr }}
+            @endif
         </div>
         <a
             href="{{ URL::to('/Category/' . str_slug($kultur[0]->category->category_tr) . '/' . $themeSetting->category2) }}">
