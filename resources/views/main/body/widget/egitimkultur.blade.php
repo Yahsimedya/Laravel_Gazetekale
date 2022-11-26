@@ -6,12 +6,13 @@
             {{-- {{ dd($category) }} --}}
             @if (isset($education[0]->category->category_tr))
                 {{ $education[0]->category->category_tr }}
-            @endif
         </div>
         <a
             href="{{ URL::to('/Category/' . str_slug($education[0]->category->category_tr) . '/' . $themeSetting->category1) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
+        @endif
+
     </div>
     <div class="row padding-left mt-2">
         @foreach ($education as $row)
@@ -69,6 +70,8 @@
             href="{{ URL::to('/Category/' . str_slug($kultur[0]->category->category_tr) . '/' . $themeSetting->category2) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
+        @endif
+
     </div>
     <div class="row padding-left mt-2">
         @foreach ($kultur as $row)
