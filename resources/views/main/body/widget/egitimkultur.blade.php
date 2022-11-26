@@ -73,12 +73,12 @@
 
             {{-- @foreach ($kultur as $culter) --}}
             {{-- {{ dd($culter->category->category_tr) }} --}}
-            @if ($kultur[0]->category->category_id == $themeSetting->category2)
-                {{ $kultur[0]->category->category_tr }}
-                @php
+            {{-- @if ($kultur[0]->category->category_id == $themeSetting->category2) --}}
+            {{ $kultur[0]->category->category_tr }}
+            {{-- @php
                     $categoryName = $culter->category->category_tr;
                 @endphp
-            @endif
+            @endif --}}
             {{-- @endforeach --}}
         </div>
         {{-- {{ dd($kultur[0]->category->category_tr) }} --}}
