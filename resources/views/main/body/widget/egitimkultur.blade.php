@@ -4,14 +4,17 @@
         style="background-image:linear-gradient(-10deg, {{ $themeSetting->economy }}, {{ $themeSetting->politics }});!important;border-bottom:3px solid {{ $themeSetting->economy }} !important">
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
             @foreach ($category as $categorys)
-                @if (isset($education[0]->category_id))
-                    @if ($categorys->id == $education[0]->category_id)
-                        {{ $categorys->category_tr }}
-                        @php
-                            $categoryNameOne = $categorys->category_tr;
-                        @endphp
+                @if (isset($categorys))
+                    @if (isset($education[0]->category_id))
+                        @if ($categorys->id == $education[0]->category_id)
+                            {{ $categorys->category_tr }}
+                            @php
+                                $categoryNameOne = $categorys->category_tr;
+                            @endphp
+                        @endif
                     @endif
                 @endif
+
             @endforeach
         </div>
         <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
@@ -68,14 +71,17 @@
         <div class="card-kutu__link"><i class="fa fa-align-left mr-2"></i>
 
             @foreach ($category as $categorys)
-                @if (isset($kultur[0]->category_id))
-                    @if ($categorys->id == $kultur[0]->category_id)
-                        {{ $categorys->category_tr }}
-                        @php
-                            $categoryName = $categorys->category_tr;
-                        @endphp
+                @if (isset($categorys))
+                    @if (isset($kultur[0]->category_id))
+                        @if ($categorys->id == $kultur[0]->category_id)
+                            {{ $categorys->category_tr }}
+                            @php
+                                $categoryName = $categorys->category_tr;
+                            @endphp
+                        @endif
                     @endif
                 @endif
+
             @endforeach
         </div>
 
