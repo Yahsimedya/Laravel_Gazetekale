@@ -7,16 +7,16 @@
                 @if (isset($education[0]->category_id))
                     @if ($categorys->id == $education[0]->category_id)
                         {{ $categorys->category_tr }}
-                        @php
+                        {{-- @php
                             $categoryNameOne = $categorys->category_tr;
-                        @endphp
+                        @endphp --}}
                     @endif
                 @endif
             @endforeach
         </div>
-        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
+        {{-- <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a>
+        </a> --}}
     </div>
     <div class="row padding-left mt-2">
         @foreach ($education as $row)
@@ -71,17 +71,17 @@
                 @if (isset($kultur[0]->category_id))
                     @if ($categorys->id == $kultur[0]->category_id)
                         {{ $categorys->category_tr }}
-                        @php
+                        {{-- @php
                             $categoryName = $categorys->category_tr;
-                        @endphp
+                        @endphp --}}
                     @endif
                 @endif
             @endforeach
         </div>
 
-        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $kultur[0]->category_id) }}">
+        {{-- <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $kultur[0]->category_id) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a>
+        </a> --}}
     </div>
     <div class="row padding-left mt-2">
         @foreach ($kultur as $row)
