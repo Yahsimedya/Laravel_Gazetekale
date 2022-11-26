@@ -75,15 +75,12 @@
                 @if ($culter->category_id == $themeSetting->category1)
                     {{ $culter->category->category_tr }}
                     @php
-                        $categoryName = $kultur[0]
-                            ->category()
-                            ->where('id', $themeSetting->category2)
-                            ->first();
+                        $categoryName = $culter->category->category_tr;
                     @endphp
                 @endif
             @endforeach
         </div>
-        {{ dd($categoryName) }}
+        {{ dd($kultur[0]->category()->where('id', $themeSetting->category2)->first()) }}
         <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $themeSetting->category2) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
