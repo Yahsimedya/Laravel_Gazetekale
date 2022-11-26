@@ -17,7 +17,7 @@
                 {{-- @endif --}}
             @endforeach
         </div>
-        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
+        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $themeSetting->category1) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
     </div>
