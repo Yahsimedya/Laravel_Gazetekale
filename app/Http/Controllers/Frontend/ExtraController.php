@@ -624,12 +624,9 @@ class ExtraController extends Controller
 
 
 
-
-        $Ilcehaberleri = Cache::remember("education", Carbon::now()->addYear(), function () {
-
-            return Post::limit(8)->where('subdistrict_id', $ilce->id)->get();
-        });
-
+        foreach ($ilceler as $ilce) {
+            $Ilcehaberleri = Post::limit(8)->whereIn('subdistrict_id', $ilce->id)->get();
+        }
         //        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
         //            if (Cache::has('authors')) return Cache::has('authors');
         //        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
