@@ -17,9 +17,11 @@
 
             @endforeach
         </div>
-        <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
-            <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a>
+        @if (isset($categoryName))
+            <a href="{{ URL::to('/Category/' . str_slug($categoryNameOne) . '/' . $education[0]->category_id) }}">
+                <div class="card-kutu__tum position-absolute ">Tümü</div>
+            </a>
+        @endif
     </div>
     <div class="row padding-left mt-2">
         @foreach ($education as $row)
@@ -84,11 +86,12 @@
 
             @endforeach
         </div>
-
-        <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $kultur[0]->category_id) }}">
-            <div class="card-kutu__tum position-absolute ">Tümü</div>
-        </a>
+        @if (isset($categoryName))
+            <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $kultur[0]->category_id) }}">
+                <div class="card-kutu__tum position-absolute ">Tümü</div>
+            </a>
     </div>
+    @endif
     <div class="row padding-left mt-2">
         @foreach ($kultur as $row)
             <div class="col-md-6 padding-left mt-1">
