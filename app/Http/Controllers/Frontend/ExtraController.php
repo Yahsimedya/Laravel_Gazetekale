@@ -613,8 +613,11 @@ class ExtraController extends Controller
                 ->where('featured', 1)
                 ->limit(6)->latest('created_at')->get();
         });
-        $categoryPost = Post::with('category')->get();
-        // dd($category[0]->category->category_tr);
+        $categoryPost = Post::with('category')->whereHas('category', function ($categorId) use ($category1) {
+            $categorId->where('category_id', $category1);
+        })->get();
+
+        dd($categoryPost);
 
 
 
