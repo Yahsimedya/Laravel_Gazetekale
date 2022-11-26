@@ -81,7 +81,7 @@
                 @endif
             @endforeach
         </div>
-        {{ dd($culter->category->category_tr->first()) }}
+        {{ dd($kultur[0]->category->category_tr->first()) }}
         <a href="{{ URL::to('/Category/' . str_slug($categoryName) . '/' . $themeSetting->category2) }}">
             <div class="card-kutu__tum position-absolute ">Tümü</div>
         </a>
