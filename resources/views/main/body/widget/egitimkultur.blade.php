@@ -76,7 +76,7 @@
                     {{ $culter->category->category_tr }}
 
                     @foreach ($culter->category as $catName)
-                        {{ $categoryName = $catName }}
+                        {{ $categoryName = $catName->category_tr }}
                         {{ dd($categoryName) }}
                     @endforeach
                 @endif
