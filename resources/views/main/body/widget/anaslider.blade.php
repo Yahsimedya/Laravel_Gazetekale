@@ -1,9 +1,4 @@
 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-8  padding-left">
-    <div class="item d-inline">
-        <span class="slider_span"><a href="#" class="mx-auto text-center align-middle text-white"><i
-                    class="fa fa-th-large"></i></a></span>
-
-    </div>
     <div class="owl-carousel owl-theme  shadow anaslider" id="">
         @php
             $k = 1;
@@ -33,6 +28,14 @@
     @php
         $k++;
     @endphp
-    @endfor
+</div>
+@endfor
+
+
+<div class="item d-inline">
+    <span class="slider_span"><a href="#" class="mx-auto text-center align-middle text-white"><i
+                class="fa fa-th-large"></i></a></span>
+
+</div>
 
 </div>
