@@ -536,7 +536,7 @@ class ExtraController extends Controller
         $ilceler = Cache::remember("ilceler", Carbon::now()->addYear(), function () {
             if (Cache::has('ilceler')) return Cache::has('ilceler');
             //Buraya il seçtirerek ilçeler sıralanacak
-            return Subdistrict::where('district_id', '=', '71')->orderByRaw('subdistrict_tr')->get();
+            return Subdistrict::where('district_id', '=', '71')->orderByRaw('subdistrict_tr')->latest()->get();
         });
         //        $category = Category::latest()->get();
         //        dd($category->id);
