@@ -13,7 +13,7 @@ class AddVideoLogoWebsiteSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Website_settings', function (Blueprint $table) {
+        Schema::table('website_settings', function (Blueprint $table) {
             //
             $table->string('video_logo')->nullable();
         });
@@ -26,7 +26,7 @@ class AddVideoLogoWebsiteSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('Website_settings', function (Blueprint $table) {
+        Schema::table('website_settings', function (Blueprint $table) {
             //
         });
     }
