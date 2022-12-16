@@ -167,13 +167,13 @@ class PostController extends Controller
 
                 'category_id' => 'required',
                 'district_id' => 'required',
-                'image' => 'required',
+                // 'image' => 'required',
 
             ],
             [
                 'category_id.required' => 'Kategori Seçimeniz Gerekmektedir.',
                 'district_id.required' => 'Bölge Seçimi Yapmanız Gerekmektedir.',
-                'image.required' => 'Fotoğraf Alanı Zorunludur',
+                // 'image.required' => 'Fotoğraf Alanı Zorunludur',
 
             ]
         );
