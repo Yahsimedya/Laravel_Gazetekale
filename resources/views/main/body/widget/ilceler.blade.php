@@ -37,6 +37,7 @@
                                 @php
                                     $Ilcehaberleri = App\Models\Post::where('subdistrict_id', $ilce->id)
                                         ->limit(8)
+                                        ->latest()
                                         ->get();
                                 @endphp
                                 @foreach ($Ilcehaberleri as $haber)
