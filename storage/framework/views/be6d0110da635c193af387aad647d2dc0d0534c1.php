@@ -1,18 +1,17 @@
-@extends('admin.admin_master')
-@section('admin')
+<?php $__env->startSection('admin'); ?>
     <div class="content">
 
         <div class="card">
 
             <div class="card-body">
-                <form action="{{ route('websetting.update', $websetting) }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" value="{{ $websetting->logo }}" name="old_image" class="form-control tokenfield">
-                    <input type="hidden" value="{{ $websetting->logowhite }}" name="old_logowhite"
+                <form action="<?php echo e(route('websetting.update', $websetting)); ?>" method="post" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" value="<?php echo e($websetting->logo); ?>" name="old_image" class="form-control tokenfield">
+                    <input type="hidden" value="<?php echo e($websetting->logowhite); ?>" name="old_logowhite"
                         class="form-control tokenfield">
-                    <input type="hidden" value="{{ $websetting->defaultImage }}" name="old_defaultImage"
+                    <input type="hidden" value="<?php echo e($websetting->defaultImage); ?>" name="old_defaultImage"
                         class="form-control tokenfield">
-                    <input type="hidden" value="{{ $websetting->video_logo }}" name="old_videoLogo"
+                    <input type="hidden" value="<?php echo e($websetting->video_logo); ?>" name="old_videoLogo"
                         class="form-control tokenfield">
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">Web Site Ayarları</legend>
@@ -20,7 +19,7 @@
                             <label class="col-form-label col-lg-2">Logo</label>
                             <div class="col-lg-10">
 
-                                <img src="{{ asset($websetting->logo) }}" width="200" alt="">
+                                <img src="<?php echo e(asset($websetting->logo)); ?>" width="200" alt="">
                             </div>
                         </div>
 
@@ -41,7 +40,7 @@
 
                             <div class="col-lg-10">
 
-                                <img src="{{ asset($websetting->logowhite) }}" width="200" alt="">
+                                <img src="<?php echo e(asset($websetting->logowhite)); ?>" width="200" alt="">
                             </div>
                         </div>
 
@@ -62,7 +61,7 @@
 
                             <div class="col-lg-10">
 
-                                <img src="{{ asset($websetting->video_logo) }}" width="200" alt="">
+                                <img src="<?php echo e(asset($websetting->video_logo)); ?>" width="200" alt="">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -78,40 +77,68 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Adres</label>
                             <div class="col-lg-10">
-                                <input type="text" name="adress" value="{{ $websetting->adress }}" class="form-control">
-                                @error('adress')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" name="adress" value="<?php echo e($websetting->adress); ?>" class="form-control">
+                                <?php $__errorArgs = ['adress'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="text-danger"><?php echo e($message); ?></span>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Email</label>
                             <div class="col-lg-10">
-                                <input type="text" name="email" value="{{ $websetting->email }}" class="form-control">
-                                @error('youtube')
-                                    <span class="text-danger">{{ $email }}</span>
-                                @enderror
+                                <input type="text" name="email" value="<?php echo e($websetting->email); ?>" class="form-control">
+                                <?php $__errorArgs = ['youtube'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="text-danger"><?php echo e($email); ?></span>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Telefon</label>
                             <div class="col-lg-10">
-                                {{-- <input type="text" name="meta_description" value="{{$websetting->meta_description}}" class="form-control"> --}}
-                                <input type="text" name="phone" class="form-control" value="{{ $websetting->phone }}">
+                                
+                                <input type="text" name="phone" class="form-control" value="<?php echo e($websetting->phone); ?>">
 
-                                @error('phone')
-                                    <span class="text-danger">{{ $phone }}</span>
-                                @enderror
+                                <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="text-danger"><?php echo e($phone); ?></span>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Hakkımızda</label>
                             <div class="col-lg-10">
-                                {{-- <input type="text" name="google_analytics" value="{{$websetting->instagram}}" class="form-control"> --}}
-                                <textarea name="about" cols="30" class="form-control" rows="10">{{ $websetting->about }}</textarea>
-                                @error('about')
-                                    <span class="text-danger">{{ $about }}</span>
-                                @enderror
+                                
+                                <textarea name="about" cols="30" class="form-control" rows="10"><?php echo e($websetting->about); ?></textarea>
+                                <?php $__errorArgs = ['about'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="text-danger"><?php echo e($about); ?></span>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
 
@@ -130,7 +157,7 @@
                             <div class="col-md-4">
 
                                 <div class="form-group">
-                                    <img width="100%" src="{{ asset($websetting->defaultImage) }}" id="showImage"
+                                    <img width="100%" src="<?php echo e(asset($websetting->defaultImage)); ?>" id="showImage"
                                         alt="">
                                 </div>
 
@@ -140,15 +167,12 @@
                         </div>
 
 
-                        {{-- <div class="form-group row">
-                            <label class="col-form-label col-lg-2">Input with placeholder</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="Enter your username...">
-                            </div>
-                        </div> --}}
+                        
                         <button type="submit" class="btn bg-success float-right">Düzenle</button>
                 </form>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.admin_master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\laravel_gazetekale\resources\views/backend/setting/webisitesetting.blade.php ENDPATH**/ ?>

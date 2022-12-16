@@ -11,6 +11,7 @@ class WebsiteSetting extends Model
     protected $fillable = [
         'logo',
         'logowhite',
+        'video_logo',
         'adress',
         'phone',
         'email',

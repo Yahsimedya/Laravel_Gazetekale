@@ -26,11 +26,12 @@ class WebsiteSettingController extends Controller
     public function update(Request $request, WebsiteSetting $websetting)
     {
         $data = $request->all();
-
+        // dd($request->video_logo);
         //        $websetting->update($request->all());
         $old_image = $request->old_image;
         $old_defaultImage = $request->old_defaultImage;
         $old_logowhite = $request->old_logowhite;
+        $old_videoLogo = $request->old_videoLogo;
 
         $yil = Carbon::now()->year;
         $ay = Carbon::now()->month;
@@ -43,6 +44,7 @@ class WebsiteSettingController extends Controller
         $image = $request->logo;
         $defaultImage = $request->defaultImage;
         $logowhite = $request->logowhite;
+        $videoLogo = $request->video_logo;
 
         if (isset($image)) {
             $image_one = uniqid() . '.' . $image->getClientOriginalName();
@@ -71,7 +73,15 @@ class WebsiteSettingController extends Controller
             $data['logowhite'] = $old_logowhite;
             // $websetting->update($request->all());
         }
-
+        if (isset($videoLogo)) {
+            $image_four = uniqid() . '.' . $videoLogo->getClientOriginalName();
+            Image::make($videoLogo)->save('image/logo/' . $yil . '/' . $ay . '/' . $image_four);
+            $data['video_logo'] = 'image/logo/' . $yil . '/' . $ay . '/' . $image_four;
+            WebsiteSetting::find($websetting->id)->update($data);
+        } else {
+            $data['video_logo'] = $old_videoLogo;
+            // $websetting->update($request->all());
+        }
         // $websetting->update($request->all());
 
         return Redirect()->route('website.setting');
