@@ -22,16 +22,17 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    public function HaberAra(Request $request) {
-//        dd($request->all());
+    public function HaberAra(Request $request)
+    {
+        //        dd($request->all());
 
-        $text= $request->get('haber');
+        $text = $request->get('haber');
 
         // $foto=$dbPDO->prepare("SELECT haberfoto_isim from haber_foto where haberfoto_isim  LIKE concat( '%', :haberfoto_isim, '%')");
-//        $stmt=$db->genelsorgu("SELECT * from haber where haber_ad  LIKE '%$text%' order by haber_Zaman DESC   limit 50");
-        $search=Post::where('title_tr','LIKE','%'.$text.'%')->limit(30)->latest()->get();
-//        $searchPost = DB::posts()->where('title_tr','LIKE','%'.$text.'%')->get();
-//        $searchPost = User::where('name','LIKE',"%".$text."%")->get();
+        //        $stmt=$db->genelsorgu("SELECT * from haber where haber_ad  LIKE '%$text%' order by haber_Zaman DESC   limit 50");
+        $search = Post::where('title_tr', 'LIKE', '%' . $text . '%')->limit(30)->latest()->get();
+        //        $searchPost = DB::posts()->where('title_tr','LIKE','%'.$text.'%')->get();
+        //        $searchPost = User::where('name','LIKE',"%".$text."%")->get();
         $output = '<table id="example1" class="table datatable-responsive">
             <thead>
               <tr>
@@ -46,21 +47,20 @@ class PostController extends Controller
               </tr>
             </thead>
             <tbody id="sortable">';
-        $i=0;
-//        dd($search);
-        foreach($search as $row)
-        {
+        $i = 0;
+        //        dd($search);
+        foreach ($search as $row) {
             $i++;
-            $baslik=$row->title_tr;
-            $foto=$row->image;
+            $baslik = $row->title_tr;
+            $foto = $row->image;
 
             $output .= ' <tr id="">
-          <td>'.$i.'</td>
-           <td class="sortable text-success">'.$baslik.'</td>
-          <td>'.$row->category->category_tr.'</td>
-          <td>'.$row->districts->district_tr.'</td>
-          <td ><img width="100" src="'.asset($row->image).'"></td>
-          <td>'.Carbon::parse($row->created_at)->diffForHumans().'</td>
+          <td>' . $i . '</td>
+           <td class="sortable text-success">' . $baslik . '</td>
+          <td>' . $row->category->category_tr . '</td>
+          <td>' . $row->districts->district_tr . '</td>
+          <td ><img width="100" src="' . asset($row->image) . '"></td>
+          <td>' . Carbon::parse($row->created_at)->diffForHumans() . '</td>
                <td> </td>
                    <td class="text-center">
                         <div class="list-icons">
@@ -70,14 +70,12 @@ class PostController extends Controller
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="'.route('edit.post',$row).'" class="dropdown-item"><i class="icon-pencil6"></i> Düzenle</a>
-                                    <a href="'.route('delete.post',$row).'"  class="dropdown-item"><i class="icon-trash"></i>Sil</a>
+                                    <a href="' . route('edit.post', $row) . '" class="dropdown-item"><i class="icon-pencil6"></i> Düzenle</a>
+                                    <a href="' . route('delete.post', $row) . '"  class="dropdown-item"><i class="icon-trash"></i>Sil</a>
                                 </div>
                             </div>
                         </div>
                     </td>';
-
-
         }
 
 
@@ -85,43 +83,43 @@ class PostController extends Controller
 
 
 
-//        return view('backend.post.index', compact('search'));
+        //        return view('backend.post.index', compact('search'));
 
-//        return response()->json($baslik);
-//        return response($baslik);
+        //        return response()->json($baslik);
+        //        return response($baslik);
 
-//        return  $baslik;
+        //        return  $baslik;
 
 
-//        $output .= '</ul>';
+        //        $output .= '</ul>';
 
-//        return $searchPost->title_tr;
-//        return $data = '<div class="col-md-12">'.$searchPost->title_tr.'</div>';
-//        return \Response::json($searchPost);
+        //        return $searchPost->title_tr;
+        //        return $data = '<div class="col-md-12">'.$searchPost->title_tr.'</div>';
+        //        return \Response::json($searchPost);
 
-//        return view('backend.post.index')->with('data', $searchPost);
-//        return $searchPost= '  <table id="example1" class="table table-bordered table-striped">
-//            <thead>
-//              <tr>
-//                <th align="center" width="5">#</th>
-//                <th>Haber Görseli</th>
-//                <th>Haber Başlığı</th>
-//                <th width="150">Tarih</th>
-//                <th width="150">Kategori</th>
-//
-//                <th></th>
-//                <th></th>
-//                <th></th>
-//                <th></th>
-//                <th>Durum</th>
-//                <th>Resim İşlemleri</th>
-//                <th></th>
-//                <th></th>
-//
-//              </tr>
-//            </thead>
-//            <tbody id="sortable">
-//            ';
+        //        return view('backend.post.index')->with('data', $searchPost);
+        //        return $searchPost= '  <table id="example1" class="table table-bordered table-striped">
+        //            <thead>
+        //              <tr>
+        //                <th align="center" width="5">#</th>
+        //                <th>Haber Görseli</th>
+        //                <th>Haber Başlığı</th>
+        //                <th width="150">Tarih</th>
+        //                <th width="150">Kategori</th>
+        //
+        //                <th></th>
+        //                <th></th>
+        //                <th></th>
+        //                <th></th>
+        //                <th>Durum</th>
+        //                <th>Resim İşlemleri</th>
+        //                <th></th>
+        //                <th></th>
+        //
+        //              </tr>
+        //            </thead>
+        //            <tbody id="sortable">
+        //            ';
 
     }
     //
@@ -163,7 +161,7 @@ class PostController extends Controller
 
     public function CreatePosts(Request $request)
     {
-
+        // dd($request->all());
         $validatedData = $request->validate(
             [
 
@@ -180,48 +178,48 @@ class PostController extends Controller
             ]
         );
 
-//        $post=Post::create([
-//            'category_id'=>$request->category_id,
-//            'subcategory_id'=>$request->category_id,
-//            'district_id'=>$request->district_id,
-//            'subdistrict_id'=>$request->subdistrict_id,
-////            'user_id'=>$request->user_id,
-//            'title_tr'=>$request->title_tr,
-//            'subtitle_tr'=>$request->subtitle_tr,
-//            'subtitle_en'=>$request->subtitle_en,
-////            'image'=>$price,
-//            'details_tr'=>$request->details_tr,
-//            'details_en'=>$request->details_en,
-//            'tags_tr'=>$request->tags_tr,
-//            'tags_en'=>$request->tags_en,
-//            'keywords_tr'=>$request->keywords_tr,
-//            'description_tr'=>$request->description_tr,
-//            'keywords_en'=>$request->keywords_en,
-//            'description_en'=>$request->description_en,
-//            'manset'=>$request->manset,
-//            'story'=>$request->story,
-//            'headline'=>$request->headline,
-//            'featured'=>$request->featured,
-//            'surmanset'=>$request->surmanset,
-//            'haber_iha_kod'=>$request->haber_iha_kod,
-//            'headlinetag'=>$request->headlinetag,
-//            'flahtag'=>$request->flahtag,
-//            'attentiontag'=>$request->attentiontag,
-//            'surmanset_photo'=>$request->surmanset_photo,
-//            'bigthumbnail'=>$request->bigthumbnail,
-//            'post_date'=>$request->post_date,
-//            'post_month'=>$request->post_month,
-//            'status'=>$request->status,
-//            'posts_video'=>$request->posts_video,
-//            'slug_tr'=>$request->slug_tr,
-//            'slug_en'=>$request->slug_en,
-//            'publish_date'=>$request->publish_date,
-//        ]);
+        //        $post=Post::create([
+        //            'category_id'=>$request->category_id,
+        //            'subcategory_id'=>$request->category_id,
+        //            'district_id'=>$request->district_id,
+        //            'subdistrict_id'=>$request->subdistrict_id,
+        ////            'user_id'=>$request->user_id,
+        //            'title_tr'=>$request->title_tr,
+        //            'subtitle_tr'=>$request->subtitle_tr,
+        //            'subtitle_en'=>$request->subtitle_en,
+        ////            'image'=>$price,
+        //            'details_tr'=>$request->details_tr,
+        //            'details_en'=>$request->details_en,
+        //            'tags_tr'=>$request->tags_tr,
+        //            'tags_en'=>$request->tags_en,
+        //            'keywords_tr'=>$request->keywords_tr,
+        //            'description_tr'=>$request->description_tr,
+        //            'keywords_en'=>$request->keywords_en,
+        //            'description_en'=>$request->description_en,
+        //            'manset'=>$request->manset,
+        //            'story'=>$request->story,
+        //            'headline'=>$request->headline,
+        //            'featured'=>$request->featured,
+        //            'surmanset'=>$request->surmanset,
+        //            'haber_iha_kod'=>$request->haber_iha_kod,
+        //            'headlinetag'=>$request->headlinetag,
+        //            'flahtag'=>$request->flahtag,
+        //            'attentiontag'=>$request->attentiontag,
+        //            'surmanset_photo'=>$request->surmanset_photo,
+        //            'bigthumbnail'=>$request->bigthumbnail,
+        //            'post_date'=>$request->post_date,
+        //            'post_month'=>$request->post_month,
+        //            'status'=>$request->status,
+        //            'posts_video'=>$request->posts_video,
+        //            'slug_tr'=>$request->slug_tr,
+        //            'slug_en'=>$request->slug_en,
+        //            'publish_date'=>$request->publish_date,
+        //        ]);
         $post = Post::create($request->all());
-//        $post = Carbon::parse($request->publish_date);
-//dd($post->publish_date);
-//        dd($post->Carbon::createFromFormat('Y-m-d\TH:i:s.0000000 P', $publish_date));
- if($request->publish_date=Carbon::now()->format('Y-m-d')) {
+        //        $post = Carbon::parse($request->publish_date);
+        //dd($post->publish_date);
+        //        dd($post->Carbon::createFromFormat('Y-m-d\TH:i:s.0000000 P', $publish_date));
+        if ($request->publish_date = Carbon::now()->format('Y-m-d')) {
 
             $yil = Carbon::now()->year;
             $ay = Carbon::now()->month;
@@ -238,7 +236,7 @@ class PostController extends Controller
 
                 $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
 
-                Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name,68,'jpg');
+                Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name, 68, 'jpg');
 
                 $post->image = $new_image_name;
             }
@@ -246,14 +244,13 @@ class PostController extends Controller
             $tagNames = explode(',', $request->get('tag')[0]);
             $tagIds = [];
             foreach ($tagNames as $tagName) {
-//                    $post->tag()->create(['name'=>$tagName]);
+                //                    $post->tag()->create(['name'=>$tagName]);
                 //Or to take care of avoiding duplication of Tag
                 //you could substitute the above line as
                 $tag = Tag::firstOrCreate(['name' => $tagName]);
                 if ($tag) {
                     $tagIds[] = $tag->id;
                 }
-
             }
             $post->tag()->sync($tagIds);
 
@@ -264,26 +261,24 @@ class PostController extends Controller
                 'alert-type' => 'success'
             ]);
         }
-
-
     }
 
     public function EditPosts(Post $post)
     {
-//dd($post->id);
+        //dd($post->id);
 
         $category = DB::table('categories')->get();
         $district = DB::table('districts')->get();
         $tags = Tag::join('post_tags', 'tags.id', '=', 'post_tags.tag_id')
             ->select(['tags.*', 'post_tags.tag_id'])
             ->where('post_tags.post_id', $post->id)
-//            ->latest('created_at')
+            //            ->latest('created_at')
             ->get();
-        $users =Auth::user()->id;
-//        dd($post);
-//        $tags = Tag::find($post->id);
+        $users = Auth::user()->id;
+        //        dd($post);
+        //        $tags = Tag::find($post->id);
 
-//        $tags = Tag::orderBy('name','asc')->get();
+        //        $tags = Tag::orderBy('name','asc')->get();
 
 
         return view('backend.post.edit', compact('post', 'category', 'district', 'tags'));
@@ -323,7 +318,7 @@ class PostController extends Controller
             $image_one = uniqid() . '.' . $image->getClientOriginalName();
 
             $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
-            Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name,68,'jpg');
+            Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name, 68, 'jpg');
             $post->image = $new_image_name; // set new image to the object, replace tmp image with new right path
 
             if (file_exists($request->old_image)) {
@@ -334,14 +329,13 @@ class PostController extends Controller
         $tagNames = explode(',', $request->get('tag')[0]); //
         $tagIds = [];
         foreach ($tagNames as $tagName) {
-//                    $post->tag()->create(['name'=>$tagName]);
+            //                    $post->tag()->create(['name'=>$tagName]);
             //Or to take care of avoiding duplication of Tag
             //you could substitute the above line as
             $tag = Tag::firstOrCreate(['name' => $tagName]);
             if ($tag) {
                 $tagIds[] = $tag->id;
             }
-
         }
         $post['manset'] = $request->manset == null ? 0 : 1;
         $post['story'] = $request->story == null ? 0 : 1;
@@ -382,7 +376,6 @@ class PostController extends Controller
             );
         }
         return Redirect()->route('all.post')->with($notification);
-
     }
 
     public function DeletePost(Post $post)
@@ -391,7 +384,7 @@ class PostController extends Controller
         if (file_exists($post->image)) {
             unlink($post->image);
         }
-//DB::table('posts')->where('id',$id)->delete();
+        //DB::table('posts')->where('id',$id)->delete();
         $post->delete();
         $notification = array(
             'message' => 'Haber Başarıyla Silindi',
@@ -404,7 +397,7 @@ class PostController extends Controller
     public function GetSubCategory($category_id)
     {
         $sub = Subcategory::find($category_id)->get();
-        if($sub) {
+        if ($sub) {
             return response()->json($sub);
         }
     }
@@ -432,21 +425,18 @@ class PostController extends Controller
         if ($image) {
             $image_one = uniqid() . '.' . Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $image->getClientOriginalExtension();
             $new_image_name = 'storage/orderImage/' . $yil . '/' . $ay . '/' . $image_one;
-            Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name,68,'jpeg');
+            Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name, 68, 'jpeg');
             OrderImages::insert([
                 "haberId" => $id,
                 "image" => $new_image_name,
             ]);
             return response()->json(['success' => $new_image_name]);
         }
-
-
     }
 
     public function Orderphotoupdate(Request $request, $update, $id)
     {
         dd("update" . $request);
-
     }
 
     public function Orderphotodelete(Request $request, $id)
@@ -458,10 +448,7 @@ class PostController extends Controller
         foreach ($images as $image) {
 
             DB::table('order_images')->where('id', '=', $image)->delete();
-
         }
-        return Redirect()->route('all.orderImagesPage',$id);
+        return Redirect()->route('all.orderImagesPage', $id);
     }
-
-
 }

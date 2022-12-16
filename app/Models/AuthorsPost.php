@@ -29,6 +29,6 @@ class AuthorsPost extends Model
 
     public function authors()
     {
-        return $this->belongsTo(Authors::class);
+        return $this->belongsTo(Authors::class, 'authors_id');
     }
 }

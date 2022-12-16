@@ -615,10 +615,10 @@ class ExtraController extends Controller
         // });
         $education = Post::with('category')->whereHas('category', function ($categorId) use ($category1) {
             $categorId->where('category_id', $category1);
-        })->get();
+        })->limit(4)->get();
         $kultur = Post::with('category')->whereHas('category', function ($categorId) use ($category2) {
             $categorId->where('category_id', $category2);
-        })->get();
+        })->limit(4)->get();
         // dd($kultur);
 
 
@@ -641,8 +641,8 @@ class ExtraController extends Controller
         //     ->get();
         $authorLists = Authors::pluck('id')->toArray();
         // dd($authorLists);
-        $authors = AuthorsPost::with('authors')->latest('id')->get();
-
+        $authors = AuthorsPost::with('authors')->latest('id')->take(5)->get();
+        // dd($authors[1]->authors->image);
         // dd($authors[0]->authors->image);
 
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
