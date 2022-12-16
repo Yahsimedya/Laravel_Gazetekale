@@ -615,7 +615,7 @@ class ExtraController extends Controller
         // });
         $education = Post::with('category')->whereHas('category', function ($categorId) use ($category1) {
             $categorId->where('category_id', $category1);
-        })->limit(4)->get();
+        })->limit(4)->latest()->get();
         $kultur = Post::with('category')->whereHas('category', function ($categorId) use ($category2) {
             $categorId->where('category_id', $category2);
         })->limit(4)->latest()->get();
