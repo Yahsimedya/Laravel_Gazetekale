@@ -18,7 +18,7 @@
     {{-- {{ dd($authors[0]) }} --}}
     @foreach ($authors as $value)
         {{-- {{ dd($value->authors->image) }} --}}
-
+        {{-- {{ dd($value->authors->name) }} --}}
         <a href="{{ route('authors.yazilar', [str_slug($value->title), $value->id]) }}">
             <div class="row  mt-2">
                 <div class="col-md-4 col-4 col-sm-4">
@@ -27,7 +27,8 @@
                 </div>
                 <div class="col-md-8 col-8 col-sm-8 align-middle d-inline-block">
                     <div class="d-inline-block align-middle">
-                        <div class="card-yazarlar__isim d-inline-block">{{ Str::limit($value->name, 17) }}</div>
+                        <div class="card-yazarlar__isim d-inline-block">{{ Str::limit($value->authors->name, 17) }}
+                        </div>
                         <div class="card-yazarlar__baslik d-table-cell ">
                             <p class="card-kisalt">{{ $value->title }}</p>
                         </div>
