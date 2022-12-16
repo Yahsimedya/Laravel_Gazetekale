@@ -618,7 +618,7 @@ class ExtraController extends Controller
         })->limit(4)->get();
         $kultur = Post::with('category')->whereHas('category', function ($categorId) use ($category2) {
             $categorId->where('category_id', $category2);
-        })->limit(4)->get();
+        })->limit(4)->latest()->get();
         // dd($kultur);
 
 
