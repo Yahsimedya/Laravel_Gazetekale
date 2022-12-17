@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Session;
 use App\Models\Category;
+use App\Models\Socials;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use PharIo\Manifest\Author;
@@ -734,6 +735,10 @@ class ExtraController extends Controller
 
             return WebsiteSetting::first();
         });
+        $webSiteSocial = Cache()->remember("home-websitesocial", Carbon::now()->addYear(), function () {
+
+            return Socials::first();
+        });
         $category = Cache()->remember("home-category", Carbon::now()->addYear(), function () {
             return category::where('category_status', 1)->where('category_menu', 1)->limit(11)->orderBy('category_order')->get();
         });
@@ -748,7 +753,7 @@ class ExtraController extends Controller
             }
         }
 
-        return view('main.home', compact('home', 'ucuncuSayfa', 'egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri'));
+        return view('main.home', compact('home', 'ucuncuSayfa', 'egazete', 'gundemcard', 'siyasetcard', 'ekonomicard', 'youtube', 'videogaleri', 'videogaleriSlider', 'surmanset', 'ozel', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'ilceler', 'authors', 'ads', 'seoset', 'video_gallary', 'havadurumu', 'webSiteSetting', 'education', 'kultur', 'category', 'Ilcehaberleri', 'webSiteSocial'));
         //        return view('main.home_master', compact('seoset'))
         //        return view('main.body.header', compact('vakitler'));
 

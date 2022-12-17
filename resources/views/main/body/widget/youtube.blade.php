@@ -13,8 +13,8 @@
                             <div class="ytube">
                                 <img src="{{ asset('icon/icon-youtube-white.svg') }}" class="lazyload img-fluid"
                                     style="color: white" alt="youtube" width="75" height="21">
-                                <a href="https://www.youtube.com/channel/UCUUeGmpEvlPFjRSeOYevzag" target="_blank"
-                                    rel="nofollow" class="ytube-subscriber" title="Haberler.com Youtube">
+                                <a href="{{ $webSiteSocial->youtube }}" target="_blank" rel="nofollow"
+                                    class="ytube-subscriber" title="Haberler.com Youtube">
                                     <span>Abone Ol</span></a>
                             </div>
                         </div>
