@@ -12,6 +12,7 @@ class WebsiteSetting extends Model
         'logo',
         'logowhite',
         'video_logo',
+        'site_favicon',
         'adress',
         'phone',
         'email',

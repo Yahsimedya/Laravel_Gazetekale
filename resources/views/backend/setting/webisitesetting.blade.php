@@ -74,7 +74,25 @@
 
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2"> Site Favicon <br>
+                                <p class="text-muted">favicon görseli 60x60 pixel</p>
+                            </label>
 
+                            <div class="col-lg-10">
+
+                                <img src="{{ asset($websetting->siite_favicon) }}" width="200" alt="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <label class="col-form-label col-lg-2"> Site Favicon</label>
+
+                            <div class="col-lg-10">
+                                <input type="file" class="form-control" name="site_favicon" class="form-control">
+
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Adres</label>
                             <div class="col-lg-10">
@@ -97,7 +115,8 @@
                             <label class="col-form-label col-lg-2">Telefon</label>
                             <div class="col-lg-10">
                                 {{-- <input type="text" name="meta_description" value="{{$websetting->meta_description}}" class="form-control"> --}}
-                                <input type="text" name="phone" class="form-control" value="{{ $websetting->phone }}">
+                                <input type="text" name="phone" class="form-control"
+                                    value="{{ $websetting->phone }}">
 
                                 @error('phone')
                                     <span class="text-danger">{{ $phone }}</span>

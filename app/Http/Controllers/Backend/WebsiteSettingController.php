@@ -32,6 +32,9 @@ class WebsiteSettingController extends Controller
         $old_defaultImage = $request->old_defaultImage;
         $old_logowhite = $request->old_logowhite;
         $old_videoLogo = $request->old_videoLogo;
+        $old_siteFavicon = $request->old_siteFavicon;
+
+
 
         $yil = Carbon::now()->year;
         $ay = Carbon::now()->month;
@@ -45,6 +48,7 @@ class WebsiteSettingController extends Controller
         $defaultImage = $request->defaultImage;
         $logowhite = $request->logowhite;
         $videoLogo = $request->video_logo;
+        $siteFavicon = $request->site_favicon;
 
         if (isset($image)) {
             $image_one = uniqid() . '.' . $image->getClientOriginalName();
@@ -80,6 +84,15 @@ class WebsiteSettingController extends Controller
             WebsiteSetting::find($websetting->id)->update($data);
         } else {
             $data['video_logo'] = $old_videoLogo;
+            // $websetting->update($request->all());
+        }
+        if (isset($siteFavicon)) {
+            $image_five = uniqid() . '.' . $siteFavicon->getClientOriginalName();
+            Image::make($siteFavicon)->save('image/logo/' . $yil . '/' . $ay . '/' . $image_five);
+            $data['site_favicon'] = 'image/logo/' . $yil . '/' . $ay . '/' . $image_five;
+            WebsiteSetting::find($websetting->id)->update($data);
+        } else {
+            $data['site_favicon'] = $old_siteFavicon;
             // $websetting->update($request->all());
         }
         // $websetting->update($request->all());
