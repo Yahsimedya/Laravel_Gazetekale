@@ -21,7 +21,11 @@
                             <img class="img-fluid owl-lazy" data-src="{{ asset($home[$i]->image) }}"
                                 onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
                                 alt=""></a>
+                        @if ($themeSetting->slider_title == 1)
+                            <p class="ana-manset-text">{{ $home[$i]->title_tr }}</p>
+                        @endif
                     @endif
+
                 </div>
             @endif
 

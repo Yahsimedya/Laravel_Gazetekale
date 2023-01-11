@@ -13,7 +13,7 @@ class AddSiteFaviconWebsiteSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Website_settings', function (Blueprint $table) {
+        Schema::table('website_settings', function (Blueprint $table) {
             //
             $table->string('site_favicon')->nullable();
         });

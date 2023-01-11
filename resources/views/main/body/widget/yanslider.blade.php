@@ -33,7 +33,7 @@
                                 class="img-fluid owl-lazy" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class="yanslider-link align-middle card-kisalt">
-                                    @if ($webSiteSetting->slider_title == 1)
+                                    @if ($themeSetting->slider_title == 1)
                                         {{ $row->title_tr }}
                                     @endif
                                 </a>
@@ -66,7 +66,7 @@
                                 class="img-fluid owl-lazy" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class="yanslider-link align-middle card-kisalt">
-                                    @if ($webSiteSetting->slider_title == 1)
+                                    @if ($themeSetting->slider_title == 1)
                                         {{ $row->title_tr }}
                                     @endif
                                 </a>
@@ -100,7 +100,7 @@
                                 class="img-fluid owl-lazy" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class="yanslider-link align-middle card-kisalt">
-                                    @if ($webSiteSetting->slider_title == 1)
+                                    @if ($themeSetting->slider_title == 1)
                                         {{ $row->title_tr }}
                                     @endif
                                 </a>
@@ -134,7 +134,7 @@
                                 class="img-fluid owl-lazy" alt="">
                             <div class="yanslider__aciklama d-table-cell position-absolute">
                                 <a href="" class="yanslider-link align-middle card-kisalt">
-                                    @if ($webSiteSetting->slider_title == 1)
+                                    @if ($themeSetting->slider_title == 1)
                                         {{ $row->title_tr }}
                                     @endif
                                 </a>
