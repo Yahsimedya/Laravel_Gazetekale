@@ -643,6 +643,7 @@ class ExtraController extends Controller
         $authorLists = Authors::pluck('id')->toArray();
         // dd($authorLists);
         $authors = AuthorsPost::with('authors')->latest('id')->take(5)->get();
+        // dd($authors);
         // dd($authors[1]->authors->image);
         // dd($authors[0]->authors->image);
 

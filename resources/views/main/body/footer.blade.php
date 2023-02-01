@@ -43,11 +43,12 @@
                             @endif
                             @if ($themeSetting[0]->subscription == 1)
                                 <div class="d-flex justify-content-center">
-                                    <div class="col-md-3 text-center">
+                                    {{-- <div class="col-md-3 text-center">
                                         <img src="{{ asset('image/aa.png') }}" width="100"
                                             data-original="{{ asset('image/aa.png') }}"
                                             class="footer-logo mt-4 img-fluid lazyload text-center " alt="">
-                                    </div>
+                                    </div> --}}
+                                    
                                     {{-- <div class="col-md-3 text-center">
                                         <img src="{{asset('image/iha.png')}}" width="100"
                                              data-original="{{asset('image/iha.png')}}"
