@@ -16,7 +16,7 @@
         </a>
     </div>
     {{-- {{ dd($authors[0]) }} --}}
-    @foreach ($authors as $value)
+    @foreach ($authors->unique('authors_id') as $value)
         {{-- {{ dd($value->authors->image) }} --}}
         {{-- {{ dd($value->authors->name) }} --}}
         <a href="{{ route('authors.yazilar', [str_slug($value->title), $value->id]) }}">
