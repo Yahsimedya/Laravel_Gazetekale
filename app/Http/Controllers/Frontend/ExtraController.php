@@ -412,7 +412,7 @@ class ExtraController extends Controller
             ->where('status', 1)
             ->limit(5)
             ->get();
-        dd($sondakika);
+        // dd($sondakika);
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_URL => 'https://finans.truncgil.com/today.json',
