@@ -14,7 +14,7 @@
                         class="form-control tokenfield">
                     <input type="hidden" value="{{ $websetting->video_logo }}" name="old_videoLogo"
                         class="form-control tokenfield">
-                    <input type="hidden" value="{{ $websetting->old_siteFavicon }}" name="old_videoLogo"
+                    <input type="hidden" value="{{ $websetting->site_favicon }}" name="old_videoLogo"
                         class="form-control tokenfield">
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">Web Site Ayarları</legend>

@@ -96,6 +96,7 @@ class WebsiteSettingController extends Controller
             $data['site_favicon'] = $old_siteFavicon;
             // $websetting->update($request->all());
         }
+        // dd($data);
         $websetting->update($data);
 
         return Redirect()->route('website.setting');
