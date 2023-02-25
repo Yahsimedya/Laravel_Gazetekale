@@ -1,76 +1,76 @@
 @php
-use App\Models\Category;
-use App\Models\WebsiteSetting;
-use Carbon\Carbon;
-
-$category = Cache()->remember('home-category', Carbon::now()->addYear(), function () {
-    return category::where('category_status', 1)
-        ->where('category_menu', 1)
-        ->limit(11)
-        ->orderBy('category_order')
-        ->get();
-});
-$Fullcategory = Cache()->remember('home-category', Carbon::now()->addYear(), function () {
-    return category::where('category_status', 1)
-        ->where('category_menu', 1)
-        ->orderBy('category_order')
-        ->get();
-});
-$websetting = Cache()->remember('home-websitesetting', Carbon::now()->addYear(), function () {
-    return WebsiteSetting::first();
-});
-$themeSetting = Cache()->remember('home-themeSetting', Carbon::now()->addYear(), function () {
-    return DB::table('themes')->get();
-});
-$vakitler = Cache()->remember('home-vakitler', Carbon::now()->addYear(), function () {
-    return Session::get('vakitler');
-});
-$kurlar = Session::get('kurlar');
-$veri = Session::get('havadurumu');
-$icon = Session::get('icon');
-$gelenil = Session::get('gelenil');
-if (!empty(Session::get('kurlar'))) {
-    $vakitler = Session::get('vakitler');
-} else {
-    $vakitler = [
-        'imsak' => '0',
-        'gunes' => '0',
-        'ogle' => '0',
-        'ikindi' => '0',
-        'aksam' => '0',
-        'yatsi' => '0',
-    ];
-}
-if (!empty(Session::get('kurlar'))) {
+    use App\Models\Category;
+    use App\Models\WebsiteSetting;
+    use Carbon\Carbon;
+    
+    $category = Cache()->remember('home-category', Carbon::now()->addYear(), function () {
+        return category::where('category_status', 1)
+            ->where('category_menu', 1)
+            ->limit(11)
+            ->orderBy('category_order')
+            ->get();
+    });
+    $Fullcategory = Cache()->remember('home-category', Carbon::now()->addYear(), function () {
+        return category::where('category_status', 1)
+            ->where('category_menu', 1)
+            ->orderBy('category_order')
+            ->get();
+    });
+    $websetting = Cache()->remember('home-websitesetting', Carbon::now()->addYear(), function () {
+        return WebsiteSetting::first();
+    });
+    $themeSetting = Cache()->remember('home-themeSetting', Carbon::now()->addYear(), function () {
+        return DB::table('themes')->get();
+    });
+    $vakitler = Cache()->remember('home-vakitler', Carbon::now()->addYear(), function () {
+        return Session::get('vakitler');
+    });
     $kurlar = Session::get('kurlar');
-} else {
-    $kurlar = [
-        'DOLAR' => [
-            'oran' => '0',
-            'oranyonu' => 0,
-            00,
-            'satis' => '0',
-        ],
-        'EURO' => [
-            'oran' => '0',
-            'oranyonu' => 0,
-            00,
-            'satis' => '0',
-        ],
-        'ALTIN' => [
-            'oran' => '0',
-            'oranyonu' => 0,
-            00,
-            'satis' => '0',
-        ],
-        'ceyrekaltin' => [
-            'oran' => '0',
-            'oranyonu' => 0,
-            00,
-            'satis' => '0',
-        ],
-    ];
-}
+    $veri = Session::get('havadurumu');
+    $icon = Session::get('icon');
+    $gelenil = Session::get('gelenil');
+    if (!empty(Session::get('kurlar'))) {
+        $vakitler = Session::get('vakitler');
+    } else {
+        $vakitler = [
+            'imsak' => '0',
+            'gunes' => '0',
+            'ogle' => '0',
+            'ikindi' => '0',
+            'aksam' => '0',
+            'yatsi' => '0',
+        ];
+    }
+    if (!empty(Session::get('kurlar'))) {
+        $kurlar = Session::get('kurlar');
+    } else {
+        $kurlar = [
+            'DOLAR' => [
+                'oran' => '0',
+                'oranyonu' => 0,
+                00,
+                'satis' => '0',
+            ],
+            'EURO' => [
+                'oran' => '0',
+                'oranyonu' => 0,
+                00,
+                'satis' => '0',
+            ],
+            'ALTIN' => [
+                'oran' => '0',
+                'oranyonu' => 0,
+                00,
+                'satis' => '0',
+            ],
+            'ceyrekaltin' => [
+                'oran' => '0',
+                'oranyonu' => 0,
+                00,
+                'satis' => '0',
+            ],
+        ];
+    }
 @endphp
 <style>
     #wrapper {
@@ -468,7 +468,6 @@ if (!empty(Session::get('kurlar'))) {
         background-color: rgba(250, 250, 250, .8);
         z-index: 1;
     }
-
 </style>
 {{-- <div class="container"> --}}
 {{-- <div class="row"> --}}
@@ -697,7 +696,7 @@ if (!empty(Session::get('kurlar'))) {
                 <ul class="navbar-nav" style="background-color: {{ $themeSetting[0]->siteColorTheme }}">
                     <li class="nav-item active position-relative float-left">
                         <div class="nav-item-hover position-absolute"></div>
-                        <a class="nav-link " href="#">Ana Sayfa </a>
+                        <a class="nav-link " href="{{ URL::to('/') }}">Ana Sayfa </a>
                     </li>
                     @foreach ($category as $categories)
                         <li class="nav-item active position-relative float-left">
