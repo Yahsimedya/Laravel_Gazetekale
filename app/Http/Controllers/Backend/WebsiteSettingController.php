@@ -34,6 +34,7 @@ class WebsiteSettingController extends Controller
         $old_videoLogo = $request->old_videoLogo;
         $old_siteFavicon = $request->old_siteFavicon;
 
+        // dd($old_siteFavicon);
 
 
         $yil = Carbon::now()->year;
@@ -95,7 +96,7 @@ class WebsiteSettingController extends Controller
             $data['site_favicon'] = $old_siteFavicon;
             // $websetting->update($request->all());
         }
-        // $websetting->update($request->all());
+        $websetting->update($data);
 
         return Redirect()->route('website.setting');
     }

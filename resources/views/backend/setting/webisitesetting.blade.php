@@ -14,6 +14,8 @@
                         class="form-control tokenfield">
                     <input type="hidden" value="{{ $websetting->video_logo }}" name="old_videoLogo"
                         class="form-control tokenfield">
+                    <input type="hidden" value="{{ $websetting->old_siteFavicon }}" name="old_videoLogo"
+                        class="form-control tokenfield">
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">Web Site Ayarları</legend>
                         <div class="form-group row">
@@ -81,7 +83,7 @@
 
                             <div class="col-lg-10">
 
-                                <img src="{{ asset($websetting->siite_favicon) }}" width="200" alt="">
+                                <img src="{{ asset($websetting->site_favicon) }}" width="200" alt="">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -96,7 +98,8 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Adres</label>
                             <div class="col-lg-10">
-                                <input type="text" name="adress" value="{{ $websetting->adress }}" class="form-control">
+                                <input type="text" name="adress" value="{{ $websetting->adress }}"
+                                    class="form-control">
                                 @error('adress')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
