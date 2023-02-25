@@ -408,11 +408,11 @@ class ExtraController extends Controller
 
         // dd(Carbon::now()->subDay(1));
         $sondakika =  Post::where('headline', 1)
-            ->where('created_at', '>', Carbon::now()->subDay(2))
+            ->where('created_at', '>', Carbon::now()->subDay())
             ->where('status', 1)
             ->limit(5)
             ->get();
-        // dd($sondakika);
+        dd($sondakika);
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_URL => 'https://finans.truncgil.com/today.json',
@@ -1078,8 +1078,8 @@ class ExtraController extends Controller
             return Theme::get();
         });
 
-        $sondakika = Post::where('created_at', '>', Carbon::now()->subDay(1))->latest()->get();
-        dd($sondakika);
+        $sondakika = Post::where('created_at', '>', Carbon::now()->subHour(24))->latest()->get();
+
         return view('main.body.breakingnews', compact('sondakika', 'webSiteSetting', 'themeSetting'));
     }
 
