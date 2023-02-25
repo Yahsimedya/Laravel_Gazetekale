@@ -34,6 +34,7 @@ class WebsiteSettingController extends Controller
         $old_videoLogo = $request->old_videoLogo;
         $old_siteFavicon = $request->old_siteFavicon;
 
+        // dd($old_siteFavicon);
 
 
         $yil = Carbon::now()->year;
@@ -49,7 +50,6 @@ class WebsiteSettingController extends Controller
         $logowhite = $request->logowhite;
         $videoLogo = $request->video_logo;
         $siteFavicon = $request->site_favicon;
-        // dd($siteFavicon);
 
         if (isset($image)) {
             $image_one = uniqid() . '.' . $image->getClientOriginalName();
@@ -87,11 +87,21 @@ class WebsiteSettingController extends Controller
             $data['video_logo'] = $old_videoLogo;
             // $websetting->update($request->all());
         }
+        // if (isset($siteFavicon)) {
+        //     $image_five = uniqid() . '.' . $siteFavicon->getClientOriginalName();
+        //     Image::make($siteFavicon)->save('image/logo/' . $yil . '/' . $ay . '/' . $image_five);
+        //     $data['site_favicon'] = 'image/logo/' . $yil . '/' . $ay . '/' . $image_five;
+        //     WebsiteSetting::find($websetting->id)->update($data);
+        // } else {
+        //     $data['site_favicon'] = $old_siteFavicon;
+        //     // $websetting->update($request->all());
+        // }
         if (isset($siteFavicon)) {
-            $image_five = $siteFavicon->getClientOriginalName();
-            Image::make($siteFavicon)->save('icon/' . $image_five);
+            $image_five = "favicon.ico";
+            // Image::make($siteFavicon)->save('image/logo/' . $yil . '/' . $ay . '/' . $image_five);
             $data['site_favicon'] = 'icon/' . $image_five;
             WebsiteSetting::find($websetting->id)->update($data);
+            $request->file('site_favicon')->store('icon');
         } else {
             $data['site_favicon'] = $old_siteFavicon;
             // $websetting->update($request->all());
