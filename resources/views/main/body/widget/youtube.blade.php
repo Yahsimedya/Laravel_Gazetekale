@@ -41,7 +41,8 @@
                                                     class="lazyload float-right img-fluid position-absolute"
                                                     alt="youtube" width="75" height="21"
                                                     style="top: 50%;right: 0;transform: translate(0%, 220%);">
-                                                <span class="card__tv position-absolute text-dark">Gazetekale TV
+                                                <span
+                                                    class="card__tv position-absolute text-dark">{{ $seoset->site_title }}
                                                 </span>
                                             </div>
                                         </div>
