@@ -7,9 +7,9 @@
     @section('content')
     @endforeach
     @php
-    $yazardes = DB::table('authors')
-        ->where('id', '=', $yazilar->authors_id)
-        ->first();
+        $yazardes = DB::table('authors')
+            ->where('id', '=', $yazilar->authors_id)
+            ->first();
     @endphp
     {{-- {{ dd($yazardes) }} --}}
     <section>
@@ -118,7 +118,7 @@
                             <div class="col-md-4 col-md-6 col-sm-12">
                                 <div class="row  m-2 padding-left p-0 rounded border">
                                     <div class="col-lg-4  col-md-4 col-sm-4 col-4  p-0 border-right">
-                                        <img src="{{ asset($other->image) }}"
+                                        <img src="{{ asset($other->authors->image) }}"
                                             onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
                                             class="img-fluid" alt="">
                                     </div>
@@ -315,7 +315,7 @@
         </div>
 
         <!-- <div id="load_data"></div>
-                                                                         <div id="load_data_message"></div> -->
+                                                                                 <div id="load_data_message"></div> -->
         </div>
 
 
