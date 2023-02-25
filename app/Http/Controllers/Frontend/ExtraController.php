@@ -1013,6 +1013,7 @@ class ExtraController extends Controller
 
     public function yazilar($slug, $id)
     {
+
         //        dd($id); // yazının ID'si
         $sluf = $slug;
         $seoset = Seos::first();
@@ -1056,7 +1057,6 @@ class ExtraController extends Controller
     public function yazilars($slug, $id)
 
     {
-
         $seoset = Seos::first();
         $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
         $nextauthors_posts = DB::table('authors_posts')

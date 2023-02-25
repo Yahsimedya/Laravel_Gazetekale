@@ -114,7 +114,7 @@
                     </div>
                     <div class="row">
 
-                        @foreach ($otherauthos as $other)
+                        @foreach ($otherauthos->unique('authors_id') as $other)
                             <div class="col-md-4 col-md-6 col-sm-12">
                                 <div class="row  m-2 padding-left p-0 rounded border">
                                     <div class="col-lg-4  col-md-4 col-sm-4 col-4  p-0 border-right">
