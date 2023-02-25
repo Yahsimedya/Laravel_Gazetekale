@@ -8,7 +8,6 @@
     @php
         $webSiteSetting = DB::table('website_settings')->first();
     @endphp
-
     <section class="">
         <div class="container bg-light mt-3 mb-3 shadow rounded ">
             <div class="row padding-left">
@@ -19,11 +18,11 @@
                         </div>
                     </div>
                 </div>
-                @foreach ($authors as $author)
+                @foreach ($authors->unique('authors_id') as $author)
                     <div class="col-lg-4 col-md-6 col-sm-12 p-0">
                         <div class="row bg-dark m-2 padding-left p-0 rounded">
                             <div class="col-lg-4  col-md-4 col-sm-4 col-4  p-0">
-                                <img src="{{ asset($author->image) }}"
+                                <img src="{{ asset($author->authors->image) }}"
                                     onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
                                     class="img-fluid" alt="">
                             </div>
