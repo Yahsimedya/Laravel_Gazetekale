@@ -6,7 +6,7 @@
 @section('content')
 
     @php
-    $webSiteSetting = DB::table('website_settings')->first();
+        $webSiteSetting = DB::table('website_settings')->first();
     @endphp
 
     <section class="">
