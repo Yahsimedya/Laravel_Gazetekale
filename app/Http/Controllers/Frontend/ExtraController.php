@@ -34,6 +34,7 @@ use Illuminate\View\View;
 use Session;
 use App\Models\Category;
 use App\Models\Socials;
+use Google\Service\Blogger\Resource\Posts;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use PharIo\Manifest\Author;
@@ -405,16 +406,13 @@ class ExtraController extends Controller
     public function Home()
     {
 
-
-        $sondakika = Cache()->remember("headline", Carbon::now()->addYear(), function () {
-            if (Cache::has('headline')) return Cache::has('headline');
-            return Post::where('posts.headline', 1)
-                ->where('created_at', '>', Carbon::now()->subDay(1))
-                ->where('status', 1)
-                ->limit(5)
-                ->get();
-        });
-
+        // dd(Carbon::now()->subDay(1));
+        $sondakika =  Post::where('headline', 1)
+            ->where('created_at', '>', Carbon::now()->subDay(2))
+            ->where('status', 1)
+            ->limit(5)
+            ->get();
+        // dd($sondakika);
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_URL => 'https://finans.truncgil.com/today.json',
@@ -1026,11 +1024,13 @@ class ExtraController extends Controller
         $nextauthors_posts = AuthorsPost::whereStatus(1)->where('authors_id', isset($yazi[0]) ? $yazi[0]->authors_id : '')->skip(0)->take(10)->latest()->get();
         //        });
         //        dd($nextauthors_posts);
-        $otherauthos = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-            ->where('authors.status', 1)->where('authors_posts.status', 1)
-            ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
-            ->latest("authors_posts.created_at")
-            ->get();
+        // $otherauthos = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+        //     ->where('authors.status', 1)->where('authors_posts.status', 1)
+        //     ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
+        //     ->latest("authors_posts.created_at")
+        //     ->get();
+        $otherauthos = AuthorsPost::with('authors')->latest('id')->take(5)->get();
+
 
         //        $otherauthos=  AuthorsPost::leftjoin('authors', 'authors_posts.authors_id', '=', 'authors.id')
         //            ->select(['authors_posts.*','authors.name'])
@@ -1078,8 +1078,8 @@ class ExtraController extends Controller
             return Theme::get();
         });
 
-        $sondakika = Post::where('created_at', '>', Carbon::now()->subHour(24))->latest()->get();
-
+        $sondakika = Post::where('created_at', '>', Carbon::now()->subDay(1))->latest()->get();
+        dd($sondakika);
         return view('main.body.breakingnews', compact('sondakika', 'webSiteSetting', 'themeSetting'));
     }
 
