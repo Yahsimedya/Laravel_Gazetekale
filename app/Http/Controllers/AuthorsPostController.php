@@ -39,7 +39,7 @@ class AuthorsPostController extends Controller
         //     ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
         //     ->latest("authors_posts.created_at")
         //     ->get();
-        $authors = AuthorsPost::with('authors')->latest('id')->get();
+        $authors = AuthorsPost::with('authors')->latest('id')->where('status', 1)->get();
         return view('main.body.authors', compact('authors'));
     }
 
