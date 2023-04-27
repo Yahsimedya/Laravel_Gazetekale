@@ -40,7 +40,6 @@ class AuthorsPostController extends Controller
         //     ->latest("authors_posts.created_at")
         //     ->get();
         $authors = AuthorsPost::with('authors')->latest('id')->get();
-
         return view('main.body.authors', compact('authors'));
     }
 

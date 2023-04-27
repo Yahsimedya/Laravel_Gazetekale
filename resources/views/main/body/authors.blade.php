@@ -4,7 +4,6 @@
 @extends('main.home_master')
 
 @section('content')
-
     @php
         $webSiteSetting = DB::table('website_settings')->first();
     @endphp
@@ -22,7 +21,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 p-0">
                         <div class="row bg-dark m-2 padding-left p-0 rounded">
                             <div class="col-lg-4  col-md-4 col-sm-4 col-4  p-0">
-                                <img src="{{ asset($author->authors->image) }}"
+                                <img src="{{ asset($author->authors ? $author->authors->image : '') }}"
                                     onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
                                     class="img-fluid" alt="">
                             </div>

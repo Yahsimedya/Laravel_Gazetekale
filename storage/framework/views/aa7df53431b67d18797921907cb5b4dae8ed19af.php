@@ -4,7 +4,6 @@
 
 
 <?php $__env->startSection('content'); ?>
-
     <?php
         $webSiteSetting = DB::table('website_settings')->first();
     ?>
@@ -22,7 +21,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 p-0">
                         <div class="row bg-dark m-2 padding-left p-0 rounded">
                             <div class="col-lg-4  col-md-4 col-sm-4 col-4  p-0">
-                                <img src="<?php echo e(asset($author->authors->image)); ?>"
+                                <img src="<?php echo e(asset($author->authors ? $author->authors->image : '')); ?>"
                                     onerror="this.onerror=null;this.src='<?php echo e($webSiteSetting->defaultImage); ?>';"
                                     class="img-fluid" alt="">
                             </div>
