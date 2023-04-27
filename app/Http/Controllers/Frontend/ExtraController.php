@@ -434,30 +434,30 @@ class ExtraController extends Controller
 
         $kurlar = [
             'DOLAR' => [
-                'oran' => $result['USD']['Değişim'],
-                'oranyonu' => str_replace(',', '.', degistir($result['USD']['Değişim'])),
+                'oran' => isset($result['USD']['Değişim']),
+                'oranyonu' => isset($result['USD']['Değişim']) ? str_replace(',', '.', degistir($result['USD']['Değişim'])) : '0',
                 //                    'alis' => $usd['Buy'],
-                'satis' => str_replace(',', '.', $result['USD']['Satış'])
+                'satis' => isset($result['USD']['Satış']) ? str_replace(',', '.', $result['USD']['Satış']) : '0'
 
             ],
             'EURO' => [
-                'oran' => $result['EUR']['Değişim'],
-                'oranyonu' => str_replace(',', '.', degistir($result['EUR']['Değişim'])),
+                'oran' => isset($result['EUR']['Değişim']),
+                'oranyonu' => isset($result['EUR']['Değişim']) ? str_replace(',', '.', degistir($result['EUR']['Değişim'])) : '0',
                 //                    'alis' => $usd['Buy'],
-                'satis' => str_replace(',', '.', degistir($result['EUR']['Satış']))
+                'satis' => isset($result['EUR']['Satış']) ? str_replace(',', '.', degistir($result['EUR']['Satış'])) : '0'
             ],
             'ALTIN' => [
-                'oran' => $result['gram-altin']['Değişim'],
-                'oranyonu' => $result['gram-altin']['Değişim'],
+                'oran' => isset($result['gram-altin']['Değişim']) ? $result['gram-altin']['Değişim'] : '0',
+                'oranyonu' => isset($result['gram-altin']['Değişim']) ? $result['gram-altin']['Değişim'] : '0',
                 //                    'alis' => $usd['Buy'],
-                'satis' => str_replace(',', '.', degistir($result['gram-altin']['Satış']))
+                'satis' => isset($result['gram-altin']['Satış']) ? str_replace(',', '.', degistir($result['gram-altin']['Satış'])) : '0'
 
             ],
             'ceyrekaltin' => [
-                'oran' => $result['ceyrek-altin']['Değişim'],
-                'oranyonu' => $result['ceyrek-altin']['Değişim'],
+                'oran' => isset($result['ceyrek-altin']['Değişim']) ? $result['ceyrek-altin']['Değişim'] : '0',
+                'oranyonu' => isset($result['ceyrek-altin']['Değişim']) ? $result['ceyrek-altin']['Değişim'] : '0',
                 //                    'alis' => $usd['Buy'],
-                'satis' => str_replace(',', '.', degistir($result['ceyrek-altin']['Satış']))
+                'satis' => isset($result['ceyrek-altin']['Satış']) ? str_replace(',', '.', degistir($result['ceyrek-altin']['Satış'])) : '0'
             ]
         ];
 
