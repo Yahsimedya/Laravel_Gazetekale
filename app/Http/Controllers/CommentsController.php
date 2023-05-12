@@ -56,20 +56,50 @@ class CommentsController extends Controller
 
     public function AddComments(Request $request, $id)
     {
+        // if ($request->guvenlikkodu == $request->guvenlik) {
+        //     $request['created_at']=Carbon::now();
+        //     Comments::insert($request->except('_token', 'guvenlikkodu', 'yorumicerik', 'guvenlik',));
+        //     $notification = array(
+        //         'message' => 'Haber Başarıyla Silindi',
+        //         'alert-type' => 'succes'
+        //     );
+        //     return Redirect()->route('open.comments', $id)->with($notification);
+        // } else {
+        //     $notification = array(
+        //         'message' => 'Haber Başarıyla Silindi',
+        //         'alert-type' => 'error'
+        //     );
+        //     return Redirect()->route('open.comments', $id)->with($notification);
+        // }
+
+        // $request->validate([
+        //     'guvenlikkodu' => 'required',
+        //     'guvenlik' => 'required',
+        //     // add more validation rules for other fields
+        // ]);
+
         if ($request->guvenlikkodu == $request->guvenlik) {
-            $request['created_at']=Carbon::now();
-            Comments::insert($request->except('_token', 'guvenlikkodu', 'yorumicerik', 'guvenlik',));
+            // filter the details field
+            $details = strip_tags($request->details, '<p><br>');
+
+            // create a new comment using the filtered details field
+            Comments::create([
+                'name' => $request->name,
+                'details' => $details,
+                'authors_posts_id' => $request->authors_posts_id,
+            ]);
+
             $notification = array(
-                'message' => 'Haber Başarıyla Silindi',
-                'alert-type' => 'succes'
+                'message' => 'Yorum Başarıyla Eklendi',
+                'alert-type' => 'success'
             );
-            return Redirect()->route('open.comments', $id)->with($notification);
         } else {
             $notification = array(
-                'message' => 'Haber Başarıyla Silindi',
+                'message' => 'Yorum Eklenemedi',
                 'alert-type' => 'error'
             );
-            return Redirect()->route('open.comments', $id)->with($notification);
         }
+
+        return Redirect()->back()->with($notification);
     }
 }
