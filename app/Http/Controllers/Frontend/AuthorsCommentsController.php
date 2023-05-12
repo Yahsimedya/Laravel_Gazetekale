@@ -41,7 +41,7 @@ class AuthorsCommentsController extends Controller
 
     public function DeleteComments(Request $request, $id)
     {
-//        dd($id);
+        //        dd($id);
         \DB::table('authorscomments')->where('id', $id)->delete();
         $notification = array(
             'message' => 'Yorum Silindi',
@@ -62,21 +62,51 @@ class AuthorsCommentsController extends Controller
 
     public function AddComments(Request $request, $id)
     {
-        if ($request->guvenlikkodu == $request->guvenlik) {
+        // if ($request->guvenlikkodu == $request->guvenlik) {
 
-            \DB::table('authorscomments')->insert($request->except('_token', 'guvenlikkodu','yorumicerik','guvenlik',));
+        //     \DB::table('authorscomments')->insert($request->except('_token', 'guvenlikkodu','yorumicerik','guvenlik',));
+        //     $notification = array(
+        //         'message' => 'Haber Başarıyla Silindi',
+        //         'alert-type' => 'succes'
+        //     );
+        //     return Redirect()->back()->with($notification);
+        // } else {
+        //     $notification = array(
+        //         'message' => 'Haber Başarıyla Silindi',
+        //         'alert-type' => 'error'
+        //     );
+        //     return Redirect()->back()->with($notification);
+        // }
+
+        // dd($request->all());
+        $request->validate([
+            'guvenlikkodu' => 'required',
+            'guvenlik' => 'required',
+            // add more validation rules for other fields
+        ]);
+
+        if ($request->guvenlikkodu == $request->guvenlik) {
+            // filter the details field
+            $details = strip_tags($request->details, '<p><br>');
+
+            // create a new comment using the filtered details field
+            authorscommentsModel::create([
+                'name' => $request->name,
+                'details' => $details,
+                'authors_posts_id' => $request->authors_posts_id,
+            ]);
+
             $notification = array(
-                'message' => 'Haber Başarıyla Silindi',
-                'alert-type' => 'succes'
+                'message' => 'Yorum Başarıyla Eklendi',
+                'alert-type' => 'success'
             );
-            return Redirect()->back()->with($notification);
         } else {
             $notification = array(
-                'message' => 'Haber Başarıyla Silindi',
+                'message' => 'Yorum Eklenemedi',
                 'alert-type' => 'error'
             );
-            return Redirect()->back()->with($notification);
         }
 
+        return Redirect()->back()->with($notification);
     }
 }
