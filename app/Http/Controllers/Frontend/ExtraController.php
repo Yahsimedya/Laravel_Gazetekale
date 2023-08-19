@@ -901,7 +901,7 @@ class ExtraController extends Controller
         //         ->groupBy("authors.id")->latest("authors_posts.id")
         //         ->get();
         // });
-        $authors = AuthorsPost::with('authors')->latest('id')->where('status', 1)->take(5)->get();
+        $authors = AuthorsPost::with('authors')->latest('id')->where('status', 1)->take(10)->get();
 
         $manset =
             Post::join('categories', 'posts.category_id', 'categories.id')
