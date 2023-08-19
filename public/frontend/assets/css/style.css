@@ -675,7 +675,7 @@
     position: relative;
     display: block;
     /* transform: translate(59%, 6px) */
-    transform: translate(138%, 0px);
+    transform: translate(108%, 0px);
     width: 128px;
 }
 
@@ -705,7 +705,7 @@
 
 @media (max-width: 767.98px) {
     .ytube {
-        right: 70%
+        right: 135%
     }
 }
 
