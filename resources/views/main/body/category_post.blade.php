@@ -211,21 +211,23 @@
                                         <div class="card-yazarlar__tum position-absolute ">Tümü</div>
                                     </a>
                                 </div>
-                                @foreach ($authors as $author)
-                                    <a href="{{ route('authors.yazilar', [str_slug($author->title), $author->id]) }}">
+                                @foreach ($authors->unique('authors_id') as $value)
+                                    {{-- {{ dd($value->authors->image) }} --}}
+                                    {{-- {{ dd($value->authors->name) }} --}}
+                                    <a href="{{ route('authors.yazilar', [str_slug($value->title), $value->id]) }}">
                                         <div class="row  mt-2">
-
                                             <div class="col-md-4 col-4 col-sm-4">
-                                                <img src="{{ asset($author->image) }}"
-                                                    onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                                                    class="rounded card-yazarlar__image" alt="">
+                                                <img src="{{ asset($value->authors->image) }}"
+                                                    class="rounded card-yazarlar__image lazyload img-fluid"
+                                                    alt="">
                                             </div>
                                             <div class="col-md-8 col-8 col-sm-8 align-middle d-inline-block">
                                                 <div class="d-inline-block align-middle">
                                                     <div class="card-yazarlar__isim d-inline-block">
-                                                        {{ Str::limit($author->name, 17) }}</div>
+                                                        {{ Str::limit($value->authors->name, 17) }}
+                                                    </div>
                                                     <div class="card-yazarlar__baslik d-table-cell ">
-                                                        <p class="card-kisalt">{{ $author->title }}</p>
+                                                        <p class="card-kisalt">{{ $value->title }}</p>
                                                     </div>
                                                 </div>
                                             </div>
