@@ -105,7 +105,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Site Başlığı</label>
                             <div class="col-lg-10">
-                                <input type="text" name="fcmserver" value="{{ $seos->site_title }}"
+                                <input type="text" name="fcmserver" value="{{ $seos->meta_title }}"
                                     class="form-control">
                                 {{-- <textarea name="google_verification" id="" cols="30" rows="10">{{$seos->google_verification}}</textarea> --}}
 
