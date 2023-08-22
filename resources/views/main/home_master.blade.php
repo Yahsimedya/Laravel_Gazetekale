@@ -27,6 +27,9 @@
     <meta property="og:image:height" content="600" />
     <meta property="og:image:type" content="image/jpeg" />
     <link rel="canonical" href="{{ url()->current() }}" />
+
+<link rel="alternate" type="application/rss+xml" title="@yield('title') &raquo; beslemesi" href="{{url('/')}}/feed" />
+
     <meta name="google-site-verification" content="@yield('google_verification')" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=@yield('google_verification')"></script>
     <script>
