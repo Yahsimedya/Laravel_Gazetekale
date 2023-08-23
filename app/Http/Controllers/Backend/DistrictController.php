@@ -31,9 +31,7 @@ class DistrictController extends Controller
             ],
             [
                 'district_tr.required' => 'Türkçe Bölge ismi boş olamaz lütfen doldurunuz',
-                'district_tr.unique' => 'Bu isimle daha önce kayıt yapılmış',
                 'district_tr.max' => 'İsim 255 karakterden büyük olamaz',
-                'district_en.required' => 'İngilizce Bölge ismi boş olamaz lütfen doldurunuz',
                 'district_en.unique' => 'Bu isimle daha önce kayıt yapılmış',
                 'district_en.max' => 'İsim 255 karakterden büyük olamaz',
                 'district_keywords.required' => 'Alan boş olamaz lütfen doldurunuz',
