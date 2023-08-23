@@ -299,8 +299,6 @@
 
 
     <footer class=" footer bg-dark">
-
-
         <script>
             new WOW().init();
         </script>
@@ -318,7 +316,7 @@
    "dateModified":"{{ $post->updated_at->format('c') }}",
    "description":"{{ $post->description_tr }}",
    "articleSection":"{{ $post->category->category_tr }}",
-   "articleBody":"{{ $post->details_tr }}",
+   "articleBody":"{!! $post->details_tr !!}",
    "image":{
       "@type":"ImageObject",
       "url":"{{ url('/').'/'.$post->image }}",
