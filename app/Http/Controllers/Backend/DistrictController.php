@@ -13,7 +13,7 @@ class DistrictController extends Controller
     //
     public function index()
     {
-$district = DB::table('districts')->latest('id')->get();
+        $district = DB::table('districts')->latest('id')->get();
         return view('backend.district.index', compact('district'));
     }
     public function AddDistrict()
@@ -24,8 +24,8 @@ $district = DB::table('districts')->latest('id')->get();
     {
         $validatedData = $request->validate(
             [
-                'district_tr' => 'required|unique:districts|max:255',
-                'district_en' => 'required|unique:districts|max:255',
+                'district_tr' => 'required|max:255',
+                'district_en' => 'required|max:255',
                 'district_keywords' => 'required|max:255',
                 'district_description' => 'required|max:255',
             ],
@@ -43,7 +43,7 @@ $district = DB::table('districts')->latest('id')->get();
             ]
         );
 
-District::create($request->all());
+        District::create($request->all());
 
         $notification = array(
             'message' => 'Bölge Başarıyla Eklendi',
@@ -71,7 +71,6 @@ District::create($request->all());
             );
         }
         return Redirect()->route('district')->with($notification);
-
     }
     public function Editdistrict(District $district)
     {
@@ -79,7 +78,7 @@ District::create($request->all());
 
         return view('backend.district.edit', compact('district'));
     }
-    public function UpdateDistrict(Request $request,District $district)
+    public function UpdateDistrict(Request $request, District $district)
     {
         $validatedData = $request->validate(
             [
@@ -102,7 +101,7 @@ District::create($request->all());
             ]
         );
 
-$district->update($request->all());
+        $district->update($request->all());
 
         $notification = array(
             'message' => 'Bölge Başarıyla Güncellendi',
@@ -118,6 +117,5 @@ $district->update($request->all());
             'alert-type' => 'success'
         );
         return Redirect()->route('district')->with($notification);
-
     }
 }
