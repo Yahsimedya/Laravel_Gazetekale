@@ -28,10 +28,11 @@
     <meta property="og:image:type" content="image/jpeg" />
     <link rel="canonical" href="{{ url()->current() }}" />
 
-<link rel="alternate" type="application/rss+xml" title="@yield('title') &raquo; beslemesi" href="{{url('/')}}/feed" />
+    <link rel="alternate" type="application/rss+xml" title="@yield('title') &raquo; beslemesi"
+        href="{{ url('/') }}/feed" />
 
     <meta name="google-site-verification" content="@yield('google_verification')" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=@yield('google_verification')"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=@yield('google_verification')"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -55,7 +56,7 @@
         gtag('config', '@yield('google_analytics')');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"
-        crossorigin="anonymous" async></script>
+        crossorigin="anonymous" defer></script>
 
     <link rel="preload" as="style" href="{{ mix('frontend/assets/css/combine.css') }}" as="style"
         onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
