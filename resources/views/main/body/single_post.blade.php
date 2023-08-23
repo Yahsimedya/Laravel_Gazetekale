@@ -303,7 +303,10 @@
             new WOW().init();
         </script>
         {{-- {{ dd($post) }} --}}
-
+        @php
+            $cleanedContent = html_entity_decode(strip_tags($post->details_tr));
+            
+        @endphp
         <script type="application/ld+json">
 {
    "@context":"https://schema.org/",
@@ -316,7 +319,7 @@
    "dateModified":"{{ $post->updated_at->format('c') }}",
    "description":"{{ $post->description_tr }}",
    "articleSection":"{{ $post->category->category_tr }}",
-   "articleBody":"{!! $post->details_tr !!}",
+   "articleBody":"{{  $cleanedContent}}",
    "image":{
       "@type":"ImageObject",
       "url":"{{ url('/').'/'.$post->image }}",
