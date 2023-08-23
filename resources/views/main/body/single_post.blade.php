@@ -319,7 +319,7 @@
    "dateModified":"{{ $post->updated_at->format('c') }}",
    "description":"{{ $post->description_tr }}",
    "articleSection":"{{ $post->category->category_tr }}",
-   "articleBody":"{{  $cleanedContent}}",
+   "articleBody":"{!!  $cleanedContent!!}",
    "image":{
       "@type":"ImageObject",
       "url":"{{ url('/').'/'.$post->image }}",
@@ -341,7 +341,7 @@
          "width":190,  // Örnek genişlik
          "height":42    // Örnek yükseklik
       }
-   }
+   },
    "keywords":"{{ $post->keywords_tr }}",
    "name":"{{ $post->title_tr }}",
    "wordCount": "{{ str_word_count($post->details_tr) }}",
