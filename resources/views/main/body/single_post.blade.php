@@ -304,7 +304,7 @@
         </script>
         {{-- {{ dd($post) }} --}}
         @php
-            $cleanedContent = html_entity_decode(strip_tags($post->details_tr));
+            $cleanedContent = html_entity_decode(strip_tags($post->details_tr), ENT_QUOTES, 'UTF-8');
             
         @endphp
         <script type="application/ld+json">
