@@ -321,7 +321,7 @@
    "articleBody":"{{ $post->details_tr }}",
    "image":{
       "@type":"ImageObject",
-      "url":"{{ url('/').'/.'.$post->image }}",
+      "url":"{{ url('/').'/'.$post->image }}",
       "width":600,
       "height":400
    },
