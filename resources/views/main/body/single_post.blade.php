@@ -305,7 +305,6 @@
         {{-- {{ dd($post) }} --}}
         @php
             $cleanedContent = html_entity_decode(strip_tags($post->details_tr), ENT_QUOTES, 'UTF-8');
-            
         @endphp
         <script type="application/ld+json">
 {
@@ -319,7 +318,7 @@
    "dateModified":"{{ $post->updated_at->format('c') }}",
    "description":"{{ $post->description_tr }}",
    "articleSection":"{{ $post->category->category_tr }}",
-   "articleBody":"{!!  $cleanedContent!!}",
+   "articleBody":"{!! $cleanedContent !!}",
    "image":{
       "@type":"ImageObject",
       "url":"{{ url('/').'/'.$post->image }}",
@@ -341,11 +340,12 @@
          "width":190,  // Örnek genişlik
          "height":42    // Örnek yükseklik
       }
-   },
+   }, // Burada virgül ekledim.
    "keywords":"{{ $post->keywords_tr }}",
    "name":"{{ $post->title_tr }}",
    "wordCount": "{{ str_word_count($post->details_tr) }}",
    "timeRequired":"PT{{ ceil(str_word_count($post->details_tr) / 200) }}M",
 }
 </script>
+
     @endsection
