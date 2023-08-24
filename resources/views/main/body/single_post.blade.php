@@ -318,7 +318,7 @@
    "dateModified":"{{ $post->updated_at->format('c') }}",
    "description":"{{ $post->description_tr }}",
    "articleSection":"{{ $post->category->category_tr }}",
-   "articleBody":"{!! $cleanedContent !!}",
+   "articleBody":"{!! json_encode($cleanedContent) !!}",
    "image":{
       "@type":"ImageObject",
       "url":"{{ url('/').'/'.$post->image }}",
