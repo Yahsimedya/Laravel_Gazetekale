@@ -327,7 +327,7 @@
    },
     "author":{
       "@type":"Person",
-      "name":"Gazete Kale",
+      "name":"Gazete Kale"
 
    },
    "publisher":{
