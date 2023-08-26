@@ -33,8 +33,8 @@
 
     <meta name="google-site-verification" content="@yield('google_verification')" />
     <link rel="preconnect" href="https://code.jquery.com">
-    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script defer src="{{ mix('frontend/assets/js/combine.js') }}"></script>
+    <script async src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script async src="{{ mix('frontend/assets/js/combine.js') }}"></script>
     <script defer src="https://www.googletagmanager.com/gtag/js?id=@yield('google_verification')"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
