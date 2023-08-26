@@ -94,20 +94,27 @@
     <link rel="preload"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
         as="style" onload="this.rel='stylesheet'"">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style"
+        href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"> --}}
     {{-- <link rel="stylesheet" href="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"> --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" async />
     {{-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css"> --}}
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     {{-- <link rel="stylesheet" href="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"> --}}
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" async />
+
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('frontend/assets/css/svg-turkiye-haritasi.css')}}"> --}}
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-control" content="public">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script rel="preconnect" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://code.jquery.com">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" async
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
