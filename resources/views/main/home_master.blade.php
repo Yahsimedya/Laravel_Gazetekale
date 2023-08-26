@@ -60,9 +60,7 @@
 
     <link rel="preload" as="style" href="{{ mix('frontend/assets/css/combine.css') }}" as="style"
         onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css"
-        integrity="sha512-1hsteeq9xTM5CX6NsXiJu3Y/g+tj+IIwtZMtTisemEv3hx+S9ngaW4nryrNcPM4xGzINcKbwUJtojslX2KG+DQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/brands.min.css"
         integrity="sha512-OivR4OdSsE1onDm/i3J3Hpsm5GmOVvr9r49K3jJ0dnsxVzZgaOJ5MfxEAxCyGrzWozL9uJGKz6un3A7L+redIQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
