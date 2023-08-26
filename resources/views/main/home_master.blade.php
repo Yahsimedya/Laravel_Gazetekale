@@ -33,8 +33,8 @@
 
     <meta name="google-site-verification" content="@yield('google_verification')" />
     <link rel="preconnect" href="https://code.jquery.com">
-    <script async src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script async src="{{ mix('frontend/assets/js/combine.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ mix('frontend/assets/js/combine.js') }}"></script>
     <script defer src="https://www.googletagmanager.com/gtag/js?id=@yield('google_verification')"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -58,7 +58,7 @@
         gtag('js', new Date());
         gtag('config', '@yield('google_analytics')');
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"
+    <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"
         crossorigin="anonymous" defer></script>
 
     <link rel="preload" as="style" href="{{ mix('frontend/assets/css/combine.css') }}" as="style"
