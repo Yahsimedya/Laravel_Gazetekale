@@ -318,17 +318,16 @@
    "dateModified":"{{ $post->updated_at->format('c') }}",
    "description":"{{ $post->description_tr }}",
    "articleSection":"{{ $post->category->category_tr }}",
-"articleBody": {!! json_encode($cleanedContent, JSON_UNESCAPED_UNICODE) !!},
+   "articleBody": {!! json_encode($cleanedContent, JSON_UNESCAPED_UNICODE) !!},
    "image":{
       "@type":"ImageObject",
       "url":"{{ url('/').'/'.$post->image }}",
       "width":600,
       "height":400
    },
-    "author":{
+   "author":{
       "@type":"Person",
       "name":"Gazete Kale"
-
    },
    "publisher":{
       "@type":"Organization",
@@ -337,14 +336,14 @@
       "logo":{
          "@type":"ImageObject",
          "url":"{{  url('/').'/'.$webSiteSetting->logo }}",
-         "width":190,  // Örnek genişlik
-         "height":42    // Örnek yükseklik
+         "width":190,
+         "height":42
       }
-   }, // Burada virgül ekledim.
+   },
    "keywords":"{{ $post->keywords_tr }}",
    "name":"{{ $post->title_tr }}",
    "wordCount": "{{ str_word_count($post->details_tr) }}",
-   "timeRequired":"PT{{ ceil(str_word_count($post->details_tr) / 200) }}M",
+   "timeRequired":"PT{{ ceil(str_word_count($post->details_tr) / 200) }}M"
 }
 </script>
 
