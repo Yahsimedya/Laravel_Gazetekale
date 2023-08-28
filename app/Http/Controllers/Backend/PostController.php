@@ -232,14 +232,28 @@ class PostController extends Controller
 
             $image = $request->image;
             if ($image) {
-                $image_one = uniqid() . '.' . Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $image->getClientOriginalExtension();
+                $image_name_without_extension = uniqid() . '.' . Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME));
+                $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_name_without_extension . '.webp';
 
-                $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
-
-                Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name, 68, 'jpg');
+                Image::make($image)
+                    ->resize(800, 450)
+                    ->fit(800, 450)
+                    ->encode('webp', 68) // Burada encode metodu ile format ve kalite belirttik
+                    ->save($new_image_name);
 
                 $post->image = $new_image_name;
             }
+            // $image = $request->image;
+            // if ($image) {
+            //     $image_one = uniqid() . '.' . Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $image->getClientOriginalExtension();
+
+            //     $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
+
+            //     Image::make($image)->resize(800, 450)->fit(800, 450)->encode('webp', 68) // Burada encode metodu ile format ve kalite belirttik
+            //         ->save($new_image_name);
+
+            //     $post->image = $new_image_name;
+            // }
 
             $tagNames = explode(',', $request->get('tag')[0]);
             $tagIds = [];
@@ -313,12 +327,25 @@ class PostController extends Controller
             mkdir('storage/postimg/' . $yil . '/' . $ay, 0777, true);
         }
 
+        // $image = $request->image;
+        // if ($image) { // if image is updating
+        //     $image_one = uniqid() . '.' . $image->getClientOriginalName();
+
+        //     $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
+        //     Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name, 68, 'jpg');
+        //     $post->image = $new_image_name; // set new image to the object, replace tmp image with new right path
+
+        //     if (file_exists($request->old_image)) {
+        //         unlink($request->old_image);
+        //     }
+        // }
         $image = $request->image;
         if ($image) { // if image is updating
-            $image_one = uniqid() . '.' . $image->getClientOriginalName();
+            $image_name_without_extension = uniqid() . '.' . Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME));
 
-            $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
-            Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name, 68, 'jpg');
+            $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_name_without_extension . '.webp';
+            Image::make($image)->resize(800, 450)->fit(800, 450)->encode('webp', 80) // Burada encode metodu ile format ve kalite belirttik
+                ->save($new_image_name);
             $post->image = $new_image_name; // set new image to the object, replace tmp image with new right path
 
             if (file_exists($request->old_image)) {
