@@ -194,8 +194,13 @@ class SitemapController extends Controller
             $xmlOutput .= '<url>';
             $xmlOutput .= "<loc>{$url}</loc>";
             $xmlOutput .= '<news:news>';
+            if (!empty($p->image)) {  // Eğer postta bir resim URL'si varsa
+                $xmlOutput .= '<news:image>';
+                $xmlOutput .= "<news:loc>{$p->image_url}</news:loc>";  // Resim URL'sini ekleyin
+                $xmlOutput .= '</news:image>';
+            }
             $xmlOutput .= '<news:publication>';
-            $xmlOutput .= '<news:name>Your Publication Name</news:name>';  // Yayın adınızı buraya yazın
+            $xmlOutput .= '<news:name>Gazete Kale</news:name>';  // Yayın adınızı buraya yazın
             $xmlOutput .= '<news:language>tr</news:language>';
             $xmlOutput .= '</news:publication>';
             $xmlOutput .= "<news:publication_date>{$p->created_at->toW3cString()}</news:publication_date>";
