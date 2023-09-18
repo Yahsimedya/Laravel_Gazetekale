@@ -42,6 +42,7 @@ use App\Http\Controllers\Frontend\AuthorsCommentsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('cache-clear', function () {
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
@@ -79,15 +80,15 @@ Route::get('/install', function () {
 
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
-    Route::get('/DBTrans',[ExtraController::class,'DBTrans']);
-    Route::get('/haberFotoTrans',[ExtraController::class,'haberFotoTrans']);
-    Route::get('/OldDByazarlar',[ExtraController::class,'OldDByazarlar']);
-    Route::get('/OldDBkoseyazisi',[ExtraController::class,'OldDBkoseyazisi']);
+    Route::get('/DBTrans', [ExtraController::class, 'DBTrans']);
+    Route::get('/haberFotoTrans', [ExtraController::class, 'haberFotoTrans']);
+    Route::get('/OldDByazarlar', [ExtraController::class, 'OldDByazarlar']);
+    Route::get('/OldDBkoseyazisi', [ExtraController::class, 'OldDBkoseyazisi']);
 
 
-//Cache Clean
+    //Cache Clean
     Route::get('/clear-cache', function () {
         Artisan::call('cache:clear');
         Artisan::call('route:clear');
@@ -96,7 +97,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Artisan::call('optimize');
 
         return redirect()->back();
-
     })->name('cacheClean');
 
 
@@ -110,7 +110,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/update/status/{category}', [CategoryController::class, 'ActiveCategory'])->name('update.ActiveCategory');
     Route::get('/delete/category/{category}', [CategoryController::class, 'DeleteCategory'])->name('delete.category');
 
-// ADMİN subcategory  Routes
+    // ADMİN subcategory  Routes
 
     Route::get('/subcategories', [SubCategoryController::class, 'index'])->name('subcategories');
     Route::get('/add/subcategory', [SubCategoryController::class, 'AddSubCategory'])->name('add.subcategory');
@@ -120,7 +120,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/subcategories/active/{subcategory}', [SubCategoryController::class, 'ActiveSubCategory'])->name('active.subcategory');
     Route::get('/delete/subcategory/{subcategory}', [SubCategoryController::class, 'DeleteSubCategory'])->name('delete.subcategory');
 
-// DİSTRİCT ALL WEB ROUTE
+    // DİSTRİCT ALL WEB ROUTE
     Route::get('/district', [DistrictController::class, 'index'])->name('district');
     Route::get('/add/district', [DistrictController::class, 'AddDistrict'])->name('add.district');
     Route::post('/create/district', [DistrictController::class, 'CreateDistrict'])->name('create.district');
@@ -129,7 +129,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/update/district/{district}', [DistrictController::class, 'UpdateDistrict'])->name('update.district');
     Route::get('/delete/district/{district}', [DistrictController::class, 'DeleteDistrict'])->name('delete.district');
 
-// SUBDSTRİCT ALL ROUTE
+    // SUBDSTRİCT ALL ROUTE
     Route::get('/subdistricts', [SubDistrictController::class, 'index'])->name('subdistrict');
     Route::get('/add/subdistrict', [SubDistrictController::class, 'AddSubDistrict'])->name('add.subdistrict');
     Route::post('/create/subdistrict', [SubDistrictController::class, 'CreateSubDistrict'])->name('create.subdistrict');
@@ -137,7 +137,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/update/subdistrict/{subdistrict}', [SubDistrictController::class, 'UpdateSubDistrict'])->name('update.subdistrict');
     Route::post('/subdistrict/active/{id}', [SubDistrictController::class, 'ActiveSubDistrict'])->name('active.subdistrict');
     Route::get('/delete/subdistrict/{subdistrict}', [SubDistrictController::class, 'DeleteSubDistrict'])->name('delete.subdistrict');
-//AUTHORS ALL ROUTES
+    //AUTHORS ALL ROUTES
     Route::get('/authors', [AuthorController::class, 'index'])->name('list.authors');
     Route::get('/add/authors', [AuthorController::class, 'AddAuthors'])->name('add.authors');
     Route::post('/create/authors', [AuthorController::class, 'CreateAuthors'])->name('create.authors');
@@ -157,21 +157,21 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
 
     //Theme Settings
-    Route::get('/theme/index',[ThemeController::class,'index'])->name('theme.index');
-    Route::post('/theme/update/{id}',[ThemeController::class,'update'])->name('theme.update');
+    Route::get('/theme/index', [ThemeController::class, 'index'])->name('theme.index');
+    Route::post('/theme/update/{id}', [ThemeController::class, 'update'])->name('theme.update');
 
-//otomatik altkategori çekmek için route JQERY ROTASI
+    //otomatik altkategori çekmek için route JQERY ROTASI
     Route::get('/get/subcategory/{category_id}', [PostController::class, 'GetSubCategory']);
     Route::get('/get/subdistrict/{district_id}', [PostController::class, 'GetSubDistrict']);
-//    Route::get('/get/subdistrict/{district_id}', [ExtraController::class, 'GetSubDistrict']);
+    //    Route::get('/get/subdistrict/{district_id}', [ExtraController::class, 'GetSubDistrict']);
 
-// POSTS ALL ROUTE
+    // POSTS ALL ROUTE
     Route::get('/add/post', [PostController::class, 'AddPost'])->name('add.post');
     Route::get('/all/post', [PostController::class, 'index'])->name('all.post');
-      Route::get('/all/orderImagesPage/{id}', [PostController::class, 'orderImagesPage'])->name('all.orderImagesPage');
-      Route::get('/all/orderImagesUploadPage/{id}', [PostController::class, 'orderImagesUploadPage'])->name('all.orderImagesUploadPage');
-      Route::post('/all/OrderphotoUpload/{id}', [PostController::class, 'OrderphotoUpload'])->name('OrderphotoUpload');
-      Route::post('/all/Orderphotodelete/{id}', [PostController::class, 'Orderphotodelete'])->name('Orderphotodelete');
+    Route::get('/all/orderImagesPage/{id}', [PostController::class, 'orderImagesPage'])->name('all.orderImagesPage');
+    Route::get('/all/orderImagesUploadPage/{id}', [PostController::class, 'orderImagesUploadPage'])->name('all.orderImagesUploadPage');
+    Route::post('/all/OrderphotoUpload/{id}', [PostController::class, 'OrderphotoUpload'])->name('OrderphotoUpload');
+    Route::post('/all/Orderphotodelete/{id}', [PostController::class, 'Orderphotodelete'])->name('Orderphotodelete');
 
 
     Route::post('/create/post', [PostController::class, 'CreatePosts'])->name('create.post');
@@ -204,20 +204,20 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
 
 
-//Social Settings
+    //Social Settings
     Route::get('/social/settings', [SettingController::class, 'SocialSetting'])->name('social.setting');
     Route::post('/social/update/{id}', [SettingController::class, 'UpdateSocial'])->name('social.update');
     Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
     Route::post('/seo/update/{seos}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
 
-//Website Setting Settings
+    //Website Setting Settings
     Route::get('/webiste/settings', [WebsiteSettingController::class, 'index'])->name('website.setting');
     Route::post('/webiste/update/{websetting}', [WebsiteSettingController::class, 'Update'])->name('websetting.update');
 
-//    Route::post('/social/update/{id}', [SettingController::class, 'UpdateSocial'])->name('social.update');
-//    Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
-//    Route::post('/seo/update/{id}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
-// GALERY CATEGORY
+    //    Route::post('/social/update/{id}', [SettingController::class, 'UpdateSocial'])->name('social.update');
+    //    Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
+    //    Route::post('/seo/update/{id}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
+    // GALERY CATEGORY
     Route::get('/galery/categories', [GaleryCategoryController::class, 'index'])->name('galeri.categories');
     Route::get('/add/galery/category', [GaleryCategoryController::class, 'AddCategory'])->name('add.galerycategory');
     Route::post('/create/galery/category', [GaleryCategoryController::class, 'CreateCategory'])->name('create.galerycategory');
@@ -227,13 +227,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/galery/galerycategory/active/{id}', [GaleryCategoryController::class, 'ActiveGalery'])->name('active.galerycategory');
 
 
-// PHOTO GALERY ROUTES
+    // PHOTO GALERY ROUTES
     Route::get('/photo/galery', [GalleryController::class, 'PhotoGalery'])->name('photo.galery');
     Route::get('/add/photogalery', [GalleryController::class, 'AddPhotoGalery'])->name('add.photogalery');
     Route::post('/create/photo', [GalleryController::class, 'CreatePhoto'])->name('create.photo');
     Route::get('/galery/detail/{id}', [GalleryController::class, 'GaleryDetail'])->name('galery.detail');
     Route::get('/galery/Add/{id}', [GalleryController::class, 'GaleryDetailAdd'])->name('galery.detailAdd');
-//    Route::get('/galery/update/', [GalleryController::class, 'UpdatePhoto'])->name('update.photo');
+    //    Route::get('/galery/update/', [GalleryController::class, 'UpdatePhoto'])->name('update.photo');
     Route::post('/add/photo/text/{photocategory_id}', [GalleryController::class, 'AddText'])->name('add.text');
     Route::post('/galery/photo/active/{id}', [GalleryController::class, 'ActivePhotoGalery'])->name('active.photogalery');
     Route::get('/galery/delete/{id}', [GalleryController::class, 'DeleteGalery'])->name('delete.galery');
@@ -241,7 +241,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/photo/galery/update', [GalleryController::class, 'GaleryUpdate'])->name('update.galery');
     Route::get('/galery/photo/delete/{id}', [GalleryController::class, 'DeletePhoto'])->name('delete.photo');
 
-// Route::get('/subdistrict', [DistrictController::class, 'index'])->name('subdistrict');
+    // Route::get('/subdistrict', [DistrictController::class, 'index'])->name('subdistrict');
     //ADS BACKEND
     Route::get('/list/ad', [AdController::class, 'ListAds'])->name('list.add');
     Route::get('/add/ads', [AdController::class, 'AddAds'])->name('add.ads');
@@ -250,7 +250,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/update/ad/{ad}', [AdController::class, 'UpdateAds'])->name('update.ads');
     Route::post('/update/ads/{ad}', [AdController::class, 'adsStatus'])->name('update.adsStatus');
     Route::get('/ad/delete/{ad}', [AdController::class, 'DeleteAds'])->name('delete.ads');
-
 });
 
 
@@ -268,9 +267,9 @@ Route::post('/ajax/home', [AjaxController::class, 'HavaDurumuHome'])->name('il.h
 Route::post('/ajax/stabilhome', [AjaxController::class, 'HavaDurumuStabil'])->name('il.stabilhome');
 
 Route::get('/hava-durumu', [AjaxController::class, 'HavaDurum'])->name('hava.durum');
-Route::get('/nobetciEczane',[AjaxController::class,'nobetciEczane'])->name('nobetciEczane');
-Route::post('/nobetciEczane',[AjaxController::class,'nobetciEczanePost'])->name('nobetciEczanePost');
-Route::get('/cenazeilanlari',[AjaxController::class,'cenazeilanlari'])->name('cenazeilanlari');
+Route::get('/nobetciEczane', [AjaxController::class, 'nobetciEczane'])->name('nobetciEczane');
+Route::post('/nobetciEczane', [AjaxController::class, 'nobetciEczanePost'])->name('nobetciEczanePost');
+Route::get('/cenazeilanlari', [AjaxController::class, 'cenazeilanlari'])->name('cenazeilanlari');
 
 // NAMAZ VAKİTLERİ
 Route::post('/ajax-namaz', [AjaxController::class, 'NamazVakit'])->name('il.namaz');
@@ -295,6 +294,8 @@ Route::get('/', [ExtraController::class, 'Home']);
 //SİTEMAP ROUTE
 //SİTEMAP ROUTE
 Route::get('/sitemap', [SitemapController::class, 'sitemap']);
+Route::get('/sitemap-news', [SitemapController::class, 'googleNewsSitemap']);
+
 Route::get('/sitemaps', [SitemapController::class, 'sitemapcategory'])->name('sitemapcategory');
 
 //Route::get('/best-sitemap', [SitemapController::class, 'bestsitemap']);
@@ -327,7 +328,7 @@ Route::post('/egazete/edit/{post}', [EgazeteController::class, 'edit'])->name('e
 Route::get('/egazete/editPage/{id}', [EgazeteController::class, 'editPage'])->name('egazete.editPage');
 
 
-Route::get('/authors/all',[AuthorsPostController::class,'all'])->name('author');
+Route::get('/authors/all', [AuthorsPostController::class, 'all'])->name('author');
 
 
 // User Operations
@@ -424,7 +425,3 @@ Route::get('/videogaleri/all', [ExtraController::class, 'VideoGaleriAll'])->name
 
 Route::get('/{id}/', [ExtraController::class, 'GetDistrict']);
 //Route::get('/', [ExtraController::class, 'akbankkur']);
-
-
-
-

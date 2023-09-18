@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
+
+
 
 
 class SitemapController extends Controller
@@ -19,27 +22,27 @@ class SitemapController extends Controller
     public function sitemap()
     {
         ini_set('memory_limit', '-1');
-        $sitemaphome = App::make('sitemap');//home
-        $sitemapcategories = App::make('sitemap');//categories
-        $sitemapdistricts = App::make('sitemap');//districts
-        $sitemapimages = App::make('sitemap');//images
-        $sitemapfotogaleri = App::make('sitemap');//fotogaleri
-        $sitemapvideogaleri = App::make('sitemap');//videogaleri
+        $sitemaphome = App::make('sitemap'); //home
+        $sitemapcategories = App::make('sitemap'); //categories
+        $sitemapdistricts = App::make('sitemap'); //districts
+        $sitemapimages = App::make('sitemap'); //images
+        $sitemapfotogaleri = App::make('sitemap'); //fotogaleri
+        $sitemapvideogaleri = App::make('sitemap'); //videogaleri
         $posts = Post::orderByDesc('id')->orderByDesc('id')->where('status', 1)->get();
         $postsvideo = Post::where('posts_video', '!=', NULL)->orderByDesc('updated_at')->where('status', 1)->get();
-        $photos =Photo::orderByDesc('updated_at')->get();
+        $photos = Photo::orderByDesc('updated_at')->get();
         $categories = Category::where('category_status', 1)->get();
         $districts = District::get();
         $counter = 0;
         $sitemapCounter = 0;
         $sitemapCounters = 0;
         $sitemapCounterAllPage = 0;
-        $sitemapCounterAllImage= 0;
+        $sitemapCounterAllImage = 0;
         $sitemapCounterImages = 0;
         $host = request()->getHost();
 
 
-//all page
+        //all page
         foreach ($posts as $p) {
             if ($counter == 1000) {
                 $sitemapCounterAllPage++;
@@ -48,11 +51,10 @@ class SitemapController extends Controller
                 $sitemaphome->model->resetItems();
                 $counter = 0;
             }
-            $sitemaphome->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
-              $counter++;
-
+            $sitemaphome->add("https://" . $host . "/" . "haber-" . str_slug($p->title_tr) . "-" . $p->id, $p->created_at, 0.8, "daily");
+            $counter++;
         }
-//Kategori
+        //Kategori
         foreach ($categories as $c) {
             if ($counter == 100) {
                 $sitemapcategories->store('xml', 'sitemap-categories');
@@ -64,7 +66,7 @@ class SitemapController extends Controller
             $sitemapcategories->add("https://" . $host . "/category/" . str_slug($c->category_tr) . "/" . $c->id, $c->created_at, 0.4, "daily");
             $counter++;
         }
-//districts
+        //districts
         foreach ($districts as $d) {
             if ($counter == 100) {
                 $sitemapdistricts->store('xml', 'sitemap-districts');
@@ -76,7 +78,7 @@ class SitemapController extends Controller
             $sitemapdistricts->add("https://" . $host . "/" . str_slug($d->district_tr), $d->created_at, 0.4, "daily");
             $counter++;
         }
-//İmages
+        //İmages
         foreach ($posts as $p) {
             if ($counter == 1000) {
                 $sitemapCounterAllImage++;
@@ -85,49 +87,47 @@ class SitemapController extends Controller
                 $sitemapimages->model->resetItems();
                 $counter = 0;
             }
-            $sitemapimages->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
+            $sitemapimages->add("https://" . $host . "/" . "haber-" . str_slug($p->title_tr) . "-" . $p->id, $p->created_at, 0.8, "daily");
             $counter++;
-
         }
 
-     //   foreach ($posts as $p) {
-     //       if ($counter == 1000) {
-     //           $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
-     //           $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
-     //           $sitemapimages->model->resetItems();
-     //           $counter = 0;
-     //           $sitemapCounterImages++;
-     //       }
-     //       $sitemapimages->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
-     //       $counter++;
-     //   }
+        //   foreach ($posts as $p) {
+        //       if ($counter == 1000) {
+        //           $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
+        //           $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
+        //           $sitemapimages->model->resetItems();
+        //           $counter = 0;
+        //           $sitemapCounterImages++;
+        //       }
+        //       $sitemapimages->add("https://" . $host . "/". "haber-" . str_slug($p->title_tr) . "-" . $p->id , $p->created_at, 0.8, "daily");
+        //       $counter++;
+        //   }
 
 
-//fotoğraf galerisi
+        //fotoğraf galerisi
         foreach ($photos as $p) {
 
             if ($counter == 1000) {
                 $sitemapCounter++;
-                $sitemapfotogaleri->store('xml', 'sitemap-fotogaleri-'.$sitemapCounter);
-                $sitemapfotogaleri->addSitemap(secure_url('sitemap-fotogaleri-' .$sitemapCounter. '.xml'));
+                $sitemapfotogaleri->store('xml', 'sitemap-fotogaleri-' . $sitemapCounter);
+                $sitemapfotogaleri->addSitemap(secure_url('sitemap-fotogaleri-' . $sitemapCounter . '.xml'));
                 $sitemapfotogaleri->model->resetItems();
                 $counter = 0;
             }
             $sitemapfotogaleri->add("https://" . $host . "/" . $p->photo, $p->created_at, 0.8, "daily");
             $counter++;
         }
-//video galerisi
+        //video galerisi
         foreach ($postsvideo as $v) {
 
             if ($counter == 1000) {
                 $sitemapCounter++;
-                $sitemapvideogaleri->store('xml', 'sitemap-videogaleri-'.  $sitemapCounter);
-                $sitemapvideogaleri->addSitemap(secure_url('sitemap-videogaleri-'.  $sitemapCounter . '.xml'));
+                $sitemapvideogaleri->store('xml', 'sitemap-videogaleri-' .  $sitemapCounter);
+                $sitemapvideogaleri->addSitemap(secure_url('sitemap-videogaleri-' .  $sitemapCounter . '.xml'));
                 $sitemapvideogaleri->model->resetItems();
                 $counter = 0;
-
             }
-            $sitemapvideogaleri->add("https://" . $host . "/". "haber-" . str_slug($v->title_tr) . "-" . $v->id , $v->created_at, 0.8, "daily");
+            $sitemapvideogaleri->add("https://" . $host . "/" . "haber-" . str_slug($v->title_tr) . "-" . $v->id, $v->created_at, 0.8, "daily");
             $counter++;
         }
         if (!empty($sitemaphome->model->getItems())) {
@@ -150,9 +150,9 @@ class SitemapController extends Controller
             $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounter);
             $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounter . '.xml'), Carbon::today());
             $sitemapimages->model->resetItems();
-                for ($Images = 0; $Images <= $sitemapCounter; $Images++) {
-                 $sitemaphome->addSitemap(URL::to('sitemap-images-' . $Images . '.xml'), Carbon::today());
-                }
+            for ($Images = 0; $Images <= $sitemapCounter; $Images++) {
+                $sitemaphome->addSitemap(URL::to('sitemap-images-' . $Images . '.xml'), Carbon::today());
+            }
         }
 
         if (!empty($sitemapfotogaleri->model->getItems())) {
@@ -172,5 +172,40 @@ class SitemapController extends Controller
         $sitemaphome->addSitemap(URL::to("https://" . $host), Carbon::today());
         $sitemaphome->store('sitemapindex', 'sitemap');
         return redirect('/sitemap.xml');
+    }
+    public function googleNewsSitemap()
+    {
+        $twoDaysAgo = Carbon::now()->subDays(2);
+        $recentPosts = Post::where('created_at', '>=', $twoDaysAgo)->where('status', 1)->orderByDesc('id')->get();
+
+        return $this->generateGoogleNewsSitemapXML($recentPosts);
+    }
+
+    public function generateGoogleNewsSitemapXML($recentPosts)
+    {
+        $host = request()->getHost();
+        $xmlOutput = '<?xml version="1.0" encoding="UTF-8"?>';
+        $xmlOutput .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">';
+
+        foreach ($recentPosts as $p) {
+            $slug = Str::slug($p->title_tr);  // Laravel 6+ için Str::slug kullanılır
+            $url = "https://{$host}/haber-{$slug}-{$p->id}";
+
+            $xmlOutput .= '<url>';
+            $xmlOutput .= "<loc>{$url}</loc>";
+            $xmlOutput .= '<news:news>';
+            $xmlOutput .= '<news:publication>';
+            $xmlOutput .= '<news:name>Your Publication Name</news:name>';  // Yayın adınızı buraya yazın
+            $xmlOutput .= '<news:language>tr</news:language>';
+            $xmlOutput .= '</news:publication>';
+            $xmlOutput .= "<news:publication_date>{$p->created_at->toW3cString()}</news:publication_date>";
+            $xmlOutput .= "<news:title><![CDATA[{$p->title_tr}]]></news:title>";
+            $xmlOutput .= '</news:news>';
+            $xmlOutput .= '</url>';
+        }
+
+        $xmlOutput .= '</urlset>';
+
+        return response($xmlOutput)->header('Content-Type', 'text/xml');
     }
 }
