@@ -196,7 +196,7 @@ class SitemapController extends Controller
             $xmlOutput .= '<news:news>';
             if (!empty($p->image)) {  // Eğer postta bir resim URL'si varsa
                 $xmlOutput .= '<news:image>';
-                $xmlOutput .= "<news:loc>{$p->image_url}</news:loc>";  // Resim URL'sini ekleyin
+                $xmlOutput .= "<news:loc>'https://{$host}/{$p->image}'</news:loc>";  // Resim URL'sini ekleyin
                 $xmlOutput .= '</news:image>';
             }
             $xmlOutput .= '<news:publication>';
