@@ -185,7 +185,7 @@ class SitemapController extends Controller
     {
         $host = request()->getHost();
         $xmlOutput = '<?xml version="1.0" encoding="UTF-8"?>';
-        $xmlOutput .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">';
+        $xmlOutput .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">';
 
         foreach ($recentPosts as $p) {
             $slug = Str::slug($p->title_tr);  // Laravel 6+ için Str::slug kullanılır
@@ -194,17 +194,19 @@ class SitemapController extends Controller
             $xmlOutput .= '<url>';
             $xmlOutput .= "<loc>{$url}</loc>";
             $xmlOutput .= '<news:news>';
-            if (!empty($p->image)) {  // Eğer postta bir resim URL'si varsa
-                $xmlOutput .= '<news:image>';
-                $xmlOutput .= "<news:loc>'https://{$host}/{$p->image}'</news:loc>";  // Resim URL'sini ekleyin
-                $xmlOutput .= '</news:image>';
-            }
             $xmlOutput .= '<news:publication>';
             $xmlOutput .= '<news:name>Gazete Kale</news:name>';  // Yayın adınızı buraya yazın
             $xmlOutput .= '<news:language>tr</news:language>';
             $xmlOutput .= '</news:publication>';
             $xmlOutput .= "<news:publication_date>{$p->created_at->toW3cString()}</news:publication_date>";
             $xmlOutput .= "<news:title><![CDATA[{$p->title_tr}]]></news:title>";
+
+            if (!empty($p->image)) {  // Eğer postta bir resim URL'si varsa
+                $xmlOutput .= '<image:image>';
+                $xmlOutput .= "<image:loc>https://{$host}/{$p->image}</image:loc>";  // Resim URL'sini ekleyin
+                $xmlOutput .= '</image:image>';
+            }
+
             $xmlOutput .= '</news:news>';
             $xmlOutput .= '</url>';
         }
