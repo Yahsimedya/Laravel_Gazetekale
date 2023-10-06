@@ -78,7 +78,9 @@
                     {{--                   <div id="campaigns-donut"><svg width="42" height="42"><g transform="translate(21,21)"><g class="d3-arc d3-slice-border" style="cursor: pointer;"><path style="fill: rgb(102, 187, 106);" d="M1.1634144591899855e-15,19A19,19 0 0,1 -14.050144241469582,12.790365389381929L-7.025072120734791,6.3951826946909645A9.5,9.5 0 0,0 5.817072295949927e-16,9.5Z"></path></g><g class="d3-arc d3-slice-border" style="cursor: pointer;"><path style="fill: rgb(149, 117, 205);" d="M-14.050144241469582,12.790365389381929A19,19 0 0,1 0.6493373977393208,-18.988900993577726L0.3246686988696604,-9.494450496788863A9.5,9.5 0 0,0 -7.025072120734791,6.3951826946909645Z"></path></g><g class="d3-arc d3-slice-border" style="cursor: pointer;"><path style="fill: rgb(255, 112, 67);" d="M0.6493373977393208,-18.988900993577726A19,19 0 0,1 5.817072295949928e-15,19L2.908536147974964e-15,9.5A9.5,9.5 0 0,0 0.3246686988696604,-9.494450496788863Z"></path></g></g></svg></div> --}}
                     <span style="font-size: 30px; color:#29b6f6"><i class="fas fa-charging-station"></i></span>
                     <div class="ml-3">
-                        <h5 class="font-weight-semibold mb-0">{{ $userTypes ? $userTypes[0]['sessions'] : '' }}</h5>
+                        @if (isset($userTypes[0]['sessions']))
+                            <h5 class="font-weight-semibold mb-0">{{ $userTypes[0]['sessions'] }}</h5>
+                        @endif
                         <span class="badge badge-mark border-success mr-1"></span> <span class="text-muted">Son 24 saatte
                             gelen yeni kullanıcı sayısı</span>
                     </div>
@@ -87,7 +89,9 @@
                     {{--                   <div id="campaigns-donut"><svg width="42" height="42"><g transform="translate(21,21)"><g class="d3-arc d3-slice-border" style="cursor: pointer;"><path style="fill: rgb(102, 187, 106);" d="M1.1634144591899855e-15,19A19,19 0 0,1 -14.050144241469582,12.790365389381929L-7.025072120734791,6.3951826946909645A9.5,9.5 0 0,0 5.817072295949927e-16,9.5Z"></path></g><g class="d3-arc d3-slice-border" style="cursor: pointer;"><path style="fill: rgb(149, 117, 205);" d="M-14.050144241469582,12.790365389381929A19,19 0 0,1 0.6493373977393208,-18.988900993577726L0.3246686988696604,-9.494450496788863A9.5,9.5 0 0,0 -7.025072120734791,6.3951826946909645Z"></path></g><g class="d3-arc d3-slice-border" style="cursor: pointer;"><path style="fill: rgb(255, 112, 67);" d="M0.6493373977393208,-18.988900993577726A19,19 0 0,1 5.817072295949928e-15,19L2.908536147974964e-15,9.5A9.5,9.5 0 0,0 0.3246686988696604,-9.494450496788863Z"></path></g></g></svg></div> --}}
                     <span style="font-size: 30px; color:#f62988"><i class="fas fa-charging-station"></i></span>
                     <div class="ml-3">
-                        <h5 class="font-weight-semibold mb-0">{{ $userTypesWeek ? $userTypesWeek[0]['sessions'] : '' }}</h5>
+                        @if ($userTypesWeek[0]['sessions'])
+                            <h5 class="font-weight-semibold mb-0">{{ $userTypesWeek[0]['sessions'] }}</h5>
+                        @endif
                         <span class="badge badge-mark border-success mr-1"></span> <span class="text-muted">Son 7 günde
                             gelen yeni kullanıcı sayısı</span>
                     </div>
@@ -97,7 +101,9 @@
                     <span style="font-size: 30px; color:#29b6f6"><i class="fas fa-check-double"></i></span>
 
                     <div class="ml-3">
-                        <h5 class="font-weight-semibold mb-0">{{ $userTypes[0]['sessions'] }}</h5>
+                        @if (isset($userTypes[0]['sessions']))
+                            <h5 class="font-weight-semibold mb-0">{{ $userTypes[0]['sessions'] }}</h5>
+                        @endif
                         <span class="badge badge-mark border-danger mr-1"></span> <span class="text-muted">Son 24 saatte
                             geri gelen yeni kullanıcı</span>
                     </div>
@@ -108,7 +114,9 @@
                     <span style="font-size: 30px; color:#29b6f6"><i class="fas fa-check-double"></i></span>
 
                     <div class="ml-3">
-                        <h5 class="font-weight-semibold mb-0">{{ $userTypesWeek[1]['sessions'] }}</h5>
+                        @if (isset($userTypesWeek[1]['sessions']))
+                            <h5 class="font-weight-semibold mb-0">{{ $userTypesWeek[1]['sessions'] }}</h5>
+                        @endif
                         <span class="badge badge-mark border-danger mr-1"></span> <span class="text-muted">Son 7 günde geri
                             gelen yeni kullanıcı</span>
                     </div>
@@ -130,7 +138,9 @@
 
                     <div class="card-body">
                         Son 24 saatte içeriğinizi görüntüleyen kişi sayısı
-                        <code>{{ $analyticsData ? $analyticsData['totalsForAllResults']['ga:sessions'] : '' }}</code>
+                        @if (isset($analyticsData['totalsForAllResults']['ga:sessions']))
+                            <code>{{ $analyticsData['totalsForAllResults']['ga:sessions'] }}</code>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -142,7 +152,9 @@
 
                     <div class="card-body">
                         Son 24 saatte haber içeriği çoğul görüntüleme
-                        <code>{{ $analyticsData ? $analyticsData['totalsForAllResults']['ga:pageviews'] : '' }}
+                        @if (isset($analyticsData['totalsForAllResults']['ga:pageviews']))
+                            <code>{{ $analyticsData['totalsForAllResults']['ga:pageviews'] }}
+                        @endif
                         </code>
                     </div>
                 </div>
@@ -154,11 +166,18 @@
                     </div>
 
                     <div class="card-body">
+
                         Tekil Oturum
-                        <code>{{ $analyticsDataMonth ? number_format($analyticsDataMonth['totalsForAllResults']['ga:users']) : '' }}</code>
+                        @if (isset($analyticsDataMonth['totalsForAllResults']['ga:users']))
+                            <code>{{ number_format($analyticsDataMonth['totalsForAllResults']['ga:users']) }}</code>
+                        @endif
+
                         Sayfa
                         Görüntüleme
-                        <code>{{ $analyticsDataMonth ? number_format($analyticsDataMonth['totalsForAllResults']['ga:pageviews']) : '' }}</code>
+                        @if (isset($analyticsDataMonth['totalsForAllResults']['ga:users']))
+                            <code>{{ number_format($analyticsDataMonth['totalsForAllResults']['ga:pageviews']) }}</code>
+                        @endif
+
                     </div>
                 </div>
             </div>
