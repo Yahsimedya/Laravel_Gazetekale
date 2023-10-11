@@ -26,6 +26,8 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="600" />
     <meta property="og:image:type" content="image/jpeg" />
+    <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
     <link rel="canonical" href="{{ url()->current() }}" />
 
     <link rel="alternate" type="application/rss+xml" title="@yield('title') &raquo; beslemesi"
@@ -66,7 +68,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/brands.min.css" />
     <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" as="style"
-        onload="this.rel='stylesheet'" onerror="this.href='stylesheet'" defer>
+        onload="this.rel='stylesheet'" defer>
 
     {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" defer> --}}
     <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
