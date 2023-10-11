@@ -16,7 +16,7 @@
     @php
         $webSiteSetting = \App\Models\WebsiteSetting::first();
         $themeSetting = DB::table('themes')->get();
-        
+
     @endphp
 
     <div class="container bg-light mt-4 mb-4 rounded shadow">
@@ -332,7 +332,7 @@
    "publisher":{
       "@type":"Organization",
       "name":"Gazete Kale",
-      "url":"{{ url('/') }}",
+      "url":"{{ url('https://news.google.com/publications/CAAqBwgKMMunmAsw4rGwAw?hl=tr&gl=TR&ceid=TR%3Atr') }}",
       "logo":{
          "@type":"ImageObject",
          "url":"{{  url('/').'/'.$webSiteSetting->logo }}",
