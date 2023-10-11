@@ -201,10 +201,16 @@ class SitemapController extends Controller
             $xmlOutput .= "<news:publication_date>{$p->created_at->toW3cString()}</news:publication_date>";
             $xmlOutput .= "<news:title><![CDATA[{$p->title_tr}]]></news:title>";
 
-            // Resim URL'sini ekleyin
             if (!empty($p->image)) {
                 $xmlOutput .= '<news:image>';
                 $xmlOutput .= "<news:loc>https://{$host}/{$p->image}</news:loc>";
+
+                // Görsel açıklaması (caption)
+                $xmlOutput .= "<news:caption><![CDATA[{$p->image_caption}]]></news:caption>";
+
+                // Görsel başlığı (title)
+                $xmlOutput .= "<news:title><![CDATA[{$p->image_title}]]></news:title>";
+
                 $xmlOutput .= '</news:image>';
             }
 
