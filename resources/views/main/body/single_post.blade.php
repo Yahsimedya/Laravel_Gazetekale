@@ -327,7 +327,8 @@
    },
    "author":{
       "@type":"Person",
-      "name":"Gazete Kale"
+      "name":"Gazete Kale",
+      "url" :"https://news.google.com/publications/CAAqBwgKMMunmAsw4rGwAw?hl=tr&gl=TR&ceid=TR%3Atr"
    },
    "publisher":{
       "@type":"Organization",
