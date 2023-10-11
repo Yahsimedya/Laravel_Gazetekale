@@ -206,10 +206,10 @@ class SitemapController extends Controller
                 $xmlOutput .= "<news:loc>https://{$host}/{$p->image}</news:loc>";
 
                 // Görsel açıklaması (caption)
-                $xmlOutput .= "<news:caption><![CDATA[{$p->image_caption}]]></news:caption>";
+                $xmlOutput .= "<news:caption><![CDATA[{$p->title_tr}]]></news:caption>";
 
                 // Görsel başlığı (title)
-                $xmlOutput .= "<news:title><![CDATA[{$p->image_title}]]></news:title>";
+                $xmlOutput .= "<news:title><![CDATA[{$p->title_tr}]]></news:title>";
 
                 $xmlOutput .= '</news:image>';
             }
