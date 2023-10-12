@@ -40,17 +40,19 @@ class Posttask extends Command
      */
     public function handle()
     {
-        $now=date("Y-m-d H:i");
+        $now = date("Y-m-d H:i:s");
         // echo $data=DB::table('posts')->where('status',0)->whereRaw("publish_date<$now")->get();
-         $data=Post::where('status',0)->whereDate('publish_date','<',$now)->get();
-         $data->each(function ($item){
+        // dd($now);
+        $data = Post::where('status', 0)->orWhere('status', NULL)->whereDate('publish_date', '<=', $now)->get();
+        // dd($data);
+        $data->each(function ($item) {
             echo $item->id;
-            DB::table('posts')->where('id',$item->id)->update(['status'=>1]);
+            DB::table('posts')->where('id', $item->id)->update(['status' => 1]);
         });
-         if($data) {
-             Artisan::call('cache:clear');
-         }
-//        echo "0";
-//        return 0;
+        if ($data) {
+            Artisan::call('cache:clear');
+        }
+        //        echo "0";
+        //        return 0;
     }
 }
