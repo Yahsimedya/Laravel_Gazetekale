@@ -28,7 +28,7 @@ class SitemapController extends Controller
         $sitemapimages = App::make('sitemap'); //images
         $sitemapfotogaleri = App::make('sitemap'); //fotogaleri
         $sitemapvideogaleri = App::make('sitemap'); //videogaleri
-        $posts = Post::orderByDesc('id')->orderByDesc('id')->where('status', 1)->get();
+        $posts = Post::orderBy('updated_at', 'asc')->where('status', 1)->get();
         $postsvideo = Post::where('posts_video', '!=', NULL)->orderByDesc('updated_at')->where('status', 1)->get();
         $photos = Photo::orderByDesc('updated_at')->get();
         $categories = Category::where('category_status', 1)->get();
@@ -40,20 +40,38 @@ class SitemapController extends Controller
         $sitemapCounterAllImage = 0;
         $sitemapCounterImages = 0;
         $host = request()->getHost();
+        $counter = 0;
+        $lastModifiedSitemap = null; // Sitemap dizininin güncelleme tarihini sıfırlayın
 
-
-        //all page
         foreach ($posts as $p) {
-            if ($counter == 1000) {
+            if ($counter == 1500) {
                 $sitemapCounterAllPage++;
-                $sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounterAllPage);
-                $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounterAllPage . '.xml'), Carbon::today());
+                // Sitemap dizini içindeki dosyaların güncelleme tarihini sıfırlayın
+                if ($sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounterAllPage)) {
+                    $lastModifiedSitemap = $p->updated_at; // Bu sitemap dosyasının güncelleme tarihini ayarlayın
+                }
+                $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounterAllPage . '.xml'), $lastModifiedSitemap);
                 $sitemaphome->model->resetItems();
                 $counter = 0;
             }
             $sitemaphome->add("https://" . $host . "/" . "haber-" . str_slug($p->title_tr) . "-" . $p->id, $p->created_at, 0.8, "daily");
             $counter++;
+
+            // Her sayfa eklemesinde güncelleme tarihini sıfırlayın
+            $lastModifiedSitemap = $p->updated_at;
         }
+        // //all page
+        // foreach ($posts as $p) {
+        //     if ($counter == 1000) {
+        //         $sitemapCounterAllPage++;
+        //         $sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounterAllPage);
+        //         $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounterAllPage . '.xml'), Carbon::today());
+        //         $sitemaphome->model->resetItems();
+        //         $counter = 0;
+        //     }
+        //     $sitemaphome->add("https://" . $host . "/" . "haber-" . str_slug($p->title_tr) . "-" . $p->id, $p->created_at, 0.8, "daily");
+        //     $counter++;
+        // }
         //Kategori
         foreach ($categories as $c) {
             if ($counter == 100) {
@@ -130,9 +148,20 @@ class SitemapController extends Controller
             $sitemapvideogaleri->add("https://" . $host . "/" . "haber-" . str_slug($v->title_tr) . "-" . $v->id, $v->created_at, 0.8, "daily");
             $counter++;
         }
-        if (!empty($sitemaphome->model->getItems())) {
-            $sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounter);
-            $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounter . '.xml'), Carbon::today());
+        // if (!empty($sitemaphome->model->getItems())) {
+        //     $sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounter);
+        //     $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounter . '.xml'), Carbon::today());
+        //     $sitemaphome->model->resetItems();
+        // }
+        // Sitemap.xml dosyasının güncelleme tarihini, en son oluşturulan sitemap dosyasının güncelleme tarihine ayarlayın
+        // $lastModifiedSitemap = $sitemaphome->model->getItems()->max('lastmod');
+        // Sitemap.xml dosyasının güncelleme tarihini, en son eklenen sayfanın tarihine ayarlayın
+        if ($counter > 0) {
+            $sitemapCounterAllPage++;
+            // Sitemap dizini içindeki dosyaların güncelleme tarihini sıfırlayın
+            $sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounterAllPage);
+            $lastModifiedSitemap = $p->updated_at; // Bu sitemap dosyasının güncelleme tarihini ayarlayın
+            $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounterAllPage . '.xml'), $lastModifiedSitemap);
             $sitemaphome->model->resetItems();
         }
         if (!empty($sitemapcategories->model->getItems())) {
