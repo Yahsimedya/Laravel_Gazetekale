@@ -158,9 +158,12 @@ class SitemapController extends Controller
         // Sitemap.xml dosyasının güncelleme tarihini, en son eklenen sayfanın tarihine ayarlayın
         if ($counter > 0) {
             $sitemapCounterAllPage++;
+            $isLastPage = ($counter < 1500) || ($sitemapCounterAllPage * 1500 >= count($posts));
+
             // Sitemap dizini içindeki dosyaların güncelleme tarihini sıfırlayın
+            $lastModifiedSitemap = $isLastPage ? now() : $p->updated_at;
+
             $sitemaphome->store('xml', 'sitemap-page-' . $sitemapCounterAllPage);
-            $lastModifiedSitemap = $p->updated_at; // Bu sitemap dosyasının güncelleme tarihini ayarlayın
             $sitemaphome->addSitemap(secure_url('sitemap-page-' . $sitemapCounterAllPage . '.xml'), $lastModifiedSitemap);
             $sitemaphome->model->resetItems();
         }
