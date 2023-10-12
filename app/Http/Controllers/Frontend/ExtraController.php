@@ -791,36 +791,38 @@ class ExtraController extends Controller
         });
 
 
+
+        $seoset = Cache()->remember("single-seoset", Carbon::now()->addYear(), function () {
+            return Seos::first();
+        });
         if (isset($post->category_id) && !empty($post->created_at)) {
 
 
             $nextrelated = Post::where('category_id', $post->category_id)->status()->whereDate('created_at', '>', \Carbon\Carbon::parse()->now()->subMonth())->limit(10)->inRandomOrder()
                 ->get();
-        }
-        $seoset = Cache()->remember("single-seoset", Carbon::now()->addYear(), function () {
-            return Seos::first();
-        });
-        if (!empty($post->tag())) {
 
-            $tag_ids = $post->tag()->get();
-            //        dd($post->tag());
+            if (!empty($post->tag())) {
+
+                $tag_ids = $post->tag()->get();
+                //        dd($post->tag());
 
 
-            $tagCount = $tag_ids->count();
-            $ids = array();
-            foreach ($tag_ids as $tags) {
-                $ids[] = $tags->id;
-                $tag = $tags->id;
-            }
-            //        dd($ids);
-            $maybeRelated = [];
-            if (isset($ids)) {
-                if ($ids != []) {
-                    $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-                        ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-                        ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                        ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->where('posts.status', 1)->latest()
-                        ->get();
+                $tagCount = $tag_ids->count();
+                $ids = array();
+                foreach ($tag_ids as $tags) {
+                    $ids[] = $tags->id;
+                    $tag = $tags->id;
+                }
+                //        dd($ids);
+                $maybeRelated = [];
+                if (isset($ids)) {
+                    if ($ids != []) {
+                        $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                            ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                            ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+                            ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->where('posts.status', 1)->latest()
+                            ->get();
+                    }
                 }
             }
         }
