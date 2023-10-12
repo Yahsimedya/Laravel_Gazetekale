@@ -827,6 +827,7 @@ class ExtraController extends Controller
             }
         } else {
             $maybeRelated = [];
+            $nextrelated = [];
         }
         return view('main.body.single_post', compact('post', 'ads', 'orderImages', 'maybeRelated', 'seoset', 'slider', 'nextrelated', 'comments', 'tagCount'));
     }
