@@ -1,5 +1,5 @@
 @extends('main.home_master')
-@section('title', $post->title_tr)
+@section('title', $post->title_tr ? $post->title_tr : '')
 @section('meta_keywords', $post->keywords_tr)
 @section('meta_description', $post->description_tr)
 @section('google_analytics', $seoset->google_analytics)
@@ -204,38 +204,39 @@
             </div>
 
             <div class="col-md-4 mb-4 detay__sidebar">
-                <div class="detay col-12 p-0 mt-2 border shadow">
-
-                    <div class="detay-slider" style="background-color: white!important;">
-                        @php
-                            $k = 1;
-                        @endphp
-                        @foreach ($slider as $sliders)
-                            <div class="position-relative d-table-cell align-middle">
-
-                                <div class="kapsayici position-relative">
-                                    <a
-                                        href="{{ URL::to('/haber-' . str_slug($sliders->title_tr) . '-' . $sliders->id) }}">
-
-                                        <div class="kartlar__effect position-absolute">
-                                        </div>
-                                        <img src="{{ $sliders->image }}"
-                                            onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                                            class="detay-image ls-is-cached lazyloaded" alt="">
-                                    </a>
-
-                                </div>
-
-                                <div class="position-relative bg-light text-dark">
-                                    <p class=" detay-text d-table-cell align-middle">{{ $sliders->title_tr }}</p>
-                                </div>
-                            </div>
-
+                <div class="detay col-12 p-0 mt-2 border shadow ">
+                    <div class="detay-slider-container">
+                        <div class="detay-slider" style="background-color: white!important;">
                             @php
-                                $k++;
+                                $k = 1;
                             @endphp
-                        @endforeach
+                            @foreach ($slider as $sliders)
+                                <div class="position-relative d-table-cell align-middle">
 
+                                    <div class="kapsayici position-relative">
+                                        <a
+                                            href="{{ URL::to('/haber-' . str_slug($sliders->title_tr) . '-' . $sliders->id) }}">
+
+                                            <div class="kartlar__effect position-absolute">
+                                            </div>
+                                            <img src="{{ $sliders->image }}"
+                                                onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
+                                                class="detay-image ls-is-cached lazyloaded" alt="">
+                                        </a>
+
+                                    </div>
+
+                                    <div class="position-relative bg-light text-dark">
+                                        <p class=" detay-text d-table-cell align-middle">{{ $sliders->title_tr }}</p>
+                                    </div>
+                                </div>
+
+                                @php
+                                    $k++;
+                                @endphp
+                            @endforeach
+
+                        </div>
                     </div>
                 </div>
                 <div class="reklam-alani mb-2 text-center">

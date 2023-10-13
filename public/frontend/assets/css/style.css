@@ -595,6 +595,22 @@
     margin: 0 !important
 }
 
+
+/* Bu stil mobil cihazlarda gizler */
+
+.detay-slider-container {
+    display: none;
+}
+
+
+/* Bu stil 768 piksel veya daha geniş ekranlarda içeriği gösterir */
+
+@media (min-width: 768px) {
+    .detay-slider-container {
+        display: block;
+    }
+}
+
 .detay-slider__item span {
     position: absolute;
     bottom: 0;
