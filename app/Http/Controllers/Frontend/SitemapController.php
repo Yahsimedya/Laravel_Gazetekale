@@ -254,4 +254,35 @@ class SitemapController extends Controller
 
         return response($xmlOutput)->header('Content-Type', 'text/xml');
     }
+    public function sitemapLatest()
+    {
+        $twoDaysAgo = Carbon::now()->subDays(2);
+        $recentPosts = Post::where('created_at', '>=', $twoDaysAgo)->where('status', 1)->orderByDesc('id')->get();
+
+        return $this->sitemapLatestXml($recentPosts);
+    }
+    public function sitemapLatestXml($recentPosts)
+    {
+        $xmlOutput = '<?xml version="1.0" encoding="UTF-8"?>';
+        $xmlOutput .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        $host = request()->getHost();
+
+        foreach ($recentPosts as $post) {
+            $slug = Str::slug($post->title_tr);  // Laravel 6+ için Str::slug kullanılır
+
+            $url = "https://{$host}/haber-{$slug}-{$post->id}";
+            $lastmod = $post->created_at->toW3cString();
+
+            $xmlOutput .= '<url>';
+            $xmlOutput .= "<loc>{$url}</loc>";
+            $xmlOutput .= "<lastmod>{$lastmod}</lastmod>";
+            $xmlOutput .= '<changefreq>daily</changefreq>';
+            $xmlOutput .= '<priority>0.9</priority>';
+            $xmlOutput .= '</url>';
+        }
+
+        $xmlOutput .= '</urlset>';
+
+        return response($xmlOutput)->header('Content-Type', 'text/xml');
+    }
 }
