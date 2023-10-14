@@ -707,9 +707,8 @@
                         </li>
                     @endforeach
                     <li class="nav-item active position-relative float-left">
-                        <div class="nav-item-hover position-absolute"></div>
-                        <a class="nav-link bg-dark" href="#">Tüm İller <span
-                                class="sr-only">(current)</span></a>
+                        <div class="nav-item-hover  position-absolute"></div>
+                        <a class="nav-link" href="#">Tüm İller</a>
 
                     </li>
                 </ul>
