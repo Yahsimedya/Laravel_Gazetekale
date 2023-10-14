@@ -2,7 +2,7 @@
     use App\Models\Category;
     use App\Models\WebsiteSetting;
     use Carbon\Carbon;
-    
+
     $category = Cache()->remember('home-category', Carbon::now()->addYear(), function () {
         return category::where('category_status', 1)
             ->where('category_menu', 1)
@@ -706,7 +706,12 @@
                                 <span class="sr-only">(current)</span></a>
                         </li>
                     @endforeach
+                    <li class="nav-item active position-relative float-left">
+                        <div class="nav-item-hover position-absolute"></div>
+                        <a class="nav-link bg-dark" href="#">Tüm İller <span
+                                class="sr-only">(current)</span></a>
 
+                    </li>
                 </ul>
             </nav>
 
