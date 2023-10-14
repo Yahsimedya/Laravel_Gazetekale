@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class FixedPage extends Model
 {
     use HasFactory;
+    protected $table = 'fixedpage'; // Add this line to specify the table
+
     protected $fillable = [
         'id',
         'title',

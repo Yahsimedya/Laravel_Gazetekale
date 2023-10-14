@@ -285,7 +285,7 @@ Route::post('/ajax-yerel-haber', [AjaxController::class, 'IlGetir'])->name('il.y
 Route::get('/foto-galeri/{photogalery}', [ExtraController::class, 'PhotoGalleryDetail'])->name('photo.gallerydetail');
 
 //Footer Fixed Pages
-Route::get('/sayfa/{id}', [ExtraController::class, 'Sayfa'])->name('Open.fixedPage');
+Route::get('/{slug}/{id}', [ExtraController::class, 'Sayfa'])->name('Open.fixedPage');
 
 
 //RSS ROUTE

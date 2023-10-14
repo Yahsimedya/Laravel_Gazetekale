@@ -834,11 +834,11 @@ class ExtraController extends Controller
     }
 
     //Fixed Page Open
-    public function Sayfa($id)
+    public function Sayfa($slug, $id)
     {
         $fixedPage = DB::table('fixedpage')->where('id', '=', $id)->get();
-
-        return view('main.body.fixedpage', compact('fixedPage'));
+        $allPages = FixedPage::all();
+        return view('main.body.fixedpage', compact('fixedPage', 'allPages'));
     }
 
 

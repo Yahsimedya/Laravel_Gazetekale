@@ -48,7 +48,7 @@
                                             data-original="{{ asset('image/aa.png') }}"
                                             class="footer-logo mt-4 img-fluid lazyload text-center " alt="">
                                     </div> --}}
-                                    
+
                                     {{-- <div class="col-md-3 text-center">
                                         <img src="{{asset('image/iha.png')}}" width="100"
                                              data-original="{{asset('image/iha.png')}}"
@@ -68,7 +68,7 @@
                         <h3>Kurumsal </h3>
                     </div>
                     @foreach ($fixedPages as $pages)
-                        <li><a href="{{ route('Open.fixedPage', $pages->id) }}"
+                        <li><a href="{{ route('Open.fixedPage', [Str::slug($pages->title), $pages->id]) }}"
                                 style="max-height: 20px;color:white!important;"
                                 class="footer-link">{{ $pages->title }}</a></li>
                     @endforeach
