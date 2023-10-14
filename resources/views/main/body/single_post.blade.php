@@ -31,10 +31,15 @@
                     </li>
                     <li class="float-left mr-2"><i
                             class="far fa-calendar-alt detay__icon"></i>{{ \Carbon\Carbon::parse($post->created_at)->isoFormat('DD MMMM YYYY') }}
+                        {{ Carbon\Carbon::parse($post->created_at)->isoFormat('HH:mm') }}
                     </li>
-                    <li class="float-left mr-2"><i
-                            class="far fa-clock detay__icon"></i>{{ Carbon\Carbon::parse($post->created_at)->isoFormat('HH:mm') }}
-                    </li>
+                    @if (isset($post->updated_at))
+                        <li class="float-left mr-2"><i class="far fa-clock detay__icon"></i>Güncelleme :
+                            {{ \Carbon\Carbon::parse($post->updated_at)->isoFormat('DD MMMM YYYY') }}
+                            {{ Carbon\Carbon::parse($post->updated_at)->isoFormat('HH:mm') }}
+                        </li>
+                    @endif
+
             </div>
         </div>
         <div class="row">
