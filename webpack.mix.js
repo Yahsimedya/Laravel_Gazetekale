@@ -17,7 +17,7 @@ require('laravel-mix-purgecss');
 
 mix.js('resources/js/app.js', 'public/js')
 
-    .combine([
+.combine([
         'public/frontend/assets/js/lazysizes.min.js',
         'public/frontend/assets/js/marquee.js',
         'public/frontend/assets/js/svg-turkiye-haritasi.js',
@@ -35,11 +35,15 @@ mix.js('resources/js/app.js', 'public/js')
         'node_modules/swiper/swiper-bundle.css',
         'node_modules/slick-carousel/slick/slick.scss',
 
-    ],'public/frontend/assets/css/combine.css')
+    ], 'public/frontend/assets/css/combine.css')
 
-    .sourceMaps();
+.sourceMaps();
 
 mix.version()
-.purgeCss({
-    enabled: true,
-});
+    .purgeCss({
+        enabled: true,
+        content: [
+            'resources/views/**/*.blade.php',
+            'resources/js/**/*.js',
+        ],
+    });
