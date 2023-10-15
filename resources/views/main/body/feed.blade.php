@@ -21,7 +21,7 @@
         @foreach ($posts as $post)
             <item>
                 <title>{{ $post->title_tr }}</title>
-                <link>{{ $post->link }}</link>
+                <link>{{ URL::to('/' . 'haber-' . str_slug($post->title_tr) . '-' . $post->id) }}</link>
                 <dc:creator>
                     <![CDATA[{{ $seoset->meta_author }}]]>
                 </dc:creator>
@@ -32,7 +32,7 @@
                 <description>
                     <![CDATA[{!! html_entity_decode($post->details_tr) !!}]]>
                 </description>
-                <guid isPermaLink="false">{{ URL::to('/' . 'haber-' . str_slug($post->title_tr) . '-' . $post->id) }}
+                {{-- <guid isPermaLink="false">{{ URL::to('/' . 'haber-' . str_slug($post->title_tr) . '-' . $post->id) }} --}}
                 </guid>
 
                 <media:thumbnail url="{{ URL::to('/' . $post->image) }}" />
