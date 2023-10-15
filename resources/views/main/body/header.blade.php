@@ -503,7 +503,7 @@
                     <ul class="nav sidebar-nav">
                         <div class="sidebar-header">
                             <div class="sidebar-brand">
-                                <a href="#"><img class=" img-fluid" src="{{ asset($websetting->logowhite) }}"
+                                <a href="#"><img width="100%" height="62" class=" img-fluid" src="{{ asset($websetting->logowhite) }}"
                                         alt=""></a>
                             </div>
                         </div>
@@ -548,7 +548,7 @@
                 <!-- Page Content -->
                 {{-- <div class="col-md-6">asdasd</div> --}}
                 {{-- <div class="col-md-6">aaaaaaa</div> --}}
-                <a class="navbar-brand p-2" href="{{ URL::to('/') }}"><img class="logo img-fluid"
+                <a class="navbar-brand p-2" href="{{ URL::to('/') }}"><img width="100%" height="62" class="logo img-fluid"
                         src="{{ asset($websetting->logo) }}" alt=""></a>
 
                 <button type="button" class="hamburger animated fadeInLeft is-closed d-block d-sm-none"

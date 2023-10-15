@@ -14,7 +14,7 @@
     <div class="container pt-4">
         <div class="row">
             <div class="col-md-5 col-12 position-relative p-3">
-                <img src="{{ $websetting->logowhite }}" class="footer-logo img-fluid " alt="">
+                <img width="100%" height="68" src="{{ $websetting->logowhite }}" class="footer-logo img-fluid " alt="">
 
                 <div class="d-flex justify-content-center">
                     <div class="">
