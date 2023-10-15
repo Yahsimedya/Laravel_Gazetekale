@@ -53,7 +53,7 @@
                         allowfullscreen></iframe>
                 @else
                     <img src="{{ $post->image }}"
-                        onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';" width="100%" height="auto" class="img-fluid w-100"
+                        onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';" width="100%" height="411" class="img-fluid w-100"
                         alt="{{ $post->title_tr }}">
                 @endif
 
@@ -96,7 +96,7 @@
                             data-lightbox="example-set" data-title="">
                             <img src="{{ asset($Images->image) }}"
                                 onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                                class="img-fluid w-100 mb-3" width="100%" height="auto" alt="{{$post->title_tr}}">
+                                class="img-fluid w-100 mb-3" width="100%" height="411" alt="{{$post->title_tr}}">
                         </a>
                         <script>
                             lightbox.option({
@@ -224,7 +224,7 @@
 
                                             <div class="kartlar__effect position-absolute">
                                             </div>
-                                            <img width="100%" height="auto" src="{{ $sliders->image }}"
+                                            <img width="100%" height="200" src="{{ $sliders->image }}"
                                                 onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
                                                 class="detay-image ls-is-cached lazyloaded" alt="{{$sliders->title_tr}}">
                                         </a>
