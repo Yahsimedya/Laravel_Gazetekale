@@ -96,7 +96,7 @@
                             data-lightbox="example-set" data-title="">
                             <img src="{{ asset($Images->image) }}"
                                 onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                                class="img-fluid w-100 mb-3" width="100%" height="auto">
+                                class="img-fluid w-100 mb-3" width="100%" height="auto" alt="{{$post->title_tr}}">
                         </a>
                         <script>
                             lightbox.option({
@@ -135,7 +135,7 @@
                         <a href="{{ URL::to('/haber-' . str_slug($row->title_tr) . '-' . $row->post_id) }}">
                             <div class="row p-3 border-top">
                                 <div class="col-md-5"><img width="100%" height="200" class="img-fluid lazyload"
-                                        src="{{ asset($row->image) }}"></div>
+                                        src="{{ asset($row->image) }}" alt="{{$row->title_tr}}"></div>
                                 <div class="col-md-7 my-auto">
                                     <small class="font-weight-bold text-secondary">İlginizi Çekebilir</small>
                                     <p class="card-kisalt font-weight-bold">{{ $row->title_tr }}</p>
@@ -226,7 +226,7 @@
                                             </div>
                                             <img width="100%" height="auto" src="{{ $sliders->image }}"
                                                 onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                                                class="detay-image ls-is-cached lazyloaded" alt="">
+                                                class="detay-image ls-is-cached lazyloaded" alt="{{$sliders->title_tr}}">
                                         </a>
 
                                     </div>
