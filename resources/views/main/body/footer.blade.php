@@ -92,7 +92,7 @@
         </div>
     </div>
     <div class="footer-copyright text-center text-light py-3">© 2021 Copyright:
-        <a href="https://yahsisoft.com/"> <img width="85" class="img-fluid lazyload d-inline-flex"
+        <a href="https://yahsisoft.com/"> <img width="85" height="14" class="img-fluid lazyload d-inline-flex"
                 data-src="{{ asset('image/yahsisoft.png') }}"></a>
     </div>
 
