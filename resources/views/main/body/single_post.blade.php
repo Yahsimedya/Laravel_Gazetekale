@@ -53,7 +53,7 @@
                         allowfullscreen></iframe>
                 @else
                     <img src="{{ $post->image }}"
-                        onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';" class="img-fluid w-100"
+                        onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';" width="100%" height="auto" class="img-fluid w-100"
                         alt="{{ $post->title_tr }}">
                 @endif
 
@@ -96,7 +96,7 @@
                             data-lightbox="example-set" data-title="">
                             <img src="{{ asset($Images->image) }}"
                                 onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                                class="img-fluid w-100 mb-3">
+                                class="img-fluid w-100 mb-3" width="100%" height="auto">
                         </a>
                         <script>
                             lightbox.option({
@@ -134,7 +134,7 @@
                     @foreach ($maybeRelated as $row)
                         <a href="{{ URL::to('/haber-' . str_slug($row->title_tr) . '-' . $row->post_id) }}">
                             <div class="row p-3 border-top">
-                                <div class="col-md-5"><img height="200" class="img-fluid lazyload"
+                                <div class="col-md-5"><img width="100%" height="200" class="img-fluid lazyload"
                                         src="{{ asset($row->image) }}"></div>
                                 <div class="col-md-7 my-auto">
                                     <small class="font-weight-bold text-secondary">İlginizi Çekebilir</small>
@@ -224,7 +224,7 @@
 
                                             <div class="kartlar__effect position-absolute">
                                             </div>
-                                            <img src="{{ $sliders->image }}"
+                                            <img width="100%" height="auto" src="{{ $sliders->image }}"
                                                 onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
                                                 class="detay-image ls-is-cached lazyloaded" alt="">
                                         </a>
