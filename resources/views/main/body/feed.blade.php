@@ -33,7 +33,7 @@
                     <![CDATA[{!! html_entity_decode($post->details_tr) !!}]]>
                 </description>
                 {{-- <guid isPermaLink="false">{{ URL::to('/' . 'haber-' . str_slug($post->title_tr) . '-' . $post->id) }} --}}
-                </guid>
+                {{-- </guid> --}}
 
                 <media:thumbnail url="{{ URL::to('/' . $post->image) }}" />
                 <media:content url="{{ URL::to('/' . $post->image) }}" medium="image">
