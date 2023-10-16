@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //$schedule->command('demo:cron')->everyMinute();
-        $schedule->command('command:posttask')->everyMinute();
+        // $schedule->command('command:posttask')->everyMinute();
         $schedule->command('namaz:cron')
             ->weekly()  // Haftalık olarak çalıştır
             ->mondays() // Pazartesi günü
