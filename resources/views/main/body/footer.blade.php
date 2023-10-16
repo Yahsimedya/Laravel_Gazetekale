@@ -104,7 +104,18 @@
     <script src="{{ asset('frontend/assets/js/jquery.newsTicker.js') }}"></script>
     {{-- <script type="text/javascript" --}}
     {{-- src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script> --}}
+ <script async src="https://www.googletagmanager.com/gtag/js?id='@yield('google_analytics')'"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', '@yield('google_analytics')');
+    </script>
+    <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"
+        crossorigin="anonymous" defer></script>
     <script>
         new WOW().init();
     </script>
