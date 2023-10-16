@@ -42,4 +42,8 @@ mix.js('resources/js/app.js', 'public/js')
 mix.version()
     .purgeCss({
         enabled: true,
+        content: [
+            'resources/views/**/*.blade.php',
+            'resources/js/**/*.js',
+        ],
     });
