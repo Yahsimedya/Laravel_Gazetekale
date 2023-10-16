@@ -334,12 +334,12 @@
    "author":{
       "@type":"Person",
       "name":"Gazete Kale",
-      "url" :"https://news.google.com/publications/CAAqBwgKMMunmAsw4rGwAw?hl=tr&gl=TR&ceid=TR%3Atr"
+      "url" :"https://www.gazetekale.com"
    },
    "publisher":{
       "@type":"Organization",
       "name":"Gazete Kale",
-      "url":"{{ url('https://news.google.com/publications/CAAqBwgKMMunmAsw4rGwAw?hl=tr&gl=TR&ceid=TR%3Atr') }}",
+      "url":"{{ url('https://www.gazetekale.com') }}",
       "logo":{
          "@type":"ImageObject",
          "url":"{{  url('/').'/'.$webSiteSetting->logo }}",
