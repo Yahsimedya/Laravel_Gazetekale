@@ -327,7 +327,7 @@ class ExtraController extends Controller
                 ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
                 ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
                 ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-                ->latest('created_at')->where('status', 1)->limit(10)
+                ->latest('created_at')->where('status', 1)->limit(40)
                 ->get();
         });
         return response()->view('main.body.feed', compact('posts', 'seoset'))->header('Content-Type', 'application/xml');

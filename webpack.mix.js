@@ -28,22 +28,34 @@ mix.js('resources/js/app.js', 'public/js')
     ], 'public/frontend/assets/js/combine.js')
     .styles([
         'public/frontend/assets/css/style.css',
-        'public/frontend/assets/css/weather-icons.css',
-        'public/frontend/assets/css/magnific-popup.css',
-        'public/frontend/assets/css/svg-turkiye-haritasi.css',
-        'public/frontend/assets/css/lightbox.css',
-        'node_modules/swiper/swiper-bundle.css',
-        'node_modules/slick-carousel/slick/slick.scss',
+        // 'public/frontend/assets/css/weather-icons.css',
+        // 'public/frontend/assets/css/magnific-popup.css',
+        // 'public/frontend/assets/css/svg-turkiye-haritasi.css',
+        // 'public/frontend/assets/css/lightbox.css',
+        // 'public/frontend/assets/css/all.css',
+        // // 'public/frontend/assets/css/brand.css',
+        // 'public/frontend/assets/css/custom-red.css',
+        // 'public/frontend/assets/css/example.css',
+        // 'public/frontend/assets/css/fontawesome.css',
+        // 'public/frontend/assets/css/main.css',
+        // 'public/frontend/assets/css/marquee.css',
+        // 'public/frontend/assets/css/regular.css',
+        // 'public/frontend/assets/css/solid.css',
+        // 'public/frontend/assets/css/v4-shims.css',
+        // 'public/frontend/assets/css/weather-icons-wind.css',
+        // 'public/frontend/assets/css/weather-icons.css',
+        // 'node_modules/swiper/swiper-bundle.css',
+        // 'node_modules/slick-carousel/slick/slick.scss',
 
-    ], 'public/frontend/assets/css/combine.css')
+    ], 'public/frontend/assets/css/combine.css').purgeCss()
 
 .sourceMaps();
 
-mix.version()
-    .purgeCss({
-        enabled: true,
-        content: [
-            'resources/views/**/*.blade.php',
-            'resources/js/**/*.js',
-        ],
-    });
+// mix.version()
+//     .purgeCss({
+//         enabled: true,
+//         content: [
+//             'resources/views/**/*.blade.php',
+//             'resources/js/**/*.js',
+//         ],
+//     });
