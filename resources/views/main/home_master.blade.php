@@ -50,18 +50,7 @@
     {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6265404652403069" --}}
     {{-- crossorigin="anonymous" defer></script> --}}
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id='@yield('google_analytics')'"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', '@yield('google_analytics')');
-    </script>
-    <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"
-        crossorigin="anonymous" defer></script>
 
     <link rel="preload" as="style" href="{{ mix('frontend/assets/css/combine.css') }}" as="style"
         onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
@@ -122,7 +111,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" async
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+ <script async src="https://www.googletagmanager.com/gtag/js?id='@yield('google_analytics')'"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', '@yield('google_analytics')');
+    </script>
+    <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"
+        crossorigin="anonymous" defer></script>
     <!-- <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
      <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
      <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>-->
