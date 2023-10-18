@@ -312,7 +312,7 @@
         @php
             $cleanedContent = html_entity_decode(strip_tags($post->details_tr), ENT_QUOTES, 'UTF-8');
         @endphp
-        <script type="application/ld+json">
+     <script type="application/ld+json">
 {
    "@context":"https://schema.org/",
    "@type":"NewsArticle",
@@ -334,23 +334,20 @@
    "author":{
       "@type":"Person",
       "name":"Gazete Kale",
-      "url" :"https://www.gazetekale.com"
-   },
-   "publisher":{
-      "@type":"Organization",
-      "name":"Gazete Kale",
-      "url":"{{ url('https://www.gazetekale.com') }}",
+      "url":"https://www.gazetekale.com",
       "logo":{
          "@type":"ImageObject",
-         "url":"{{  url('/').'/'.$webSiteSetting->logo }}",
+         "url":"URL_TO_AUTHOR_LOGO_IMAGE",
          "width":190,
          "height":42
       }
    },
-   "keywords":"{{ $post->keywords_tr }}",
-   "name":"{{ $post->title_tr }}",
-   "wordCount": "{{ str_word_count($post->details_tr) }}",
-   "timeRequired":"PT{{ ceil(str_word_count($post->details_tr) / 200) }}M"
+   "publisher":{
+      "@type":"Organization",
+      "name":"Gazete Kale",
+      "url":"https://www.gazetekale.com",
+      "description":"DESCRIPTION_OF_PUBLISHER"
+   }
 }
 </script>
 
