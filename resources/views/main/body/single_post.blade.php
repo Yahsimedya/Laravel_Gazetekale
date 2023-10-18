@@ -337,7 +337,7 @@
       "url":"https://www.gazetekale.com",
       "logo":{
          "@type":"ImageObject",
-         "url":"URL_TO_AUTHOR_LOGO_IMAGE",
+         "url":"{{url('/').$websetting->logo}}",
          "width":190,
          "height":42
       }
