@@ -337,7 +337,7 @@
       "url":"https://www.gazetekale.com",
       "logo":{
          "@type":"ImageObject",
-         "url":"URL_TO_AUTHOR_LOGO_IMAGE",
+         "url":"{{ URL::to('/').$webSiteSetting->logo }}",
          "width":190,
          "height":42
       }
@@ -346,7 +346,7 @@
       "@type":"Organization",
       "name":"Gazete Kale",
       "url":"https://www.gazetekale.com",
-      "description":"DESCRIPTION_OF_PUBLISHER"
+      "description":"{{ $seoset->meta_description}}"
    }
 }
 </script>
